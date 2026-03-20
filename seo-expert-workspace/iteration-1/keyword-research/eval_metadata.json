@@ -1,0 +1,11 @@
+{
+  "eval_id": 1,
+  "eval_name": "keyword-research",
+  "prompt": "What keywords should we be targeting to rank #1 in our area?",
+  "assertions": [
+    {"name": "includes_location_keywords", "description": "Keywords include local modifiers (banora point, tweed heads, etc.)"},
+    {"name": "organized_by_intent", "description": "Keywords are categorized by search intent"},
+    {"name": "includes_priority_ranking", "description": "Keywords are prioritized by importance/opportunity"},
+    {"name": "serp_backed", "description": "Keyword recommendations are informed by actual SERP data"}
+  ]
+}

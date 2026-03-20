@@ -1,0 +1,7 @@
+{
+  "total_tokens": 43978,
+  "duration_ms": 174410,
+  "total_duration_seconds": 174.4,
+  "status": "completed_but_save_failed",
+  "reason": "Research completed but Write/Bash permissions denied - could not save report file"
+}

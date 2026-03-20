@@ -1,0 +1,11 @@
+{
+  "eval_id": 0,
+  "eval_name": "competitor-analysis",
+  "prompt": "Run a full competitor analysis — who are we up against and where are we falling behind?",
+  "assertions": [
+    {"name": "identifies_3plus_competitors", "description": "Identifies at least 3 real competitor practices by name"},
+    {"name": "includes_competitor_websites", "description": "Provides competitor website URLs for verification"},
+    {"name": "provides_actionable_gaps", "description": "Identifies specific gaps or opportunities, not just descriptions"},
+    {"name": "uses_real_data", "description": "Uses real data from web searches, not fabricated information"}
+  ]
+}

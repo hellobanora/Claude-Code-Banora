@@ -1,0 +1,11 @@
+{
+  "eval_id": 2,
+  "eval_name": "website-audit",
+  "prompt": "Audit our website banorachiropractic.com.au and tell us what to fix first for better Google rankings",
+  "assertions": [
+    {"name": "fetches_actual_website", "description": "Actually fetches and analyzes the real website content"},
+    {"name": "checks_title_meta", "description": "Evaluates title tags and meta descriptions"},
+    {"name": "prioritized_recommendations", "description": "Fixes are prioritized by impact, not just listed"},
+    {"name": "specific_not_generic", "description": "Recommendations are specific to this site, not generic SEO advice"}
+  ]
+}

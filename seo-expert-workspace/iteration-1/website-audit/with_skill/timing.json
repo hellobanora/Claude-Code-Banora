@@ -1,0 +1,7 @@
+{
+  "total_tokens": 48983,
+  "duration_ms": 231605,
+  "total_duration_seconds": 231.6,
+  "status": "completed_but_save_failed",
+  "reason": "Full audit completed (20 action items, NAP issues, schema gaps, competitor comparison) but Write permission denied"
+}

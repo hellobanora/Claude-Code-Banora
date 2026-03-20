@@ -1,0 +1,101 @@
+{
+  "skill_name": "seo-expert",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Run a full competitor analysis — who are we up against and where are we falling behind?",
+      "expected_output": "A competitor matrix with all local chiropractors within 10km, their strengths/weaknesses, and specific gaps Banora Chiropractic can exploit",
+      "files": [],
+      "assertions": [
+        {
+          "name": "identifies_3plus_competitors",
+          "description": "Identifies at least 3 real competitor practices by name",
+          "type": "contains_multiple",
+          "check": "Names at least 3 distinct competitor chiropractic practices"
+        },
+        {
+          "name": "includes_competitor_websites",
+          "description": "Provides competitor website URLs for verification",
+          "type": "content_check",
+          "check": "Includes actual website URLs for competitors"
+        },
+        {
+          "name": "provides_actionable_gaps",
+          "description": "Identifies specific gaps or opportunities, not just descriptions",
+          "type": "content_check",
+          "check": "Lists specific actionable opportunities where Banora Chiropractic can improve relative to competitors"
+        },
+        {
+          "name": "uses_real_data",
+          "description": "Uses real data from web searches, not fabricated information",
+          "type": "content_check",
+          "check": "Competitor names, locations, and details match real businesses that can be verified"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "What keywords should we be targeting to rank #1 in our area?",
+      "expected_output": "Prioritized keyword list organized by intent with competition assessment and recommended target pages",
+      "files": [],
+      "assertions": [
+        {
+          "name": "includes_location_keywords",
+          "description": "Keywords include local modifiers (banora point, tweed heads, etc.)",
+          "type": "content_check",
+          "check": "Keywords include geographic modifiers like 'banora point', 'tweed heads', 'coolangatta'"
+        },
+        {
+          "name": "organized_by_intent",
+          "description": "Keywords are categorized by search intent",
+          "type": "structure_check",
+          "check": "Keywords are organized into categories based on intent (navigational, informational, transactional) or similar grouping"
+        },
+        {
+          "name": "includes_priority_ranking",
+          "description": "Keywords are prioritized by importance/opportunity",
+          "type": "content_check",
+          "check": "Each keyword or cluster has a priority level or ranking"
+        },
+        {
+          "name": "serp_backed",
+          "description": "Keyword recommendations are informed by actual SERP data",
+          "type": "content_check",
+          "check": "References what is currently ranking for key terms, not just theoretical keyword suggestions"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Audit our website banorachiropractic.com.au and tell us what to fix first for better Google rankings",
+      "expected_output": "On-page SEO audit with specific issues found and prioritized fix list",
+      "files": [],
+      "assertions": [
+        {
+          "name": "fetches_actual_website",
+          "description": "Actually fetches and analyzes the real website content",
+          "type": "content_check",
+          "check": "References specific content from banorachiropractic.com.au (page titles, actual text, structure)"
+        },
+        {
+          "name": "checks_title_meta",
+          "description": "Evaluates title tags and meta descriptions",
+          "type": "content_check",
+          "check": "Analyzes the current title tag and meta description with specific improvement suggestions"
+        },
+        {
+          "name": "prioritized_recommendations",
+          "description": "Fixes are prioritized by impact, not just listed",
+          "type": "structure_check",
+          "check": "Recommendations have priority levels (high/medium/low) or are ordered by impact"
+        },
+        {
+          "name": "specific_not_generic",
+          "description": "Recommendations are specific to this site, not generic SEO advice",
+          "type": "content_check",
+          "check": "Suggestions reference specific pages, content, or elements from the Banora Chiropractic website"
+        }
+      ]
+    }
+  ]
+}
