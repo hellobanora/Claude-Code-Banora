@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clinic, pricing } from '../data/clinic';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Patient Resources | Banora Chiropractic',
+  url: `${clinic.website}/patient-resources`,
+};
+---
+
+<BaseLayout
+  title="Patient Resources | Banora Chiropractic | Tweed Heads South"
+  description="Helpful resources for Banora Chiropractic patients. What to expect on your first visit, our fees, health fund information, and tips for getting the most from your care."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-deep via-navy to-navy-light opacity-95"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <nav class="text-sm text-light-blue-soft/60 mb-6">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-white">Patient Resources</span>
+      </nav>
+      <h1 class="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-semibold text-white mb-4">Patient Resources</h1>
+      <p class="text-light-blue-soft/90 text-lg max-w-2xl">Everything you need to know before, during, and after your visit. We want you to feel informed and comfortable every step of the way.</p>
+    </div>
+  </section>
+
+  <!-- First Visit -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl font-semibold text-navy mb-8">Your First Visit</h2>
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="w-10 h-10 bg-mid-blue rounded-full flex items-center justify-center shrink-0 text-white font-semibold">1</div>
+          <div>
+            <h3 class="text-navy font-semibold text-lg">Book your appointment</h3>
+            <p class="text-grey-text mt-1">Book online through our booking system or call us on {clinic.phone}. We will find a time that works for you.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-10 h-10 bg-mid-blue rounded-full flex items-center justify-center shrink-0 text-white font-semibold">2</div>
+          <div>
+            <h3 class="text-navy font-semibold text-lg">Arrive a few minutes early</h3>
+            <p class="text-grey-text mt-1">We have free on-site parking and ground-level access. Arrive 5-10 minutes early so we can get your details sorted before your appointment.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-10 h-10 bg-mid-blue rounded-full flex items-center justify-center shrink-0 text-white font-semibold">3</div>
+          <div>
+            <h3 class="text-navy font-semibold text-lg">Your consultation (approx. {pricing.newPatient.duration})</h3>
+            <p class="text-grey-text mt-1">We will chat about your health history and what is going on. Then we will do a thorough physical examination. If needed, we can arrange X-rays (bulk billed). Your first treatment is included in this visit.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-10 h-10 bg-mid-blue rounded-full flex items-center justify-center shrink-0 text-white font-semibold">4</div>
+          <div>
+            <h3 class="text-navy font-semibold text-lg">Your care plan</h3>
+            <p class="text-grey-text mt-1">We will explain what we have found, discuss our recommendations, and create a plan that works for your body and your schedule. No pressure, no lock-in plans — just honest advice.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fees -->
+  <section class="py-16 md:py-24 bg-light-grey">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl font-semibold text-navy mb-8">Our Fees</h2>
+      <div class="bg-white rounded-xl border border-grey-mid/20 overflow-hidden">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-blue-ghost/50">
+              <th class="text-left p-4 text-navy font-semibold">Service</th>
+              <th class="text-right p-4 text-navy font-semibold">Adult</th>
+              <th class="text-right p-4 text-navy font-semibold">Student/Child</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-grey-mid/20">
+              <td class="p-4 text-grey-text">New Patient Consultation (approx. {pricing.newPatient.duration})</td>
+              <td class="p-4 text-right text-navy font-medium">${pricing.newPatient.price}</td>
+              <td class="p-4 text-right text-navy font-medium">${pricing.newPatient.studentChild}</td>
+            </tr>
+            <tr class="border-t border-grey-mid/20">
+              <td class="p-4 text-grey-text">Regular Adjustment (approx. {pricing.regularAdjustment.duration})</td>
+              <td class="p-4 text-right text-navy font-medium">${pricing.regularAdjustment.price}</td>
+              <td class="p-4 text-right text-navy font-medium">${pricing.regularAdjustment.studentChild}</td>
+            </tr>
+            <tr class="border-t border-grey-mid/20">
+              <td class="p-4 text-grey-text">Baby/Newborn (initial)</td>
+              <td class="p-4 text-right text-navy font-medium" colspan="2">${pricing.babyNewborn.initial}</td>
+            </tr>
+            <tr class="border-t border-grey-mid/20">
+              <td class="p-4 text-grey-text">Baby/Newborn (follow-up)</td>
+              <td class="p-4 text-right text-navy font-medium" colspan="2">${pricing.babyNewborn.followUp}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-6 space-y-3">
+        <h3 class="text-navy font-semibold">Payment Methods</h3>
+        <div class="flex flex-wrap gap-2">
+          {clinic.payment.map((method) => (
+            <span class="text-sm bg-white text-navy px-4 py-2 rounded-full border border-grey-mid/20">{method}</span>
+          ))}
+        </div>
+        <p class="text-grey-text text-sm">HICAPS is available on-site for instant health fund claims. Bring your health fund card and you can claim on the spot — no need to submit receipts later.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl font-semibold text-navy mb-8">Getting the Most from Your Care</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-blue-ghost/30 rounded-xl p-6 border border-blue-pale/20">
+          <h3 class="text-navy font-semibold mb-2">Stay hydrated</h3>
+          <p class="text-grey-text text-sm">Drink plenty of water after your adjustment. It helps your body respond to the changes.</p>
+        </div>
+        <div class="bg-blue-ghost/30 rounded-xl p-6 border border-blue-pale/20">
+          <h3 class="text-navy font-semibold mb-2">Do your exercises</h3>
+          <p class="text-grey-text text-sm">If we give you stretches or exercises, do them consistently. They are an important part of your recovery.</p>
+        </div>
+        <div class="bg-blue-ghost/30 rounded-xl p-6 border border-blue-pale/20">
+          <h3 class="text-navy font-semibold mb-2">Communicate with us</h3>
+          <p class="text-grey-text text-sm">Let us know how you are feeling — what is better, what is not, and anything that has changed. It helps us adjust your care.</p>
+        </div>
+        <div class="bg-blue-ghost/30 rounded-xl p-6 border border-blue-pale/20">
+          <h3 class="text-navy font-semibold mb-2">Be consistent</h3>
+          <p class="text-grey-text text-sm">Regular appointments, especially in the early stages of care, tend to produce better outcomes. Try to stick to the schedule we recommend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-20 bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 right-10 w-72 h-72 bg-light-blue rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 text-center">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">Have a question?</h2>
+      <p class="text-light-blue-soft/90 text-lg mb-8">Get in touch — we are always happy to help.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Contact Us
+        </a>
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Book Online
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

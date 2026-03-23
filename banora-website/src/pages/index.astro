@@ -1,0 +1,277 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clinic, practitioners, pricing } from '../data/clinic';
+import { services } from '../data/services';
+import { conditions } from '../data/conditions';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Banora Chiropractic — Chiropractor Tweed Heads South',
+  description: 'Professional chiropractic care in Tweed Heads South. Dr James Shipway and Dr Paul Cater. Over 30 years combined experience. Book online.',
+  url: clinic.website,
+};
+---
+
+<BaseLayout
+  title="Chiropractor Tweed Heads South | Banora Chiropractic"
+  description="Professional chiropractic care in Tweed Heads South. Dr James Shipway and Dr Paul Cater offer expert back pain, neck pain, and family chiropractic care. Over 30 years combined experience. Book online."
+  schema={schema}
+>
+  <!-- Hero Section -->
+  <section class="relative bg-navy overflow-hidden">
+    <img src="/images/hero-chiro-exam.jpg" alt="Chiropractic examination at Banora Chiropractic" class="absolute inset-0 w-full h-full object-cover" width="1500" height="430" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-r from-navy-deep/95 via-navy/85 to-navy/75"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 lg:py-36">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-light-blue text-sm px-4 py-1.5 rounded-full mb-6 animate-fade-up">
+          <span class="w-2 h-2 bg-light-blue rounded-full animate-pulse"></span>
+          Accepting new patients — book online today
+        </div>
+        <h1 class="font-[family-name:var(--font-display)] text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-tight mb-6 animate-fade-up animate-delay-100">
+          Your local chiropractors in <span class="text-light-blue">Tweed Heads South</span>
+        </h1>
+        <p class="text-lg md:text-xl text-light-blue-soft/90 leading-relaxed mb-8 max-w-2xl animate-fade-up animate-delay-200">
+          Dr James Shipway and Dr Paul Cater have been helping families move better and feel better for over 30 years combined. Whether you are in pain or just want to stay well — we are here to help.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 animate-fade-up animate-delay-300">
+          <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors duration-200">
+            Book Your Visit
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+          <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors duration-200">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            {clinic.phone}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <section class="bg-blue-ghost border-b border-blue-pale/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="flex flex-col items-center gap-2">
+          <svg class="w-6 h-6 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span class="text-sm text-navy font-medium">HICAPS On-Site</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <svg class="w-6 h-6 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span class="text-sm text-navy font-medium">30+ Years Experience</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <svg class="w-6 h-6 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span class="text-sm text-navy font-medium">Wheelchair Accessible</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <svg class="w-6 h-6 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <span class="text-sm text-navy font-medium">Family Friendly</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">What we offer</span>
+        <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-4">Our Chiropractic Services</h2>
+        <p class="text-grey-text leading-relaxed">From hands-on adjustments to specialised care for pregnancy and children — we offer a range of services to help you and your family feel your best.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((service) => (
+          <a href={`/services/${service.slug}`} class="group bg-white border border-grey-mid/30 rounded-xl p-6 hover:shadow-lg hover:border-light-blue/30 transition-all duration-300">
+            <div class="text-3xl mb-4">{service.icon}</div>
+            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-2 group-hover:text-mid-blue transition-colors">{service.title}</h3>
+            <p class="text-grey-text text-sm leading-relaxed mb-4">{service.shortDescription}</p>
+            <span class="inline-flex items-center text-sm text-mid-blue font-medium group-hover:gap-2 transition-all">
+              Learn more
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Conditions Section -->
+  <section class="py-16 md:py-24 bg-light-grey">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">How we can help</span>
+        <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-4">Conditions We Help With</h2>
+        <p class="text-grey-text leading-relaxed">Dealing with pain or discomfort? You are not alone. These are some of the most common reasons people visit us — and we may be able to help you too.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {conditions.map((condition) => (
+          <a href={`/conditions/${condition.slug}`} class="group flex items-start gap-4 bg-white rounded-xl p-5 border border-grey-mid/20 hover:shadow-md hover:border-light-blue/30 transition-all duration-300">
+            <span class="text-2xl">{condition.icon}</span>
+            <div>
+              <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy group-hover:text-mid-blue transition-colors">{condition.title}</h3>
+              <p class="text-grey-text text-sm mt-1">{condition.shortDescription}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet the Team -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Your chiropractors</span>
+        <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-4">Meet the Team</h2>
+        <p class="text-grey-text leading-relaxed">Two experienced chiropractors, one shared goal — helping you feel your best.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {practitioners.map((doc) => (
+          <div class="bg-blue-ghost/50 rounded-xl p-8 text-center border border-blue-pale/30">
+            <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-5 border-2 border-blue-pale">
+              <img src={`/images/dr-${doc.slug.split('-').slice(1).join('-')}.png`} alt={`${doc.name} - Chiropractor at Banora Chiropractic`} class="w-full h-full object-cover" width="96" height="96" loading="lazy" />
+            </div>
+            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy">{doc.name}</h3>
+            <p class="text-mid-blue text-sm font-medium mt-1">{doc.qualifications}</p>
+            <p class="text-grey-text text-sm mt-3 leading-relaxed">{doc.shortBio}</p>
+            <div class="flex flex-wrap justify-center gap-2 mt-4">
+              {doc.techniques.map((tech) => (
+                <span class="text-xs bg-blue-pale/50 text-navy px-3 py-1 rounded-full">{tech}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/about" class="inline-flex items-center text-mid-blue hover:text-navy font-medium transition-colors">
+          Learn more about our team
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="py-16 md:py-24 bg-light-grey">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Transparent pricing</span>
+        <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-4">Our Fees</h2>
+        <p class="text-grey-text leading-relaxed">No hidden costs. HICAPS available on-site for instant health fund claims.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="bg-white rounded-xl p-6 border border-grey-mid/30 text-center">
+          <div class="text-mid-blue text-sm font-medium uppercase tracking-wider mb-2">New Patient</div>
+          <div class="font-[family-name:var(--font-display)] text-4xl font-semibold text-navy">${pricing.newPatient.price}</div>
+          <div class="text-grey-text text-sm mt-1">${pricing.newPatient.studentChild} students/children</div>
+          <div class="text-grey-text text-xs mt-3">Approx. {pricing.newPatient.duration}</div>
+          <p class="text-grey-text text-sm mt-3 leading-relaxed">Full assessment, exam, and first treatment included</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border-2 border-mid-blue text-center relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-mid-blue text-white text-xs px-3 py-1 rounded-full">Most Common</div>
+          <div class="text-mid-blue text-sm font-medium uppercase tracking-wider mb-2">Regular Adjustment</div>
+          <div class="font-[family-name:var(--font-display)] text-4xl font-semibold text-navy">${pricing.regularAdjustment.price}</div>
+          <div class="text-grey-text text-sm mt-1">${pricing.regularAdjustment.studentChild} students/children</div>
+          <div class="text-grey-text text-xs mt-3">Approx. {pricing.regularAdjustment.duration}</div>
+          <p class="text-grey-text text-sm mt-3 leading-relaxed">Targeted adjustment and check-in</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-grey-mid/30 text-center">
+          <div class="text-mid-blue text-sm font-medium uppercase tracking-wider mb-2">Baby / Newborn</div>
+          <div class="font-[family-name:var(--font-display)] text-4xl font-semibold text-navy">From ${pricing.babyNewborn.priceFrom}</div>
+          <div class="text-grey-text text-sm mt-1">Initial ${pricing.babyNewborn.initial}</div>
+          <div class="text-grey-text text-xs mt-3">{pricing.babyNewborn.duration}</div>
+          <p class="text-grey-text text-sm mt-3 leading-relaxed">Gentle assessment for little ones</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-24 bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 right-10 w-72 h-72 bg-light-blue rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">Ready to feel better?</h2>
+      <p class="text-light-blue-soft/90 text-lg mb-8 max-w-2xl mx-auto">Book your visit online or give us a call. New patients welcome — we will take the time to understand your situation and help you move forward.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Book Online Now
+        </a>
+        <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Call {clinic.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Find us</span>
+          <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-4">Visit Our Clinic</h2>
+          <p class="text-grey-text leading-relaxed mb-6">We are located on Greenway Drive in Tweed Heads South, between Reece Plumbing and Border Bikes. Free on-site parking, ground level, no steps.</p>
+          <div class="space-y-4">
+            <div class="flex gap-3">
+              <svg class="w-5 h-5 text-mid-blue mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <div>
+                <p class="text-navy font-medium">{clinic.address.full}</p>
+                <p class="text-grey-text text-sm mt-0.5">{clinic.landmark}</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <svg class="w-5 h-5 text-mid-blue mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              <a href={`tel:${clinic.phoneFull}`} class="text-navy font-medium hover:text-mid-blue transition-colors">{clinic.phone}</a>
+            </div>
+            <div class="flex gap-3">
+              <svg class="w-5 h-5 text-mid-blue mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div>
+                <p class="text-navy font-medium">Open 5 days a week</p>
+                <p class="text-grey-text text-sm mt-0.5">Mon–Sat, hours vary — see footer for details</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6">
+            <a href="/contact" class="inline-flex items-center text-mid-blue hover:text-navy font-medium transition-colors">
+              Get directions & full details
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="bg-light-grey rounded-xl overflow-hidden aspect-video">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3523.8!2d153.5375!3d-28.1894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b911a6d7e2c0001%3A0x95d26a12c609fa2b!2s2%2F44+Greenway+Dr%2C+Tweed+Heads+South+NSW+2486!5e0!3m2!1sen!2sau"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Banora Chiropractic location on Google Maps"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Areas We Serve -->
+  <section class="py-16 md:py-20 bg-light-grey">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Serving the Tweed & Gold Coast</span>
+        <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-4">Areas We Serve</h2>
+        <p class="text-grey-text">Conveniently located for residents across the Tweed Heads and southern Gold Coast region.</p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-3">
+        {['Tweed Heads South', 'Tweed Heads', 'Banora Point', 'Coolangatta', 'Palm Beach', 'Currumbin', 'Elanora', 'Bilinga', 'Tugun', 'Kirra', 'Burleigh Heads', 'Terranora', 'Chinderah', 'Kingscliff'].map((area) => (
+          <a href={`/areas/${area.toLowerCase().replace(/\s+/g, '-')}`} class="bg-white text-navy text-sm px-4 py-2 rounded-full border border-grey-mid/30 hover:border-light-blue hover:text-mid-blue transition-colors">
+            {area}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
