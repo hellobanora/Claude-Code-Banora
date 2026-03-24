@@ -2,11 +2,18 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "banora-website",
-      "runtimeExecutable": "C:\\Program Files\\nodejs\\node.exe",
-      "runtimeArgs": ["node_modules/astro/bin/astro.mjs", "dev"],
+      "name": "Banora Website (Astro)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
       "port": 4321,
       "cwd": "banora-website"
+    },
+    {
+      "name": "Banora Shift Tasks (Vite + React)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 5173,
+      "cwd": "Banora Chiro"
     }
   ]
 }

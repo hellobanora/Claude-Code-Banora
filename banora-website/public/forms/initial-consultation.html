@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Initial Consultation - Banora Chiropractic</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:#f0f4f8;color:#1a2e4d;min-height:100vh;}
+.wrap{max-width:680px;margin:0 auto;padding:20px 16px 60px;}
+.scr{display:none;}.scr.active{display:block;}
+.hdr{background:linear-gradient(135deg,#1a2e4d,#1e3f6b);border-radius:14px;padding:20px 22px;margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+.hdr-logo{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.hdr h1{font-family:'Playfair Display',serif;font-size:20px;color:#fff;margin-bottom:2px;}
+.hdr p{font-size:12px;color:rgba(255,255,255,.7);}
+.phase-badge{margin-left:auto;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:#fff;white-space:nowrap;}
+.prog-wrap{margin-bottom:18px;}
+.prog-label{font-size:12px;color:#6b7b8d;margin-bottom:6px;display:flex;justify-content:space-between;}
+.prog-bar{height:6px;background:#dde3eb;border-radius:10px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,#1a2e4d,#4a90c4);border-radius:10px;transition:width .4s;}
+.card{background:#fff;border-radius:12px;padding:22px;margin-bottom:16px;border:1.5px solid #e8edf3;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.card-title{font-family:'Playfair Display',serif;font-size:17px;color:#1a2e4d;margin-bottom:4px;}
+.card-sub{font-size:13px;color:#6b7b8d;margin-bottom:18px;}
+label.lbl{display:block;font-size:13px;font-weight:700;color:#1a2e4d;margin-bottom:5px;}
+input[type=text],input[type=date],textarea,select{width:100%;padding:11px 13px;border:1.5px solid #dde3eb;border-radius:9px;font-family:'Nunito',sans-serif;font-size:14px;color:#1a2e4d;outline:none;transition:border-color .2s;}
+input[type=text]:focus,textarea:focus{border-color:#1e3f6b;}
+textarea{resize:vertical;min-height:80px;}
+.field{margin-bottom:16px;}
+.opt-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+.opt{display:flex;align-items:center;gap:6px;background:#f4f7fa;border:1.5px solid #dde3eb;border-radius:8px;padding:7px 12px;cursor:pointer;font-size:13px;font-weight:600;transition:all .15s;user-select:none;}
+.opt input{display:none;}
+.opt.sel{background:#eaf1fb;border-color:#1e3f6b;color:#1e3f6b;}
+.pain-wrap{margin-top:6px;}
+.pain-labels{display:flex;justify-content:space-between;font-size:11px;color:#6b7b8d;margin-bottom:4px;}
+input[type=range]{width:100%;accent-color:#1e3f6b;cursor:pointer;}
+.pain-val{text-align:center;font-size:24px;font-weight:700;color:#1e3f6b;margin-top:4px;}
+.slider-row{display:flex;align-items:center;gap:12px;}
+.slider-row input{flex:1;}
+.slider-val{min-width:36px;text-align:center;font-size:18px;font-weight:700;color:#1e3f6b;}
+.btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;}
+.btn{padding:12px 26px;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;}
+.btn-primary{background:linear-gradient(135deg,#1a2e4d,#1e3f6b);color:#fff;box-shadow:0 4px 12px rgba(26,46,77,.25);}
+.btn-primary:hover{transform:translateY(-1px);}
+.btn-sec{background:#fff;color:#1a2e4d;border:2px solid #dde3eb;}
+.ret-area{margin-bottom:18px;}
+.ret-label{font-size:12px;color:#6b7b8d;margin-bottom:6px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{background:#eaf1fb;border:1.5px solid #1e3f6b;border-radius:20px;padding:4px 12px;font-size:12px;font-weight:700;color:#1e3f6b;cursor:pointer;}
+.chip:hover{background:#1e3f6b;color:#fff;}
+.score-big{text-align:center;padding:24px;background:linear-gradient(135deg,#1a2e4d,#1e3f6b);border-radius:12px;color:#fff;margin-bottom:16px;}
+.score-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:700;line-height:1;}
+.score-lbl{font-size:13px;opacity:.8;margin-top:4px;}
+.bl-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.bl-card{background:#fff;border-radius:10px;padding:14px;border:1.5px solid #e8edf3;}
+.bl-icon{font-size:18px;margin-bottom:4px;}
+.bl-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6b7b8d;margin-bottom:2px;}
+.bl-val{font-size:22px;font-weight:700;color:#1a2e4d;margin-bottom:6px;}
+.bl-bar{height:5px;background:#e8edf3;border-radius:10px;overflow:hidden;}
+.bl-fill{height:100%;border-radius:10px;transition:width .8s ease;}
+.fg{background:linear-gradient(90deg,#2e7d52,#52b788);}
+.fm{background:linear-gradient(90deg,#b8860b,#e9b949);}
+.fr{background:linear-gradient(90deg,#c0392b,#e74c3c);}
+.sum-rows{margin-top:8px;}
+.sr{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #f0f4f8;font-size:13px;}
+.sr:last-child{border-bottom:none;}
+.sk{color:#6b7b8d;font-weight:600;min-width:140px;flex-shrink:0;}
+.sv2{color:#1a2e4d;font-weight:500;flex:1;}
+.insight{background:#eaf4fb;border-left:4px solid #1e3f6b;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:8px;font-size:13px;color:#1a2e4d;line-height:1.5;}
+.insight strong{color:#1e3f6b;}
+.sync-pill{display:inline-block;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:12px;}
+.sync-ok{background:#e6f4ee;color:#2e7d52;}
+.sync-fail{background:#fdecea;color:#c0392b;}
+.sync-pend{background:#eaf1fb;color:#1e3f6b;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1a2e4d;color:#fff;padding:10px 20px;border-radius:30px;font-size:13px;font-weight:600;opacity:0;transition:all .3s;z-index:100;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+@media print{body>*:not(#print-area){display:none!important;}#print-area{display:block!important;}}
+@media screen{#print-area{display:none;}}
+.pr-doc{font-family:'Nunito',sans-serif;color:#1a2e4d;max-width:780px;margin:0 auto;padding:28px;font-size:12.5px;line-height:1.6;}
+.pr-hdr{display:flex;align-items:center;gap:14px;border-bottom:3px solid #1a2e4d;padding-bottom:12px;margin-bottom:16px;}
+.pr-logo{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1a2e4d,#1e3f6b);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.pr-brand h2{font-family:'Playfair Display',serif;font-size:17px;color:#1a2e4d;}
+.pr-brand p{font-size:10px;color:#6b7b8d;text-transform:uppercase;letter-spacing:.8px;}
+.pr-meta{margin-left:auto;text-align:right;font-size:11px;color:#6b7b8d;}
+.pr-meta strong{display:block;font-size:13px;color:#1a2e4d;}
+.pr-overall{background:linear-gradient(135deg,#1a2e4d,#1e3f6b);border-radius:8px;padding:12px 16px;color:#fff;display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+.pr-ov-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#fff;line-height:1;}
+.pr-ov-text h3{font-size:13px;margin-bottom:2px;}
+.pr-ov-text p{font-size:11px;opacity:.75;}
+.pr-scores{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.pr-sbox{border:1.5px solid #e8edf3;border-radius:7px;padding:9px 11px;}
+.pr-slbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6b7b8d;margin-bottom:2px;}
+.pr-sval{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1e3f6b;}
+.pr-sbar{height:4px;background:#e8edf3;border-radius:10px;margin-top:5px;overflow:hidden;}
+.pr-sfill{height:100%;border-radius:10px;}
+.pf-g{background:linear-gradient(90deg,#2e7d52,#52b788);}
+.pf-m{background:linear-gradient(90deg,#c07800,#e9b949);}
+.pf-r{background:linear-gradient(90deg,#c0392b,#e74c3c);}
+.pr-sec{margin-bottom:14px;}
+.pr-sec-title{font-family:'Playfair Display',serif;font-size:13px;color:#1a2e4d;border-bottom:1px solid #e8edf3;padding-bottom:3px;margin-bottom:7px;}
+.pr-row{display:flex;gap:10px;padding:4px 0;border-bottom:1px dotted #f0f4f8;font-size:12px;}
+.pr-row:last-child{border-bottom:none;}
+.pr-key{color:#6b7b8d;font-weight:600;min-width:145px;flex-shrink:0;}
+.pr-val{color:#1a2e4d;flex:1;}
+.pr-insight{background:#eaf4fb;border-left:3px solid #1e3f6b;border-radius:0 6px 6px 0;padding:7px 11px;margin-bottom:6px;font-size:11.5px;}
+.pr-foot{margin-top:16px;border-top:1px solid #e8edf3;padding-top:7px;display:flex;justify-content:space-between;font-size:10px;color:#b8c4ce;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="scr active" id="scr-welcome">
+  <div class="hdr"><div class="hdr-logo">🦴</div><div><h1>Initial Consultation</h1><p>Banora Chiropractic — Baseline Assessment</p></div><div class="phase-badge">Phase 0</div></div>
+  <div class="card">
+    <div class="card-title">Welcome to Banora Chiropractic</div>
+    <div class="card-sub">This assessment establishes your health baseline. Enter your name to begin.</div>
+    <div class="field"><label class="lbl">Your full name</label><input type="text" id="inp-name" placeholder="e.g. Sarah Johnson"></div>
+    <div class="ret-area" id="ret-area" style="display:none;"><div class="ret-label">Returning patient — tap to continue:</div><div class="chips" id="pchips"></div></div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="startSession()">Begin Assessment →</button></div>
+  </div>
+</div>
+
+<div class="scr" id="scr-s1">
+  <div class="hdr"><div class="hdr-logo">🩺</div><div><h1>Chief Complaint</h1><p>Step 1 of 5</p></div><div class="phase-badge">Phase 0</div></div>
+  <div class="prog-wrap"><div class="prog-label"><span>Step 1 — Chief Complaint</span><span>20%</span></div><div class="prog-bar"><div class="prog-fill" style="width:20%"></div></div></div>
+  <div class="card">
+    <div class="card-title">What brings you in today?</div>
+    <div class="card-sub">Tell us about your main concern</div>
+    <div class="field"><label class="lbl">Describe your main problem</label><textarea id="chiefComplaint" placeholder="e.g. Lower back pain radiating down my left leg, started 3 weeks ago after lifting"></textarea></div>
+    <div class="field"><label class="lbl">How long have you had this?</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="radio" name="duration" value="Less than 1 week"><span>Less than 1 week</span></label>
+        <label class="opt"><input type="radio" name="duration" value="1–4 weeks"><span>1–4 weeks</span></label>
+        <label class="opt"><input type="radio" name="duration" value="1–3 months"><span>1–3 months</span></label>
+        <label class="opt"><input type="radio" name="duration" value="3–12 months"><span>3–12 months</span></label>
+        <label class="opt"><input type="radio" name="duration" value="Over 1 year"><span>Over 1 year</span></label>
+        <label class="opt"><input type="radio" name="duration" value="Recurring issue"><span>Recurring issue</span></label>
+      </div>
+    </div>
+    <div class="field"><label class="lbl">How did it start? (select all that apply)</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="checkbox" name="onset" value="Sudden injury"><span>Sudden injury</span></label>
+        <label class="opt"><input type="checkbox" name="onset" value="Gradual onset"><span>Gradual onset</span></label>
+        <label class="opt"><input type="checkbox" name="onset" value="Work related"><span>Work related</span></label>
+        <label class="opt"><input type="checkbox" name="onset" value="Sport / exercise"><span>Sport / exercise</span></label>
+        <label class="opt"><input type="checkbox" name="onset" value="Car accident"><span>Car accident</span></label>
+        <label class="opt"><input type="checkbox" name="onset" value="No known cause"><span>No known cause</span></label>
+      </div>
+    </div>
+    <div class="field"><label class="lbl">Where is your pain? (select all that apply)</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="checkbox" name="location" value="Neck"><span>Neck</span></label>
+        <label class="opt"><input type="checkbox" name="location" value="Upper back"><span>Upper back</span></label>
+        <label class="opt"><input type="checkbox" name="location" value="Mid back"><span>Mid back</span></label>
+        <label class="opt"><input type="checkbox" name="location" value="Lower back"><span>Lower back</span></label>
+        <label class="opt"><input type="checkbox" name="location" value="Left shoulder"><span>Left shoulder</span></label>
+        <label class="opt"><input type="checkbox" name="location" value="Right shoulder"><span>Right shoulder</span></label>
+        <label class="opt"><input type="checkbox" name="location" value="Left arm / hand"><span>Left arm/hand</span></label>
+        <label class="opt"><input type="checkbox" name="location" value="Right arm / hand"><span>Right arm/hand</span></label>
+        <label class="opt"><input type="checkbox" name="location" value="Left hip / leg"><span>Left hip/leg</span></label>
+        <label class="opt"><input type="checkbox" name="location" value="Right hip / leg"><span>Right hip/leg</span></label>
+        <label class="opt"><input type="checkbox" name="location" value="Headaches"><span>Headaches</span></label>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn btn-sec" onclick="showScr('scr-welcome')">← Back</button><button class="btn btn-primary" onclick="goStep(2)">Next →</button></div>
+  </div>
+</div>
+
+<div class="scr" id="scr-s2">
+  <div class="hdr"><div class="hdr-logo">📊</div><div><h1>Pain Baseline</h1><p>Step 2 of 5</p></div><div class="phase-badge">Phase 0</div></div>
+  <div class="prog-wrap"><div class="prog-label"><span>Step 2 — Pain Baseline</span><span>40%</span></div><div class="prog-bar"><div class="prog-fill" style="width:40%"></div></div></div>
+  <div class="card">
+    <div class="card-title">Rate your pain</div>
+    <div class="card-sub">0 = no pain, 10 = worst imaginable</div>
+    <div class="field"><label class="lbl">Pain right now</label>
+      <div class="pain-wrap"><div class="pain-labels"><span>0 — None</span><span>10 — Worst</span></div>
+        <input type="range" id="pg-now" min="0" max="10" value="0" oninput="document.getElementById('pr-now').textContent=this.value">
+        <div class="pain-val" id="pr-now">0</div></div>
+    </div>
+    <div class="field"><label class="lbl">Average pain this week</label>
+      <div class="pain-wrap"><div class="pain-labels"><span>0 — None</span><span>10 — Worst</span></div>
+        <input type="range" id="pg-avg" min="0" max="10" value="0" oninput="document.getElementById('pr-avg').textContent=this.value">
+        <div class="pain-val" id="pr-avg">0</div></div>
+    </div>
+    <div class="field"><label class="lbl">Worst pain this week</label>
+      <div class="pain-wrap"><div class="pain-labels"><span>0 — None</span><span>10 — Worst</span></div>
+        <input type="range" id="pg-worst" min="0" max="10" value="0" oninput="document.getElementById('pr-worst').textContent=this.value">
+        <div class="pain-val" id="pr-worst">0</div></div>
+    </div>
+    <div class="field"><label class="lbl">What does the pain feel like? (select all)</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="checkbox" name="painType" value="Sharp / stabbing"><span>Sharp / stabbing</span></label>
+        <label class="opt"><input type="checkbox" name="painType" value="Dull / aching"><span>Dull / aching</span></label>
+        <label class="opt"><input type="checkbox" name="painType" value="Burning"><span>Burning</span></label>
+        <label class="opt"><input type="checkbox" name="painType" value="Throbbing"><span>Throbbing</span></label>
+        <label class="opt"><input type="checkbox" name="painType" value="Shooting / radiating"><span>Shooting / radiating</span></label>
+        <label class="opt"><input type="checkbox" name="painType" value="Numbness / tingling"><span>Numbness / tingling</span></label>
+        <label class="opt"><input type="checkbox" name="painType" value="Stiffness"><span>Stiffness</span></label>
+      </div>
+    </div>
+    <div class="field"><label class="lbl">What makes it worse? (select all)</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="checkbox" name="worse" value="Sitting"><span>Sitting</span></label>
+        <label class="opt"><input type="checkbox" name="worse" value="Standing"><span>Standing</span></label>
+        <label class="opt"><input type="checkbox" name="worse" value="Walking"><span>Walking</span></label>
+        <label class="opt"><input type="checkbox" name="worse" value="Bending"><span>Bending</span></label>
+        <label class="opt"><input type="checkbox" name="worse" value="Lifting"><span>Lifting</span></label>
+        <label class="opt"><input type="checkbox" name="worse" value="Morning"><span>Morning</span></label>
+        <label class="opt"><input type="checkbox" name="worse" value="Stress"><span>Stress</span></label>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn btn-sec" onclick="goStep(1)">← Back</button><button class="btn btn-primary" onclick="goStep(3)">Next →</button></div>
+  </div>
+</div>
+
+<div class="scr" id="scr-s3">
+  <div class="hdr"><div class="hdr-logo">🏃</div><div><h1>Function & Lifestyle</h1><p>Step 3 of 5</p></div><div class="phase-badge">Phase 0</div></div>
+  <div class="prog-wrap"><div class="prog-label"><span>Step 3 — Function & Lifestyle</span><span>60%</span></div><div class="prog-bar"><div class="prog-fill" style="width:60%"></div></div></div>
+  <div class="card">
+    <div class="card-title">How is this affecting your life?</div>
+    <div class="card-sub">Help us understand your day-to-day impact</div>
+    <div class="field"><label class="lbl">Occupation</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="radio" name="occupation" value="Desk / office worker"><span>Desk / office</span></label>
+        <label class="opt"><input type="radio" name="occupation" value="Manual / trades"><span>Manual / trades</span></label>
+        <label class="opt"><input type="radio" name="occupation" value="Health / care worker"><span>Health / care</span></label>
+        <label class="opt"><input type="radio" name="occupation" value="Retired"><span>Retired</span></label>
+        <label class="opt"><input type="radio" name="occupation" value="Student"><span>Student</span></label>
+        <label class="opt"><input type="radio" name="occupation" value="Stay at home"><span>Stay at home</span></label>
+      </div>
+    </div>
+    <div class="field"><label class="lbl">How much does it affect your work?</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="radio" name="workImpact" value="Not at all"><span>Not at all</span></label>
+        <label class="opt"><input type="radio" name="workImpact" value="Mildly"><span>Mildly</span></label>
+        <label class="opt"><input type="radio" name="workImpact" value="Moderately"><span>Moderately</span></label>
+        <label class="opt"><input type="radio" name="workImpact" value="Significantly"><span>Significantly</span></label>
+        <label class="opt"><input type="radio" name="workImpact" value="Cannot work"><span>Cannot work</span></label>
+      </div>
+    </div>
+    <div class="field"><label class="lbl">How much does it affect daily activities?</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="radio" name="dailyImpact" value="Not at all"><span>Not at all</span></label>
+        <label class="opt"><input type="radio" name="dailyImpact" value="Mildly"><span>Mildly</span></label>
+        <label class="opt"><input type="radio" name="dailyImpact" value="Moderately"><span>Moderately</span></label>
+        <label class="opt"><input type="radio" name="dailyImpact" value="Significantly"><span>Significantly</span></label>
+        <label class="opt"><input type="radio" name="dailyImpact" value="Cannot do most tasks"><span>Cannot do most tasks</span></label>
+      </div>
+    </div>
+    <div class="field"><label class="lbl">Activity level</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="radio" name="activity" value="Sedentary"><span>Sedentary</span></label>
+        <label class="opt"><input type="radio" name="activity" value="Lightly active"><span>Lightly active</span></label>
+        <label class="opt"><input type="radio" name="activity" value="Moderately active"><span>Moderately active</span></label>
+        <label class="opt"><input type="radio" name="activity" value="Very active"><span>Very active</span></label>
+      </div>
+    </div>
+    <div class="field"><label class="lbl">Sleep quality</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="radio" name="sleepQ" value="Good"><span>Good</span></label>
+        <label class="opt"><input type="radio" name="sleepQ" value="Fair"><span>Fair</span></label>
+        <label class="opt"><input type="radio" name="sleepQ" value="Poor — woken by pain"><span>Poor — woken by pain</span></label>
+        <label class="opt"><input type="radio" name="sleepQ" value="Very poor"><span>Very poor</span></label>
+      </div>
+    </div>
+    <div class="field"><label class="lbl">Stress level — <span id="sv">5/10</span></label>
+      <div class="slider-row"><span>Low</span><input type="range" id="stress" min="1" max="10" value="5" oninput="document.getElementById('sv').textContent=this.value+'/10'"><span>High</span></div>
+    </div>
+    <div class="btn-row"><button class="btn btn-sec" onclick="goStep(2)">← Back</button><button class="btn btn-primary" onclick="goStep(4)">Next →</button></div>
+  </div>
+</div>
+
+<div class="scr" id="scr-s4">
+  <div class="hdr"><div class="hdr-logo">📋</div><div><h1>Health History</h1><p>Step 4 of 5</p></div><div class="phase-badge">Phase 0</div></div>
+  <div class="prog-wrap"><div class="prog-label"><span>Step 4 — Health History</span><span>80%</span></div><div class="prog-bar"><div class="prog-fill" style="width:80%"></div></div></div>
+  <div class="card">
+    <div class="card-title">Medical background</div>
+    <div class="card-sub">This helps us provide safe and appropriate care</div>
+    <div class="field"><label class="lbl">Previous chiropractic care?</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="radio" name="prevChiro" value="No — first time"><span>No — first time</span></label>
+        <label class="opt"><input type="radio" name="prevChiro" value="Yes — helpful"><span>Yes — helpful</span></label>
+        <label class="opt"><input type="radio" name="prevChiro" value="Yes — mixed results"><span>Yes — mixed results</span></label>
+        <label class="opt"><input type="radio" name="prevChiro" value="Yes — not helpful"><span>Yes — not helpful</span></label>
+      </div>
+    </div>
+    <div class="field"><label class="lbl">Relevant health conditions (select all)</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="checkbox" name="conditions" value="Diabetes"><span>Diabetes</span></label>
+        <label class="opt"><input type="checkbox" name="conditions" value="Heart condition"><span>Heart condition</span></label>
+        <label class="opt"><input type="checkbox" name="conditions" value="Osteoporosis"><span>Osteoporosis</span></label>
+        <label class="opt"><input type="checkbox" name="conditions" value="Arthritis"><span>Arthritis</span></label>
+        <label class="opt"><input type="checkbox" name="conditions" value="Anxiety / depression"><span>Anxiety / depression</span></label>
+        <label class="opt"><input type="checkbox" name="conditions" value="None"><span>None</span></label>
+      </div>
+    </div>
+    <div class="field"><label class="lbl">Current medications (optional)</label><input type="text" id="medications" placeholder="e.g. Anti-inflammatories, blood pressure medication"></div>
+    <div class="field"><label class="lbl">Recent X-rays, MRI or scans?</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="radio" name="imaging" value="No"><span>No</span></label>
+        <label class="opt"><input type="radio" name="imaging" value="Yes — normal findings"><span>Yes — normal</span></label>
+        <label class="opt"><input type="radio" name="imaging" value="Yes — abnormal findings"><span>Yes — abnormal</span></label>
+        <label class="opt"><input type="radio" name="imaging" value="Yes — unknown results"><span>Yes — unknown results</span></label>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn btn-sec" onclick="goStep(3)">← Back</button><button class="btn btn-primary" onclick="goStep(5)">Next →</button></div>
+  </div>
+</div>
+
+<div class="scr" id="scr-s5">
+  <div class="hdr"><div class="hdr-logo">🎯</div><div><h1>Goals & Expectations</h1><p>Step 5 of 5</p></div><div class="phase-badge">Phase 0</div></div>
+  <div class="prog-wrap"><div class="prog-label"><span>Step 5 — Goals</span><span>100%</span></div><div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div></div>
+  <div class="card">
+    <div class="card-title">What do you want to achieve?</div>
+    <div class="card-sub">Your goals help us personalise your care plan</div>
+    <div class="field"><label class="lbl">Goals for care (select all that apply)</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="checkbox" name="goals" value="Reduce pain"><span>Reduce pain</span></label>
+        <label class="opt"><input type="checkbox" name="goals" value="Return to sport / exercise"><span>Return to sport</span></label>
+        <label class="opt"><input type="checkbox" name="goals" value="Get back to work"><span>Get back to work</span></label>
+        <label class="opt"><input type="checkbox" name="goals" value="Improve posture"><span>Improve posture</span></label>
+        <label class="opt"><input type="checkbox" name="goals" value="Sleep better"><span>Sleep better</span></label>
+        <label class="opt"><input type="checkbox" name="goals" value="Long-term wellness"><span>Long-term wellness</span></label>
+        <label class="opt"><input type="checkbox" name="goals" value="Improve flexibility"><span>Better movement</span></label>
+      </div>
+    </div>
+    <div class="field"><label class="lbl">What does success look like for you?</label><textarea id="successVision" placeholder="e.g. Being able to play with my kids again without back pain"></textarea></div>
+    <div class="field"><label class="lbl">Motivation to get better — <span id="mv">8/10</span></label>
+      <div class="slider-row"><span>Low</span><input type="range" id="motiv" min="1" max="10" value="8" oninput="document.getElementById('mv').textContent=this.value+'/10'"><span>High</span></div>
+    </div>
+    <div class="field"><label class="lbl">How did you hear about us?</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="radio" name="referral" value="Friend / family referral"><span>Friend / family</span></label>
+        <label class="opt"><input type="radio" name="referral" value="GP referral"><span>GP referral</span></label>
+        <label class="opt"><input type="radio" name="referral" value="Google search"><span>Google</span></label>
+        <label class="opt"><input type="radio" name="referral" value="Social media"><span>Social media</span></label>
+        <label class="opt"><input type="radio" name="referral" value="Other"><span>Other</span></label>
+      </div>
+    </div>
+    <div class="field"><label class="lbl">Anything else you'd like us to know?</label><textarea id="notes" placeholder="Optional"></textarea></div>
+    <div class="btn-row"><button class="btn btn-sec" onclick="goStep(4)">← Back</button><button class="btn btn-primary" onclick="submitForm()">Submit Assessment ✓</button></div>
+  </div>
+</div>
+
+<div class="scr" id="scr-results">
+  <div class="hdr"><div class="hdr-logo">✅</div><div><h1 id="r-name">Your Baseline</h1><p>Assessment complete</p></div><div class="phase-badge">Phase 0</div></div>
+  <div id="sync-wrap"><span class="sync-pill sync-pend" id="sync-st">⏳ Sending to clinic...</span></div>
+  <div class="score-big"><div class="score-num" id="ov-num">—</div><div class="score-lbl">Overall Health Score (baseline)</div></div>
+  <div class="bl-grid" id="bl-grid"></div>
+  <div class="card"><div class="card-title">Summary</div><div class="sum-rows" id="sum-rows"></div></div>
+  <div id="insights" style="margin-bottom:16px;"></div>
+  <div class="btn-row" style="justify-content:center;flex-wrap:wrap;">
+    <button class="btn btn-primary" onclick="window.print()">🖨️ Print / Save PDF</button>
+    <button class="btn btn-sec" onclick="showScr('scr-welcome')">← New Patient</button>
+  </div>
+</div>
+
+</div>
+<div id="print-area"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const SK='banora_ic_pts';
+let pts={},pk=null;
+
+function load(){try{return JSON.parse(localStorage.getItem(SK)||'{}')}catch(e){return{}}}
+function save(){try{localStorage.setItem(SK,JSON.stringify(pts))}catch(e){}}
+function showScr(id){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function goStep(n){showScr('scr-s'+n);}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+function getChecked(name){return[...document.querySelectorAll('input[name="'+name+'"]:checked')].map(i=>i.value);}
+function getRadio(name){const el=document.querySelector('input[name="'+name+'"]:checked');return el?el.value:'';}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  pts=load();renderChips();
+  document.querySelectorAll('.opt').forEach(opt=>{
+    opt.addEventListener('click',()=>{
+      const inp=opt.querySelector('input');
+      setTimeout(()=>{
+        if(inp.type==='radio'){
+          document.querySelectorAll('input[name="'+inp.name+'"]').forEach(i=>i.closest('.opt').classList.remove('sel'));
+        }
+        opt.classList.toggle('sel',inp.checked);
+      },0);
+    });
+  });
+});
+
+function renderChips(){
+  const ks=Object.keys(pts);
+  const ra=document.getElementById('ret-area');
+  const pc=document.getElementById('pchips');
+  if(!ks.length){ra.style.display='none';return;}
+  ra.style.display='block';
+  pc.innerHTML=ks.map(k=>'<span class="chip" onclick="selectPatient(\''+k+'\')">'+pts[k].displayName+'</span>').join('');
+}
+
+function selectPatient(k){
+  pk=k;
+  document.getElementById('inp-name').value=pts[k].displayName;
+  toast('Continuing as '+pts[k].displayName);
+}
+
+function startSession(){
+  const name=document.getElementById('inp-name').value.trim();
+  if(!name){toast('Please enter your name');return;}
+  pk=name.toLowerCase().replace(/\s+/g,'_');
+  if(!pts[pk])pts[pk]={displayName:name,visits:[]};
+  save();
+  showScr('scr-s1');
+}
+
+const FORMSPREE_ID='mpqjeego';
+async function toFormspree(data){
+  try{
+    const r=await fetch('https://formspree.io/f/'+FORMSPREE_ID,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(data)});
+    if(r.ok)return{ok:true};
+    const err=await r.json().catch(()=>({}));
+    return{ok:false,msg:err?.errors?.[0]?.message||'HTTP '+r.status};
+  }catch(e){return{ok:false,msg:'Network error'};}
+}
+
+function calcScores(painNow,painAvg,painWorst,workImpact,dailyImpact,sleepQ,stress,motiv){
+  const avgPain=(painNow+painAvg+painWorst)/3;
+  const pain=Math.round(Math.max(0,(10-avgPain)/10*100));
+  const workMap={'Not at all':100,'Mildly':75,'Moderately':50,'Significantly':25,'Cannot work':0};
+  const dailyMap={'Not at all':100,'Mildly':75,'Moderately':50,'Significantly':25,'Cannot do most tasks':0};
+  const func=Math.round(((workMap[workImpact]||50)+(dailyMap[dailyImpact]||50))/2);
+  const sleepMap={'Good':100,'Fair':65,'Poor — woken by pain':35,'Very poor':10};
+  const slp=sleepMap[sleepQ]||50;
+  const wb=Math.round(((10-stress)/9*60)+((motiv-1)/9*40));
+  const overall=Math.round(pain*0.35+func*0.30+slp*0.20+wb*0.15);
+  return{pain,func,sleep:slp,wb,overall};
+}
+
+async function submitForm(){
+  const name=pts[pk]?.displayName||'Patient';
+  const painNow=parseInt(document.getElementById('pg-now').value);
+  const painAvg=parseInt(document.getElementById('pg-avg').value);
+  const painWorst=parseInt(document.getElementById('pg-worst').value);
+  const stress=parseInt(document.getElementById('stress').value);
+  const motiv=parseInt(document.getElementById('motiv').value);
+  const visit={
+    date:new Date().toISOString(),
+    chiefComplaint:document.getElementById('chiefComplaint').value,
+    duration:getRadio('duration'),onset:getChecked('onset'),locations:getChecked('location'),
+    painNow,painAvg,painWorst,painTypes:getChecked('painType'),worseWith:getChecked('worse'),
+    occupation:getRadio('occupation'),workImpact:getRadio('workImpact'),dailyImpact:getRadio('dailyImpact'),
+    activity:getRadio('activity'),sleepQ:getRadio('sleepQ'),stress,
+    prevChiro:getRadio('prevChiro'),conditions:getChecked('conditions'),
+    medications:document.getElementById('medications').value,imaging:getRadio('imaging'),
+    goals:getChecked('goals'),successVision:document.getElementById('successVision').value,
+    motivation:motiv,referral:getRadio('referral'),notes:document.getElementById('notes').value,
+  };
+  const goals=visit.goals;
+  const sc=calcScores(painNow,painAvg,painWorst,visit.workImpact,visit.dailyImpact,visit.sleepQ,stress,motiv);
+  if(!pts[pk].visits)pts[pk].visits=[];
+  pts[pk].visits.push(visit);save();
+  showScr('scr-results');
+  renderResults(visit,sc.overall,sc,goals);
+  buildPrintDoc(visit,sc.overall,sc,goals,name);
+  const ss=document.getElementById('sync-st');
+  ss.className='sync-pill sync-pend';ss.textContent='⏳ Sending to clinic...';
+  const data={_subject:'Initial Consultation - '+name,Patient:name,Date:new Date(visit.date).toLocaleDateString('en-AU'),'Chief Complaint':visit.chiefComplaint,Duration:visit.duration,'Pain Now/Avg/Worst':painNow+'/'+painAvg+'/'+painWorst,Locations:visit.locations.join(', '),Goals:goals.join(', '),'Overall Score':sc.overall+'%','Pain Score':sc.pain+'%','Function Score':sc.func+'%','Sleep Score':sc.sleep+'%','Wellbeing Score':sc.wb+'%',Occupation:visit.occupation,'Work Impact':visit.workImpact,'Sleep Quality':visit.sleepQ,'Stress Level':stress+'/10',Motivation:motiv+'/10','Prev Chiro':visit.prevChiro,Conditions:visit.conditions.join(', '),Medications:visit.medications,Imaging:visit.imaging,Referral:visit.referral,Notes:visit.notes};
+  const r=await toFormspree(data);
+  ss.className='sync-pill '+(r.ok?'sync-ok':'sync-fail');
+  ss.textContent=r.ok?'✅ Results sent to clinic':'⚠️ '+(r.msg||'Send failed — data saved locally');
+}
+
+function renderResults(v,overall,sc,goals){
+  document.getElementById('r-name').textContent=pts[pk].displayName.split(' ')[0]+"'s Baseline";
+  document.getElementById('ov-num').textContent=overall+'%';
+  const bg=document.getElementById('bl-grid');bg.innerHTML='';
+  [{icon:'🩻',label:'Pain Score',s:sc.pain},{icon:'🏃',label:'Function',s:sc.func},{icon:'😴',label:'Sleep',s:sc.sleep},{icon:'🧘',label:'Wellbeing',s:sc.wb}].forEach(d=>{
+    const fc=d.s>=70?'fg':d.s>=45?'fm':'fr';
+    const c=document.createElement('div');c.className='bl-card';
+    c.innerHTML='<div class="bl-icon">'+d.icon+'</div><div class="bl-lbl">'+d.label+'</div><div class="bl-val">'+d.s+'%</div><div class="bl-bar"><div class="bl-fill '+fc+'" style="width:0%" data-t="'+d.s+'%"></div></div>';
+    bg.appendChild(c);
+  });
+  setTimeout(()=>document.querySelectorAll('.bl-fill[data-t]').forEach(e=>e.style.width=e.dataset.t),200);
+  const rows=document.getElementById('sum-rows');rows.innerHTML='';
+  [['Chief complaint',v.chiefComplaint||'—'],['Duration',v.duration||'—'],['Pain (now/avg/worst)',v.painNow+' / '+v.painAvg+' / '+v.painWorst+' out of 10'],['Pain areas',v.locations?.join(', ')||'—'],['Goals',goals.join(', ')||'—'],['Referral',v.referral||'—']].forEach(([k,val])=>{
+    const r=document.createElement('div');r.className='sr';r.innerHTML='<span class="sk">'+k+'</span><span class="sv2">'+val+'</span>';rows.appendChild(r);
+  });
+  const iw=document.getElementById('insights');iw.innerHTML='';
+  if(sc.pain<50)iw.innerHTML+='<div class="insight"><strong>Pain is the priority.</strong> Research shows consistent chiropractic care achieves 50–70% pain reduction within 6–8 weeks for patients at your starting point.</div>';
+  if(v.motivation>=8)iw.innerHTML+='<div class="insight"><strong>Great motivation!</strong> A '+v.motivation+'/10 motivation score is one of the strongest predictors of recovery.</div>';
+  if(sc.sleep<50)iw.innerHTML+='<div class="insight"><strong>Sleep is being affected.</strong> Addressing your pain should significantly improve your sleep quality.</div>';
+}
+
+function buildPrintDoc(v,overall,sc,goals,name){
+  const date=new Date(v.date).toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'});
+  const fc=s=>s>=70?'pf-g':s>=45?'pf-m':'pf-r';
+  const row=(k,val)=>'<div class="pr-row"><span class="pr-key">'+k+'</span><span class="pr-val">'+(val||'—')+'</span></div>';
+  const sbox=(lbl,s)=>'<div class="pr-sbox"><div class="pr-slbl">'+lbl+'</div><div class="pr-sval">'+s+'%</div><div class="pr-sbar"><div class="pr-sfill '+fc(s)+'" style="width:'+s+'%"></div></div></div>';
+  const ins=document.getElementById('insights')?.innerHTML.replace(/class="insight"/g,'class="pr-insight"')||'';
+  document.getElementById('print-area').innerHTML=
+    '<div class="pr-doc">'+
+    '<div class="pr-hdr"><div class="pr-logo">🦴</div><div class="pr-brand"><h2>Banora Chiropractic</h2><p>Initial Consultation Report</p></div><div class="pr-meta"><strong>'+name+'</strong>'+date+'<br>Baseline — Visit 1</div></div>'+
+    '<div class="pr-overall"><div class="pr-ov-num">'+overall+'%</div><div class="pr-ov-text"><h3>Overall Health Score</h3><p>Baseline established — all future visits track from this point</p></div></div>'+
+    '<div class="pr-scores">'+sbox('Pain Score',sc.pain)+sbox('Function Score',sc.func)+sbox('Sleep Score',sc.sleep)+sbox('Wellbeing Score',sc.wb)+'</div>'+
+    '<div class="pr-sec"><div class="pr-sec-title">Chief Complaint & History</div>'+row('Chief complaint',v.chiefComplaint)+row('Duration',v.duration)+row('Onset',v.onset?.join(', '))+row('Pain locations',v.locations?.join(', '))+row('Pain now/avg/worst',v.painNow+' / '+v.painAvg+' / '+v.painWorst+' out of 10')+row('Pain types',v.painTypes?.join(', '))+row('Made worse by',v.worseWith?.join(', '))+'</div>'+
+    '<div class="pr-sec"><div class="pr-sec-title">Function & Lifestyle</div>'+row('Occupation',v.occupation)+row('Work impact',v.workImpact)+row('Daily tasks impact',v.dailyImpact)+row('Activity level',v.activity)+row('Sleep quality',v.sleepQ)+row('Stress level',v.stress+'/10')+'</div>'+
+    '<div class="pr-sec"><div class="pr-sec-title">Health History</div>'+row('Previous chiro care',v.prevChiro)+row('Health conditions',v.conditions?.join(', '))+row('Medications',v.medications)+row('Imaging',v.imaging)+'</div>'+
+    '<div class="pr-sec"><div class="pr-sec-title">Goals & Expectations</div>'+row('Goals',goals.join(', '))+row('Success vision',v.successVision)+row('Motivation',v.motivation+'/10')+row('Referral',v.referral)+row('Notes',v.notes)+'</div>'+
+    (ins?'<div class="pr-sec"><div class="pr-sec-title">Clinical Insights</div>'+ins+'</div>':'')+
+    '<div class="pr-foot"><span>Banora Chiropractic — Initial Consultation</span><span>🔒 Confidential — '+new Date().toLocaleDateString('en-AU')+'</span></div>'+
+    '</div>';
+}
+</script>
+</body>
+</html>
