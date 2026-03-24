@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { clinic } from '../../data/clinic';
+import { conditions } from '../../data/conditions';
+import { services } from '../../data/services';
+
+export function getStaticPaths() {
+  return conditions.map((condition) => ({
+    params: { slug: condition.slug },
+    props: { condition },
+  }));
+}
+
+const { condition } = Astro.props;
+
+const relatedConditionData = conditions.filter(c => condition.relatedConditions.includes(c.slug));
+const relatedServiceData = services.filter(s => condition.relatedServices.includes(s.slug));
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: condition.metaTitle,
+  url: `${clinic.website}/conditions/${condition.slug}`,
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: clinic.website },
+      { '@type': 'ListItem', position: 2, name: 'Conditions', item: `${clinic.website}/conditions` },
+      { '@type': 'ListItem', position: 3, name: condition.title, item: `${clinic.website}/conditions/${condition.slug}` },
+    ],
+  },
+};
+---
+
+<BaseLayout title={condition.metaTitle} description={condition.metaDescription} schema={schema}>
+  <!-- Hero -->
+  <section class="bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-deep via-navy to-navy-light opacity-95"></div>
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-20 right-20 w-64 h-64 bg-light-blue rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <nav class="text-sm text-light-blue-soft/60 mb-6">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/#conditions" class="hover:text-white transition-colors">Conditions</a>
+        <span class="mx-2">/</span>
+        <span class="text-white">{condition.title}</span>
+      </nav>
+      <div class="text-4xl mb-4">{condition.icon}</div>
+      <h1 class="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-semibold text-white mb-4">{condition.heroHeading}</h1>
+      <p class="text-light-blue-soft/90 text-lg max-w-2xl">{condition.heroSubheading}</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-2">
+          <h2 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy mb-4">Understanding {condition.title}</h2>
+          <p class="text-grey-text leading-relaxed text-lg">{condition.overview}</p>
+
+          <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mt-10 mb-4">Common symptoms</h3>
+          <ul class="space-y-3">
+            {condition.symptoms.map((symptom) => (
+              <li class="flex gap-3">
+                <svg class="w-5 h-5 text-mid-blue mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-grey-text">{symptom}</span>
+              </li>
+            ))}
+          </ul>
+
+          <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mt-10 mb-4">How we may help</h3>
+          <p class="text-grey-text leading-relaxed">{condition.howWeHelp}</p>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="bg-blue-ghost/50 rounded-xl p-6 border border-blue-pale/30">
+            <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-4">Get Help With {condition.title}</h3>
+            <p class="text-grey-text text-sm mb-4">Book an assessment and let us help you understand what is going on.</p>
+            <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="block w-full bg-mid-blue hover:bg-navy text-white text-center px-4 py-3 rounded-lg font-medium transition-colors mb-3">
+              Book Online
+            </a>
+            <a href={`tel:${clinic.phoneFull}`} class="block w-full bg-white border border-grey-mid/30 text-navy text-center px-4 py-3 rounded-lg font-medium hover:border-mid-blue transition-colors">
+              Call {clinic.phone}
+            </a>
+          </div>
+
+          {relatedServiceData.length > 0 && (
+            <div class="bg-light-grey rounded-xl p-6">
+              <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-3">Related Services</h3>
+              <ul class="space-y-2">
+                {relatedServiceData.map((s) => (
+                  <li>
+                    <a href={`/services/${s.slug}`} class="text-sm text-mid-blue hover:text-navy transition-colors flex items-center gap-2">
+                      <span>{s.icon}</span>
+                      {s.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {relatedConditionData.length > 0 && (
+            <div class="bg-light-grey rounded-xl p-6">
+              <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-3">Related Conditions</h3>
+              <ul class="space-y-2">
+                {relatedConditionData.map((c) => (
+                  <li>
+                    <a href={`/conditions/${c.slug}`} class="text-sm text-mid-blue hover:text-navy transition-colors flex items-center gap-2">
+                      <span>{c.icon}</span>
+                      {c.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="py-16 md:py-24 bg-light-grey">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-semibold text-navy mb-8 text-center">Frequently Asked Questions About {condition.title}</h2>
+      <div class="space-y-4">
+        {condition.faqs.map((faq, index) => (
+          <div class="bg-white rounded-xl border border-grey-mid/20 overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" aria-expanded="false">
+              <span class="font-medium text-navy pr-4">{faq.question}</span>
+              <svg class="w-5 h-5 text-grey-text shrink-0 transition-transform duration-200 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-answer hidden px-5 pb-5">
+              <p class="text-grey-text leading-relaxed">{faq.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-20 bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 right-10 w-72 h-72 bg-light-blue rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 text-center">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">Struggling with {condition.title.toLowerCase()}?</h2>
+      <p class="text-light-blue-soft/90 text-lg mb-8">You do not have to just put up with it. Book an assessment and let us help you understand your options.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Book Your Assessment
+        </a>
+        <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Call {clinic.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.faq-toggle').forEach((button) => {
+    button.addEventListener('click', () => {
+      const answer = button.nextElementSibling;
+      const chevron = button.querySelector('.faq-chevron');
+      const isOpen = !answer?.classList.contains('hidden');
+
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+      document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('rotate-180'));
+      document.querySelectorAll('.faq-toggle').forEach(b => b.setAttribute('aria-expanded', 'false'));
+
+      if (!isOpen) {
+        answer?.classList.remove('hidden');
+        chevron?.classList.add('rotate-180');
+        button.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>

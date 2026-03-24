@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #1B3A5C;
+  --color-navy-deep: #122840;
+  --color-navy-light: #234B73;
+  --color-mid-blue: #2C5F8A;
+  --color-light-blue: #5B9EC9;
+  --color-light-blue-soft: #8FBFDD;
+  --color-blue-pale: #D4E8F5;
+  --color-blue-ghost: #EDF5FA;
+  --color-light-grey: #F5F5F5;
+  --color-grey-mid: #D8DCE0;
+  --color-grey-text: #6B7280;
+  --color-dark-text: #1A1A1A;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-dark-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Smooth fade-up animation */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+.animate-delay-400 { animation-delay: 0.4s; }
+.animate-delay-500 { animation-delay: 0.5s; }
