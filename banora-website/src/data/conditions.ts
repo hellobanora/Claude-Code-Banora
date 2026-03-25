@@ -63,7 +63,7 @@ export const conditions: Condition[] = [
     ],
     howWeHelp: 'We will carefully assess your neck — checking your range of motion, palpating for areas of tension or restriction, and looking at your posture. Treatment may include gentle cervical adjustments, soft tissue work, and advice on workspace ergonomics. We will also show you stretches and exercises you can do at home to help manage your neck health.',
     faqs: [
-      { question: 'Is it safe to have my neck adjusted?', answer: 'Cervical adjustments are a well-established chiropractic technique with a strong safety profile. Our chiropractors are highly trained in neck adjustments and will always discuss the approach with you first. If you prefer, we also offer gentle alternatives like Activator and mobilisation techniques.' },
+      { question: 'Is it safe to have my neck adjusted?', answer: 'Cervical adjustments are a well-established chiropractic technique with a strong safety profile. Our chiropractors are highly trained in neck adjustments and will always discuss the approach with you first. We offer a range of techniques including Diversified, Thompson, and Arthrostim to suit your comfort level.' },
       { question: 'What is tech neck?', answer: 'Tech neck refers to neck pain and postural changes that come from spending long periods looking down at phones, tablets, or laptops. It is becoming increasingly common and can cause neck stiffness, headaches, and upper back tension. Chiropractic care, combined with posture awareness, may help manage these symptoms.' },
     ],
     relatedConditions: ['headaches-migraines', 'shoulder-pain'],

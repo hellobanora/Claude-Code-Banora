@@ -53,9 +53,9 @@ export const practitioners = [
     qualifications: 'B.Sc.Chiro. & M.Chiro',
     role: 'Chiropractor & Co-founder',
     initials: 'JS',
-    techniques: ['Gonstead', 'SOT', 'Diversified'],
+    techniques: ['Diversified', 'Thompson', 'Soft Tissue Therapy', 'Arthrostim'],
     bio: 'Dr James Shipway brings extensive experience and a genuine passion for helping people move and feel better. With qualifications in both science and chiropractic, James takes a thorough, evidence-based approach to care. He has a special interest in family chiropractic, sports injuries, and posture correction.',
-    shortBio: 'Experienced chiropractor with a focus on Gonstead, SOT, and Diversified techniques.',
+    shortBio: 'Experienced chiropractor using Diversified, Thompson, Soft Tissue Therapy, and Arthrostim techniques.',
   },
   {
     name: 'Dr Paul Cater',
@@ -63,9 +63,9 @@ export const practitioners = [
     qualifications: 'B.Sc.Chiro. & M.Chiro',
     role: 'Chiropractor & Co-founder',
     initials: 'PC',
-    techniques: ['Thompson Drop', 'Activator', 'Extremity'],
-    bio: 'Dr Paul Cater is known for his gentle, patient-centred approach to chiropractic care. With a background in science and chiropractic, Paul combines technical skill with a warm, caring manner that puts patients at ease. He has particular expertise in extremity adjustments and gentle techniques suited to patients of all ages.',
-    shortBio: 'Gentle, patient-focused care using Thompson Drop, Activator, and Extremity techniques.',
+    techniques: ['Diversified', 'Thompson Drop', 'Extremity'],
+    bio: 'Dr Paul Cater takes a patient-centred approach to chiropractic care. With a background in science and chiropractic, Paul combines technical skill with a warm, caring manner that puts patients at ease. He has particular expertise in extremity adjustments and Diversified technique suited to patients of all ages.',
+    shortBio: 'Patient-focused care using Diversified, Thompson Drop, and Extremity techniques.',
   },
 ];
 
