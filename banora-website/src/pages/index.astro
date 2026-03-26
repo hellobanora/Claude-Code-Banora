@@ -29,6 +29,39 @@ const areas = ['Tweed Heads South', 'Tweed Heads', 'Banora Point', 'Coolangatta'
       --color-warm-bg: #FFFBF3;
       --color-warm-bg-alt: #FFF8EB;
     }
+    .glow-btn {
+      background: linear-gradient(135deg, #DC2626, #B91C1C);
+      border: 2px solid rgba(220, 38, 38, 0.5);
+      box-shadow:
+        0 0 15px rgba(220, 38, 38, 0.4),
+        0 0 30px rgba(220, 38, 38, 0.2),
+        0 0 60px rgba(220, 38, 38, 0.1);
+      animation: glowPulse 2.5s ease-in-out infinite;
+    }
+    .glow-btn:hover {
+      background: linear-gradient(135deg, #EF4444, #DC2626);
+      box-shadow:
+        0 0 20px rgba(220, 38, 38, 0.6),
+        0 0 40px rgba(220, 38, 38, 0.3),
+        0 0 80px rgba(220, 38, 38, 0.15);
+    }
+    @keyframes glowPulse {
+      0%, 100% {
+        box-shadow:
+          0 0 15px rgba(220, 38, 38, 0.4),
+          0 0 30px rgba(220, 38, 38, 0.2),
+          0 0 60px rgba(220, 38, 38, 0.1);
+      }
+      50% {
+        box-shadow:
+          0 0 25px rgba(220, 38, 38, 0.6),
+          0 0 50px rgba(220, 38, 38, 0.35),
+          0 0 80px rgba(220, 38, 38, 0.15);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .glow-btn { animation: none; }
+    }
   </style>
 
   <!-- ========== HERO WITH ANIMATED BANNER SLIDER ========== -->
@@ -102,6 +135,10 @@ const areas = ['Tweed Heads South', 'Tweed Heads', 'Banora Point', 'Coolangatta'
           <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-[var(--color-gold)] hover:bg-[var(--color-gold-dark)] text-white px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300 shadow-lg shadow-[#D4A853]/25 hover:shadow-[#B88E3A]/25 hover:-translate-y-0.5">
             Book Your Visit
             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+          <a href="/symptom-checker" class="glow-btn inline-flex items-center justify-center text-white px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300 hover:-translate-y-0.5">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            Check Your Symptoms
           </a>
           <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300 border border-white/15">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
@@ -425,7 +462,7 @@ const areas = ['Tweed Heads South', 'Tweed Heads', 'Banora Point', 'Coolangatta'
         ))}
       </div>
       <div class="text-center mt-8">
-        <a href="/forms/" class="inline-flex items-center text-sm text-[#2C5F8A] hover:text-[var(--color-gold-dark)] font-medium transition-colors">
+        <a href="/forms/index.html" class="inline-flex items-center text-sm text-[#2C5F8A] hover:text-[var(--color-gold-dark)] font-medium transition-colors">
           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
           Patient Forms
         </a>

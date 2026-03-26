@@ -1,0 +1,523 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clinic } from '../data/clinic';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Symptom Checker | Banora Chiropractic",
+  "description": "Take our free 2-minute symptom assessment to find out how chiropractic care may help you. Not a diagnosis — just a helpful starting point.",
+  "url": "https://banorachiropractic.com.au/symptom-checker",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Banora Chiropractic",
+    "url": "https://banorachiropractic.com.au"
+  }
+};
+---
+
+<BaseLayout
+  title="Free Symptom Checker | Banora Chiropractic | Tweed Heads South"
+  description="Take our free 2-minute symptom assessment to find out how chiropractic care may help you. Serving Tweed Heads, Banora Point, Coolangatta and surrounds."
+  schema={schema}
+>
+  <section class="min-h-screen bg-gradient-to-b from-[var(--color-warm-bg,#FFFBF3)] to-white">
+    <!-- Hero -->
+    <div class="bg-[var(--color-navy)] text-white py-16 md:py-20">
+      <div class="max-w-3xl mx-auto px-4 text-center">
+        <span class="inline-block bg-[var(--color-gold,#D4A853)]/20 text-[var(--color-gold,#D4A853)] text-sm font-medium px-4 py-1.5 rounded-full mb-6">Free 2-Minute Assessment</span>
+        <h1 class="text-3xl md:text-5xl font-bold mb-4" style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);">
+          Not Sure What's Causing Your Pain?
+        </h1>
+        <p class="text-lg text-white/80 max-w-xl mx-auto">
+          Answer a few quick questions and we'll point you in the right direction. No jargon, no commitment — just helpful guidance.
+        </p>
+      </div>
+    </div>
+
+    <!-- Quiz Container -->
+    <div class="max-w-2xl mx-auto px-4 -mt-8 pb-20">
+      <div id="quiz-container" class="bg-white rounded-2xl shadow-xl border border-[var(--color-grey-mid,#D8DCE0)]/30 overflow-hidden">
+
+        <!-- Progress Bar -->
+        <div class="h-1.5 bg-[var(--color-blue-ghost,#EDF5FA)]">
+          <div id="progress-bar" class="h-full bg-gradient-to-r from-[var(--color-mid-blue,#2C5F8A)] to-[var(--color-gold,#D4A853)] transition-all duration-500 ease-out" style="width: 0%"></div>
+        </div>
+
+        <!-- Question Steps -->
+        <div class="p-6 md:p-10">
+
+          <!-- Step 1: Who is this for? -->
+          <div class="quiz-step" data-step="1">
+            <p class="text-sm text-[var(--color-grey-text,#6B7280)] mb-2">Question 1 of 5</p>
+            <h2 class="text-2xl font-bold text-[var(--color-navy,#1B3A5C)] mb-6" style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);">Who is this assessment for?</h2>
+            <div class="grid gap-3">
+              <button class="quiz-option" data-key="who" data-value="adult">
+                <span class="quiz-option-icon">🧑</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">An adult</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">18 years or older</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="who" data-value="pregnant">
+                <span class="quiz-option-icon">🤰</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">I'm pregnant</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Currently expecting</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="who" data-value="child">
+                <span class="quiz-option-icon">👶</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">A child or teenager</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Under 18 years</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="who" data-value="athlete">
+                <span class="quiz-option-icon">🏃</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">An active person / athlete</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Regular sport or exercise</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Where is the pain? -->
+          <div class="quiz-step hidden" data-step="2">
+            <p class="text-sm text-[var(--color-grey-text,#6B7280)] mb-2">Question 2 of 5</p>
+            <h2 class="text-2xl font-bold text-[var(--color-navy,#1B3A5C)] mb-6" style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);">Where are you feeling discomfort?</h2>
+            <div class="grid gap-3">
+              <button class="quiz-option" data-key="area" data-value="lower-back">
+                <span class="quiz-option-icon">🔻</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Lower back</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Below the ribcage, above the hips</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="area" data-value="upper-back">
+                <span class="quiz-option-icon">🔹</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Upper back</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Between the shoulder blades</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="area" data-value="neck">
+                <span class="quiz-option-icon">🔸</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Neck</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Neck, base of skull, or into shoulders</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="area" data-value="head">
+                <span class="quiz-option-icon">😣</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Head / headaches</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Recurring headaches or migraines</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="area" data-value="shoulder">
+                <span class="quiz-option-icon">💪</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Shoulder</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Shoulder joint, arm, or rotator cuff area</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="area" data-value="leg">
+                <span class="quiz-option-icon">🦵</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Hip, leg, or sciatic area</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Pain radiating down the leg or into the buttock</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: What does it feel like? -->
+          <div class="quiz-step hidden" data-step="3">
+            <p class="text-sm text-[var(--color-grey-text,#6B7280)] mb-2">Question 3 of 5</p>
+            <h2 class="text-2xl font-bold text-[var(--color-navy,#1B3A5C)] mb-6" style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);">How would you describe it?</h2>
+            <div class="grid gap-3">
+              <button class="quiz-option" data-key="type" data-value="dull-ache">
+                <span class="quiz-option-icon">〰️</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Dull ache or stiffness</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Constant or comes and goes, feels tight</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="type" data-value="sharp">
+                <span class="quiz-option-icon">⚡</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Sharp or shooting pain</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Sudden, intense, may radiate to other areas</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="type" data-value="tingling">
+                <span class="quiz-option-icon">✨</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Numbness or tingling</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Pins and needles, loss of sensation</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="type" data-value="restricted">
+                <span class="quiz-option-icon">🔒</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Restricted movement</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Can't turn, bend, or move freely</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 4: How long? -->
+          <div class="quiz-step hidden" data-step="4">
+            <p class="text-sm text-[var(--color-grey-text,#6B7280)] mb-2">Question 4 of 5</p>
+            <h2 class="text-2xl font-bold text-[var(--color-navy,#1B3A5C)] mb-6" style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);">How long has this been bothering you?</h2>
+            <div class="grid gap-3">
+              <button class="quiz-option" data-key="duration" data-value="recent">
+                <span class="quiz-option-icon">📅</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Just started (last few days)</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">New pain or sudden onset</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="duration" data-value="weeks">
+                <span class="quiz-option-icon">📆</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">A few weeks</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Getting worse or not improving</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="duration" data-value="months">
+                <span class="quiz-option-icon">🗓️</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Months or longer</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Ongoing, keeps coming back</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="duration" data-value="recurring">
+                <span class="quiz-option-icon">🔄</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">It comes and goes</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Flares up then settles, but always returns</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 5: What makes it worse? -->
+          <div class="quiz-step hidden" data-step="5">
+            <p class="text-sm text-[var(--color-grey-text,#6B7280)] mb-2">Question 5 of 5</p>
+            <h2 class="text-2xl font-bold text-[var(--color-navy,#1B3A5C)] mb-6" style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);">What tends to make it worse?</h2>
+            <div class="grid gap-3">
+              <button class="quiz-option" data-key="trigger" data-value="sitting">
+                <span class="quiz-option-icon">🪑</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Sitting or desk work</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Long periods at a computer or driving</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="trigger" data-value="movement">
+                <span class="quiz-option-icon">🏋️</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Physical activity or exercise</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">During or after sport, gym, or manual work</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="trigger" data-value="morning">
+                <span class="quiz-option-icon">🌅</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Mornings or after sleep</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">Stiff when waking, takes time to loosen up</span>
+                </div>
+              </button>
+              <button class="quiz-option" data-key="trigger" data-value="everything">
+                <span class="quiz-option-icon">😩</span>
+                <div class="text-left">
+                  <span class="font-medium text-[var(--color-dark-text,#1A1A1A)]">Pretty much everything</span>
+                  <span class="block text-sm text-[var(--color-grey-text,#6B7280)]">It's affecting my daily life</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="quiz-step hidden" data-step="results">
+            <div id="results-content"></div>
+          </div>
+
+          <!-- Back Button -->
+          <button id="back-btn" class="hidden mt-6 text-sm text-[var(--color-grey-text,#6B7280)] hover:text-[var(--color-navy,#1B3A5C)] transition-colors flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            Back
+          </button>
+        </div>
+      </div>
+
+      <!-- AHPRA Disclaimer -->
+      <p class="text-center text-xs text-[var(--color-grey-text,#6B7280)] mt-6 max-w-lg mx-auto leading-relaxed">
+        This tool is for general guidance only and does not constitute a diagnosis or medical advice.
+        Every person is different — please consult with one of our chiropractors for an individual assessment.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid var(--color-grey-mid, #D8DCE0);
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+  }
+  .quiz-option:hover {
+    border-color: var(--color-mid-blue, #2C5F8A);
+    background: var(--color-blue-ghost, #EDF5FA);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(27, 58, 92, 0.08);
+  }
+  .quiz-option:active {
+    transform: translateY(0);
+  }
+  .quiz-option.selected {
+    border-color: var(--color-gold, #D4A853);
+    background: var(--color-warm-bg, #FFFBF3);
+    box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.15);
+  }
+  .quiz-option-icon {
+    font-size: 1.5rem;
+    width: 2.5rem;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .quiz-step {
+    animation: fadeUp 0.4s ease-out;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .result-card {
+    border: 2px solid var(--color-gold, #D4A853);
+    border-radius: 16px;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--color-warm-bg, #FFFBF3), white);
+  }
+  .result-tag {
+    display: inline-block;
+    background: var(--color-blue-ghost, #EDF5FA);
+    color: var(--color-mid-blue, #2C5F8A);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .quiz-step { animation: none; }
+    .quiz-option:hover { transform: none; }
+  }
+</style>
+
+<script define:vars={{ bookingUrl: clinic.bookingUrl, phone: clinic.phone, phoneFull: clinic.phoneFull }}>
+  const answers = {};
+  let currentStep = 1;
+  const totalSteps = 5;
+
+  // Condition mapping logic
+  const conditionMap = {
+    'lower-back': { conditions: ['back-pain'], services: ['chiropractic-adjustments', 'posture-correction'] },
+    'upper-back': { conditions: ['back-pain'], services: ['chiropractic-adjustments', 'posture-correction'] },
+    'neck': { conditions: ['neck-pain'], services: ['chiropractic-adjustments', 'posture-correction'] },
+    'head': { conditions: ['headaches-migraines'], services: ['chiropractic-adjustments', 'posture-correction'] },
+    'shoulder': { conditions: ['shoulder-pain'], services: ['chiropractic-adjustments', 'sports-chiropractic'] },
+    'leg': { conditions: ['sciatica', 'back-pain'], services: ['chiropractic-adjustments', 'sports-chiropractic'] },
+  };
+
+  const conditionDetails = {
+    'back-pain': { title: 'Back Pain', slug: 'back-pain', icon: '🔻', desc: 'Back pain can range from a dull, constant ache to a sudden sharp pain. Chiropractic care aims to address the underlying cause, not just mask the symptoms.' },
+    'neck-pain': { title: 'Neck Pain', slug: 'neck-pain', icon: '🔸', desc: 'Neck pain and stiffness are commonly linked to posture, stress, and spinal misalignment. Gentle chiropractic adjustments may help restore movement and reduce discomfort.' },
+    'sciatica': { title: 'Sciatica', slug: 'sciatica', icon: '🦵', desc: 'Sciatic nerve irritation can cause pain radiating from the lower back down through the leg. Chiropractic care aims to relieve pressure on the nerve through targeted adjustments.' },
+    'headaches-migraines': { title: 'Headaches & Migraines', slug: 'headaches-migraines', icon: '😣', desc: 'Many headaches originate from tension in the neck and upper back. Chiropractic adjustments and posture correction may help reduce the frequency and intensity of headaches.' },
+    'shoulder-pain': { title: 'Shoulder Pain', slug: 'shoulder-pain', icon: '💪', desc: 'Shoulder pain can stem from the joint itself or be referred from the neck and upper back. A thorough assessment can help identify the source and guide an appropriate care plan.' },
+  };
+
+  const serviceDetails = {
+    'chiropractic-adjustments': { title: 'Chiropractic Adjustments', slug: 'chiropractic-adjustments' },
+    'posture-correction': { title: 'Posture Correction', slug: 'posture-correction' },
+    'sports-chiropractic': { title: 'Sports Chiropractic', slug: 'sports-chiropractic' },
+    'pregnancy-chiropractic': { title: 'Pregnancy Chiropractic', slug: 'pregnancy-chiropractic' },
+    'paediatric-chiropractic': { title: 'Paediatric Chiropractic', slug: 'paediatric-chiropractic' },
+  };
+
+  function getResults() {
+    let area = answers.area || 'lower-back';
+    let mapped = conditionMap[area] || conditionMap['lower-back'];
+    let conditions = [...mapped.conditions];
+    let services = [...mapped.services];
+
+    // Adjust based on who
+    if (answers.who === 'pregnant') {
+      services = ['pregnancy-chiropractic', ...services.filter(s => s !== 'pregnancy-chiropractic')];
+    } else if (answers.who === 'child') {
+      services = ['paediatric-chiropractic', ...services.filter(s => s !== 'paediatric-chiropractic')];
+    } else if (answers.who === 'athlete') {
+      if (!services.includes('sports-chiropractic')) {
+        services.unshift('sports-chiropractic');
+      }
+    }
+
+    // Adjust based on trigger
+    if (answers.trigger === 'sitting' && !services.includes('posture-correction')) {
+      services.push('posture-correction');
+    }
+
+    // Add sciatica if leg symptoms with sharp/tingling
+    if (area === 'lower-back' && (answers.type === 'sharp' || answers.type === 'tingling')) {
+      if (!conditions.includes('sciatica')) conditions.push('sciatica');
+    }
+
+    // Urgency messaging
+    let urgency = '';
+    if (answers.duration === 'months' || answers.duration === 'recurring') {
+      urgency = "Since this has been going on for a while, it's a good idea to get it assessed sooner rather than later. The longer pain persists, the more it can affect other areas.";
+    } else if (answers.trigger === 'everything') {
+      urgency = "When pain is affecting your daily life, it's important to address it. You don't have to put up with it.";
+    } else {
+      urgency = "Getting on top of this early can make a real difference. Most patients start feeling improvement within the first few visits.";
+    }
+
+    return { conditions, services: services.slice(0, 3), urgency };
+  }
+
+  function showResults() {
+    const { conditions, services, urgency } = getResults();
+    const primaryCondition = conditionDetails[conditions[0]];
+    const resultsEl = document.getElementById('results-content');
+
+    let servicesHtml = services.map(s => {
+      const svc = serviceDetails[s];
+      return `<a href="/services/${svc.slug}" class="result-tag hover:bg-[var(--color-blue-pale,#D4E8F5)] transition-colors">${svc.title}</a>`;
+    }).join(' ');
+
+    let conditionLinksHtml = conditions.map(c => {
+      const cond = conditionDetails[c];
+      return `<a href="/conditions/${cond.slug}" class="text-[var(--color-mid-blue,#2C5F8A)] hover:underline font-medium">${cond.title}</a>`;
+    }).join(' &middot; ');
+
+    resultsEl.innerHTML = `
+      <div class="text-center mb-6">
+        <span class="inline-block text-5xl mb-4">${primaryCondition.icon}</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-navy,#1B3A5C)] mb-2" style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);">
+          Here's What We Think May Help
+        </h2>
+        <p class="text-[var(--color-grey-text,#6B7280)]">Based on your answers, here's our recommendation</p>
+      </div>
+
+      <div class="result-card mb-6">
+        <h3 class="text-xl font-bold text-[var(--color-navy,#1B3A5C)] mb-3">Your symptoms suggest: ${primaryCondition.title}</h3>
+        <p class="text-[var(--color-dark-text,#1A1A1A)] mb-4 leading-relaxed">${primaryCondition.desc}</p>
+        <p class="text-[var(--color-dark-text,#1A1A1A)] mb-5 leading-relaxed font-medium">${urgency}</p>
+
+        <div class="mb-4">
+          <p class="text-sm text-[var(--color-grey-text,#6B7280)] mb-2">Services that may help:</p>
+          <div class="flex flex-wrap gap-2">${servicesHtml}</div>
+        </div>
+
+        <div>
+          <p class="text-sm text-[var(--color-grey-text,#6B7280)] mb-2">Learn more:</p>
+          <div class="flex flex-wrap gap-2">${conditionLinksHtml}</div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="bg-[var(--color-navy,#1B3A5C)] rounded-2xl p-6 md:p-8 text-center text-white">
+        <h3 class="text-xl md:text-2xl font-bold mb-2" style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);">Ready to Feel Better?</h3>
+        <p class="text-white/80 mb-6">Book your initial consultation and let us put together a personalised care plan for you.</p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="${bookingUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-[var(--color-gold,#D4A853)] hover:bg-[var(--color-gold-dark,#B88E3A)] text-white px-8 py-3.5 rounded-xl font-semibold transition-colors text-lg shadow-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Book Now — $100 Initial Visit
+          </a>
+          <a href="tel:${phoneFull}" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3.5 rounded-xl font-medium transition-colors border border-white/20">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            Call ${phone}
+          </a>
+        </div>
+        <p class="text-white/50 text-xs mt-4">New patient appointment includes full assessment (45 mins)</p>
+      </div>
+
+      <!-- Restart -->
+      <div class="text-center mt-6">
+        <button id="restart-btn" class="text-sm text-[var(--color-grey-text,#6B7280)] hover:text-[var(--color-navy,#1B3A5C)] transition-colors underline">
+          Start again
+        </button>
+      </div>
+    `;
+
+    document.getElementById('restart-btn')?.addEventListener('click', () => {
+      Object.keys(answers).forEach(k => delete answers[k]);
+      currentStep = 1;
+      showStep(1);
+    });
+  }
+
+  function showStep(step) {
+    document.querySelectorAll('.quiz-step').forEach(el => el.classList.add('hidden'));
+    const backBtn = document.getElementById('back-btn');
+    const progressBar = document.getElementById('progress-bar');
+
+    if (step === 'results') {
+      document.querySelector('[data-step="results"]')?.classList.remove('hidden');
+      progressBar.style.width = '100%';
+      backBtn?.classList.add('hidden');
+      showResults();
+    } else {
+      document.querySelector(`[data-step="${step}"]`)?.classList.remove('hidden');
+      progressBar.style.width = `${((step - 1) / totalSteps) * 100}%`;
+      if (step > 1) {
+        backBtn?.classList.remove('hidden');
+      } else {
+        backBtn?.classList.add('hidden');
+      }
+    }
+  }
+
+  // Event delegation for quiz options
+  document.getElementById('quiz-container')?.addEventListener('click', (e) => {
+    const option = e.target.closest('.quiz-option');
+    if (!option) return;
+
+    const key = option.dataset.key;
+    const value = option.dataset.value;
+    answers[key] = value;
+
+    // Visual feedback
+    option.closest('.quiz-step')?.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+    option.classList.add('selected');
+
+    // Auto-advance after short delay
+    setTimeout(() => {
+      currentStep++;
+      if (currentStep > totalSteps) {
+        showStep('results');
+      } else {
+        showStep(currentStep);
+      }
+    }, 300);
+  });
+
+  // Back button
+  document.getElementById('back-btn')?.addEventListener('click', () => {
+    if (currentStep > 1) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  });
+</script>
