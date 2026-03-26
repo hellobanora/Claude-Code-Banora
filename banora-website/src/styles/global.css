@@ -54,3 +54,59 @@ h1, h2, h3, h4, h5, h6 {
 .animate-delay-300 { animation-delay: 0.3s; }
 .animate-delay-400 { animation-delay: 0.4s; }
 .animate-delay-500 { animation-delay: 0.5s; }
+
+/* ===== Hero Image Motion Effects ===== */
+
+/* Ken Burns Effect — slow zoom on main hero images */
+@keyframes kenBurns {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+@keyframes kenBurnsReverse {
+  0%   { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.hero-ken-burns {
+  animation: kenBurns 20s ease-in-out infinite alternate;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-ken-burns-reverse {
+  animation: kenBurnsReverse 20s ease-in-out infinite alternate;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Slow Pan Effect — horizontal drift on secondary/banner hero images */
+@keyframes slowPan {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-28.5%); }
+}
+
+.hero-slow-pan {
+  width: 140%;
+  object-fit: cover;
+  animation: slowPan 14s ease-in-out infinite alternate;
+}
+
+/* Parent container must clip zoomed/panned edges */
+.hero-overflow-clip {
+  overflow: hidden;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .hero-ken-burns,
+  .hero-ken-burns-reverse,
+  .hero-slow-pan {
+    animation: none;
+  }
+  .hero-slow-pan {
+    width: 100%;
+  }
+}

@@ -1,0 +1,443 @@
+---
+import { clinic } from '../../data/clinic';
+---
+
+<!-- Booking-Focused Chatbot Widget -->
+<!-- Floating chat button + booking-optimised chat window -->
+
+<!-- Chat Toggle Button -->
+<div id="bc-chat-widget" class="fixed bottom-20 right-4 lg:bottom-6 lg:right-6 z-50">
+  <!-- Attention Pulse Ring -->
+  <div id="bc-chat-pulse" class="absolute inset-0 rounded-full bg-mid-blue/30 animate-ping pointer-events-none"></div>
+
+  <!-- Toggle Button -->
+  <button
+    id="bc-chat-toggle"
+    class="relative w-16 h-16 bg-mid-blue hover:bg-navy text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
+    aria-label="Chat with us — book an appointment"
+  >
+    <!-- Chat icon (shown when closed) -->
+    <svg id="bc-icon-chat" class="w-7 h-7 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+    </svg>
+    <!-- Close icon (shown when open) -->
+    <svg id="bc-icon-close" class="w-7 h-7 hidden transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+
+  <!-- Nudge Bubble — appears after delay to prompt action -->
+  <div id="bc-nudge" class="hidden absolute bottom-20 right-0 bg-white rounded-2xl shadow-xl p-4 w-72 border border-grey-mid/20 animate-fade-up">
+    <button id="bc-nudge-close" class="absolute top-2 right-2 text-grey-text/40 hover:text-grey-text transition-colors" aria-label="Dismiss">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <p class="text-sm text-dark-text leading-relaxed mb-3">Got a sore back? We can usually get you in <strong>this week</strong>.</p>
+    <button id="bc-nudge-book" class="w-full bg-mid-blue hover:bg-navy text-white text-sm font-medium py-2.5 px-4 rounded-lg transition-colors">
+      Book an appointment
+    </button>
+  </div>
+</div>
+
+<!-- Chat Window -->
+<div id="bc-chat-window" class="fixed bottom-20 right-4 lg:bottom-6 lg:right-6 z-50 hidden">
+  <div class="w-[360px] max-w-[calc(100vw-2rem)] h-[520px] max-h-[calc(100vh-8rem)] bg-white rounded-2xl shadow-2xl border border-grey-mid/20 flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <div class="bg-navy px-5 py-4 flex items-center justify-between flex-shrink-0">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+          <img src="/images/logo-square.png" alt="" class="w-7 h-7 rounded-full" />
+        </div>
+        <div>
+          <h3 class="text-white text-sm font-semibold">Banora Chiropractic</h3>
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+            <span class="text-white/70 text-xs">We're online — reply in seconds</span>
+          </div>
+        </div>
+      </div>
+      <button id="bc-chat-close" class="text-white/60 hover:text-white transition-colors" aria-label="Close chat">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Chat Messages -->
+    <div id="bc-messages" class="flex-1 overflow-y-auto px-4 py-4 space-y-3 bg-[#f8f9fa]">
+      <!-- Welcome message -->
+      <div class="bc-msg bc-msg-bot flex gap-2.5">
+        <div class="w-7 h-7 bg-navy/10 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
+          <img src="/images/logo-square.png" alt="" class="w-5 h-5 rounded-full" />
+        </div>
+        <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[85%]">
+          <p class="text-sm text-dark-text leading-relaxed">Hey there! Looking to book in or have a question? I can help with both.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Action Buttons — the conversion drivers -->
+    <div id="bc-quick-actions" class="px-4 py-3 bg-white border-t border-grey-mid/10 flex-shrink-0">
+      <div class="flex flex-wrap gap-2 mb-3">
+        <button class="bc-quick-btn bg-mid-blue text-white text-xs font-medium px-4 py-2 rounded-full hover:bg-navy transition-colors" data-action="book">
+          Book an appointment
+        </button>
+        <button class="bc-quick-btn bg-blue-ghost text-navy text-xs font-medium px-3 py-2 rounded-full hover:bg-blue-pale transition-colors" data-action="hours">
+          Opening hours
+        </button>
+        <button class="bc-quick-btn bg-blue-ghost text-navy text-xs font-medium px-3 py-2 rounded-full hover:bg-blue-pale transition-colors" data-action="new-patient">
+          I'm a new patient
+        </button>
+        <button class="bc-quick-btn bg-blue-ghost text-navy text-xs font-medium px-3 py-2 rounded-full hover:bg-blue-pale transition-colors" data-action="cost">
+          How much does it cost?
+        </button>
+      </div>
+
+      <!-- Input Field -->
+      <div class="flex items-center gap-2">
+        <input
+          id="bc-input"
+          type="text"
+          placeholder="Type your message..."
+          class="flex-1 text-sm bg-[#f8f9fa] border border-grey-mid/20 rounded-full px-4 py-2.5 focus:outline-none focus:border-mid-blue transition-colors text-dark-text placeholder:text-grey-text/60"
+        />
+        <button id="bc-send" class="w-10 h-10 bg-mid-blue hover:bg-navy text-white rounded-full flex items-center justify-center transition-colors flex-shrink-0" aria-label="Send message">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Booking Panel (slides in when booking flow starts) -->
+    <div id="bc-booking-panel" class="hidden absolute inset-0 bg-white flex flex-col z-10">
+      <!-- Booking Header -->
+      <div class="bg-navy px-5 py-4 flex items-center gap-3 flex-shrink-0">
+        <button id="bc-booking-back" class="text-white/70 hover:text-white transition-colors" aria-label="Back to chat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <div>
+          <h3 class="text-white text-sm font-semibold">Book Your Appointment</h3>
+          <span class="text-white/70 text-xs">Choose a time that works for you</span>
+        </div>
+      </div>
+
+      <!-- Pre-booking info -->
+      <div class="px-4 py-3 bg-[#FFF8EB] border-b border-[#E8C97D]/30 flex-shrink-0">
+        <div class="flex items-start gap-2">
+          <svg class="w-4 h-4 text-[#B88E3A] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <p class="text-xs text-[#6B5B2A] leading-relaxed">
+            <strong>New patients:</strong> Initial consults are $79 and take about 30 mins. We'll do a thorough assessment before any treatment.
+          </p>
+        </div>
+      </div>
+
+      <!-- IconPractice Iframe -->
+      <div class="flex-1 overflow-hidden">
+        <iframe
+          id="bc-booking-iframe"
+          src=""
+          class="w-full h-full border-0"
+          title="Book an appointment at Banora Chiropractic"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script define:vars={{ bookingUrl: clinic.bookingUrl, phone: clinic.phone, phoneFull: clinic.phoneFull }}>
+  // ============================================
+  // BANORA CHIROPRACTIC CHATBOT — BOOKING HYBRID
+  // Emphasis: drive bookings, reduce friction
+  // ============================================
+
+  const $ = (id) => document.getElementById(id);
+  const widget = $('bc-chat-widget');
+  const window_ = $('bc-chat-window');
+  const toggle = $('bc-chat-toggle');
+  const messages = $('bc-messages');
+  const input = $('bc-input');
+  const sendBtn = $('bc-send');
+  const nudge = $('bc-nudge');
+  const pulse = $('bc-chat-pulse');
+  const iconChat = $('bc-icon-chat');
+  const iconClose = $('bc-icon-close');
+  const bookingPanel = $('bc-booking-panel');
+  const bookingIframe = $('bc-booking-iframe');
+  const quickActions = $('bc-quick-actions');
+
+  let chatOpen = false;
+  let bookingOpen = false;
+  let messageCount = 0;
+  let hasBooked = false;
+
+  // --- Nudge: show after 8 seconds if chat hasn't opened ---
+  const nudgeTimer = setTimeout(() => {
+    if (!chatOpen) {
+      nudge?.classList.remove('hidden');
+      // Auto-hide nudge after 12 seconds
+      setTimeout(() => nudge?.classList.add('hidden'), 12000);
+    }
+  }, 8000);
+
+  // Stop pulse after 5 seconds
+  setTimeout(() => pulse?.classList.add('hidden'), 5000);
+
+  // --- Toggle chat open/close ---
+  function openChat() {
+    chatOpen = true;
+    window_?.classList.remove('hidden');
+    widget?.classList.add('hidden');
+    nudge?.classList.add('hidden');
+    clearTimeout(nudgeTimer);
+    input?.focus();
+    trackEvent('chatbot_opened');
+  }
+
+  function closeChat() {
+    chatOpen = false;
+    window_?.classList.add('hidden');
+    widget?.classList.remove('hidden');
+  }
+
+  toggle?.addEventListener('click', openChat);
+  $('bc-chat-close')?.addEventListener('click', closeChat);
+  $('bc-nudge-close')?.addEventListener('click', () => nudge?.classList.add('hidden'));
+  $('bc-nudge-book')?.addEventListener('click', () => {
+    openChat();
+    setTimeout(() => startBookingFlow(), 300);
+  });
+
+  // --- Booking panel ---
+  function startBookingFlow() {
+    if (bookingOpen) return;
+    bookingOpen = true;
+    bookingIframe.src = bookingUrl;
+    bookingPanel?.classList.remove('hidden');
+    trackEvent('booking_started');
+
+    if (!hasBooked) {
+      addBotMessage("Opening our booking calendar for you now. Pick a time that suits and you're all set!");
+    }
+  }
+
+  function closeBookingPanel() {
+    bookingOpen = false;
+    bookingPanel?.classList.add('hidden');
+    bookingIframe.src = '';
+    addBotMessage("No worries. If you want to book later, just tap the button or call us on " + phone + ".");
+  }
+
+  $('bc-booking-back')?.addEventListener('click', closeBookingPanel);
+
+  // --- Messages ---
+  function addBotMessage(text, delay = 400) {
+    // Show typing indicator
+    const typing = document.createElement('div');
+    typing.className = 'bc-msg bc-msg-bot flex gap-2.5';
+    typing.innerHTML = `
+      <div class="w-7 h-7 bg-navy/10 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
+        <img src="/images/logo-square.png" alt="" class="w-5 h-5 rounded-full" />
+      </div>
+      <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+        <div class="flex gap-1">
+          <span class="w-2 h-2 bg-grey-text/30 rounded-full animate-bounce" style="animation-delay:0ms"></span>
+          <span class="w-2 h-2 bg-grey-text/30 rounded-full animate-bounce" style="animation-delay:150ms"></span>
+          <span class="w-2 h-2 bg-grey-text/30 rounded-full animate-bounce" style="animation-delay:300ms"></span>
+        </div>
+      </div>`;
+    messages?.appendChild(typing);
+    messages.scrollTop = messages.scrollHeight;
+
+    setTimeout(() => {
+      typing.remove();
+      const msg = document.createElement('div');
+      msg.className = 'bc-msg bc-msg-bot flex gap-2.5 animate-fade-up';
+      msg.innerHTML = `
+        <div class="w-7 h-7 bg-navy/10 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5">
+          <img src="/images/logo-square.png" alt="" class="w-5 h-5 rounded-full" />
+        </div>
+        <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[85%]">
+          <p class="text-sm text-dark-text leading-relaxed">${text}</p>
+        </div>`;
+      messages?.appendChild(msg);
+      messages.scrollTop = messages.scrollHeight;
+      messageCount++;
+
+      // After 3 messages without booking, nudge toward booking
+      if (messageCount >= 3 && !hasBooked) {
+        setTimeout(() => addBookingNudge(), 800);
+      }
+    }, delay);
+  }
+
+  function addUserMessage(text) {
+    const msg = document.createElement('div');
+    msg.className = 'bc-msg bc-msg-user flex justify-end';
+    msg.innerHTML = `
+      <div class="bg-mid-blue text-white rounded-2xl rounded-tr-sm px-4 py-3 shadow-sm max-w-[85%]">
+        <p class="text-sm leading-relaxed">${text}</p>
+      </div>`;
+    messages?.appendChild(msg);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function addBookingNudge() {
+    if (hasBooked) return;
+    const nudgeMsg = document.createElement('div');
+    nudgeMsg.className = 'bc-msg flex justify-center animate-fade-up';
+    nudgeMsg.innerHTML = `
+      <button class="bc-inline-book bg-mid-blue hover:bg-navy text-white text-sm font-medium px-6 py-2.5 rounded-full transition-colors shadow-sm flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        Ready to book? Tap here
+      </button>`;
+    messages?.appendChild(nudgeMsg);
+    messages.scrollTop = messages.scrollHeight;
+    nudgeMsg.querySelector('.bc-inline-book')?.addEventListener('click', () => {
+      hasBooked = true;
+      startBookingFlow();
+    });
+    messageCount = 0; // Reset counter
+  }
+
+  // --- Quick Action Responses ---
+  const responses = {
+    book: () => {
+      addUserMessage("I'd like to book an appointment");
+      hasBooked = true;
+      setTimeout(() => startBookingFlow(), 600);
+    },
+    hours: () => {
+      addUserMessage("What are your opening hours?");
+      addBotMessage("We're open Monday to Friday, 8am–6pm, and Saturday mornings 8am–12pm. Want me to open the booking calendar so you can grab a spot?");
+      setTimeout(() => addBookingCTA(), 1500);
+    },
+    'new-patient': () => {
+      addUserMessage("I'm a new patient — what do I need to know?");
+      addBotMessage("Welcome! Your first visit takes about 30 minutes. We'll do a full assessment — posture, movement, spine check — and talk through what's going on. No referral needed, just rock up. Initial consult's $79.");
+      setTimeout(() => {
+        addBotMessage("Want to grab a time? We can usually get new patients in within a day or two.", 600);
+        setTimeout(() => addBookingCTA(), 1200);
+      }, 1200);
+    },
+    cost: () => {
+      addUserMessage("How much does it cost?");
+      addBotMessage("Initial consult is $79 (about 30 mins). Follow-up adjustments are $55. We're registered with all major health funds and have HICAPS for on-the-spot claiming.");
+      setTimeout(() => {
+        addBotMessage("Most patients with private health cover pay around $15-25 out of pocket. Want to book in?", 600);
+        setTimeout(() => addBookingCTA(), 1200);
+      }, 1200);
+    }
+  };
+
+  function addBookingCTA() {
+    if (hasBooked) return;
+    const cta = document.createElement('div');
+    cta.className = 'bc-msg bc-msg-bot flex gap-2.5 animate-fade-up';
+    cta.innerHTML = `
+      <div class="w-7 h-7 flex-shrink-0"></div>
+      <div class="flex gap-2">
+        <button class="bc-cta-book bg-mid-blue hover:bg-navy text-white text-xs font-medium px-4 py-2 rounded-full transition-colors">
+          Yes, book now
+        </button>
+        <a href="tel:${phoneFull}" class="bg-blue-ghost text-navy text-xs font-medium px-4 py-2 rounded-full hover:bg-blue-pale transition-colors flex items-center gap-1">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          Call instead
+        </a>
+      </div>`;
+    messages?.appendChild(cta);
+    messages.scrollTop = messages.scrollHeight;
+    cta.querySelector('.bc-cta-book')?.addEventListener('click', () => {
+      hasBooked = true;
+      startBookingFlow();
+    });
+  }
+
+  // --- Quick action button clicks ---
+  document.querySelectorAll('.bc-quick-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const action = btn.dataset.action;
+      if (responses[action]) responses[action]();
+      // Hide quick actions after first use
+      if (quickActions) {
+        quickActions.querySelector('.flex.flex-wrap')?.classList.add('hidden');
+      }
+    });
+  });
+
+  // --- Free text input ---
+  function handleSend() {
+    const text = input?.value?.trim();
+    if (!text) return;
+    addUserMessage(text);
+    input.value = '';
+
+    // Simple keyword matching for common intents
+    const lower = text.toLowerCase();
+
+    if (/book|appointment|schedule|available|slot|time/i.test(lower)) {
+      hasBooked = true;
+      addBotMessage("Let me open up the calendar for you!");
+      setTimeout(() => startBookingFlow(), 800);
+    } else if (/hour|open|close|when|time.*open/i.test(lower)) {
+      responses.hours = null; // prevent duplicate
+      addBotMessage("We're open Mon–Fri 8am–6pm, Sat 8am–12pm. Want to book a time?");
+      setTimeout(() => addBookingCTA(), 1200);
+    } else if (/cost|price|fee|how much|charge|afford|expensive|bulk.?bill/i.test(lower)) {
+      addBotMessage("Initial consult is $79, follow-ups $55. Health fund rebates apply — most people pay about $15–25 gap. Want me to open the booking calendar?");
+      setTimeout(() => addBookingCTA(), 1200);
+    } else if (/new.?patient|first.?time|first.?visit|never.?been/i.test(lower)) {
+      addBotMessage("Welcome! First visit's about 30 mins — we'll do a full check and chat about what's going on. No referral needed. $79 for the initial consult.");
+      setTimeout(() => addBookingCTA(), 1200);
+    } else if (/back.?pain|neck.?pain|sciatica|headache|migraine|shoulder|posture/i.test(lower)) {
+      addBotMessage("That's something we see a lot of. Our chiropractors will assess what's going on and talk you through the best approach. The sooner you get it checked, the easier it usually is to sort out.");
+      setTimeout(() => {
+        addBotMessage("Want to book in? We can usually see you within a day or two.", 600);
+        setTimeout(() => addBookingCTA(), 1200);
+      }, 1200);
+    } else if (/park|where|location|address|find|direction/i.test(lower)) {
+      addBotMessage("We're at 2/44 Greenway Drive, Tweed Heads South. Ground level with free parking right out front — easy to find.");
+      setTimeout(() => addBookingCTA(), 1500);
+    } else if (/health.?fund|insurance|private|hicaps|medicare|rebate/i.test(lower)) {
+      addBotMessage("We're registered with all major health funds and have HICAPS on-site, so you can claim your rebate straight away. Most patients with cover pay about $15–25 out of pocket.");
+      setTimeout(() => addBookingCTA(), 1200);
+    } else if (/phone|call|ring|talk.*someone|speak/i.test(lower)) {
+      addBotMessage(`Of course! Give us a ring on <a href="tel:${phoneFull}" class="text-mid-blue font-medium underline">${phone}</a> and we'll sort you out.`);
+    } else if (/thank|cheers|ta/i.test(lower)) {
+      addBotMessage("No worries at all! If you need anything else, we're here.");
+    } else if (/hi|hey|hello|g'day|good morning|good afternoon/i.test(lower)) {
+      addBotMessage("Hey! Good to hear from you. Are you looking to book in, or have a question I can help with?");
+    } else {
+      // Fallback — still nudge toward booking or calling
+      addBotMessage("I might not have the answer to that one off the top of my head. Your best bet is to give us a call on <a href=\"tel:" + phoneFull + "\" class=\"text-mid-blue font-medium underline\">" + phone + "</a> — the team can help you out.");
+      setTimeout(() => {
+        addBotMessage("Or if you'd like to book in, I can open the calendar for you right now.", 600);
+        setTimeout(() => addBookingCTA(), 1000);
+      }, 1200);
+    }
+  }
+
+  sendBtn?.addEventListener('click', handleSend);
+  input?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') handleSend();
+  });
+
+  // --- Analytics tracking ---
+  function trackEvent(eventName) {
+    if (typeof gtag === 'function') {
+      gtag('event', eventName, { event_category: 'chatbot' });
+    }
+  }
+
+  // --- Exit-intent trigger on desktop ---
+  let exitShown = false;
+  document.addEventListener('mouseleave', (e) => {
+    if (e.clientY < 10 && !chatOpen && !exitShown && !hasBooked) {
+      exitShown = true;
+      nudge?.classList.remove('hidden');
+      const nudgeText = nudge?.querySelector('p');
+      if (nudgeText) {
+        nudgeText.innerHTML = "Heading off? We'd love to help — <strong>book online in under 60 seconds</strong>.";
+      }
+      trackEvent('exit_intent_shown');
+    }
+  });
+</script>
