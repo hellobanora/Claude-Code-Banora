@@ -1,0 +1,111 @@
+---
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import ChatbotWidget from '../components/integrations/ChatbotWidget.astro';
+import '../styles/global.css';
+import { clinic } from '../data/clinic';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  schema?: object;
+  ogImage?: string;
+}
+
+const { title, description, canonicalUrl, schema, ogImage } = Astro.props;
+const siteUrl = clinic.website;
+const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
+const ogImg = ogImage || `${siteUrl}/images/og-default.jpg`;
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Chiropractic',
+  name: clinic.name,
+  image: `${siteUrl}/images/clinic-exterior.jpg`,
+  telephone: clinic.phone,
+  url: siteUrl,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: clinic.address.street,
+    addressLocality: clinic.address.suburb,
+    addressRegion: clinic.address.state,
+    postalCode: clinic.address.postcode,
+    addressCountry: 'AU',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: clinic.geo.latitude,
+    longitude: clinic.geo.longitude,
+  },
+  openingHoursSpecification: clinic.hoursSchema.map((h) => {
+    const [day, time] = h.split(' ');
+    const [opens, closes] = time.split('-');
+    return {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: day === 'Mo' ? 'Monday' : day === 'Tu' ? 'Tuesday' : day === 'We' ? 'Wednesday' : day === 'Th' ? 'Thursday' : day === 'Fr' ? 'Friday' : 'Saturday',
+      opens,
+      closes,
+    };
+  }),
+  priceRange: '$$',
+  paymentAccepted: clinic.payment.join(', '),
+};
+---
+
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImg} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={clinic.name} />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- LocalBusiness Schema (every page) -->
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+
+  <!-- Page-specific schema -->
+  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+
+  <!-- Google Analytics & Google Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-987591935"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-987591935');
+  </script>
+</head>
+<body class="bg-white text-dark-text">
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+
+  <!-- Booking-Focused Chatbot Widget -->
+  <ChatbotWidget />
+</body>
+</html>

@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clinic, practitioners } from '../data/clinic';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Banora Chiropractic',
+  url: `${clinic.website}/about`,
+};
+---
+
+<BaseLayout
+  title="About Us | Banora Chiropractic | Tweed Heads South"
+  description="Meet Dr James Shipway and Dr Paul Cater at Banora Chiropractic, Tweed Heads South. Over 30 years combined experience in chiropractic care for the whole family."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="bg-navy relative hero-overflow-clip">
+    <div class="absolute inset-0">
+      <img src="/images/clinic-adjustment-wide.jpg" alt="" class="hero-slow-pan h-full opacity-20" aria-hidden="true" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-deep/95 via-navy/90 to-navy-light/85"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <nav class="text-sm text-light-blue-soft/60 mb-6">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-white">About</span>
+      </nav>
+      <h1 class="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-semibold text-white mb-4">About Banora Chiropractic</h1>
+      <p class="text-light-blue-soft/90 text-lg max-w-2xl">Two experienced chiropractors, a friendly team, and a genuine commitment to helping you feel your best.</p>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Our story</span>
+        <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-6">Your Neighbourhood Chiropractors</h2>
+      </div>
+      <div class="prose prose-lg max-w-none text-grey-text leading-relaxed space-y-5">
+        <p>Banora Chiropractic was founded on a simple idea: that everyone deserves access to quality, personal chiropractic care — without the rush, without the upsell, and without the jargon.</p>
+        <p>Located at 2/44 Greenway Drive in Tweed Heads South, we have been helping local families, workers, and active people feel better for years. Whether you are dealing with back pain that has been nagging you for months, a sports injury that is holding you back, or you just want to stay on top of your health — we are here to help.</p>
+        <p>Dr James Shipway and Dr Paul Cater bring different techniques and perspectives to the clinic, which means you get the benefit of varied approaches under one roof. Between them, they have over 30 years of combined experience in chiropractic care.</p>
+        <p>We believe in being honest with you about what we find, realistic about what we can help with, and supportive throughout your care journey. No cookie-cutter treatment plans. No pressure. Just good, personal care from people who genuinely want to help.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet the Practitioners -->
+  <section class="py-16 md:py-24 bg-light-grey">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Your chiropractors</span>
+        <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3">Meet the Team</h2>
+      </div>
+      <div class="space-y-12 max-w-4xl mx-auto">
+        {practitioners.map((doc, index) => (
+          <div class={`flex flex-col md:flex-row gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+            <div class="shrink-0">
+              <div class="w-40 h-40 rounded-2xl overflow-hidden border-2 border-blue-pale">
+                <img src={`/images/dr-${doc.slug.split('-').slice(1).join('-')}.png`} alt={`${doc.name} - Chiropractor at Banora Chiropractic`} class="w-full h-full object-cover" width="160" height="160" loading="lazy" />
+              </div>
+            </div>
+            <div class="text-center md:text-left">
+              <h3 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy">{doc.name}</h3>
+              <p class="text-mid-blue font-medium mt-1">{doc.qualifications} — {doc.role}</p>
+              <p class="text-grey-text leading-relaxed mt-4">{doc.bio}</p>
+              <div class="flex flex-wrap justify-center md:justify-start gap-2 mt-4">
+                {doc.techniques.map((tech) => (
+                  <span class="text-sm bg-blue-pale/50 text-navy px-4 py-1.5 rounded-full">{tech}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Why patients choose us</span>
+        <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3">What Makes Us Different</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-14 h-14 bg-blue-ghost rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">We Take Our Time</h3>
+          <p class="text-grey-text text-sm leading-relaxed">No rushed appointments. We listen to your concerns, explain what we find, and make sure you are comfortable with the plan.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 bg-blue-ghost rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">Honest & Transparent</h3>
+          <p class="text-grey-text text-sm leading-relaxed">We will tell you what we can help with — and what we cannot. No lock-in contracts, no unnecessary treatment plans, no pressure.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 bg-blue-ghost rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">All Ages Welcome</h3>
+          <p class="text-grey-text text-sm leading-relaxed">From newborns to grandparents, we care for the whole family. Our chiropractors use a variety of techniques suited to all ages and comfort levels.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 bg-blue-ghost rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          </div>
+          <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">Multiple Techniques</h3>
+          <p class="text-grey-text text-sm leading-relaxed">With two chiropractors offering different techniques — from Diversified and Thompson to Soft Tissue Therapy and Arthrostim — we can match the approach to your body and preferences.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 bg-blue-ghost rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          </div>
+          <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">Easy Access</h3>
+          <p class="text-grey-text text-sm leading-relaxed">Ground level, wheelchair accessible, free on-site parking. We have made it as easy as possible for you to get here and get the care you need.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 bg-blue-ghost rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">Health Fund Friendly</h3>
+          <p class="text-grey-text text-sm leading-relaxed">HICAPS on-site means you can claim from your health fund on the spot. We also accept EPC Medicare referrals and WorkCover.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-20 bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 right-10 w-72 h-72 bg-light-blue rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 text-center">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">Ready to get started?</h2>
+      <p class="text-light-blue-soft/90 text-lg mb-8">Book your first visit online or give us a call. We would love to meet you.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Book Online
+        </a>
+        <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Call {clinic.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

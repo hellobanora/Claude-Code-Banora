@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banora Chiropractic – Patient Forms</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1a2e4d;--navy-mid:#1e3f6b;--navy-light:#2d5a8e;
+  --blue:#4a90c4;--blue-lt:#7ab8e0;--blue-pale:#eaf4fb;
+  --grey:#6b7b8d;--grey-lt:#e8edf3;--bg:#f4f7fa;--white:#fff;--r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--navy);min-height:100vh;display:flex;flex-direction:column;}
+
+/* HEADER */
+.hdr{background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:28px 24px 32px;text-align:center;position:relative;overflow:hidden;}
+.hdr::before{content:'';position:absolute;top:-60px;left:-60px;width:220px;height:220px;border-radius:50%;background:rgba(122,184,224,.08);}
+.hdr::after{content:'';position:absolute;bottom:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(122,184,224,.06);}
+.hdr-logo{width:72px;height:72px;border:2px solid var(--blue-lt);border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:30px;background:rgba(255,255,255,.08);position:relative;z-index:1;}
+.hdr h1{font-family:'Playfair Display',serif;font-size:28px;color:#fff;margin-bottom:6px;position:relative;z-index:1;}
+.hdr p{font-size:13px;color:var(--blue-lt);font-weight:500;letter-spacing:.5px;position:relative;z-index:1;}
+
+/* MAIN */
+.main{flex:1;max-width:560px;margin:0 auto;width:100%;padding:28px 16px 48px;}
+
+.intro{text-align:center;margin-bottom:28px;}
+.intro h2{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:8px;}
+.intro p{font-size:14px;color:var(--grey);line-height:1.7;max-width:400px;margin:0 auto;}
+
+/* FORM CARDS */
+.form-card{background:var(--white);border-radius:var(--r);border:1.5px solid var(--grey-lt);margin-bottom:14px;overflow:hidden;text-decoration:none;display:block;transition:all .2s;box-shadow:0 2px 8px rgba(26,46,77,.06);}
+.form-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,46,77,.12);border-color:var(--blue-lt);}
+.fc-top{display:flex;align-items:center;gap:16px;padding:18px 20px;}
+.fc-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.ic-1{background:linear-gradient(145deg,var(--navy-mid),var(--blue));}
+.ic-2{background:linear-gradient(145deg,#1e6b4a,#2e9e6a);}
+.ic-3{background:linear-gradient(145deg,#5a2d82,#8b4db8);}
+.ic-4{background:linear-gradient(145deg,#1a6b5a,#2a9e85);}
+.fc-text{flex:1;}
+.fc-label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--grey);margin-bottom:3px;}
+.fc-title{font-family:'Playfair Display',serif;font-size:19px;color:var(--navy);margin-bottom:3px;}
+.fc-desc{font-size:12.5px;color:var(--grey);line-height:1.5;}
+.fc-arrow{font-size:20px;color:var(--blue-lt);flex-shrink:0;}
+.fc-footer{background:var(--blue-pale);border-top:1px solid var(--grey-lt);padding:9px 20px;display:flex;align-items:center;gap:8px;}
+.fc-footer span{font-size:11.5px;color:var(--navy-mid);font-weight:600;}
+.fc-pill{background:var(--navy-mid);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;}
+
+/* INFO */
+.info-box{background:var(--white);border-radius:var(--r);border:1.5px solid var(--grey-lt);padding:20px;margin-top:8px;}
+.info-box h3{font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--grey);margin-bottom:14px;}
+.info-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
+.info-row:last-child{margin-bottom:0;}
+.info-i{font-size:18px;flex-shrink:0;margin-top:1px;}
+.info-t{font-size:13px;color:var(--grey);line-height:1.55;}
+.info-t strong{color:var(--navy);}
+
+/* FOOTER */
+.ftr{text-align:center;padding:20px;font-size:12px;color:var(--grey-lt);background:var(--navy);}
+.ftr span{color:var(--blue-lt);}
+
+@keyframes up{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.form-card{animation:up .4s ease both;}
+.form-card:nth-child(1){animation-delay:.05s;}
+.form-card:nth-child(2){animation-delay:.12s;}
+.form-card:nth-child(3){animation-delay:.19s;}
+.form-card:nth-child(4){animation-delay:.26s;}
+.intro{animation:up .35s ease both;}
+
+@media(max-width:400px){.hdr h1{font-size:23px;}.fc-title{font-size:17px;}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-logo">🦴</div>
+  <h1>Banora Chiropractic</h1>
+  <p>Patient Assessment Forms</p>
+</div>
+
+<div class="main">
+  <div class="intro">
+    <h2>Welcome</h2>
+    <p>Please select the form that matches your visit type today. Your responses help us track your progress and personalise your care.</p>
+  </div>
+
+  <a class="form-card" href="initial-consultation.html">
+    <div class="fc-top">
+      <div class="fc-icon ic-1">🤝</div>
+      <div class="fc-text">
+        <div class="fc-label">Phase 0 — New Patient</div>
+        <div class="fc-title">Initial Consultation</div>
+        <div class="fc-desc">Health history, pain baseline and goal setting for your first visit</div>
+      </div>
+      <div class="fc-arrow">→</div>
+    </div>
+    <div class="fc-footer">
+      <span class="fc-pill">First visit only</span>
+      <span>⏱ 5–6 minutes</span>
+    </div>
+  </a>
+
+  <a class="form-card" href="relief-care.html">
+    <div class="fc-top">
+      <div class="fc-icon ic-2">⚡</div>
+      <div class="fc-text">
+        <div class="fc-label">Phase 1 — Active Care</div>
+        <div class="fc-title">Relief Care</div>
+        <div class="fc-desc">Track pain reduction and symptom improvement during acute care</div>
+      </div>
+      <div class="fc-arrow">→</div>
+    </div>
+    <div class="fc-footer">
+      <span class="fc-pill">Relief phase visits</span>
+      <span>⏱ 3–4 minutes</span>
+    </div>
+  </a>
+
+  <a class="form-card" href="rehab-phase.html">
+    <div class="fc-top">
+      <div class="fc-icon ic-3">💪</div>
+      <div class="fc-text">
+        <div class="fc-label">Phase 2 — Correction & Rehab</div>
+        <div class="fc-title">Rehab Phase</div>
+        <div class="fc-desc">Functional ability, exercise compliance and goal achievement tracking</div>
+      </div>
+      <div class="fc-arrow">→</div>
+    </div>
+    <div class="fc-footer">
+      <span class="fc-pill">Rehab phase visits</span>
+      <span>⏱ 4–5 minutes</span>
+    </div>
+  </a>
+
+  <a class="form-card" href="wellness.html">
+    <div class="fc-top">
+      <div class="fc-icon ic-4">🌿</div>
+      <div class="fc-text">
+        <div class="fc-label">Phase 3 — Long Term</div>
+        <div class="fc-title">Wellness & Maintenance</div>
+        <div class="fc-desc">Spinal health, lifestyle, stress and prevention check-in</div>
+      </div>
+      <div class="fc-arrow">→</div>
+    </div>
+    <div class="fc-footer">
+      <span class="fc-pill">Maintenance visits</span>
+      <span>⏱ 4–5 minutes</span>
+    </div>
+  </a>
+
+  <div class="info-box">
+    <h3>Good to know</h3>
+    <div class="info-row"><div class="info-i">🔒</div><div class="info-t"><strong>Private & confidential.</strong> Your responses go directly to the Banora Chiropractic team and are never shared.</div></div>
+    <div class="info-row"><div class="info-i">📱</div><div class="info-t"><strong>Works on any device.</strong> Phone, tablet or desktop — no app download needed.</div></div>
+    <div class="info-row"><div class="info-i">📈</div><div class="info-t"><strong>Tracks your progress.</strong> Each visit is compared to your initial consultation so you can see how far you've come.</div></div>
+  </div>
+</div>
+
+<div class="ftr">
+  <span>Banora Chiropractic</span> · Patient Forms
+</div>
+
+</body>
+</html>

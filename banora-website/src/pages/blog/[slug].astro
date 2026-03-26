@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { clinic, practitioners } from '../../data/clinic';
+import { blogPosts, getRecentPosts, getCategorySlug } from '../../data/blog';
+import { services } from '../../data/services';
+import { conditions } from '../../data/conditions';
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const author = practitioners.find(p => p.slug === post.author) || practitioners[0];
+const relatedServiceData = services.filter(s => post.relatedServices.includes(s.slug));
+const relatedConditionData = conditions.filter(c => post.relatedConditions.includes(c.slug));
+const relatedPostData = blogPosts.filter(p => post.relatedPosts.includes(p.slug));
+const recentPosts = relatedPostData.length > 0 ? relatedPostData : getRecentPosts(3, post.slug);
+
+const postUrl = `${clinic.website}/blog/${post.slug}`;
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+function getAuthorForPost(slug: string) {
+  return practitioners.find(p => p.slug === slug) || practitioners[0];
+}
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.metaDescription,
+  image: `${clinic.website}${post.heroImage}`,
+  datePublished: post.publishDate,
+  dateModified: post.updatedDate || post.publishDate,
+  author: {
+    '@type': 'Person',
+    name: author.name,
+    jobTitle: 'Chiropractor',
+    worksFor: { '@type': 'Organization', name: clinic.name },
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: clinic.name,
+    logo: { '@type': 'ImageObject', url: `${clinic.website}/images/logo.png` },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: clinic.website },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${clinic.website}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: postUrl },
+    ],
+  },
+};
+---
+
+<BaseLayout title={post.metaTitle} description={post.metaDescription} schema={schema}>
+
+  <!-- Hero Image -->
+  <section class="relative h-[40vh] min-h-[300px] max-h-[500px] hero-overflow-clip">
+    <img src={post.heroImage} alt={post.heroImageAlt} class="hero-ken-burns" />
+    <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/40 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-10 max-w-4xl mx-auto">
+      <nav class="text-sm text-white/60 mb-4">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <span class="mx-2">/</span>
+        <span class="text-white/90">{post.title}</span>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+        <!-- Main Content -->
+        <div class="lg:col-span-2">
+          <!-- Meta -->
+          <div class="flex flex-wrap items-center gap-3 mb-6">
+            <span class="bg-blue-ghost text-mid-blue text-xs font-medium px-3 py-1 rounded-full">{post.category}</span>
+            <span class="text-grey-text/60 text-sm">{formatDate(post.publishDate)}</span>
+            <span class="text-grey-text/60 text-sm">{post.readTime} min read</span>
+          </div>
+
+          <!-- Title -->
+          <h1 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mb-6 leading-tight">{post.title}</h1>
+
+          <!-- Author -->
+          <div class="flex items-center gap-3 mb-10 pb-8 border-b border-grey-mid/20">
+            <div class="w-12 h-12 bg-navy/10 rounded-full flex items-center justify-center overflow-hidden">
+              <img src={`/images/${author.slug}.jpg`} alt={author.name} class="w-full h-full object-cover" width="48" height="48" loading="lazy" />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-navy">{author.name}</p>
+              <p class="text-xs text-grey-text">{author.qualifications} — {author.role}</p>
+            </div>
+          </div>
+
+          <!-- Article Body -->
+          <div class="prose" set:html={post.content} />
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2 mt-10 pt-8 border-t border-grey-mid/20">
+            {post.tags.map(tag => (
+              <span class="bg-light-grey text-grey-text text-xs px-3 py-1 rounded-full">{tag}</span>
+            ))}
+          </div>
+
+          <!-- Share -->
+          <div class="flex items-center gap-3 mt-8">
+            <span class="text-sm text-grey-text font-medium">Share:</span>
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`} target="_blank" rel="noopener noreferrer" class="w-9 h-9 bg-blue-ghost rounded-lg flex items-center justify-center hover:bg-mid-blue hover:text-white text-mid-blue transition-colors" aria-label="Share on Facebook">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener noreferrer" class="w-9 h-9 bg-blue-ghost rounded-lg flex items-center justify-center hover:bg-mid-blue hover:text-white text-mid-blue transition-colors" aria-label="Share on X">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href={`mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent('Check out this article: ' + postUrl)}`} class="w-9 h-9 bg-blue-ghost rounded-lg flex items-center justify-center hover:bg-mid-blue hover:text-white text-mid-blue transition-colors" aria-label="Share via email">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <!-- Book CTA -->
+          <div class="bg-blue-ghost/50 rounded-xl p-6 border border-blue-pale/30">
+            <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-3">Need help with this?</h3>
+            <p class="text-grey-text text-sm mb-4">If this article resonated, we're here to help. Book in and let's have a chat about what's going on.</p>
+            <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="block w-full bg-mid-blue hover:bg-navy text-white text-center px-4 py-3 rounded-lg font-medium transition-colors mb-3">
+              Book Online
+            </a>
+            <a href={`tel:${clinic.phoneFull}`} class="block w-full bg-white border border-grey-mid/30 text-navy text-center px-4 py-3 rounded-lg font-medium hover:border-mid-blue transition-colors">
+              Call {clinic.phone}
+            </a>
+          </div>
+
+          <!-- Related Conditions -->
+          {relatedConditionData.length > 0 && (
+            <div class="bg-light-grey rounded-xl p-6">
+              <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-3">Related Conditions</h3>
+              <ul class="space-y-2">
+                {relatedConditionData.map((c) => (
+                  <li>
+                    <a href={`/conditions/${c.slug}`} class="text-sm text-mid-blue hover:text-navy transition-colors flex items-center gap-2">
+                      <span>{c.icon}</span> {c.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Related Services -->
+          {relatedServiceData.length > 0 && (
+            <div class="bg-light-grey rounded-xl p-6">
+              <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-3">Related Services</h3>
+              <ul class="space-y-2">
+                {relatedServiceData.map((s) => (
+                  <li>
+                    <a href={`/services/${s.slug}`} class="text-sm text-mid-blue hover:text-navy transition-colors flex items-center gap-2">
+                      <span>{s.icon}</span> {s.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Posts -->
+  {recentPosts.length > 0 && (
+    <section class="py-16 md:py-20 bg-light-grey">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-semibold text-navy mb-8 text-center">You might also like</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {recentPosts.slice(0, 3).map((rp) => {
+            const rpAuthor = getAuthorForPost(rp.author);
+            return (
+              <article class="bg-white rounded-xl border border-grey-mid/20 overflow-hidden hover:shadow-lg transition-shadow duration-300 group">
+                <a href={`/blog/${rp.slug}`} class="block">
+                  <div class="relative h-48 overflow-hidden">
+                    <img src={rp.heroImage} alt={rp.heroImageAlt} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" width="400" height="200" />
+                    <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-mid-blue text-xs font-medium px-3 py-1 rounded-full">{rp.category}</span>
+                  </div>
+                  <div class="p-5">
+                    <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2 group-hover:text-mid-blue transition-colors leading-snug">{rp.title}</h3>
+                    <p class="text-grey-text text-sm leading-relaxed mb-4 line-clamp-2">{rp.excerpt}</p>
+                    <div class="flex items-center justify-between text-xs text-grey-text/70">
+                      <span>{rpAuthor.name}</span>
+                      <span>{rp.readTime} min read</span>
+                    </div>
+                  </div>
+                </a>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="py-16 md:py-20 bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 right-10 w-72 h-72 bg-light-blue rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 text-center">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">Ready to take the next step?</h2>
+      <p class="text-light-blue-soft/90 text-lg mb-8">New patients welcome. We'll take the time to listen, assess, and create a plan that works for you.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Book Online
+        </a>
+        <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Call {clinic.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

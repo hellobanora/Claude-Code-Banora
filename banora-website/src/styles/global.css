@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #1B3A5C;
+  --color-navy-deep: #122840;
+  --color-navy-light: #234B73;
+  --color-mid-blue: #2C5F8A;
+  --color-light-blue: #5B9EC9;
+  --color-light-blue-soft: #8FBFDD;
+  --color-blue-pale: #D4E8F5;
+  --color-blue-ghost: #EDF5FA;
+  --color-light-grey: #F5F5F5;
+  --color-grey-mid: #D8DCE0;
+  --color-grey-text: #6B7280;
+  --color-dark-text: #1A1A1A;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-dark-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Smooth fade-up animation */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+.animate-delay-400 { animation-delay: 0.4s; }
+.animate-delay-500 { animation-delay: 0.5s; }
+
+/* ===== Hero Image Motion Effects ===== */
+
+/* Ken Burns Effect — slow zoom on main hero images */
+@keyframes kenBurns {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+@keyframes kenBurnsReverse {
+  0%   { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.hero-ken-burns {
+  animation: kenBurns 20s ease-in-out infinite alternate;
+  object-fit: cover;
+  object-position: center 20%;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-ken-burns-reverse {
+  animation: kenBurnsReverse 20s ease-in-out infinite alternate;
+  object-fit: cover;
+  object-position: center 20%;
+  width: 100%;
+  height: 100%;
+}
+
+/* Slow Pan Effect — horizontal drift on secondary/banner hero images */
+@keyframes slowPan {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-28.5%); }
+}
+
+.hero-slow-pan {
+  width: 140%;
+  object-fit: cover;
+  animation: slowPan 14s ease-in-out infinite alternate;
+}
+
+/* Parent container must clip zoomed/panned edges */
+.hero-overflow-clip {
+  overflow: hidden;
+}
+
+/* ===== Blog Prose Styling ===== */
+.prose {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-grey-text);
+}
+.prose h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+.prose h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.prose p { margin-bottom: 1.25rem; }
+.prose ul, .prose ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
+.prose ul { list-style-type: disc; }
+.prose ol { list-style-type: decimal; }
+.prose li { margin-bottom: 0.5rem; }
+.prose a {
+  color: var(--color-mid-blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose a:hover { color: var(--color-navy); }
+.prose strong { color: var(--color-dark-text); font-weight: 600; }
+.prose em { font-style: italic; }
+.prose blockquote {
+  border-left: 4px solid var(--color-mid-blue);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--color-navy);
+  margin: 1.5rem 0;
+}
+
+/* Line clamp for blog excerpts */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .hero-ken-burns,
+  .hero-ken-burns-reverse,
+  .hero-slow-pan {
+    animation: none;
+  }
+  .hero-slow-pan {
+    width: 100%;
+  }
+}
