@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { clinic, practitioners } from '../../data/clinic';
+import { blogPosts, getAllCategories, getCategorySlug } from '../../data/blog';
+
+const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+const categories = getAllCategories();
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Banora Chiropractic Blog',
+  url: `${clinic.website}/blog`,
+  description: 'Chiropractic health tips, wellness advice, and patient education from the team at Banora Chiropractic in Tweed Heads South.',
+  publisher: {
+    '@type': 'Organization',
+    name: clinic.name,
+    url: clinic.website,
+  },
+};
+
+function getAuthor(slug: string) {
+  return practitioners.find(p => p.slug === slug) || practitioners[0];
+}
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+---
+
+<BaseLayout
+  title="Chiropractic Health Blog | Banora Chiropractic | Tweed Heads South"
+  description="Practical health tips, chiropractic insights, and wellness advice from Dr James Shipway and Dr Paul Cater at Banora Chiropractic, Tweed Heads South."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="bg-navy relative hero-overflow-clip">
+    <div class="absolute inset-0">
+      <img src="/images/clinic-adjustment-wide.jpg" alt="" class="hero-slow-pan h-full opacity-20" aria-hidden="true" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-deep/95 via-navy/90 to-navy-light/85"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <nav class="text-sm text-light-blue-soft/60 mb-6">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-white">Blog</span>
+      </nav>
+      <h1 class="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-semibold text-white mb-4">Health & Wellness Blog</h1>
+      <p class="text-light-blue-soft/90 text-lg max-w-2xl">Practical tips, honest advice, and chiropractic insights from our team. No jargon, no fluff — just useful information to help you feel your best.</p>
+    </div>
+  </section>
+
+  <!-- Category Filter + Posts Grid -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Category Pills -->
+      <div class="flex flex-wrap gap-2 mb-12">
+        <button class="bc-cat-btn active bg-mid-blue text-white text-sm font-medium px-5 py-2 rounded-full transition-colors" data-category="all">
+          All posts
+        </button>
+        {categories.map((cat) => (
+          <button class="bc-cat-btn bg-blue-ghost text-navy text-sm font-medium px-5 py-2 rounded-full hover:bg-blue-pale transition-colors" data-category={getCategorySlug(cat)}>
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Posts Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
+        {sortedPosts.map((post) => {
+          const author = getAuthor(post.author);
+          return (
+            <article class="bc-post-card bg-white rounded-xl border border-grey-mid/20 overflow-hidden hover:shadow-lg transition-shadow duration-300 group" data-category={getCategorySlug(post.category)}>
+              <a href={`/blog/${post.slug}`} class="block">
+                <div class="relative h-48 overflow-hidden">
+                  <img
+                    src={post.heroImage}
+                    alt={post.heroImageAlt}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    width="400"
+                    height="200"
+                  />
+                  <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-mid-blue text-xs font-medium px-3 py-1 rounded-full">
+                    {post.category}
+                  </span>
+                </div>
+                <div class="p-5">
+                  <h2 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2 group-hover:text-mid-blue transition-colors leading-snug">
+                    {post.title}
+                  </h2>
+                  <p class="text-grey-text text-sm leading-relaxed mb-4 line-clamp-2">
+                    {post.excerpt}
+                  </p>
+                  <div class="flex items-center justify-between text-xs text-grey-text/70">
+                    <span>{author.name}</span>
+                    <div class="flex items-center gap-3">
+                      <span>{formatDate(post.publishDate)}</span>
+                      <span>{post.readTime} min read</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+
+      <!-- Empty state -->
+      <div id="blog-empty" class="hidden text-center py-16">
+        <p class="text-grey-text text-lg">No posts in this category yet. Check back soon!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-20 bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 right-10 w-72 h-72 bg-light-blue rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 text-center">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">Got a question about your health?</h2>
+      <p class="text-light-blue-soft/90 text-lg mb-8">Our chiropractors are here to help. Book an appointment or give us a call — we'd love to chat.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Book Online
+        </a>
+        <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Call {clinic.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll('.bc-cat-btn');
+  const cards = document.querySelectorAll('.bc-post-card');
+  const empty = document.getElementById('blog-empty');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = (btn as HTMLElement).dataset.category;
+
+      // Update active button
+      buttons.forEach(b => {
+        b.classList.remove('active', 'bg-mid-blue', 'text-white');
+        b.classList.add('bg-blue-ghost', 'text-navy');
+      });
+      btn.classList.add('active', 'bg-mid-blue', 'text-white');
+      btn.classList.remove('bg-blue-ghost', 'text-navy');
+
+      // Filter cards
+      let visible = 0;
+      cards.forEach(card => {
+        const cardCat = (card as HTMLElement).dataset.category;
+        if (cat === 'all' || cardCat === cat) {
+          (card as HTMLElement).classList.remove('hidden');
+          visible++;
+        } else {
+          (card as HTMLElement).classList.add('hidden');
+        }
+      });
+
+      // Show empty state if needed
+      if (empty) {
+        empty.classList.toggle('hidden', visible > 0);
+      }
+    });
+  });
+</script>

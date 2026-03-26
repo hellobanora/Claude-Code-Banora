@@ -1,6 +1,7 @@
 ---
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
+import ChatbotWidget from '../components/integrations/ChatbotWidget.astro';
 import '../styles/global.css';
 import { clinic } from '../data/clinic';
 
@@ -104,7 +105,7 @@ const localBusinessSchema = {
   </main>
   <Footer />
 
-  <!-- Chatbot Widget -->
-  <script defer src="https://thriving-conkies-08c1ca.netlify.app/banora-chatbot-widget.js"></script>
+  <!-- Booking-Focused Chatbot Widget -->
+  <ChatbotWidget />
 </body>
 </html>
