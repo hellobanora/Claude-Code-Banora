@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//tmp/**)",
+      "Bash(unzip -o banora-chiro-astro.zip -d banora-astro/)",
+      "Bash(find /tmp/banora-files -type f -name *.astro -o -name *.mjs -o -name *.ts -o -name *.css)",
+      "Bash(find 'C:/Users/Admin/Desktop/Claude-Code-Banora/Banora Chiro/' -name *.toml -o -name *.config.*)",
+      "Bash(npm create:*)",
+      "Bash(cmd.exe /c \"where npm\")",
+      "Bash(cmd.exe /c \"where node\")",
+      "Bash(export PATH=\"$PATH:/c/Program Files/nodejs:/c/Users/Admin/AppData/Roaming/npm\")",
+      "Bash(npm --version)",
+      "Bash(npm install:*)",
+      "Bash(\"C:/Users/Admin/Desktop/Claude-Code-Banora/banora-website/public/favicon.svg\":*)",
+      "Bash(npm run:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(cmd.exe /c \"where npm.cmd\")",
+      "Bash(export PATH=\"$PATH:/c/Program Files/nodejs\")",
+      "Bash(node -e \"console.log\\(require.resolve\\(''astro''\\)\\)\")",
+      "Bash(ls \"C:/Users/Admin/Desktop/Claude-Code-Banora/banora-website/node_modules/.bin/astro\"*)",
+      "WebFetch(domain:banorachiropractic.com.au)",
+      "Bash(curl -sL -o hero-chiro-exam.jpg \"https://banorachiropractic.com.au/wp-content/uploads/2020/08/slider-1-chiro-exam-1500x430.jpg\")",
+      "Bash(curl -sL -o hero-back-neck.jpg \"https://banorachiropractic.com.au/wp-content/uploads/2020/08/slider-2-back-neck-pain-1500x430.jpg\")",
+      "Bash(curl -sL -o hero-all-ages.jpg \"https://banorachiropractic.com.au/wp-content/uploads/2020/08/slider-3-ages-1500x430.jpg\")",
+      "Bash(curl -sL -o hero-sports.jpg \"https://banorachiropractic.com.au/wp-content/uploads/2020/08/slider-4-sports-1500x430.jpg\")",
+      "Bash(curl -sL -o hero-pregnancy.jpg \"https://banorachiropractic.com.au/wp-content/uploads/2020/08/pregnancy-1500x430.jpg\")",
+      "Bash(vercel --version)",
+      "WebSearch",
+      "Bash(git pull:*)",
+      "Bash(netstat -ano)",
+      "Bash(tasklist)",
+      "Bash(start chrome:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
