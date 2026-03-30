@@ -41,7 +41,7 @@ export const clinic = {
   parking: 'On-site parking available, ground level, no steps',
   accessibility: 'Wheelchair accessible, no steps',
   landmark: 'Between Reece Plumbing and Border Bikes',
-  payment: ['HICAPS', 'EFTPOS', 'EPC Medicare', 'WorkCover', 'Insurance'],
+  payment: ['HICAPS', 'EFTPOS', 'EPC Medicare', 'DVA', 'WorkCover', 'Insurance'],
   formspreeEndpoint: 'https://formspree.io/f/mpqjeego',
   googleMapsEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3523.8!2d153.537!3d-28.189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBanora+Chiropractic!5e0!3m2!1sen!2sau!4v1',
 };
