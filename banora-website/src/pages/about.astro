@@ -59,8 +59,8 @@ const schema = {
         {practitioners.map((doc, index) => (
           <div class={`flex flex-col md:flex-row gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
             <div class="shrink-0">
-              <div class="w-40 h-40 rounded-2xl overflow-hidden border-2 border-blue-pale">
-                <img src={`/images/dr-${doc.slug.split('-').slice(1).join('-')}.png`} alt={`${doc.name} - Chiropractor at Banora Chiropractic`} class="w-full h-full object-cover" width="160" height="160" loading="lazy" />
+              <div class="w-48 h-60 md:w-56 md:h-72 rounded-2xl overflow-hidden border-2 border-blue-pale shadow-lg">
+                <img src={`/images/dr-${doc.slug.split('-').slice(1).join('-')}.jpg`} alt={`${doc.name} - Chiropractor at Banora Chiropractic`} class="w-full h-full object-cover object-top" width="224" height="288" loading="lazy" />
               </div>
             </div>
             <div class="text-center md:text-left">
