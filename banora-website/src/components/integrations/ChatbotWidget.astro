@@ -8,13 +8,16 @@ import { clinic } from '../../data/clinic';
 <!-- Chat Toggle Button -->
 <div id="bc-chat-widget" class="fixed bottom-20 right-4 lg:bottom-6 lg:right-6 z-50">
   <!-- Attention Pulse Ring -->
-  <div id="bc-chat-pulse" class="absolute inset-0 rounded-full bg-mid-blue/30 animate-ping pointer-events-none"></div>
+  <div id="bc-chat-pulse" class="absolute inset-0 rounded-full animate-ping pointer-events-none" style="background:rgba(212,168,83,0.35)"></div>
 
   <!-- Toggle Button -->
   <button
     id="bc-chat-toggle"
-    class="relative w-16 h-16 bg-mid-blue hover:bg-navy text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
+    class="relative w-16 h-16 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
+    style="background:linear-gradient(135deg,#D4A853,#B88E3A)"
     aria-label="Chat with us — book an appointment"
+    onmouseover="this.style.background='linear-gradient(135deg,#B88E3A,#9A7530)'"
+    onmouseout="this.style.background='linear-gradient(135deg,#D4A853,#B88E3A)'"
   >
     <!-- Chat icon (shown when closed) -->
     <svg id="bc-icon-chat" class="w-7 h-7 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -32,7 +35,7 @@ import { clinic } from '../../data/clinic';
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
     <p class="text-sm text-dark-text leading-relaxed mb-3">Got a sore back? We can usually get you in <strong>this week</strong>.</p>
-    <button id="bc-nudge-book" class="w-full bg-mid-blue hover:bg-navy text-white text-sm font-medium py-2.5 px-4 rounded-lg transition-colors">
+    <button id="bc-nudge-book" class="w-full text-white text-sm font-medium py-2.5 px-4 rounded-lg transition-colors" style="background:#D4A853" onmouseover="this.style.background='#B88E3A'" onmouseout="this.style.background='#D4A853'">
       Book an appointment
     </button>
   </div>
@@ -77,7 +80,7 @@ import { clinic } from '../../data/clinic';
     <!-- Quick Action Buttons — the conversion drivers -->
     <div id="bc-quick-actions" class="px-4 py-3 bg-white border-t border-grey-mid/10 flex-shrink-0">
       <div class="flex flex-wrap gap-2 mb-3">
-        <button class="bc-quick-btn bg-mid-blue text-white text-xs font-medium px-4 py-2 rounded-full hover:bg-navy transition-colors" data-action="book">
+        <button class="bc-quick-btn text-white text-xs font-medium px-4 py-2 rounded-full transition-colors" style="background:#D4A853" onmouseover="this.style.background='#B88E3A'" onmouseout="this.style.background='#D4A853'" data-action="book">
           Book an appointment
         </button>
         <button class="bc-quick-btn bg-blue-ghost text-navy text-xs font-medium px-3 py-2 rounded-full hover:bg-blue-pale transition-colors" data-action="hours">
@@ -123,7 +126,7 @@ import { clinic } from '../../data/clinic';
         <div class="flex items-start gap-2">
           <svg class="w-4 h-4 text-[#B88E3A] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           <p class="text-xs text-[#6B5B2A] leading-relaxed">
-            <strong>New patients:</strong> Initial consults are $100 and take about 45 mins. We'll do a thorough assessment before any treatment.
+            <strong>New patients:</strong> Initial consults are $100 and take about 30-45 mins. We'll do a thorough assessment before any treatment.
           </p>
         </div>
       </div>
@@ -312,7 +315,7 @@ import { clinic } from '../../data/clinic';
     },
     'new-patient': () => {
       addUserMessage("I'm a new patient — what do I need to know?");
-      addBotMessage("Welcome! Your first visit takes about 45 minutes. We'll do a full assessment — posture, movement, spine check — and talk through what's going on. No referral needed, just rock up. Initial consult's $100.");
+      addBotMessage("Welcome! Your first visit takes about 30-45 minutes. We'll do a full assessment — posture, movement, spine check — and talk through what's going on. No referral needed, just rock up. Initial consult's $100.");
       setTimeout(() => {
         addBotMessage("Want to grab a time? We can usually get new patients in within a day or two.", 600);
         setTimeout(() => addBookingCTA(), 1200);
@@ -320,7 +323,7 @@ import { clinic } from '../../data/clinic';
     },
     cost: () => {
       addUserMessage("How much does it cost?");
-      addBotMessage("Initial consult is $100 (about 45 mins). Follow-up adjustments are $72. We're registered with all major health funds and have HICAPS for on-the-spot claiming.");
+      addBotMessage("Initial consult is $100 (about 30-45 mins). Follow-up adjustments are $72. We're registered with all major health funds and have HICAPS for on-the-spot claiming.");
       setTimeout(() => {
         addBotMessage("Most patients with private health cover pay around $15-25 out of pocket. Want to book in?", 600);
         setTimeout(() => addBookingCTA(), 1200);
@@ -385,7 +388,7 @@ import { clinic } from '../../data/clinic';
       addBotMessage("Initial consult is $100, follow-ups $72. Health fund rebates apply — most people pay about $15–25 gap. Want me to open the booking calendar?");
       setTimeout(() => addBookingCTA(), 1200);
     } else if (/new.?patient|first.?time|first.?visit|never.?been/i.test(lower)) {
-      addBotMessage("Welcome! First visit's about 45 mins — we'll do a full check and chat about what's going on. No referral needed. $100 for the initial consult.");
+      addBotMessage("Welcome! First visit's about 30-45 mins — we'll do a full check and chat about what's going on. No referral needed. $100 for the initial consult.");
       setTimeout(() => addBookingCTA(), 1200);
     } else if (/back.?pain|neck.?pain|sciatica|headache|migraine|shoulder|posture/i.test(lower)) {
       addBotMessage("That's something we see a lot of. Our chiropractors will assess what's going on and talk you through the best approach. The sooner you get it checked, the easier it usually is to sort out.");

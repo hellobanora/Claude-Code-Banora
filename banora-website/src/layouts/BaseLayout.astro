@@ -2,6 +2,7 @@
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import ChatbotWidget from '../components/integrations/ChatbotWidget.astro';
+import ChatbotBooking from '../components/integrations/ChatbotBooking.astro';
 import '../styles/global.css';
 import { clinic } from '../data/clinic';
 
@@ -11,9 +12,10 @@ interface Props {
   canonicalUrl?: string;
   schema?: object;
   ogImage?: string;
+  chatbotVariant?: 'standard' | 'booking';
 }
 
-const { title, description, canonicalUrl, schema, ogImage } = Astro.props;
+const { title, description, canonicalUrl, schema, ogImage, chatbotVariant = 'standard' } = Astro.props;
 const siteUrl = clinic.website;
 const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
 const ogImg = ogImage || `${siteUrl}/images/og-default.jpg`;
@@ -100,12 +102,12 @@ const localBusinessSchema = {
 </head>
 <body class="bg-white text-dark-text">
   <Header />
-  <main>
+  <main class="pb-16 lg:pb-0">
     <slot />
   </main>
   <Footer />
 
-  <!-- Booking-Focused Chatbot Widget -->
-  <ChatbotWidget />
+  <!-- Chatbot Widget -->
+  {chatbotVariant === 'booking' ? <ChatbotBooking /> : <ChatbotWidget />}
 </body>
 </html>

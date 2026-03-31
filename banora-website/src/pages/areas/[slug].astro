@@ -118,7 +118,7 @@ const schema = {
             <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="block w-full bg-mid-blue hover:bg-navy text-white text-center px-4 py-3 rounded-lg font-medium transition-colors mb-3">
               Book Online
             </a>
-            <a href={`tel:${clinic.phoneFull}`} class="block w-full bg-white border border-grey-mid/30 text-navy text-center px-4 py-3 rounded-lg font-medium hover:border-mid-blue transition-colors">
+            <a href={`tel:${clinic.phoneFull}`} class="block w-full bg-white border border-grey-mid/30 text-navy text-center px-4 py-3 rounded-lg font-medium hover:border-mid-blue transition-colors whitespace-nowrap">
               Call {clinic.phone}
             </a>
           </div>
@@ -146,7 +146,6 @@ const schema = {
             <ul class="space-y-2 text-sm">
               <li class="flex justify-between"><span class="text-grey-text">New patient</span><span class="text-navy font-medium">${pricing.newPatient.price}</span></li>
               <li class="flex justify-between"><span class="text-grey-text">Regular adjustment</span><span class="text-navy font-medium">${pricing.regularAdjustment.price}</span></li>
-              <li class="flex justify-between"><span class="text-grey-text">Student/child</span><span class="text-navy font-medium">From ${pricing.regularAdjustment.studentChild}</span></li>
             </ul>
             <p class="text-xs text-grey-text mt-3">HICAPS on-site for instant health fund claims</p>
           </div>
@@ -181,7 +180,7 @@ const schema = {
         <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
           Book Online
         </a>
-        <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+        <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors whitespace-nowrap">
           Call {clinic.phone}
         </a>
       </div>

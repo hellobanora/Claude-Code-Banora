@@ -67,7 +67,7 @@ function formatDate(dateStr: string) {
       </div>
 
       <!-- Posts Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="blog-grid">
         {sortedPosts.map((post) => {
           const author = getAuthor(post.author);
           return (
@@ -126,7 +126,7 @@ function formatDate(dateStr: string) {
         <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
           Book Online
         </a>
-        <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+        <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors whitespace-nowrap">
           Call {clinic.phone}
         </a>
       </div>

@@ -70,7 +70,7 @@ export const practitioners = [
 ];
 
 export const pricing = {
-  newPatient: { price: 100, studentChild: 92, duration: '45 minutes' },
+  newPatient: { price: 100, studentChild: 92, duration: '30-45 minutes' },
   regularAdjustment: { price: 72, studentChild: 62, duration: '15 minutes' },
   babyNewborn: { priceFrom: 62, initial: 92, followUp: 62, duration: 'Gentle assessment' },
 };
