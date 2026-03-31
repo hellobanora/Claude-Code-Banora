@@ -298,7 +298,8 @@ function buildCalendar(year, month, schedule) {
   // Build lookup: day number -> available + times
   const avail = {};
   (schedule || []).forEach(s => {
-    if (s.available) avail[s.day] = s.times || [];
+    const times = s.time || s.times || [];
+    if (times.length > 0) avail[s.day] = times;
   });
 
   let cells = '';
@@ -406,21 +407,23 @@ async function handlePatientType(isNew) {
     // Fetch practices
     const practicesRes = await fetch('/api/booking?action=practices');
     const practicesData = await practicesRes.json();
-    const practice = (practicesData.practices || [])[0];
+    const pd = practicesData.details || practicesData;
+    const practice = (pd.practices || [])[0];
     if (!practice) throw new Error('No practice found');
     bk.practiceId = practice.id;
-    bk.customerId = practicesData.customer_id;
+    bk.customerId = pd.customer_id;
 
     // Fetch practice details (practitioners + CSRF)
     // Note: tokens are injected server-side by the proxy
     const detailsRes = await fetch(`/api/booking?action=practice-details&practice_id=${bk.practiceId}`);
     const detailsData = await detailsRes.json();
 
-    bk.csrfKey = detailsData.csrf_key;
-    bk.csrfToken = detailsData.csrf_token;
+    const dd = detailsData.details || detailsData;
+    bk.csrfKey = dd.csrf_key;
+    bk.csrfToken = dd.csrf_token;
 
     // "practioners" (API typo — missing 'i')
-    const practitioners = detailsData.practioners || detailsData.practitioners || [];
+    const practitioners = dd.practioners || dd.practitioners || [];
     bk.practitioners = practitioners;
 
     if (practitioners.length === 0) throw new Error('No practitioners found');
@@ -452,7 +455,7 @@ async function handlePractitioner(id, name) {
     const url = `/api/booking?action=practitioner-services&customer_id=${bk.customerId}&practice_id=${bk.practiceId}&practitioner_id=${id}&existing=${existingParam}`;
     const res = await fetch(url);
     const data = await res.json();
-    const services = data.services || [];
+    const services = (data.details || data).services || [];
 
     if (services.length === 0) throw new Error('No services found');
 
@@ -493,7 +496,7 @@ async function fetchAndShowCalendar(month, year) {
     const url = `/api/booking?action=month-schedule&customer_id=${bk.customerId}&practice_id=${bk.practiceId}&practioner=${bk.practitionerId}&service_item_id=${bk.serviceId}&month=${month}&year=${year}&group=0&new_patient=${newPatientParam}`;
     const res = await fetch(url);
     const data = await res.json();
-    const schedule = data.schedule || [];
+    const schedule = (data.details || data).schedule || [];
 
     const calHtml = buildCalendar(year, month, schedule);
     await interactiveEl(calHtml);
@@ -530,8 +533,8 @@ async function handleDateSelect(dateStr, dayNum) {
   try {
     const res = await fetch(url);
     const data = await res.json();
-    const dayEntry = (data.schedule || []).find(s => s.day === dayNum);
-    const times = dayEntry ? dayEntry.times : [];
+    const dayEntry = ((data.details || data).schedule || []).find(s => s.day === dayNum);
+    const times = dayEntry ? (dayEntry.time || dayEntry.times || []) : [];
 
     const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     const [y, m, d] = dateStr.split('-');
