@@ -144,6 +144,8 @@ const bk = {
   serviceDuration: null,
   selectedDate: null,
   selectedTime: null,
+  selectedTimeEnd: null,
+  selectedTimeLabel: null,
   csrfKey: null,
   csrfToken: null,
   practitioners: [],
@@ -344,11 +346,9 @@ function buildCalendar(year, month, schedule) {
 function buildTimeSlots(times) {
   if (!times || times.length === 0) return '<p class="text-sm text-gray-500 ml-9">No times available for this date.</p>';
   const formatted = times.map(t => {
-    const [hh, mm] = t.split(':');
-    const h = parseInt(hh);
-    const ampm = h >= 12 ? 'PM' : 'AM';
-    const h12 = h > 12 ? h - 12 : (h === 0 ? 12 : h);
-    return `<button class="bcb-time text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-200 bg-white hover:bg-blue-50 transition-colors text-gray-700" data-time="${t}">${h12}:${mm} ${ampm}</button>`;
+    const label = t.start || t;
+    const value = encodeURIComponent(JSON.stringify({ ts: t.ts_start, tsEnd: t.ts_end, label }));
+    return `<button class="bcb-time text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-200 bg-white hover:bg-blue-50 transition-colors text-gray-700" data-time="${value}">${label}</button>`;
   }).join('');
   return `<div class="flex flex-wrap gap-2 mt-1 ml-9">${formatted}</div>`;
 }
@@ -549,7 +549,14 @@ async function handleDateSelect(dateStr, dayNum) {
 
     // Bind time buttons
     slotEl.querySelectorAll('.bcb-time').forEach(btn => {
-      btn.addEventListener('click', () => handleTimeSelect(btn.dataset.time));
+      btn.addEventListener('click', () => {
+        try {
+          const d = JSON.parse(decodeURIComponent(btn.dataset.time));
+          handleTimeSelect(d.ts, d.tsEnd, d.label);
+        } catch {
+          handleTimeSelect(btn.dataset.time, null, btn.dataset.time);
+        }
+      });
     });
   } catch (err) {
     console.error('handleDateSelect error:', err);
@@ -557,16 +564,13 @@ async function handleDateSelect(dateStr, dayNum) {
   }
 }
 
-async function handleTimeSelect(time) {
-  bk.selectedTime = time;
-  const [hh, mm] = time.split(':');
-  const h = parseInt(hh);
-  const ampm = h >= 12 ? 'PM' : 'AM';
-  const h12 = h > 12 ? h - 12 : (h === 0 ? 12 : h);
-  const timeLabel = `${h12}:${mm} ${ampm}`;
+async function handleTimeSelect(ts, tsEnd, label) {
+  bk.selectedTime = ts;
+  bk.selectedTimeEnd = tsEnd;
+  bk.selectedTimeLabel = label;
 
-  userMsg(timeLabel);
-  await botMsg(`${timeLabel} it is! Just need a few details to confirm your booking:`);
+  userMsg(label);
+  await botMsg(`${label} it is! Just need a few details to confirm your booking:`);
   await interactiveEl(buildDetailsForm());
 
   // Bind confirm button
@@ -591,22 +595,14 @@ async function handleConfirm() {
     return;
   }
 
-  // Build datetime strings
-  const [hh, mm] = bk.selectedTime.split(':');
-  const startDt = `${bk.selectedDate} ${bk.selectedTime}:00`;
-  const endMins = parseInt(hh) * 60 + parseInt(mm) + (bk.serviceDuration || 45);
-  const endHH = String(Math.floor(endMins / 60)).padStart(2, '0');
-  const endMM = String(endMins % 60).padStart(2, '0');
-  const endDt = `${bk.selectedDate} ${endHH}:${endMM}:00`;
-
   const body = {
     practice_id: bk.practiceId,
     practitioner_id: bk.practitionerId,
     service_item_id: bk.serviceId,
     is_group: 0,
     existing: bk.isNew ? 0 : 1,
-    ts_schedule_start: startDt,
-    ts_schedule_end: endDt,
+    ts_schedule_start: bk.selectedTime,
+    ts_schedule_end: bk.selectedTimeEnd,
     customer_firstname: fn,
     customer_lastname: ln,
     customer_dob: dob,
@@ -643,11 +639,7 @@ async function handleConfirm() {
     const dayName = dayNames[dateObj.getDay()];
     const dateLabel = `${dayName} ${parseInt(d)} ${monthNames[parseInt(mo)-1]}`;
 
-    const [hh2, mm2] = bk.selectedTime.split(':');
-    const h2 = parseInt(hh2);
-    const ampm2 = h2 >= 12 ? 'PM' : 'AM';
-    const h12_2 = h2 > 12 ? h2 - 12 : (h2 === 0 ? 12 : h2);
-    const timeLabel = `${h12_2}:${mm2} ${ampm2}`;
+    const timeLabel = bk.selectedTimeLabel || '';
 
     trackEvent('booking_completed');
 
