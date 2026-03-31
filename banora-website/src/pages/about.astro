@@ -55,21 +55,19 @@ const schema = {
         <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Your chiropractors</span>
         <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3">Meet the Team</h2>
       </div>
-      <div class="space-y-12 max-w-4xl mx-auto">
-        {practitioners.map((doc, index) => (
-          <div class={`flex flex-col md:flex-row gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
-            <div class="shrink-0">
-              <div class="w-40 h-40 rounded-2xl overflow-hidden border-2 border-blue-pale">
-                <img src={`/images/dr-${doc.slug.split('-').slice(1).join('-')}.png`} alt={`${doc.name} - Chiropractor at Banora Chiropractic`} class="w-full h-full object-cover" width="160" height="160" loading="lazy" />
-              </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+        {practitioners.map((doc) => (
+          <div class="bg-white rounded-2xl overflow-hidden border border-blue-pale hover:shadow-xl transition-all duration-500">
+            <div class="aspect-[4/3] md:aspect-[3/4] overflow-hidden bg-navy/5">
+              <img src={`/images/${doc.slug}.jpg`} alt={`${doc.name}, chiropractor at Banora Chiropractic, Tweed Heads South`} class="w-full h-full object-cover object-top" width="400" height="533" loading="lazy" />
             </div>
-            <div class="text-center md:text-left">
+            <div class="p-6 md:p-8">
               <h3 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy">{doc.name}</h3>
               <p class="text-mid-blue font-medium mt-1">{doc.qualifications} — {doc.role}</p>
-              <p class="text-grey-text leading-relaxed mt-4">{doc.bio}</p>
-              <div class="flex flex-wrap justify-center md:justify-start gap-2 mt-4">
+              <p class="text-grey-text text-sm leading-relaxed mt-4">{doc.bio}</p>
+              <div class="flex flex-wrap gap-2 mt-5">
                 {doc.techniques.map((tech) => (
-                  <span class="text-sm bg-blue-pale/50 text-navy px-4 py-1.5 rounded-full">{tech}</span>
+                  <span class="text-xs bg-blue-pale/50 text-navy px-3 py-1.5 rounded-full font-medium">{tech}</span>
                 ))}
               </div>
             </div>
@@ -127,7 +125,7 @@ const schema = {
             <svg class="w-7 h-7 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           </div>
           <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">Health Fund Friendly</h3>
-          <p class="text-grey-text text-sm leading-relaxed">HICAPS on-site means you can claim from your health fund on the spot. We also accept DVA referrals, EPC Medicare referrals (Chronic Disease Management plans), and WorkCover.</p>
+          <p class="text-grey-text text-sm leading-relaxed">HICAPS on-site means you can claim from your health fund on the spot. We also accept EPC Medicare referrals, WorkCover, and DVA patients.</p>
         </div>
       </div>
     </div>
@@ -145,7 +143,7 @@ const schema = {
         <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
           Book Online
         </a>
-        <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+        <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors whitespace-nowrap">
           Call {clinic.phone}
         </a>
       </div>
