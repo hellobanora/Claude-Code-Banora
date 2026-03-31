@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd banora-website && npm install && npm run build",
+  "outputDirectory": "banora-website/dist",
+  "installCommand": "echo 'install handled in buildCommand'"
+}
