@@ -146,6 +146,7 @@ const bk = {
   selectedTime: null,
   selectedTimeEnd: null,
   selectedTimeLabel: null,
+  requirePayment: false,
   csrfKey: null,
   csrfToken: null,
   practitioners: [],
@@ -480,6 +481,7 @@ async function handleService(svcJson) {
   bk.serviceName = svc.desc || 'Appointment';
   bk.servicePrice = svc.fee || null;
   bk.serviceDuration = svc.duration || 45;
+  bk.requirePayment = !!svc.require_online_payment;
 
   userMsg(bk.serviceName);
   await botMsg("Let me find available times for you...");
@@ -620,6 +622,46 @@ async function handleConfirm() {
     confirmBtn.textContent = 'Confirming...';
   }
 
+  // Format date label for confirmations
+  const [y, mo, d] = bk.selectedDate.split('-');
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const dateObj = new Date(parseInt(y), parseInt(mo) - 1, parseInt(d));
+  const dayName = dayNames[dateObj.getDay()];
+  const dateLabel = `${dayName} ${parseInt(d)} ${monthNames[parseInt(mo)-1]}`;
+  const timeLabel = bk.selectedTimeLabel || '';
+
+  if (bk.requirePayment) {
+    // Service requires online payment — notify clinic via Formspree, confirm with patient
+    try {
+      await fetch('https://formspree.io/f/mpqjeego', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          _subject: `New booking request — ${fn} ${ln}`,
+          name: `${fn} ${ln}`,
+          dob: dob,
+          email: email,
+          mobile: mobile,
+          practitioner: bk.practitionerName,
+          service: `${bk.serviceName}${bk.servicePrice ? ` ($${bk.servicePrice})` : ''}`,
+          date: `${dateLabel} at ${timeLabel}`,
+          source: 'Website chatbot',
+        }),
+      });
+    } catch { /* non-fatal */ }
+
+    trackEvent('booking_request_submitted');
+    if (confirmBtn) { confirmBtn.disabled = true; confirmBtn.textContent = 'Request sent!'; }
+    await botMsg(`Thanks ${fn}! Your booking request has been received.<br><br>
+      📅 ${dateLabel} at ${timeLabel}<br>
+      👨‍⚕️ ${bk.practitionerName}<br>
+      📍 2/44 Greenway Drive, Tweed Heads South<br>
+      ${bk.servicePrice ? `💰 ${bk.serviceName} — $${bk.servicePrice}` : `💰 ${bk.serviceName}`}<br><br>
+      We'll give you a call to confirm and arrange payment. See you soon!`);
+    return;
+  }
+
   try {
     const res = await fetch('/api/booking', {
       method: 'POST',
@@ -633,18 +675,7 @@ async function handleConfirm() {
       throw new Error(result.message || data.message || 'Booking failed');
     }
 
-    // Format date for confirmation
-    const [y, mo, d] = bk.selectedDate.split('-');
-    const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    const dateObj = new Date(parseInt(y), parseInt(mo) - 1, parseInt(d));
-    const dayName = dayNames[dateObj.getDay()];
-    const dateLabel = `${dayName} ${parseInt(d)} ${monthNames[parseInt(mo)-1]}`;
-
-    const timeLabel = bk.selectedTimeLabel || '';
-
     trackEvent('booking_completed');
-
     await botMsg(`🎉 You're all booked!<br><br>
       📅 ${dateLabel} at ${timeLabel}<br>
       👨‍⚕️ ${bk.practitionerName}<br>

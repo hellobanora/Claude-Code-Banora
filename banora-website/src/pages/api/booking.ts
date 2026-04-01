@@ -10,10 +10,11 @@ const T1 = import.meta.env.ICONPRACTICE_TOKEN1 || '245386';
 const T2 = import.meta.env.ICONPRACTICE_TOKEN2 || '7138';
 
 const PATHS: Record<string, string> = {
-  'practices':             '/api/v1/widget/practices',
-  'practice-details':      '/api/v1/widget/practice-details',
-  'practitioner-services': '/api/v1/widget/practitioner-services',
-  'month-schedule':        '/api/v1/widget/month-schedule',
+  'practices':              '/api/v1/widget/practices',
+  'practice-details':       '/api/v1/widget/practice-details',
+  'practitioner-services':  '/api/v1/widget/practitioner-services',
+  'practitioners-services': '/api/v1/widget/practitioners-services',
+  'month-schedule':         '/api/v1/widget/month-schedule',
 };
 
 function json(data: unknown, status = 200) {
