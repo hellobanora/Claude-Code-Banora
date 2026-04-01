@@ -597,6 +597,7 @@ async function handleConfirm() {
 
   const body = {
     practice_id: bk.practiceId,
+    customer_id: bk.customerId,
     practitioner_id: bk.practitionerId,
     service_item_id: bk.serviceId,
     is_group: 0,
@@ -627,8 +628,9 @@ async function handleConfirm() {
     });
     const data = await res.json();
 
-    if (data.success === false) {
-      throw new Error(data.message || 'Booking failed');
+    const result = data.details || data;
+    if (result.success === false || data.success === false) {
+      throw new Error(result.message || data.message || 'Booking failed');
     }
 
     // Format date for confirmation
@@ -656,7 +658,7 @@ async function handleConfirm() {
       confirmBtn.disabled = false;
       confirmBtn.textContent = 'Confirm booking';
     }
-    await botMsg("Something went wrong with the booking. Please try again or give us a call:");
+    await botMsg(`Something went wrong: <em>${err.message}</em><br>Please try again or give us a call:`);
     addCallFallback();
   }
 }
