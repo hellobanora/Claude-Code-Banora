@@ -460,8 +460,20 @@ async function handlePractitioner(id, name) {
 
     if (services.length === 0) throw new Error('No services found');
 
+    // Filter services by patient type — the API may return all regardless of existing param
+    const isNewPatientService = s => /new.?patient|initial|first.?visit|first.?consult/i.test(s.desc || '') || Number(s.fee) >= 90;
+
+    let displayServices = services;
+    if (bk.isNew) {
+      const filtered = services.filter(isNewPatientService);
+      if (filtered.length > 0) displayServices = filtered;
+    } else {
+      const filtered = services.filter(s => !isNewPatientService(s));
+      if (filtered.length > 0) displayServices = filtered;
+    }
+
     await botMsg(`Great — seeing ${name}. Which service do you need?`);
-    choiceButtons(services.map(svc => ({
+    choiceButtons(displayServices.map(svc => ({
       label: `${svc.desc}${svc.fee ? ` — $${svc.fee}` : ''}`,
       value: JSON.stringify(svc),
       action: 'service',
