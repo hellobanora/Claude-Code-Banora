@@ -100,8 +100,18 @@ export const POST: APIRoute = async ({ request }) => {
       body: form.toString(),
     });
 
-    const result = await r.json();
-    return json(result);
+    const raw = await r.text();
+    console.log('[register_appt response]', r.status, raw.slice(0, 500));
+
+    // Try JSON first; fall back to treating any 2xx response as success
+    try {
+      return json(JSON.parse(raw));
+    } catch {
+      if (r.ok) {
+        return json({ success: true, confirmed: true, raw });
+      }
+      return json({ success: false, message: raw.slice(0, 200) || 'Booking failed' }, 502);
+    }
   } catch (err) {
     console.error('[proxy POST error]', err);
     return json({ success: false, message: 'Upstream error' }, 502);
