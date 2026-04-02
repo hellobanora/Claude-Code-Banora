@@ -54,12 +54,16 @@ export const POST: APIRoute = async ({ request }) => {
     for (const [k, v] of Object.entries(body)) {
       if (v !== null && v !== undefined) params.set(k, String(v));
     }
+    const formStr = params.toString();
+    console.log('[proxy POST] form body:', formStr.substring(0, 600));
     const r = await fetch(`${BASE}/api/v1/widget/register-appointment`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: params.toString(),
+      body: formStr,
     });
-    return json(await r.json());
+    const responseText = await r.text();
+    console.log('[proxy POST] IconPractice response:', responseText.substring(0, 400));
+    return json(JSON.parse(responseText));
   } catch {
     return json({ success: false, message: 'Upstream error' }, 502);
   }
