@@ -604,6 +604,7 @@ async function handleConfirm() {
     service_item_id: bk.serviceId,
     is_group: 0,
     existing: bk.isNew ? 0 : 1,
+    new_patient: bk.isNew ? 1 : 0,
     ts_schedule_start: bk.selectedTime,
     ts_schedule_end: bk.selectedTimeEnd,
     customer_firstname: fn,
