@@ -602,8 +602,8 @@ async function handleConfirm() {
     customer_id: bk.customerId,
     practitioner_id: bk.practitionerId,
     service_item_id: bk.serviceId,
-    is_group: 0,
-    existing: bk.isNew ? 0 : 1,
+    is_group: "false",
+    existing: bk.isNew ? "false" : "true",
     ts_schedule_start: bk.selectedTime,
     ts_schedule_end: bk.selectedTimeEnd,
     customer_firstname: fn,
@@ -675,13 +675,18 @@ async function handleConfirm() {
       throw new Error(result.message || data.message || 'Booking failed');
     }
 
+    const confirmed = data.confirmed !== false; // treat missing as confirmed
+    const headline = confirmed ? '🎉 You\'re all booked!' : 'Your booking request has been received!';
+    const tailMsg = confirmed
+      ? `A confirmation will be sent to ${email}. See you then!`
+      : `We'll be in touch to confirm your appointment. See you soon!`;
     trackEvent('booking_completed');
-    await botMsg(`🎉 You're all booked!<br><br>
+    await botMsg(`${headline}<br><br>
       📅 ${dateLabel} at ${timeLabel}<br>
       👨‍⚕️ ${bk.practitionerName}<br>
       📍 2/44 Greenway Drive, Tweed Heads South<br>
       ${bk.servicePrice ? `💰 ${bk.serviceName} — $${bk.servicePrice}` : `💰 ${bk.serviceName}`}<br><br>
-      A confirmation will be sent to ${email}. See you then!`);
+      ${tailMsg}`);
 
   } catch (err) {
     console.error('handleConfirm error:', err);
