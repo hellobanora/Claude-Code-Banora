@@ -406,25 +406,18 @@ async function handlePatientType(isNew) {
 
   try {
     // Fetch practices
-    console.log('[BCB] fetching practices...');
     const practicesRes = await fetch('/api/booking?action=practices');
-    console.log('[BCB] practices status:', practicesRes.status);
     const practicesData = await practicesRes.json();
-    console.log('[BCB] practicesData:', JSON.stringify(practicesData).slice(0, 200));
     const pd = practicesData.details || practicesData;
     const practice = (pd.practices || [])[0];
-    if (!practice) throw new Error('No practice found in API response');
+    if (!practice) throw new Error('No practice found');
     bk.practiceId = practice.id;
     bk.customerId = pd.customer_id;
-    console.log('[BCB] practiceId:', bk.practiceId, 'customerId:', bk.customerId);
 
     // Fetch practice details (practitioners + CSRF)
     // Note: tokens are injected server-side by the proxy
-    console.log('[BCB] fetching practice-details...');
     const detailsRes = await fetch(`/api/booking?action=practice-details&practice_id=${bk.practiceId}`);
-    console.log('[BCB] details status:', detailsRes.status);
     const detailsData = await detailsRes.json();
-    console.log('[BCB] detailsData:', JSON.stringify(detailsData).slice(0, 200));
 
     const dd = detailsData.details || detailsData;
     bk.csrfKey = dd.csrf_key;
@@ -433,9 +426,8 @@ async function handlePatientType(isNew) {
     // "practioners" (API typo — missing 'i')
     const practitioners = dd.practioners || dd.practitioners || [];
     bk.practitioners = practitioners;
-    console.log('[BCB] practitioners:', practitioners.length);
 
-    if (practitioners.length === 0) throw new Error('No practitioners found in API response');
+    if (practitioners.length === 0) throw new Error('No practitioners found');
 
     if (practitioners.length === 1) {
       const p = practitioners[0];
@@ -450,7 +442,6 @@ async function handlePatientType(isNew) {
     }
   } catch (err) {
     console.error('handlePatientType error:', err);
-    await botMsg(`Debug: ${err && err.message ? err.message : String(err)}`);
     await botMsg("Sorry, I had trouble loading the booking details. You can still book easily below:");
     addCallFallback();
   }
