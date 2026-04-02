@@ -178,21 +178,25 @@ export const POST: APIRoute = async ({ request }) => {
     const [dobYear = '', dobMonth = '', dobDay = ''] = (body.customer_dob || '').split('-');
 
     // Step 3: Build form-encoded body for old widget API
+    // existing=1 → returning patient, existing=0 → new patient
+    // new_patient mirrors existing (inverted) so both fields are explicit
+    const isExisting = body.existing === 1 || body.existing === '1';
     const form = new URLSearchParams({
-      first_name: body.customer_firstname || '',
-      last_name:  body.customer_lastname  || '',
-      email:      body.customer_email     || '',
-      mobile:     body.customer_mobile    || '',
-      dob_day:    dobDay,
-      dob_month:  dobMonth,
-      dob_year:   dobYear,
-      prac_sel:   String(body.practitioner_id   || ''),
-      appt_type:  String(body.service_item_id   || ''),
-      tss:        String(body.ts_schedule_start || ''),
-      tse:        String(body.ts_schedule_end   || ''),
-      pid:        String(body.practice_id       || ''),
+      first_name:  body.customer_firstname || '',
+      last_name:   body.customer_lastname  || '',
+      email:       body.customer_email     || '',
+      mobile:      body.customer_mobile    || '',
+      dob_day:     dobDay,
+      dob_month:   dobMonth,
+      dob_year:    dobYear,
+      prac_sel:    String(body.practitioner_id   || ''),
+      appt_type:   String(body.service_item_id   || ''),
+      tss:         String(body.ts_schedule_start || ''),
+      tse:         String(body.ts_schedule_end   || ''),
+      pid:         String(body.practice_id       || ''),
       token,
-      existing:   String(body.existing ?? 0),
+      existing:    isExisting ? '1' : '0',
+      new_patient: isExisting ? '0' : '1',
     });
 
     // Step 4: POST to old widget API with session cookies
