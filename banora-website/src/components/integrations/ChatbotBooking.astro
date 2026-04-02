@@ -460,15 +460,13 @@ async function handlePractitioner(id, name) {
 
     if (services.length === 0) throw new Error('No services found');
 
-    // Filter services by patient type — the API may return all regardless of existing param
-    const isNewPatientService = s => /new.?patient|initial|first.?visit|first.?consult/i.test(s.desc || '') || Number(s.fee) >= 90;
-
+    // Filter by fee to separate new ($100) from existing ($72) patient services.
+    // Service names may be identical ("Standard Consultation") so fee is the only discriminator.
     let displayServices = services;
-    if (bk.isNew) {
-      const filtered = services.filter(isNewPatientService);
-      if (filtered.length > 0) displayServices = filtered;
-    } else {
-      const filtered = services.filter(s => !isNewPatientService(s));
+    if (services.length > 1) {
+      const filtered = bk.isNew
+        ? services.filter(s => Number(s.fee) >= 90)
+        : services.filter(s => Number(s.fee) < 90);
       if (filtered.length > 0) displayServices = filtered;
     }
 
