@@ -193,10 +193,13 @@ export const POST: APIRoute = async ({ request }) => {
       appt_type:   String(body.service_item_id   || ''),
       tss:         String(body.ts_schedule_start || ''),
       tse:         String(body.ts_schedule_end   || ''),
-      pid:         String(body.practice_id       || ''),
+      pid:            String(body.practice_id       || ''),
       token,
-      existing:    isExisting ? '1' : '0',
-      new_patient: isExisting ? '0' : '1',
+      existing:       isExisting ? '1' : '0',
+      new_patient:    isExisting ? '0' : '1',
+      extra_comments: isExisting
+        ? 'EXISTING PATIENT — booked via website chatbot'
+        : 'New patient — booked via website chatbot',
     });
 
     // Step 4: POST to old widget API with session cookies

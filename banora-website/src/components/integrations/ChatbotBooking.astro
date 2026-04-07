@@ -461,10 +461,11 @@ async function handlePractitioner(id, name) {
     if (services.length === 0) throw new Error('No services found');
 
     // IconPractice has one service entry regardless of patient type.
-    // Override the fee with the correct clinic rate so patients see the right price.
+    // Override the fee and description with correct clinic rates.
     // Payment is processed at the clinic — the booking is just a slot reservation.
-    const correctFee = bk.isNew ? feeNew : feeExisting;
-    const displayServices = services.map(svc => ({ ...svc, fee: correctFee }));
+    const correctFee  = bk.isNew ? feeNew      : feeExisting;
+    const correctDesc = bk.isNew ? 'Initial Consultation' : 'Standard Consultation';
+    const displayServices = services.map(svc => ({ ...svc, fee: correctFee, desc: correctDesc }));
 
     await botMsg(`Great — seeing ${name}. Which service do you need?`);
     choiceButtons(displayServices.map(svc => ({
