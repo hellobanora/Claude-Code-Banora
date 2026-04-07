@@ -111,7 +111,7 @@ import { clinic } from '../../data/clinic';
   </div>
 </div>
 
-<script define:vars={{ bookingUrl: clinic.bookingUrl, phone: clinic.phone, phoneFull: clinic.phoneFull }}>
+<script define:vars={{ bookingUrl: clinic.bookingUrl, phone: clinic.phone, phoneFull: clinic.phoneFull, feeNew: 100, feeExisting: 72 }}>
 // =====================================================
 // BANORA CHIROPRACTIC — CONVERSATIONAL BOOKING CHATBOT
 // IconPractice API integration via /api/booking proxy
@@ -452,39 +452,23 @@ async function handlePractitioner(id, name) {
   bk.practitionerName = name;
 
   try {
-    // Fetch services for both patient types — the API often returns the same
-    // list regardless of existing param, so we need both to get all service IDs
-    const base = `/api/booking?action=practitioner-services&customer_id=${bk.customerId}&practice_id=${bk.practiceId}&practitioner_id=${id}`;
-    const [resNew, resExisting] = await Promise.all([
-      fetch(`${base}&existing=0`),
-      fetch(`${base}&existing=1`),
-    ]);
-    const [dNew, dExisting] = await Promise.all([resNew.json(), resExisting.json()]);
+    const existingParam = bk.isNew ? '0' : '1';
+    const url = `/api/booking?action=practitioner-services&customer_id=${bk.customerId}&practice_id=${bk.practiceId}&practitioner_id=${id}&existing=${existingParam}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const services = (data.details || data).services || [];
 
-    const svcNew      = (dNew.details      || dNew).services      || [];
-    const svcExisting = (dExisting.details || dExisting).services || [];
+    if (services.length === 0) throw new Error('No services found');
 
-    // Merge, keeping unique IDs (existing-param results take priority)
-    const seen = new Set();
-    const allServices = [...svcExisting, ...svcNew].filter(s => {
-      if (seen.has(s.id)) return false;
-      seen.add(s.id);
-      return true;
-    });
-
-    if (allServices.length === 0) throw new Error('No services found');
-
-    // Split by fee: >= $90 = new patient, < $90 = existing patient
-    const newSvcs      = allServices.filter(s => Number(s.fee) >= 90);
-    const existingSvcs = allServices.filter(s => Number(s.fee) < 90);
-
-    const displayServices = bk.isNew
-      ? (newSvcs.length      > 0 ? newSvcs      : allServices)
-      : (existingSvcs.length > 0 ? existingSvcs : allServices);
+    // IconPractice has one service entry regardless of patient type.
+    // Override the fee with the correct clinic rate so patients see the right price.
+    // Payment is processed at the clinic — the booking is just a slot reservation.
+    const correctFee = bk.isNew ? feeNew : feeExisting;
+    const displayServices = services.map(svc => ({ ...svc, fee: correctFee }));
 
     await botMsg(`Great — seeing ${name}. Which service do you need?`);
     choiceButtons(displayServices.map(svc => ({
-      label: `${svc.desc}${svc.fee ? ` — $${svc.fee}` : ''}`,
+      label: `${svc.desc} — $${svc.fee}`,
       value: JSON.stringify(svc),
       action: 'service',
     })));
