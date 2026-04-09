@@ -92,10 +92,17 @@ export async function POST(req: NextRequest) {
   }
 
   // 4. Store in Upstash Redis ─────────────────────────────────────────────────
-  const redis = new Redis({
-    url: process.env.UPSTASH_REDIS_REST_URL!,
-    token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-  });
+  let redis: Redis;
+  try {
+    redis = new Redis({
+      url: process.env.UPSTASH_REDIS_REST_URL!,
+      token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+    });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error('Redis init error:', msg);
+    return NextResponse.json({ error: 'Redis connection failed', detail: msg }, { status: 500 });
+  }
 
   const draftId = `newsletter:${yearMonth}`;
   const draft: NewsletterDraft = {
@@ -107,7 +114,13 @@ export async function POST(req: NextRequest) {
     raw_response: rawResponse,
   };
 
-  await redis.set(draftId, JSON.stringify(draft), { ex: 60 * 60 * 24 * 30 }); // 30-day TTL
+  try {
+    await redis.set(draftId, JSON.stringify(draft), { ex: 60 * 60 * 24 * 30 }); // 30-day TTL
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error('Redis set error:', msg);
+    return NextResponse.json({ error: 'Failed to store draft in Redis', detail: msg }, { status: 500 });
+  }
 
   // 5. Send Telegram preview ──────────────────────────────────────────────────
   const previewUrl = `${process.env.NEWSLETTER_PREVIEW_URL}/api/preview?id=${draftId}`;
