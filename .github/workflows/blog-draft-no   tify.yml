@@ -1,0 +1,71 @@
+name: Blog Draft Notification
+
+  on:
+    push:
+      branches: [main]
+      paths:
+        - 'banora-website/src/dat
+  a/blog.ts'                     
+                                 
+  jobs:                          
+    notify:                    
+      runs-on: ubuntu-latest
+      steps:
+        - uses:
+  actions/checkout@v4
+
+        - name: Find draft posts 
+  and notify Telegram
+          env:                   
+            TELEGRAM_BOT_TOKEN:
+  ${{ secrets.TELEGRAM_BOT_TOKEN
+  }}
+            TELEGRAM_CHAT_ID: ${{
+   secrets.TELEGRAM_CHAT_ID }}
+          run: |
+            DRAFTS=$(grep -A2    
+  "status: 'draft'"              
+  banora-website/src/data/blog.ts
+   | grep "title:" | sed         
+  "s/.*title:                  
+  '//;s/'.*//;s/.*title:
+  \"//;s/\".*//" | head -10)
+
+            if [ -z "$DRAFTS" ]; 
+  then
+              echo "No draft     
+  posts found, skipping        
+  notification"
+              exit 0
+            fi
+
+            DRAFT_LIST=$(echo    
+  "$DRAFTS" | while read -r line;
+   do echo "• $line"; done)      
+                               
+            MESSAGE="📝 *Blog    
+  Drafts Ready for Review*
+                                 
+  The following posts are drafted
+   and ready to publish:
+
+  ${DRAFT_LIST}                  
+   
+  To publish a post, change its  
+  status from \`'draft'\` to   
+  \`'published'\` in             
+  \`src/data/blog.ts\` and push
+  to main."
+
+            curl -s -X POST "http
+  s://api.telegram.org/bot${TELEG
+  RAM_BOT_TOKEN}/sendMessage" \
+              -H "Content-Type:
+  application/json" \
+              -d "{\"chat_id\": 
+  \"${TELEGRAM_CHAT_ID}\",       
+  \"text\": $(echo "$MESSAGE" |
+  python3 -c 'import json,sys;   
+  print(json.dumps(sys.stdin.read
+  ()))'), \"parse_mode\":
+  \"Markdown\"}"
