@@ -16,10 +16,26 @@ jobs:
           BOT: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          TITLES=$(grep -A15 "status: 'draft'" banora-website/src/data/blog.ts | grep "title:" | sed "s/.*title: '//;s/',.*//;s/.*title: \"//;s/\",.*//" | head -10)
-          if [ -z "$TITLES" ]; then
-            echo "No drafts found"
-            exit 0
-          fi
-          LIST=$(echo "$TITLES" | awk '{print NR". "$0}' | tr '\n' ' | ')
-          curl -s "https://api.telegram.org/bot${BOT}/sendMessage?chat_id=${CHAT}&text=Blog+drafts+ready+to+publish:+${LIST}"
+          python3 - << 'EOF'
+          import re, urllib.request, urllib.parse, os
+
+          with open("banora-website/src/data/blog.ts") as f:
+              content = f.read()
+
+          blocks = content.split("{")
+          drafts = []
+          for block in blocks:
+              if "status: 'draft'" in block:
+                  m = re.search(r"title:\s*['\"](.+?)['\"]", block)
+                  if m:
+                      drafts.append(m.group(1))
+
+          if not drafts:
+              print("No drafts found")
+              exit(0)
+
+          msg = "Blog drafts ready to publish:\n\n" + "\n".join(f"- {t}" for t in drafts)
+          data = urllib.parse.urlencode({"chat_id": os.environ["CHAT"], "text": msg}).encode()
+          urllib.request.urlopen(f"https://api.telegram.org/bot{os.environ['BOT']}/sendMessage", data)
+          print(f"Sent notification for {len(drafts)} drafts")
+          EOF
