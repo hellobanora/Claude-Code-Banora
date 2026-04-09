@@ -16,10 +16,10 @@ jobs:
           BOT: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          TITLES=$(grep -B5 "status: 'draft'" banora-website/src/data/blog.ts | grep "title:" | sed "s/.*title: '//;s/',//" | sed "s/.*title: \"//;s/\".*//" | head -10)
+          TITLES=$(grep -A15 "status: 'draft'" banora-website/src/data/blog.ts | grep "title:" | sed "s/.*title: '//;s/',.*//;s/.*title: \"//;s/\",.*//" | head -10)
           if [ -z "$TITLES" ]; then
             echo "No drafts found"
             exit 0
           fi
-          MSG="Blog drafts ready to review:%0A%0A$(echo "$TITLES" | while read -r t; do echo "- $t"; done | tr '\n' '%0A')"
-          curl -s "https://api.telegram.org/bot${BOT}/sendMessage?chat_id=${CHAT}&text=${MSG}"
+          LIST=$(echo "$TITLES" | awk '{print NR". "$0}' | tr '\n' ' | ')
+          curl -s "https://api.telegram.org/bot${BOT}/sendMessage?chat_id=${CHAT}&text=Blog+drafts+ready+to+publish:+${LIST}"
