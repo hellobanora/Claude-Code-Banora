@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
   let rawResponse: string;
   try {
     const message = await anthropic.messages.create({
-      model: 'claude-opus-4-5',
+      model: 'claude-sonnet-4-6',
       max_tokens: 4096,
       system: buildSystemPrompt(),
       messages: [
@@ -73,8 +73,9 @@ export async function POST(req: NextRequest) {
       .map(block => (block as { type: 'text'; text: string }).text)
       .join('');
   } catch (err) {
-    console.error('Claude API error:', err);
-    return NextResponse.json({ error: 'Failed to generate content from Claude API' }, { status: 500 });
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error('Claude API error:', msg);
+    return NextResponse.json({ error: 'Failed to generate content from Claude API', detail: msg }, { status: 500 });
   }
 
   // 3. Parse JSON response ────────────────────────────────────────────────────
