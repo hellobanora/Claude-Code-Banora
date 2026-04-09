@@ -30,6 +30,18 @@
   ],
   "redirects": [
     { "source": "/book", "destination": "https://www.iconpractice.com/ob/7138/banorachiropractic/245386/2", "permanent": false },
-    { "source": "/call", "destination": "tel:+61755992322", "permanent": false }
+    { "source": "/call", "destination": "tel:+61755992322", "permanent": false },
+    { "source": "/about-us", "destination": "/about", "permanent": true },
+    { "source": "/about-us/", "destination": "/about", "permanent": true },
+    { "source": "/contact-us", "destination": "/contact", "permanent": true },
+    { "source": "/contact-us/", "destination": "/contact", "permanent": true },
+    { "source": "/new-patients", "destination": "/patient-resources", "permanent": true },
+    { "source": "/new-patients/", "destination": "/patient-resources", "permanent": true },
+    { "source": "/dr-james-shipway", "destination": "/about", "permanent": true },
+    { "source": "/dr-james-shipway/", "destination": "/about", "permanent": true },
+    { "source": "/dr-paul-cater", "destination": "/about", "permanent": true },
+    { "source": "/dr-paul-cater/", "destination": "/about", "permanent": true },
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/home/", "destination": "/", "permanent": true }
   ]
 }

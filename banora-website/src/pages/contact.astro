@@ -38,6 +38,7 @@ const schema = {
           <form action={clinic.formspreeEndpoint} method="POST" class="space-y-5">
             <!-- Honeypot -->
             <input type="text" name="_gotcha" style="display:none" />
+            <input type="hidden" name="_next" value={`${clinic.website}/thank-you`} />
 
             <div>
               <label for="name" class="block text-sm font-medium text-navy mb-1.5">Your Name</label>

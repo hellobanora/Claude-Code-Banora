@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { services } from '../../data/services';
+import { clinic } from '../../data/clinic';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: clinic.website },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${clinic.website}/services` },
+  ],
+};
+---
+
+<BaseLayout
+  title="Chiropractic Services | Banora Chiropractic | Tweed Heads South"
+  description="Explore our full range of chiropractic services at Banora Chiropractic, Tweed Heads South. Adjustments, posture correction, sports, pregnancy, and paediatric chiropractic care."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="bg-navy relative hero-overflow-clip">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-deep/95 via-navy/90 to-navy-light/85"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <nav class="text-sm text-light-blue-soft/60 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-white">Services</span>
+      </nav>
+      <h1 class="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-semibold text-white mb-4">Our Chiropractic Services</h1>
+      <p class="text-light-blue-soft/80 text-lg max-w-2xl">
+        From spinal adjustments to specialised care for pregnancy, sport, and growing bodies — we offer a full range of chiropractic services tailored to you.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mb-4">What We Offer</h2>
+        <p class="text-grey-text text-lg max-w-2xl mx-auto">
+          Every service is delivered by AHPRA-registered chiropractors with a focus on your individual health goals.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {services.map((service) => (
+          <a
+            href={`/services/${service.slug}`}
+            class="group bg-white rounded-xl border border-grey-mid/20 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 overflow-hidden flex flex-col"
+          >
+            <div class="bg-navy/5 px-6 pt-8 pb-6">
+              <span class="text-4xl mb-4 block" aria-hidden="true">{service.icon}</span>
+              <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy group-hover:text-mid-blue transition-colors">
+                {service.title}
+              </h3>
+            </div>
+            <div class="px-6 py-5 flex flex-col flex-1">
+              <p class="text-grey-text text-sm leading-relaxed flex-1">{service.shortDescription}</p>
+              <div class="mt-5 flex items-center text-mid-blue text-sm font-medium">
+                Learn more
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="bg-navy py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">
+        Ready to get started?
+      </h2>
+      <p class="text-light-blue-soft/80 text-lg mb-8 max-w-xl mx-auto">
+        Book a consultation with Dr James or Dr Paul and find out how chiropractic care may help you.
+      </p>
+      <button class="open-booking-modal bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors shadow-md">
+        Book Online
+      </button>
+    </div>
+  </section>
+</BaseLayout>

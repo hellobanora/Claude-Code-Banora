@@ -8,7 +8,13 @@ export default defineConfig({
   site: 'https://banorachiropractic.com.au',
   output: 'static',
   adapter: vercel(),
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        !page.includes('/privacy-policy') &&
+        !page.includes('/thank-you'),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

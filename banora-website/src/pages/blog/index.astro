@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { clinic, practitioners } from '../../data/clinic';
 import { blogPosts, getAllCategories, getCategorySlug } from '../../data/blog';
 
-const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+const sortedPosts = [...blogPosts].filter(p => p.status === 'published').sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 const categories = getAllCategories();
 
 const schema = {

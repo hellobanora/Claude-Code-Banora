@@ -27,6 +27,7 @@ import { clinic } from '../../data/clinic';
       <div>
         <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold mb-4">Services</h3>
         <ul class="space-y-2.5">
+          <li><a href="/services" class="text-sm text-light-blue font-medium hover:text-white transition-colors">All Services</a></li>
           <li><a href="/services/chiropractic-adjustments" class="text-sm text-light-blue-soft/80 hover:text-white transition-colors">Chiropractic Adjustments</a></li>
           <li><a href="/services/posture-correction" class="text-sm text-light-blue-soft/80 hover:text-white transition-colors">Posture Correction</a></li>
           <li><a href="/services/sports-chiropractic" class="text-sm text-light-blue-soft/80 hover:text-white transition-colors">Sports Chiropractic</a></li>
@@ -39,6 +40,7 @@ import { clinic } from '../../data/clinic';
       <div>
         <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold mb-4">Conditions We Help With</h3>
         <ul class="space-y-2.5">
+          <li><a href="/conditions" class="text-sm text-light-blue font-medium hover:text-white transition-colors">All Conditions</a></li>
           <li><a href="/conditions/back-pain" class="text-sm text-light-blue-soft/80 hover:text-white transition-colors">Back Pain</a></li>
           <li><a href="/conditions/neck-pain" class="text-sm text-light-blue-soft/80 hover:text-white transition-colors">Neck Pain</a></li>
           <li><a href="/conditions/sciatica" class="text-sm text-light-blue-soft/80 hover:text-white transition-colors">Sciatica</a></li>
@@ -78,12 +80,14 @@ import { clinic } from '../../data/clinic';
 
     <div class="border-t border-navy-light mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
       <p class="text-xs text-light-blue-soft/60">&copy; {new Date().getFullYear()} {clinic.name}. All rights reserved.</p>
-      <div class="flex gap-6 text-xs text-light-blue-soft/60">
+      <div class="flex flex-wrap gap-x-6 gap-y-2 text-xs text-light-blue-soft/60">
+        <a href="/about" class="hover:text-white transition-colors">About</a>
+        <a href="/fees" class="hover:text-white transition-colors">Fees</a>
         <a href="/blog" class="hover:text-white transition-colors">Blog</a>
         <a href="/patient-resources" class="hover:text-white transition-colors">Patient Resources</a>
         <a href="/forms/index.html" class="hover:text-white transition-colors">Patient Forms</a>
         <a href="/contact" class="hover:text-white transition-colors">Contact</a>
-        <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Book Online</a>
+        <a href="/privacy-policy" class="hover:text-white transition-colors">Privacy Policy</a>
       </div>
     </div>
   </div>

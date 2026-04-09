@@ -31,7 +31,31 @@
       "Bash(tasklist)",
       "Bash(start chrome:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(find /Users/jamesshipway/Desktop/\"banora claude\" -type d -name \".claude\" -exec find {} -type f \\\\;)",
+      "WebFetch(domain:www.instagram.com)",
+      "mcp__claude_ai_Canva__search-designs",
+      "WebFetch(domain:design.canva.ai)",
+      "mcp__claude_ai_Canva__start-editing-transaction",
+      "mcp__claude_ai_Canva__cancel-editing-transaction",
+      "mcp__claude_ai_Canva__generate-design",
+      "WebFetch(domain:www.canva.com)",
+      "Bash(curl -sI \"https://design.canva.ai/RnvZFITQOcsY6at\")",
+      "Bash(curl -sIL \"https://design.canva.ai/RnvZFITQOcsY6at\")",
+      "Bash(mkdir -p /tmp/banora-templates)",
+      "Bash(curl -sL \"https://export-download.canva.com/f364717c-80f5-4979-8d37-69836499b686/0/0001-7107179680206028110.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260407%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260407T113838Z&X-Amz-Expires=90909&X-Amz-Signature=eb7dd38175c8c18af78176f4d571c939777546cf7498d216f23671b3e0772838&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner\" -o /tmp/banora-templates/edu-1.png)",
+      "Bash(curl -sL \"https://export-download.canva.com/2ea8cc6a-5b20-4d58-b2d6-a28487794edf/0/0001-6383226041124718034.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260407%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260407T121359Z&X-Amz-Expires=89551&X-Amz-Signature=7330f6ce067bd889d9f81e575de570bade18fb702ae83e02713c1427d1287f6e&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner\" -o /tmp/banora-templates/edu-2.png)",
+      "Bash(curl -sL \"https://export-download.canva.com/b7eeebf5-4575-4252-91e6-08f5d428dabb/0/0001-6383226039356514709.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260408%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260408T052934Z&X-Amz-Expires=25670&X-Amz-Signature=3a97f979a812b181a335df0fe79f73a607d91e5d5a02f09584b3ba4e4b1c7dc8&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner\" -o /tmp/banora-templates/edu-3.png)",
+      "Bash(curl -sL \"https://export-download.canva.com/44145074-8ec5-4ae4-bb67-c58c03f9d497/0/0001-7471971248647700695.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260408%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260408T095433Z&X-Amz-Expires=9945&X-Amz-Signature=f2a5b4c7c05ac5e6b447b8289ac43d62360a54fadc1a328138d9b4d978da1395&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner\" -o /tmp/banora-templates/edu-4.png)",
+      "Read(//private/tmp/banora-templates/**)",
+      "Bash(xxd)",
+      "mcp__claude_ai_Canva__create-design-from-candidate",
+      "Bash(mv design-1.astro _archive-design-1.astro)",
+      "Bash(mv design-2.astro _archive-design-2.astro)",
+      "Bash(mv design-3.astro _archive-design-3.astro)",
+      "Bash(mv design-premium.astro _archive-design-premium.astro)",
+      "Bash(cd /Users/jamesshipway/Desktop/banora claude/banora-website)",
+      "WebFetch(domain:api.telegram.org)"
     ]
   }
 }

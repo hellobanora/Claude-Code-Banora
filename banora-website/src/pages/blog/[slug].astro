@@ -6,7 +6,7 @@ import { services } from '../../data/services';
 import { conditions } from '../../data/conditions';
 
 export function getStaticPaths() {
-  return blogPosts.map((post) => ({
+  return blogPosts.filter(p => p.status === 'published').map((post) => ({
     params: { slug: post.slug },
     props: { post },
   }));

@@ -18,7 +18,8 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--navy);min-
 .hdr{background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:28px 24px 32px;text-align:center;position:relative;overflow:hidden;}
 .hdr::before{content:'';position:absolute;top:-60px;left:-60px;width:220px;height:220px;border-radius:50%;background:rgba(122,184,224,.08);}
 .hdr::after{content:'';position:absolute;bottom:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(122,184,224,.06);}
-.hdr-logo{width:72px;height:72px;border:2px solid var(--blue-lt);border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:30px;background:rgba(255,255,255,.08);position:relative;z-index:1;}
+.hdr-logo{margin:0 auto 16px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;}
+.hdr-logo img{width:180px;height:auto;filter:brightness(0) invert(1);opacity:0.95;}
 .hdr h1{font-family:'Playfair Display',serif;font-size:28px;color:#fff;margin-bottom:6px;position:relative;z-index:1;}
 .hdr p{font-size:13px;color:var(--blue-lt);font-weight:500;letter-spacing:.5px;position:relative;z-index:1;}
 
@@ -74,7 +75,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--navy);min-
 <body>
 
 <div class="hdr">
-  <div class="hdr-logo">🦴</div>
+  <div class="hdr-logo"><img src="/images/logo-horizontal.png" alt="Banora Chiropractic" /></div>
   <h1>Banora Chiropractic</h1>
   <p>Patient Assessment Forms</p>
 </div>

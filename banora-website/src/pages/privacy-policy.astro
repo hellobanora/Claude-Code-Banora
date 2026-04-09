@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clinic } from '../data/clinic';
+---
+
+<BaseLayout
+  title="Privacy Policy | Banora Chiropractic"
+  description="Privacy policy for Banora Chiropractic, Tweed Heads South NSW."
+  noindex={true}
+>
+  <!-- Hero -->
+  <section class="bg-navy relative">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-deep/95 via-navy/90 to-navy-light/85"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <nav class="text-sm text-light-blue-soft/60 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-white">Privacy Policy</span>
+      </nav>
+      <h1 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white">Privacy Policy</h1>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg prose-headings:font-[family-name:var(--font-display)] prose-headings:text-navy prose-a:text-mid-blue max-w-none">
+
+      <p class="text-grey-text">Last updated: April 2026</p>
+
+      <h2>About This Policy</h2>
+      <p>{clinic.name} ("we", "us", "our") is committed to protecting your privacy. This policy explains how we collect, use, store, and disclose your personal information in accordance with the <em>Privacy Act 1988</em> (Cth) and the Australian Privacy Principles (APPs).</p>
+
+      <h2>Who We Are</h2>
+      <p>{clinic.legalName}<br />
+      {clinic.address.full}<br />
+      Phone: {clinic.phone}<br />
+      Email: <a href={`mailto:${clinic.email}`}>{clinic.email}</a></p>
+
+      <h2>What Information We Collect</h2>
+      <p>We collect personal information necessary to provide chiropractic care and related services, including:</p>
+      <ul>
+        <li>Your name, date of birth, contact details (phone, email, address)</li>
+        <li>Health information, medical history, and treatment records</li>
+        <li>Medicare, DVA, private health fund, and payment details</li>
+        <li>Information you provide through our website contact form or online booking system</li>
+        <li>Emergency contact details</li>
+      </ul>
+
+      <h2>How We Collect Your Information</h2>
+      <p>We collect information directly from you when you:</p>
+      <ul>
+        <li>Complete patient intake forms (paper or online)</li>
+        <li>Make a booking online or by phone</li>
+        <li>Attend an appointment</li>
+        <li>Contact us via our website, email, or phone</li>
+      </ul>
+      <p>In some cases, we may receive information from other healthcare providers (such as your GP) when they refer you to our practice.</p>
+
+      <h2>How We Use Your Information</h2>
+      <p>We use your personal information to:</p>
+      <ul>
+        <li>Provide chiropractic care and treatment</li>
+        <li>Manage your appointments and health records</li>
+        <li>Process payments and health fund claims</li>
+        <li>Communicate with you about your care and appointments</li>
+        <li>Meet our legal and professional obligations as registered health practitioners</li>
+        <li>Improve our services</li>
+      </ul>
+
+      <h2>Disclosure of Your Information</h2>
+      <p>We do not sell, rent, or trade your personal information. We may share your information with:</p>
+      <ul>
+        <li>Other treating health professionals (with your consent, or as required for your care)</li>
+        <li>Medicare, DVA, or private health funds for billing purposes</li>
+        <li>Third-party service providers who assist us in operating our practice (e.g., our practice management software provider), who are bound by confidentiality obligations</li>
+        <li>Regulatory bodies or law enforcement where required by law</li>
+      </ul>
+
+      <h2>Health Information</h2>
+      <p>Your health information is sensitive personal information. We handle it with the highest level of care and only use or disclose it for the purpose it was collected, or as permitted by law. Our chiropractors are bound by the AHPRA Code of Conduct and relevant health privacy legislation.</p>
+
+      <h2>Data Storage and Security</h2>
+      <p>Your information is stored securely in our practice management system. We take reasonable steps to protect your information from misuse, interference, loss, and unauthorised access. Paper records are stored securely and disposed of appropriately.</p>
+      <p>We retain patient health records for a minimum of 7 years from the date of last treatment (or until a patient turns 25 years of age, whichever is later) in accordance with NSW requirements.</p>
+
+      <h2>Accessing and Correcting Your Information</h2>
+      <p>You have the right to access the personal information we hold about you and request corrections if it is inaccurate, incomplete, or out of date. To make a request, please contact us at the details above. We will respond within a reasonable timeframe and may ask you to verify your identity.</p>
+
+      <h2>Website and Cookies</h2>
+      <p>Our website may use analytics tools (such as Google Analytics) to collect non-identifiable information about how visitors use the site. This data is used to improve the site and does not identify individual users. You can disable cookies in your browser settings.</p>
+      <p>When you submit our contact form, your information is processed by Formspree (formspree.io) and sent to us by email. Formspree's privacy policy applies to data processed through their service.</p>
+
+      <h2>Complaints</h2>
+      <p>If you have a concern about how we have handled your personal information, please contact us in the first instance at {clinic.email}. If you are not satisfied with our response, you may lodge a complaint with the Office of the Australian Information Commissioner (OAIC) at <a href="https://www.oaic.gov.au" target="_blank" rel="noopener noreferrer">oaic.gov.au</a>.</p>
+
+      <h2>Changes to This Policy</h2>
+      <p>We may update this policy from time to time. The current version will always be available on our website.</p>
+
+      <h2>Contact Us</h2>
+      <p>For any privacy-related enquiries, please contact us:</p>
+      <p>{clinic.legalName}<br />
+      {clinic.address.full}<br />
+      Phone: <a href={`tel:${clinic.phoneFull}`}>{clinic.phone}</a><br />
+      Email: <a href={`mailto:${clinic.email}`}>{clinic.email}</a></p>
+
+    </div>
+  </section>
+</BaseLayout>

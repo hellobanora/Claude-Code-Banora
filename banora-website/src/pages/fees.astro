@@ -1,0 +1,237 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clinic, pricing } from '../data/clinic';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: clinic.website },
+        { '@type': 'ListItem', position: 2, name: 'Fees', item: `${clinic.website}/fees` },
+      ],
+    },
+    {
+      '@type': 'WebPage',
+      name: 'Chiropractic Prices | Banora Chiropractic',
+      url: `${clinic.website}/fees`,
+      description: 'Affordable and accessible chiropractic care. View our chiropractic fees and prices at Banora Chiropractic, Tweed Heads South.',
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Chiropractic Prices | Affordable Chiropractic Fees | Banora Chiropractic"
+  description="Affordable and accessible chiropractic care. View our chiropractic fees and prices. Located at Banora Point / Tweed Heads South NSW. Book online today."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="bg-navy relative hero-overflow-clip">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-deep/95 via-navy/90 to-navy-light/85"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <nav class="text-sm text-light-blue-soft/60 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-white">Fees</span>
+      </nav>
+      <h1 class="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-semibold text-white mb-4">Chiropractic Fees</h1>
+      <p class="text-light-blue-soft/80 text-lg max-w-2xl">
+        We believe quality chiropractic care should be accessible. Our fees are straightforward — no surprises, no lock-in plans.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-12">
+        <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mb-4">Our Prices</h2>
+        <p class="text-grey-text text-lg max-w-xl mx-auto">
+          All consultations are with an AHPRA-registered chiropractor. Health fund rebates apply via HICAPS on the spot.
+        </p>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16">
+
+        <!-- New Patient -->
+        <div class="bg-white rounded-xl border-2 border-mid-blue shadow-sm overflow-hidden">
+          <div class="bg-mid-blue px-6 py-5">
+            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-white">New Patient Consult</h3>
+            <p class="text-light-blue-soft/80 text-sm mt-1">{pricing.newPatient.duration}</p>
+          </div>
+          <div class="px-6 py-6">
+            <div class="mb-4">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-bold text-navy">${pricing.newPatient.price}</span>
+              </div>
+              <p class="text-grey-text text-sm mt-1">Standard fee</p>
+            </div>
+            <div class="border-t border-grey-mid/20 pt-4">
+              <div class="flex items-baseline gap-1">
+                <span class="text-2xl font-semibold text-navy">${pricing.newPatient.studentChild}</span>
+              </div>
+              <p class="text-grey-text text-sm mt-1">Student / child concession</p>
+            </div>
+            <ul class="mt-5 space-y-2 text-sm text-grey-text">
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-mid-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Full health history & assessment
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-mid-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Postural & spinal examination
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-mid-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Personalised care plan
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Regular Adjustment -->
+        <div class="bg-white rounded-xl border border-grey-mid/20 shadow-sm overflow-hidden">
+          <div class="bg-navy px-6 py-5">
+            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-white">Regular Adjustment</h3>
+            <p class="text-light-blue-soft/80 text-sm mt-1">{pricing.regularAdjustment.duration}</p>
+          </div>
+          <div class="px-6 py-6">
+            <div class="mb-4">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-bold text-navy">${pricing.regularAdjustment.price}</span>
+              </div>
+              <p class="text-grey-text text-sm mt-1">Standard fee</p>
+            </div>
+            <div class="border-t border-grey-mid/20 pt-4">
+              <div class="flex items-baseline gap-1">
+                <span class="text-2xl font-semibold text-navy">${pricing.regularAdjustment.studentChild}</span>
+              </div>
+              <p class="text-grey-text text-sm mt-1">Student / child concession</p>
+            </div>
+            <ul class="mt-5 space-y-2 text-sm text-grey-text">
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-mid-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Targeted spinal adjustment
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-mid-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Progress check-in
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-mid-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Ongoing care advice
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Baby / Newborn -->
+        <div class="bg-white rounded-xl border border-grey-mid/20 shadow-sm overflow-hidden">
+          <div class="bg-navy px-6 py-5">
+            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-white">Baby & Newborn</h3>
+            <p class="text-light-blue-soft/80 text-sm mt-1">{pricing.babyNewborn.duration}</p>
+          </div>
+          <div class="px-6 py-6">
+            <div class="mb-4">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-bold text-navy">from ${pricing.babyNewborn.priceFrom}</span>
+              </div>
+              <p class="text-grey-text text-sm mt-1">Follow-up visits</p>
+            </div>
+            <div class="border-t border-grey-mid/20 pt-4">
+              <div class="flex items-baseline gap-1">
+                <span class="text-2xl font-semibold text-navy">${pricing.babyNewborn.initial}</span>
+              </div>
+              <p class="text-grey-text text-sm mt-1">Initial consultation</p>
+            </div>
+            <ul class="mt-5 space-y-2 text-sm text-grey-text">
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-mid-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Very gentle techniques
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-mid-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Age-appropriate assessment
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-mid-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Safe for newborns
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Health Funds & Extras -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+
+        <!-- Health Funds -->
+        <div class="bg-light-grey rounded-xl p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-mid-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy">Private Health Funds</h3>
+          </div>
+          <p class="text-grey-text text-sm leading-relaxed mb-4">
+            We have HICAPS on site, so you can claim your private health fund rebate instantly at the time of your visit. You only pay the gap — no paperwork, no waiting.
+          </p>
+          <p class="text-grey-text text-sm leading-relaxed">
+            Most major health funds cover chiropractic care under extras. Check your policy for your specific rebate entitlements.
+          </p>
+        </div>
+
+        <!-- DVA / EPC / WorkCover -->
+        <div class="bg-light-grey rounded-xl p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-mid-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            </div>
+            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy">DVA, EPC & WorkCover</h3>
+          </div>
+          <ul class="space-y-3 text-sm text-grey-text">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-mid-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span><strong class="text-navy">DVA:</strong> We accept Department of Veterans' Affairs patients — please bring your DVA card.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-mid-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span><strong class="text-navy">EPC / Medicare:</strong> We see patients with Enhanced Primary Care (EPC) referrals from their GP for Medicare-rebated chiropractic visits.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-mid-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span><strong class="text-navy">WorkCover:</strong> We accept WorkCover and insurance referrals. Please contact us before your first visit to confirm your claim details.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="bg-navy py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">
+        Ready to book your first visit?
+      </h2>
+      <p class="text-light-blue-soft/80 text-lg mb-8 max-w-xl mx-auto">
+        Book online in minutes or give us a call — we are always happy to answer any questions about fees or what to expect.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button class="open-booking-modal bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors shadow-md">
+          Book Online
+        </button>
+        <a href={`tel:${clinic.phoneFull}`} class="flex items-center gap-2 text-white hover:text-light-blue-soft transition-colors font-medium">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          {clinic.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

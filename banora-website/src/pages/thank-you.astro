@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clinic } from '../data/clinic';
+---
+
+<BaseLayout
+  title="Thank You | Banora Chiropractic"
+  description="Thank you for contacting Banora Chiropractic. We will be in touch shortly."
+  noindex={true}
+>
+  <section class="min-h-[70vh] flex items-center bg-white">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+
+      <!-- Tick icon -->
+      <div class="w-20 h-20 bg-mid-blue/10 rounded-full flex items-center justify-center mx-auto mb-8">
+        <svg class="w-10 h-10 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+
+      <h1 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mb-4">
+        Thank You — We'll Be in Touch!
+      </h1>
+      <p class="text-grey-text text-lg leading-relaxed mb-4">
+        Your message has been received. A member of our team will get back to you as soon as possible, usually within one business day.
+      </p>
+      <p class="text-grey-text leading-relaxed mb-10">
+        If you need to speak with us sooner, please give us a call on{' '}
+        <a href={`tel:${clinic.phoneFull}`} class="text-mid-blue font-medium hover:underline">{clinic.phone}</a>.
+      </p>
+
+      <a
+        href="/"
+        class="inline-block bg-mid-blue hover:bg-navy text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+      >
+        Back to Home
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Auto-redirect to homepage after 8 seconds
+  setTimeout(() => {
+    window.location.href = '/';
+  }, 8000);
+</script>

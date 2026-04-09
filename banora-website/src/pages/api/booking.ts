@@ -30,10 +30,9 @@ export const GET: APIRoute = async ({ url }) => {
   const params = new URLSearchParams(url.searchParams);
   params.delete('action');
 
-  if (['practices', 'practice-details'].includes(action)) {
-    params.set('ob_token', T1);
-    params.set('ob_token2', T2);
-  }
+  // All widget endpoints need the booking tokens for authentication
+  params.set('ob_token', T1);
+  params.set('ob_token2', T2);
 
   try {
     const r = await fetch(`${BASE}${PATHS[action]}?${params}`);

@@ -368,8 +368,8 @@ function buildDetailsForm() {
         </div>
       </div>
       <div>
-        <label class="text-xs text-gray-500 block mb-1">Date of birth * (YYYY-MM-DD)</label>
-        <input id="bcb-dob" type="text" placeholder="1985-06-15" class="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:border-blue-400" />
+        <label class="text-xs text-gray-500 block mb-1">Date of birth * (DD/MM/YYYY)</label>
+        <input id="bcb-dob" type="text" placeholder="15/06/1985" class="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:border-blue-400" />
       </div>
       <div>
         <label class="text-xs text-gray-500 block mb-1">Email *</label>
@@ -451,10 +451,11 @@ async function handlePractitioner(id, name) {
   bk.practitionerName = name;
 
   try {
-    const existingParam = bk.isNew ? '0' : '1';
+    const existingParam = !bk.isNew; // true = existing patient, false = new
     const url = `/api/booking?action=practitioner-services&customer_id=${bk.customerId}&practice_id=${bk.practiceId}&practitioner_id=${id}&existing=${existingParam}`;
     const res = await fetch(url);
     const data = await res.json();
+    console.log('Services API response:', JSON.stringify(data));
     const services = (data.details || data).services || [];
 
     if (services.length === 0) throw new Error('No services found');
@@ -491,9 +492,8 @@ async function fetchAndShowCalendar(month, year) {
   bk.calYear = year;
 
   try {
-    const newPatientParam = bk.isNew ? '1' : '0';
     // Note: API uses "practioner" (typo) for this param
-    const url = `/api/booking?action=month-schedule&customer_id=${bk.customerId}&practice_id=${bk.practiceId}&practioner=${bk.practitionerId}&service_item_id=${bk.serviceId}&month=${month}&year=${year}&group=0&new_patient=${newPatientParam}`;
+    const url = `/api/booking?action=month-schedule&customer_id=${bk.customerId}&practice_id=${bk.practiceId}&practioner=${bk.practitionerId}&service_item_id=${bk.serviceId}&month=${month}&year=${year}&group=false&new_patient=${bk.isNew}`;
     const res = await fetch(url);
     const data = await res.json();
     const schedule = (data.details || data).schedule || [];
@@ -528,7 +528,7 @@ async function handleDateSelect(dateStr, dayNum) {
   bk.selectedDate = dateStr;
 
   // Find times for this day from the last schedule fetch
-  const url = `/api/booking?action=month-schedule&customer_id=${bk.customerId}&practice_id=${bk.practiceId}&practioner=${bk.practitionerId}&service_item_id=${bk.serviceId}&month=${bk.calMonth}&year=${bk.calYear}&group=0&new_patient=${bk.isNew ? '1' : '0'}`;
+  const url = `/api/booking?action=month-schedule&customer_id=${bk.customerId}&practice_id=${bk.practiceId}&practioner=${bk.practitionerId}&service_item_id=${bk.serviceId}&month=${bk.calMonth}&year=${bk.calYear}&group=false&new_patient=${bk.isNew}`;
 
   try {
     const res = await fetch(url);
@@ -589,23 +589,25 @@ async function handleConfirm() {
     return;
   }
 
-  // Validate DOB format roughly
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(dob)) {
-    await botMsg("Please enter your date of birth in YYYY-MM-DD format (e.g. 1985-06-15).");
+  // Validate DOB format (DD/MM/YYYY) and convert to YYYY-MM-DD for API
+  if (!/^\d{2}\/\d{2}\/\d{4}$/.test(dob)) {
+    await botMsg("Please enter your date of birth as DD/MM/YYYY (e.g. 15/06/1985).");
     return;
   }
+  const [dobD, dobM, dobY] = dob.split('/');
+  const dobApi = `${dobY}-${dobM}-${dobD}`;
 
   const body = {
     practice_id: bk.practiceId,
     practitioner_id: bk.practitionerId,
     service_item_id: bk.serviceId,
-    is_group: 0,
-    existing: bk.isNew ? 0 : 1,
+    is_group: "false",
+    existing: bk.isNew ? "false" : "true", // "true" = existing patient, "false" = new
     ts_schedule_start: bk.selectedTime,
     ts_schedule_end: bk.selectedTimeEnd,
     customer_firstname: fn,
     customer_lastname: ln,
-    customer_dob: dob,
+    customer_dob: dobApi,
     customer_email: email,
     customer_mobile: mobile,
     csrf_key: bk.csrfKey,
@@ -628,7 +630,8 @@ async function handleConfirm() {
     const data = await res.json();
 
     if (data.success === false) {
-      throw new Error(data.message || 'Booking failed');
+      console.error('Booking API response:', JSON.stringify(data));
+      throw new Error(data.message || data.error || 'Booking failed');
     }
 
     // Format date for confirmation

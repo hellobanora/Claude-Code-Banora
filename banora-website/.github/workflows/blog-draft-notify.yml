@@ -1,0 +1,43 @@
+name: Blog Draft Notification
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/data/blog.ts'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for draft posts and notify
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          # Extract draft post titles from blog.ts
+          DRAFTS=$(grep -B5 "status: 'draft'" src/data/blog.ts | grep "title:" | sed "s/.*title: '//;s/'.*//" | sed 's/.*title: "//;s/".*//')
+
+          if [ -z "$DRAFTS" ]; then
+            echo "No draft posts found — nothing to notify."
+            exit 0
+          fi
+
+          # Build the message
+          MESSAGE="📝 *New blog draft ready for approval*%0A%0A"
+          while IFS= read -r title; do
+            MESSAGE="${MESSAGE}• ${title}%0A"
+          done <<< "$DRAFTS"
+          MESSAGE="${MESSAGE}%0ATo publish, open \`src/data/blog.ts\` and change \`status: 'draft'\` to \`status: 'published'\`, then push."
+
+          # Send Telegram notification
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d "chat_id=${TELEGRAM_CHAT_ID}" \
+            -d "text=${MESSAGE}" \
+            -d "parse_mode=Markdown"
+
+          echo "Telegram notification sent."

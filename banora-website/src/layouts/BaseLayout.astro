@@ -3,6 +3,7 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import ChatbotWidget from '../components/integrations/ChatbotWidget.astro';
 import ChatbotBooking from '../components/integrations/ChatbotBooking.astro';
+import BookingModal from '../components/integrations/BookingModal.astro';
 import '../styles/global.css';
 import { clinic } from '../data/clinic';
 
@@ -13,9 +14,10 @@ interface Props {
   schema?: object;
   ogImage?: string;
   chatbotVariant?: 'standard' | 'booking';
+  noindex?: boolean;
 }
 
-const { title, description, canonicalUrl, schema, ogImage, chatbotVariant = 'standard' } = Astro.props;
+const { title, description, canonicalUrl, schema, ogImage, chatbotVariant = 'standard', noindex = false } = Astro.props;
 const siteUrl = clinic.website;
 const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
 const ogImg = ogImage || `${siteUrl}/images/og-default.jpg`;
@@ -62,6 +64,7 @@ const localBusinessSchema = {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
   <link rel="canonical" href={canonical} />
 
   <!-- Open Graph -->
@@ -106,6 +109,9 @@ const localBusinessSchema = {
     <slot />
   </main>
   <Footer />
+
+  <!-- Booking Modal (site-wide) -->
+  <BookingModal />
 
   <!-- Chatbot Widget -->
   {chatbotVariant === 'booking' ? <ChatbotBooking /> : <ChatbotWidget />}
