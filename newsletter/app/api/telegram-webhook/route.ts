@@ -235,7 +235,7 @@ export async function POST(req: NextRequest) {
     const msg = update.message;
     const chatId = msg.chat.id;
     const fromId = msg.from.id;
-    const text = msg.text.trim();
+    const text = (msg.text ?? '').trim();
 
     // Security check
     if (String(fromId) !== String(process.env.TELEGRAM_CHAT_ID)) {

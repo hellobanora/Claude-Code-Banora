@@ -425,7 +425,6 @@ export const CONTENT_CALENDAR: MonthlyBrief[] = [
       topic: 'Core Stability: Why Sit-Ups Are Not Enough',
       key_message: 'True core stability comes from deep postural muscles, not superficial abs — this is what actually protects the spine',
       region_cards: ['Transversus abdominis', 'Multifidus', 'Pelvic floor', 'Diaphragm'],
-      diagram_instruction: 'Medical illustration of the deep core muscle system — showing the four-muscle canister concept (TA, multifidus, pelvic floor, diaphragm)',
       diagram_direction: 'Medical illustration of the deep core cylinder — transversus abdominis, multifidus, pelvic floor, diaphragm working together',
     },
     product_of_month: {
