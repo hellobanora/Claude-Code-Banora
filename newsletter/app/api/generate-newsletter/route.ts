@@ -24,6 +24,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 import { Redis } from '@upstash/redis';
 
+export const maxDuration = 60;
+
 import { buildSystemPrompt } from '@/lib/newsletter/system-prompt';
 import { getBriefForMonth, buildUserPrompt, MonthlyBrief } from '@/lib/newsletter/content-calendar';
 
