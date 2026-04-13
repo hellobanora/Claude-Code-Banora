@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { clinic } from '../../data/clinic';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Dr Paul Cater',
+  honorificPrefix: 'Dr',
+  jobTitle: 'Chiropractor',
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Bachelor of Chiropractic Science',
+      educationalLevel: 'Degree',
+      recognizedBy: { '@type': 'CollegeOrUniversity', name: 'Macquarie University' },
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Master of Chiropractic',
+      educationalLevel: 'Masters',
+      recognizedBy: { '@type': 'CollegeOrUniversity', name: 'Macquarie University' },
+    },
+  ],
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Macquarie University' },
+  worksFor: {
+    '@type': 'Chiropractic',
+    name: clinic.name,
+    url: clinic.website,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: clinic.address.street,
+      addressLocality: clinic.address.suburb,
+      addressRegion: clinic.address.state,
+      postalCode: clinic.address.postcode,
+      addressCountry: 'AU',
+    },
+  },
+  url: `${clinic.website}/team/dr-paul-cater`,
+  image: `${clinic.website}/images/dr-paul-cater.jpg`,
+};
+---
+
+<BaseLayout
+  title="Dr Paul Cater | Chiropractor Tweed Heads South | Banora Chiropractic"
+  description="Meet Dr Paul Cater, chiropractor and co-founder of Banora Chiropractic in Tweed Heads South. B.Sc.Chiro & M.Chiro, Macquarie University 2005. Sports injuries, pregnancy care, and whole-family chiropractic."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="bg-navy relative hero-overflow-clip">
+    <div class="absolute inset-0">
+      <img src="/images/clinic-adjustment-wide.jpg" alt="" class="hero-slow-pan h-full opacity-15" aria-hidden="true" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-deep/95 via-navy/90 to-navy-light/85"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <nav class="text-sm text-light-blue-soft/60 mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/about" class="hover:text-white transition-colors">About</a>
+        <span class="mx-2">/</span>
+        <span class="text-white">Dr Paul Cater</span>
+      </nav>
+      <p class="text-light-blue text-sm font-medium uppercase tracking-wider mb-3">Meet your chiropractor</p>
+      <h1 class="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-semibold text-white mb-4">Dr Paul Cater</h1>
+      <p class="text-light-blue-soft/90 text-lg max-w-2xl">B.Sc.Chiro & M.Chiro — Macquarie University, 2005 &nbsp;·&nbsp; Chiropractor & Co-founder</p>
+    </div>
+  </section>
+
+  <!-- Bio -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+
+        <!-- Photo -->
+        <div class="lg:col-span-2">
+          <div class="rounded-2xl overflow-hidden border border-blue-pale shadow-lg">
+            <img
+              src="/images/dr-paul-cater.jpg"
+              alt="Dr Paul Cater, Chiropractor at Banora Chiropractic, Tweed Heads South"
+              class="w-full object-cover object-top"
+              width="600"
+              height="750"
+              loading="eager"
+            />
+          </div>
+          <!-- Qualifications card -->
+          <div class="mt-6 bg-blue-ghost rounded-xl p-6 border border-blue-pale">
+            <h2 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-4">Qualifications & Training</h2>
+            <ul class="space-y-3 text-sm text-grey-text">
+              <li class="flex gap-3">
+                <svg class="w-4 h-4 mt-0.5 shrink-0 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Bachelor of Chiropractic Science (B.Sc.Chiro), Macquarie University</span>
+              </li>
+              <li class="flex gap-3">
+                <svg class="w-4 h-4 mt-0.5 shrink-0 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Master of Chiropractic (M.Chiro), Macquarie University — Graduated 2005</span>
+              </li>
+              <li class="flex gap-3">
+                <svg class="w-4 h-4 mt-0.5 shrink-0 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Registered with AHPRA</span>
+              </li>
+            </ul>
+            <h3 class="font-[family-name:var(--font-display)] text-base font-semibold text-navy mt-5 mb-3">Techniques</h3>
+            <div class="flex flex-wrap gap-2">
+              {['Diversified', 'Thompson Drop', 'Extremity Adjusting'].map((t) => (
+                <span class="text-xs bg-white text-navy px-3 py-1.5 rounded-full font-medium border border-blue-pale">{t}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio text -->
+        <div class="lg:col-span-3">
+          <h2 class="font-[family-name:var(--font-display)] text-3xl font-semibold text-navy mb-6">About Dr Paul</h2>
+          <div class="prose prose-lg max-w-none text-grey-text leading-relaxed space-y-5">
+            <p>Dr Paul Cater has been helping patients move better and live more comfortably since graduating from Macquarie University in 2005. With nearly two decades of clinical experience, Paul brings a calm, reassuring presence and a genuine interest in understanding each patient's situation before reaching for any technique.</p>
+            <p>Paul grew up along the NSW coast at Crescent Head — a place shaped by surf, sport, and the outdoors. That background gives him a real affinity with active patients, and it has informed his particular interest in sports injuries and musculoskeletal care during pregnancy. He understands what it means to want to keep moving, and he approaches care with that in mind.</p>
+            <p>In 2013, Paul founded Palm Beach Chiropractic on the Gold Coast. Seven years later, he teamed up with Dr James Shipway to open Banora Chiropractic — bringing the same patient-first approach across the border to Tweed Heads South. Today, both clinics operate side by side, and Paul splits his time between the two.</p>
+            <p>Paul uses a range of techniques — including Diversified, Thompson Drop, and Extremity adjusting — selecting the approach best suited to each individual. He is particularly experienced in extremity work, which addresses joints beyond the spine such as shoulders, hips, knees, and ankles.</p>
+            <p>Outside the clinic, you will still find him in the surf or watching the game — and probably offering unsolicited opinions on beach breaks.</p>
+          </div>
+
+          <!-- Special interests -->
+          <div class="mt-10">
+            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-5">Areas of Special Interest</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="flex gap-4 items-start p-4 bg-light-grey rounded-xl">
+                <div class="w-10 h-10 bg-blue-ghost rounded-lg flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-medium text-navy text-sm">Sports Injuries</h4>
+                  <p class="text-xs text-grey-text mt-1 leading-relaxed">Assessment and management of acute and overuse injuries for athletes and active people.</p>
+                </div>
+              </div>
+              <div class="flex gap-4 items-start p-4 bg-light-grey rounded-xl">
+                <div class="w-10 h-10 bg-blue-ghost rounded-lg flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-medium text-navy text-sm">Pregnancy Care</h4>
+                  <p class="text-xs text-grey-text mt-1 leading-relaxed">Gentle, supportive care for musculoskeletal changes during pregnancy.</p>
+                </div>
+              </div>
+              <div class="flex gap-4 items-start p-4 bg-light-grey rounded-xl">
+                <div class="w-10 h-10 bg-blue-ghost rounded-lg flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-medium text-navy text-sm">Extremity Adjusting</h4>
+                  <p class="text-xs text-grey-text mt-1 leading-relaxed">Specialist work on shoulders, hips, knees, ankles, and other peripheral joints.</p>
+                </div>
+              </div>
+              <div class="flex gap-4 items-start p-4 bg-light-grey rounded-xl">
+                <div class="w-10 h-10 bg-blue-ghost rounded-lg flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-mid-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-medium text-navy text-sm">Whole-Family Care</h4>
+                  <p class="text-xs text-grey-text mt-1 leading-relaxed">Comfortable working with patients of all ages, from children through to seniors.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet Dr James callout -->
+  <section class="py-12 bg-light-grey border-y border-blue-pale">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center gap-6">
+        <img
+          src="/images/dr-james-shipway.jpg"
+          alt="Dr James Shipway"
+          class="w-20 h-20 rounded-full object-cover object-top shrink-0 border-2 border-blue-pale"
+          width="80"
+          height="80"
+          loading="lazy"
+        />
+        <div class="text-center sm:text-left">
+          <p class="text-sm text-mid-blue font-medium uppercase tracking-wider mb-1">Paul's co-founder</p>
+          <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy">Meet Dr James Shipway</h3>
+          <p class="text-grey-text text-sm mt-1">Paul and James opened Banora Chiropractic together in 2020. Between them, they offer a broad range of techniques for every type of patient.</p>
+        </div>
+        <a href="/team/dr-james-shipway" class="sm:ml-auto shrink-0 inline-flex items-center gap-2 text-mid-blue hover:text-navy font-medium text-sm transition-colors whitespace-nowrap">
+          View Dr James
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking CTA -->
+  <section class="py-16 md:py-20 bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 right-10 w-72 h-72 bg-light-blue rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 text-center">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">Book a visit with Dr Paul</h2>
+      <p class="text-light-blue-soft/90 text-lg mb-8">Ready to get started? Book your first appointment online — new patients welcome.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Book Online
+        </a>
+        <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors whitespace-nowrap">
+          Call {clinic.phone}
+        </a>
+      </div>
+      <p class="text-light-blue-soft/60 text-sm mt-6">{clinic.address.full}</p>
+    </div>
+  </section>
+</BaseLayout>
