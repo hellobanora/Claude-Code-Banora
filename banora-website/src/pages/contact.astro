@@ -35,7 +35,7 @@ const schema = {
         <!-- Contact Form -->
         <div>
           <h2 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy mb-6">Send Us a Message</h2>
-          <form action={clinic.formspreeEndpoint} method="POST" class="space-y-5">
+          <form id="contact-form" action={clinic.formspreeEndpoint} method="POST" class="space-y-5">
             <!-- Honeypot -->
             <input type="text" name="_gotcha" style="display:none" />
             <input type="hidden" name="_next" value={`${clinic.website}/thank-you`} />
@@ -167,4 +167,11 @@ const schema = {
       </div>
     </div>
   </section>
+
+  <script>
+    document.getElementById('contact-form')?.addEventListener('submit', function() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'form_submit', form_name: 'contact' });
+    });
+  </script>
 </BaseLayout>

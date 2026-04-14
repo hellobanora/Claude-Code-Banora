@@ -170,6 +170,8 @@ setTimeout(() => pulse?.classList.add('hidden'), 5000);
 // ---- Open / close ----
 function openChat() {
   chatOpen = true;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'chatbot_open' });
   window_?.classList.remove('hidden');
   iconChat?.classList.add('hidden');
   iconClose?.classList.remove('hidden');

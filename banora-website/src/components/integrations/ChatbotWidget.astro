@@ -187,6 +187,8 @@ import { clinic } from '../../data/clinic';
   // --- Toggle chat open/close ---
   function openChat() {
     chatOpen = true;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'chatbot_open' });
     window_?.classList.remove('hidden');
     widget?.classList.add('hidden');
     nudge?.classList.add('hidden');
@@ -213,6 +215,8 @@ import { clinic } from '../../data/clinic';
   function startBookingFlow() {
     if (bookingOpen) return;
     bookingOpen = true;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'book_appointment', method: 'chatbot' });
     bookingIframe.src = bookingUrl;
     bookingPanel?.classList.remove('hidden');
     trackEvent('booking_started');

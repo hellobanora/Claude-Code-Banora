@@ -275,6 +275,8 @@ let currentStep = 'patient-type';
 
 // ── Open / close ──
 function openModal() {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'book_appointment', method: 'booking_modal' });
   overlay.classList.remove('hidden');
   overlay.style.display = 'flex';
   document.body.style.overflow = 'hidden';
