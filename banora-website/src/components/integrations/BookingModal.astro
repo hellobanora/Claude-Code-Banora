@@ -569,13 +569,11 @@ function showServiceStep() {
   const practitionerName = bm.practitionerName;
 
   const cards = bm.services.map(svc => {
-    const dur     = svc.duration ? `<span class="text-xs text-gray-400 mt-0.5 block">${svc.duration} mins</span>` : '';
     const price   = svc.fee ? `<span class="text-xl font-bold flex-shrink-0" style="color:#D4A853">$${svc.fee}</span>` : '';
     const svcJson = encodeURIComponent(JSON.stringify(svc));
     return `<button class="bm-option-card" data-svc="${svcJson}">
       <div class="flex-1 min-w-0 py-0.5">
         <div class="font-semibold text-base leading-snug" style="color:#1B3A5C">${svc.desc}</div>
-        ${dur}
       </div>
       ${price}
       <svg class="w-5 h-5 flex-shrink-0 ml-1" style="color:#D4A853" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
