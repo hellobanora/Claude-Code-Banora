@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | Banora Chiropractic | Tweed Heads South"
+  description="The page you're looking for doesn't exist. Return to our homepage or contact Banora Chiropractic for help."
+  noindex={true}
+>
+  <section class="min-h-[60vh] flex items-center justify-center px-4 py-24">
+    <div class="text-center max-w-lg mx-auto">
+      <p class="text-8xl font-bold text-navy/10 mb-2">404</p>
+      <h1 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mb-4">
+        Page Not Found
+      </h1>
+      <p class="text-grey-text leading-relaxed mb-8">
+        Sorry, we couldn't find the page you're looking for. It may have moved or no longer exists.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/" class="bg-mid-blue hover:bg-navy text-white px-6 py-3 rounded-lg font-medium transition-colors">
+          Back to Home
+        </a>
+        <a href="/contact" class="border border-navy text-navy hover:bg-navy hover:text-white px-6 py-3 rounded-lg font-medium transition-colors">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

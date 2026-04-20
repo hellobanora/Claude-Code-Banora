@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /thank-you
+Disallow: /drafts
+Disallow: /api/
+
+Sitemap: https://banorachiropractic.com.au/sitemap-0.xml
