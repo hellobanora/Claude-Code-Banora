@@ -16,20 +16,34 @@ const { service } = Astro.props;
 const relatedConditionData = conditions.filter(c => service.relatedConditions.includes(c.slug));
 const relatedServiceData = services.filter(s => service.relatedServices.includes(s.slug));
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'MedicalWebPage',
-  name: service.metaTitle,
-  url: `${clinic.website}/services/${service.slug}`,
-  breadcrumb: {
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: clinic.website },
-      { '@type': 'ListItem', position: 2, name: 'Services', item: `${clinic.website}/services` },
-      { '@type': 'ListItem', position: 3, name: service.title, item: `${clinic.website}/services/${service.slug}` },
-    ],
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalWebPage',
+    name: service.metaTitle,
+    url: `${clinic.website}/services/${service.slug}`,
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: clinic.website },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: `${clinic.website}/services` },
+        { '@type': 'ListItem', position: 3, name: service.title, item: `${clinic.website}/services/${service.slug}` },
+      ],
+    },
   },
-};
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: service.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  },
+];
 ---
 
 <BaseLayout title={service.metaTitle} description={service.metaDescription} schema={schema}>
