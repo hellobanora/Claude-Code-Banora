@@ -22,11 +22,11 @@ const stats = [
 ];
 
 const serviceImages: Record<string, string> = {
-  'chiropractic-adjustments': '/images/hero-chiro-exam.jpg',
-  'posture-correction': '/images/hero-back-neck.jpg',
-  'sports-chiropractic': '/images/hero-sports.jpg',
-  'pregnancy-chiropractic': '/images/hero-pregnancy.jpg',
-  'paediatric-chiropractic': '/images/hero-all-ages.jpg',
+  'chiropractic-adjustments': '/images/hero-chiro-exam.webp',
+  'posture-correction': '/images/hero-back-neck.webp',
+  'sports-chiropractic': '/images/hero-sports.webp',
+  'pregnancy-chiropractic': '/images/hero-pregnancy.webp',
+  'paediatric-chiropractic': '/images/hero-all-ages.webp',
 };
 ---
 
@@ -39,7 +39,7 @@ const serviceImages: Record<string, string> = {
   <!-- ==================== HERO — Full-screen with dark gradient ==================== -->
   <section class="relative min-h-screen flex items-center bg-navy-deep overflow-hidden">
     <img
-      src="/images/hero-sports.jpg"
+      src="/images/hero-sports.webp"
       alt="Active lifestyle supported by sports chiropractic care at Banora Chiropractic"
       class="absolute inset-0 w-full h-full object-cover"
       width="1920"
@@ -97,7 +97,7 @@ const serviceImages: Record<string, string> = {
         </div>
         <div class="relative min-h-[300px] lg:min-h-[400px]">
           <img
-            src="/images/hero-back-neck.jpg"
+            src="/images/hero-back-neck.webp"
             alt="Chiropractic care for back and neck pain at Banora Chiropractic"
             class="absolute inset-0 w-full h-full object-cover"
             width="800"
@@ -135,7 +135,7 @@ const serviceImages: Record<string, string> = {
           <a href={`/services/${service.slug}`} class="group grid grid-cols-1 md:grid-cols-2 gap-0 bg-light-grey rounded-xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
             <div class={`relative min-h-[220px] md:min-h-[280px] ${i % 2 === 1 ? 'md:order-2' : ''}`}>
               <img
-                src={serviceImages[service.slug] || '/images/chiropractic-visit.jpg'}
+                src={serviceImages[service.slug] || '/images/chiropractic-visit.webp'}
                 alt={`${service.title} at Banora Chiropractic in Tweed Heads South`}
                 class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 width="700"
@@ -193,7 +193,7 @@ const serviceImages: Record<string, string> = {
           <div class="bg-navy-deep rounded-xl overflow-hidden shadow-xl">
             <div class="relative aspect-[4/3] bg-navy">
               <img
-                src={`/images/${doc.slug}.png`}
+                src={`/images/${doc.slug}.webp`}
                 alt={`${doc.name}, ${doc.role} at Banora Chiropractic`}
                 class="w-full h-full object-cover object-top"
                 width="500"
