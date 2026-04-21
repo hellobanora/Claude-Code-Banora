@@ -64,8 +64,8 @@ export const practitioners = [
     role: 'Chiropractor & Co-founder',
     initials: 'PC',
     techniques: ['Diversified', 'Thompson Drop', 'Extremity'],
-    bio: 'Dr Paul Cater takes a patient-centred approach to chiropractic care. With a background in science and chiropractic, Paul combines technical skill with a warm, caring manner that puts patients at ease. He has particular expertise in extremity adjustments and Diversified technique suited to patients of all ages.',
-    shortBio: 'Patient-focused care using Diversified, Thompson Drop, and Extremity techniques.',
+    bio: 'Dr Paul Cater is the founder and principal chiropractor at Banora Chiropractic, bringing over 20 years of experience helping the Tweed Heads community move, feel, and live better. Paul\'s clinical interests cover the full spectrum of family care — from acute spinal pain and dysfunction, posture, and sports injuries through to supporting older patients to stay active and independent, and caring for pregnant women and children of all ages. He takes time to understand each patient\'s story, ensuring everyone leaves with a clear picture of their condition and a confident path forward. Outside the clinic, Paul is most at home in the water — surfing, foiling, kiteboarding, and diving are all fair game. When the family escapes the Tweed Coast, snow trips are a firm favourite.',
+    shortBio: 'Founder of Banora Chiropractic with a passion for family care — from acute spinal pain and sports injuries to pregnancy, paediatrics, and healthy ageing.',
   },
 ];
 
