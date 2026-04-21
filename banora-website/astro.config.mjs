@@ -8,6 +8,9 @@ export default defineConfig({
   site: 'https://banorachiropractic.com.au',
   output: 'static',
   adapter: vercel(),
+  build: {
+    inlineStylesheets: 'always',
+  },
   integrations: [
     sitemap({
       filter: (page) =>
