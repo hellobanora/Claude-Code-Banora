@@ -4,4 +4,4 @@ Disallow: /thank-you
 Disallow: /drafts
 Disallow: /api/
 
-Sitemap: https://banorachiropractic.com.au/sitemap-0.xml
+Sitemap: https://banorachiropractic.com.au/sitemap-index.xml
