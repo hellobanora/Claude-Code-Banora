@@ -452,7 +452,11 @@ async function handlePatientType(isNew) {
     const practicesRes = await fetch('/api/booking?action=practices');
     const practicesData = await practicesRes.json();
     const pd = practicesData.details || practicesData;
-    const practice = (pd.practices || [])[0];
+    const allPractices = pd.practices || [];
+    const practice = allPractices.find(p =>
+      p.name?.toLowerCase().includes('banora') ||
+      p.address?.toLowerCase().includes('greenway')
+    ) || allPractices[0];
     if (!practice) throw new Error('No practice found');
     bm.practiceId = practice.id;
     bm.customerId = pd.customer_id;
