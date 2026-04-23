@@ -110,24 +110,34 @@ import { clinic } from '../../data/clinic';
     <nav class="max-w-7xl mx-auto px-4 py-4 space-y-1" aria-label="Mobile navigation">
       <a href="/" class="block py-3 px-4 text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Home</a>
       <a href="/about" class="block py-3 px-4 text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">About</a>
-      <div class="py-2 px-4">
-        <span class="text-xs uppercase tracking-wider text-grey-text/60 font-medium">Services</span>
-      </div>
-      <a href="/services" class="block py-2.5 px-8 text-sm text-mid-blue font-medium hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">All Services</a>
-      <a href="/services/chiropractic-adjustments" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Chiropractic Adjustments</a>
-      <a href="/services/posture-correction" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Posture Correction</a>
-      <a href="/services/sports-chiropractic" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Sports Chiropractic</a>
-      <a href="/services/pregnancy-chiropractic" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Pregnancy Chiropractic</a>
-      <a href="/services/paediatric-chiropractic" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Paediatric Chiropractic</a>
-      <div class="py-2 px-4">
-        <span class="text-xs uppercase tracking-wider text-grey-text/60 font-medium">Conditions</span>
-      </div>
-      <a href="/conditions" class="block py-2.5 px-8 text-sm text-mid-blue font-medium hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">All Conditions</a>
-      <a href="/conditions/back-pain" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Back Pain</a>
-      <a href="/conditions/neck-pain" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Neck Pain</a>
-      <a href="/conditions/sciatica" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Sciatica</a>
-      <a href="/conditions/headaches-migraines" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Headaches & Migraines</a>
-      <a href="/conditions/shoulder-pain" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Shoulder Pain</a>
+      <details class="group">
+        <summary class="flex items-center justify-between py-3 px-4 text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg cursor-pointer list-none transition-colors">
+          Services
+          <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="mt-1 space-y-0.5">
+          <a href="/services" class="block py-2.5 px-8 text-sm text-mid-blue font-medium hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">All Services</a>
+          <a href="/services/chiropractic-adjustments" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Chiropractic Adjustments</a>
+          <a href="/services/posture-correction" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Posture Correction</a>
+          <a href="/services/sports-chiropractic" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Sports Chiropractic</a>
+          <a href="/services/pregnancy-chiropractic" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Pregnancy Chiropractic</a>
+          <a href="/services/paediatric-chiropractic" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Paediatric Chiropractic</a>
+        </div>
+      </details>
+      <details class="group">
+        <summary class="flex items-center justify-between py-3 px-4 text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg cursor-pointer list-none transition-colors">
+          Conditions
+          <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="mt-1 space-y-0.5">
+          <a href="/conditions" class="block py-2.5 px-8 text-sm text-mid-blue font-medium hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">All Conditions</a>
+          <a href="/conditions/back-pain" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Back Pain</a>
+          <a href="/conditions/neck-pain" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Neck Pain</a>
+          <a href="/conditions/sciatica" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Sciatica</a>
+          <a href="/conditions/headaches-migraines" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Headaches & Migraines</a>
+          <a href="/conditions/shoulder-pain" class="block py-2.5 px-8 text-sm text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Shoulder Pain</a>
+        </div>
+      </details>
       <a href="/symptom-checker" class="block py-3 px-4 text-[var(--color-gold,#D4A853)] font-semibold hover:bg-[var(--color-warm-bg,#FFFBF3)] rounded-lg transition-colors">Symptom Checker</a>
       <a href="/fees" class="block py-3 px-4 text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Fees</a>
       <a href="/blog" class="block py-3 px-4 text-grey-text hover:text-navy hover:bg-blue-ghost rounded-lg transition-colors">Blog</a>
