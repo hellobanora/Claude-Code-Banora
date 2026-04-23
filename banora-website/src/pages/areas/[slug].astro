@@ -98,7 +98,7 @@ const schema = {
               {practitioners.map((doc) => (
                 <div class="bg-blue-ghost/30 rounded-lg p-4 flex items-center gap-4">
                   <div class="w-14 h-14 rounded-full overflow-hidden border border-blue-pale shrink-0">
-                    <img src={`/images/dr-${doc.slug.split('-').slice(1).join('-')}.png`} alt={doc.name} class="w-full h-full object-cover" width="56" height="56" loading="lazy" />
+                    <img src={doc.photo} alt={doc.name} class="w-full h-full object-cover" width="56" height="56" loading="lazy" />
                   </div>
                   <div>
                     <p class="text-navy font-medium text-sm">{doc.name}</p>

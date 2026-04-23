@@ -351,7 +351,7 @@ const areas = ['Tweed Heads South', 'Tweed Heads', 'Banora Point', 'Coolangatta'
           <div class="group bg-white rounded-2xl overflow-hidden border border-[var(--color-gold)]/15 hover:shadow-xl transition-all duration-500">
             <!-- FIX: landscape crop on mobile (less height), portrait on md+ -->
             <div class="aspect-[4/3] md:aspect-[3/4] overflow-hidden bg-navy/5">
-              <img src={`/images/${doc.slug}.webp`} alt={`${doc.name}, chiropractor at Banora Chiropractic, Tweed Heads South`} class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" width="400" height="533" loading="lazy" />
+              <img src={doc.photo} alt={`${doc.name}, chiropractor at Banora Chiropractic, Tweed Heads South`} class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" width="400" height="533" loading="lazy" />
             </div>
             <div class="p-6 md:p-8">
               <h3 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy">{doc.name}</h3>

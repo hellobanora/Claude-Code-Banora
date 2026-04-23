@@ -40,7 +40,16 @@
       "WebFetch(domain:www.iconpractice.com)",
       "WebFetch(domain:app.iconpractice.com)",
       "mcp__claude_ai_Vercel__list_projects",
-      "mcp__claude_ai_Vercel__get_project"
+      "mcp__claude_ai_Vercel__get_project",
+      "Bash(curl -sI https://banorachiropractic.com.au/images/dr-james-shipway-v2.webp)",
+      "Bash(curl -sI https://banorachiropractic.com.au/images/dr-james-shipway.webp)",
+      "Bash(curl -sI -L https://www.banorachiropractic.com.au/images/dr-james-shipway-v2.webp)",
+      "Bash(curl -sI -L https://www.banorachiropractic.com.au/images/dr-james-shipway.webp)",
+      "Bash(curl -sL https://www.banorachiropractic.com.au/team/dr-james-shipway)",
+      "Bash(curl -sL https://www.banorachiropractic.com.au/team/dr-paul-cater)",
+      "Bash(curl -sL -o /tmp/test.webp https://www.banorachiropractic.com.au/images/dr-james-shipway-v2.webp)",
+      "Bash(curl -sL https://www.banorachiropractic.com.au/about)",
+      "Bash(curl -sL https://www.banorachiropractic.com.au/)"
     ]
   }
 }

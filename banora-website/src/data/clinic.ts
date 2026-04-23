@@ -50,6 +50,7 @@ export const practitioners = [
   {
     name: 'Dr James Shipway',
     slug: 'dr-james-shipway',
+    photo: '/images/dr-james-shipway-v2.webp',
     qualifications: 'B.Sc.Chiro. & M.Chiro',
     role: 'Chiropractor & Co-founder',
     initials: 'JS',
@@ -60,6 +61,7 @@ export const practitioners = [
   {
     name: 'Dr Paul Cater',
     slug: 'dr-paul-cater',
+    photo: '/images/dr-paul-cater-v2.webp',
     qualifications: 'B.Sc.Chiro. & M.Chiro',
     role: 'Chiropractor & Co-founder',
     initials: 'PC',
