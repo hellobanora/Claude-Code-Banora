@@ -55,7 +55,7 @@ export const practitioners = [
     role: 'Chiropractor & Co-founder',
     initials: 'JS',
     techniques: ['Diversified', 'Thompson', 'Soft Tissue Therapy', 'Arthrostim'],
-    bio: 'Dr James Shipway brings extensive experience and a genuine passion for helping people move and feel better. With qualifications in both science and chiropractic, James takes a thorough, evidence-based approach to care. He has a special interest in family chiropractic, sports injuries, and posture correction.',
+    bio: 'Dr James Shipway brings extensive experience and a genuine passion for helping people move and feel better. With qualifications in both science and chiropractic, James takes a thorough, evidence-based approach to care. He works with patients managing both acute and chronic conditions — from a sudden injury to pain that has been building for years — and tailors his approach to where you are right now. James has a special interest in sciatica, headaches, and neck pain, alongside family chiropractic, sports injuries, and posture correction.',
     shortBio: 'Experienced chiropractor using Diversified, Thompson, Soft Tissue Therapy, and Arthrostim techniques.',
   },
   {
