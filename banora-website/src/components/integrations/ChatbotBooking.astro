@@ -117,6 +117,8 @@ import { clinic } from '../../data/clinic';
 // IconPractice API integration via /api/booking proxy
 // =====================================================
 
+function _initChatbot() {
+
 const $ = (id) => document.getElementById(id);
 
 // UI refs
@@ -817,4 +819,11 @@ document.addEventListener('mouseleave', (e) => {
     trackEvent('exit_intent_shown');
   }
 });
+
+} // end _initChatbot
+
+// Defer chatbot init until idle — keeps main thread free for LCP (1s hard timeout)
+'requestIdleCallback' in window
+  ? requestIdleCallback(_initChatbot, { timeout: 1000 })
+  : setTimeout(_initChatbot, 0);
 </script>

@@ -231,6 +231,14 @@ import { clinic } from '../../data/clinic';
 // BANORA — PREMIUM BOOKING MODAL
 // ================================================================
 
+// Featherweight pre-init click handler — queues open until modal is ready
+let _bmOpen = null;
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.open-booking-modal')) { e.preventDefault(); _bmOpen?.(); }
+});
+
+function _initBookingModal() {
+
 const overlay   = document.getElementById('bm-overlay');
 const backdrop  = document.getElementById('bm-backdrop');
 const closeBtn  = document.getElementById('bm-close');
@@ -294,13 +302,8 @@ closeBtn?.addEventListener('click', closeModal);
 backdrop?.addEventListener('click', closeModal);
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-// Global trigger — any element with class open-booking-modal
-document.addEventListener('click', (e) => {
-  if (e.target.closest('.open-booking-modal')) {
-    e.preventDefault();
-    openModal();
-  }
-});
+// Wire up the pre-init handler now that openModal is defined
+_bmOpen = openModal;
 
 // ── Sidebar steps ──
 function renderSidebar(activeKey) {
@@ -996,4 +999,11 @@ function showConfirmation(firstName, email) {
 }
 
 window.closeBookingModal = closeModal;
+
+} // end _initBookingModal
+
+// Defer heavy modal init until browser is idle — frees main thread for LCP/FID
+'requestIdleCallback' in window
+  ? requestIdleCallback(_initBookingModal, { timeout: 3000 })
+  : setTimeout(_initBookingModal, 0);
 </script>

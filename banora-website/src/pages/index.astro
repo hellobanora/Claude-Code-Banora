@@ -556,5 +556,6 @@ const areas = ['Tweed Heads South', 'Tweed Heads', 'Banora Point', 'Coolangatta'
     });
   });
 
-  startAutoplay();
+  // Defer autoplay start — yields main thread to first paint before starting interval
+  setTimeout(startAutoplay, 0);
 </script>
