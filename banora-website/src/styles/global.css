@@ -74,6 +74,7 @@ h1, h2, h3, h4, h5, h6 {
   object-position: center 20%;
   width: 100%;
   height: 100%;
+  will-change: transform;
 }
 
 .hero-ken-burns-reverse {
@@ -82,6 +83,7 @@ h1, h2, h3, h4, h5, h6 {
   object-position: center 20%;
   width: 100%;
   height: 100%;
+  will-change: transform;
 }
 
 /* Slow Pan Effect — horizontal drift on secondary/banner hero images */
@@ -99,6 +101,12 @@ h1, h2, h3, h4, h5, h6 {
 /* Parent container must clip zoomed/panned edges */
 .hero-overflow-clip {
   overflow: hidden;
+}
+
+/* Hero slide crossfade transition — defined in CSS so Tailwind utility classes
+   don't force compositing layers on all 5 slides at parse time */
+.hero-slide {
+  transition: opacity 1500ms ease-in-out;
 }
 
 /* ===== Blog Prose Styling ===== */

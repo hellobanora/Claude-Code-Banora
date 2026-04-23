@@ -15,9 +15,11 @@ interface Props {
   ogImage?: string;
   chatbotVariant?: 'standard' | 'booking';
   noindex?: boolean;
+  lcpImage?: string;
+  lcpImageSrcset?: string;
 }
 
-const { title, description, canonicalUrl, schema, ogImage, chatbotVariant = 'booking', noindex = false } = Astro.props;
+const { title, description, canonicalUrl, schema, ogImage, chatbotVariant = 'booking', noindex = false, lcpImage, lcpImageSrcset } = Astro.props;
 const siteUrl = clinic.website;
 const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
 const ogImg = ogImage || `${siteUrl}/images/og-default.jpg`;
@@ -101,6 +103,10 @@ const localBusinessSchema = {
 
   <!-- Page-specific schema -->
   {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+
+  <!-- LCP image preload (passed by page for above-the-fold hero images) -->
+  {lcpImage && !lcpImageSrcset && <link rel="preload" as="image" href={lcpImage} fetchpriority="high" />}
+  {lcpImage && lcpImageSrcset && <link rel="preload" as="image" href={lcpImage} imagesrcset={lcpImageSrcset} imagesizes="100vw" fetchpriority="high" />}
 
 </head>
 <body class="bg-white text-dark-text">
