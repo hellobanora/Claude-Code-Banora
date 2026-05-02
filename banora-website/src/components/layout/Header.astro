@@ -1,17 +1,24 @@
 ---
+import { Image } from 'astro:assets';
 import { clinic } from '../../data/clinic';
+import logoImg from '../../assets/images/logo-horizontal-trimmed.webp';
 ---
 
 
 <header class="sticky top-0 z-50 bg-white border-b border-grey-mid/30 transition-shadow duration-300" id="site-header">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-[80px] md:h-[108px]">
-      <!-- Logo -->
+      <!-- Logo: responsive srcset — Astro generates 300w and 600w WebP automatically -->
       <a href="/" class="flex items-center gap-3 no-underline">
-        <picture>
-          <source srcset="/images/logo-horizontal-trimmed.webp" type="image/webp" />
-          <img src="/images/logo-horizontal-trimmed.png" alt="Banora Chiropractic logo" class="h-[72px] md:h-[100px] w-auto" width="600" height="271" />
-        </picture>
+        <Image
+          src={logoImg}
+          alt="Banora Chiropractic logo"
+          widths={[300, 600]}
+          sizes="(max-width: 768px) 160px, 220px"
+          class="h-[72px] md:h-[100px] w-auto"
+          loading="eager"
+          fetchpriority="high"
+        />
       </a>
 
       <!-- Desktop Nav -->
