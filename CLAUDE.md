@@ -1,449 +1,375 @@
 # CLAUDE.md — Banora Chiropractic Website
 
+> Read this file at the start of every session. It is the single source of truth for this project.
+
+---
+
 ## Project Overview
 
-This is the website for **Banora Chiropractic**, a chiropractic clinic located at 2/44 Greenway Drive, Tweed Heads South NSW 2486. The site is built with Astro, Tailwind CSS, and deployed on Vercel via GitHub.
+**Banora Chiropractic** is a chiropractic clinic co-owned by Dr James Shipway and Dr Paul Cater, located in Tweed Heads South NSW. This is the clinic's primary website — built to attract new patients, rank locally on Google, and make booking effortless.
 
-The website's primary goal is to **convert local searchers into booked patients** while educating the community about chiropractic care.
-
-A second clinic — Palm Beach Chiropractic & Remedial (1/28 Palm Beach Ave, Palm Beach QLD 4221) — will be added later. Build with this in mind: keep clinic-specific data in config files so the architecture supports multi-clinic expansion without refactoring.
-
----
-
-## Personas
-
-When working on this project, adopt the relevant persona(s) for the task:
-
-### SEO Expert
-You are a local SEO specialist focused on healthcare practices in the Tweed Heads / Gold Coast region. Every page must be optimised for search. Think in terms of search intent, keyword placement, internal linking, schema markup, and Core Web Vitals. Local SEO is the #1 growth driver for this clinic.
-
-### Humanised Copywriter
-You write warm, approachable, patient-focused copy. Avoid clinical jargon unless explaining a condition. Use "you" language. Write as if speaking to someone who's in pain and looking for help — be reassuring, credible, and clear. Every page should feel like a conversation, not a textbook.
-
-### Chiropractic Content Specialist
-You understand chiropractic care deeply — phases of care (relief, corrective, wellness), common conditions (sciatica, back pain, neck pain, headaches, postural issues), and evidence-based approaches. All content must be AHPRA-compliant: no guaranteed outcomes, no misleading claims, no testimonials that imply guaranteed results.
-
-### Mobile-First Developer
-You build for phones first, tablets second, desktop third. Navigation must be thumb-friendly. Buttons must be large enough to tap. Text must be readable without zooming. Page speed is non-negotiable — target 90+ Lighthouse scores across all metrics.
+- **Live site**: banorachiropractic.com.au
+- **Tech stack**: Astro + Tailwind CSS, deployed on Vercel
+- **Booking**: IconPractice widget integration
+- **Forms**: Formspree (endpoint: `mpqjeego`)
+- **Analytics**: Google Analytics 4
+- **Scope**: Banora Chiropractic only. Palm Beach Chiropractic is a separate future project.
 
 ---
 
-## Brand Guidelines
+## Skills
+
+Read the relevant skill before starting any matching task. Skills live in `.skills/` at the project root.
+
+| Skill | When to read it |
+|-------|----------------|
+| `.skills/seo/SKILL.md` | Any page copy, headings, meta tags, schema, location pages |
+| `.skills/copywriting/SKILL.md` | Any patient-facing text — including buttons and alt text |
+| `.skills/brand/SKILL.md` | Any visual work — colours, fonts, spacing, layout |
+| `.skills/components/SKILL.md` | Any Astro component, layout, or UI element |
+| `.skills/performance/SKILL.md` | Images, scripts, fonts, build config |
+| `.skills/human-voice/SKILL.md` | Blog posts, social content, long-form copy |
+
+**ECC skills** (shared, in `~/projects/claude-skills/`):
+
+| Skill | When to read it |
+|-------|----------------|
+| `content-engine/SKILL.md` | Social posts, content calendars, platform copy |
+| `article-writing/SKILL.md` | Newsletter content, blog posts |
+| `frontend-patterns/SKILL.md` | React/component patterns, state, performance |
+| `market-research/SKILL.md` | Competitor research, local SEO analysis |
+| `deployment-patterns/SKILL.md` | Vercel CI/CD, environment setup, rollbacks |
+
+---
+
+## Clinic Details (Never Deviate From These)
+
+### NAP — Use This Exact Format Everywhere
+
+- **Name**: Banora Chiropractic
+- **Address**: 2/44 Greenway Drive, Tweed Heads South NSW 2486
+- **Phone**: (07) 5599 2322
+- **Website**: banorachiropractic.com.au
+
+### Practitioners
+
+- **Dr James Shipway** — B.Sc.Chiro. & M.Chiro (co-owner)
+- **Dr Paul Cater** — B.Sc.Chiro. & M.Chiro (co-owner)
+- Combined: 30+ years experience
+
+### Hours
+
+| Day | Hours |
+|-----|-------|
+| Monday | 8:30am – 6:00pm |
+| Tuesday | 8:30am – 6:00pm |
+| Wednesday | 2:00pm – 6:00pm |
+| Thursday | 8:30am – 6:00pm |
+| Friday | 12:00pm – 2:00pm |
+| Saturday | 8:00am – 12:00pm |
+| Sunday | Closed |
+
+### Key Facts
+
+- HICAPS on-site (instant health fund rebates)
+- No referral required
+- Ground level, wheelchair accessible, on-site parking
+- Techniques: Gonstead, SOT, Diversified, Thompson Drop, Activator, Cranial, Extremity
+
+---
+
+## Brand Identity
 
 ### Colours
 
 ```
---color-navy:       #1B3A5C   (primary — headers, footer, nav)
---color-mid-blue:   #2C5F8A   (secondary — buttons, links, accents)
---color-light-blue: #5B9EC9   (tertiary — hover states, highlights)
---color-light-grey: #F5F5F5   (backgrounds, alternating sections)
---color-white:      #FFFFFF   (primary background)
---color-dark-text:  #1A1A1A   (body text)
+Navy (primary):    #1B3A5C
+Mid blue:          #2C5F8A
+Light blue:        #5B9EC9
+Gold (accent):     #FFD232
+Dark gold:         #D4A017
+White:             #FFFFFF
+Off-white:         #F8F9FA
+Light grey:        #E8EDF2
 ```
 
 ### Typography
-- **Headings**: Use a clean, professional sans-serif (e.g., Montserrat, Raleway, or similar)
-- **Body**: Use a highly readable sans-serif (e.g., Open Sans, Source Sans Pro, or similar)
-- **Minimum body size**: 16px on mobile, 18px on desktop
-- **Line height**: 1.6 for body text
 
-### Tone of Voice
-- Warm and professional, never clinical or cold
-- Use "we" for the clinic, "you" for the patient
-- Active voice, short sentences, simple words
-- Reassuring without making promises or guarantees (AHPRA compliance)
+- **Headings**: Playfair Display (serif, trustworthy, professional)
+- **Body**: Inter (clean, readable, accessible)
+- **Accent/callouts**: Playfair Display italic
 
-### Visual Style
-- Clean, spacious layouts with generous whitespace
-- Rounded corners on cards and buttons (8px)
-- Subtle shadows for depth, never harsh drop shadows
-- Photography: warm, natural, showing real people (not stock photos where possible)
+### Voice
+
+Warm, knowledgeable, direct. The patient is the hero — we are the guide. Never use:
+- Superlatives without evidence ("the best", "world-class")
+- Jargon without explanation
+- Passive voice where active is possible
+
+### Visual Feel
+
+Clean, clinical confidence. White space is generous. Navy anchors the brand. Gold is used sparingly for emphasis and CTAs only. Photos show real people, real movement, real care — not stock.
 
 ---
 
-## Tech Stack
+## AHPRA Compliance (Critical — Non-Negotiable)
 
-| Layer | Technology |
-|---|---|
-| Framework | Astro |
-| Styling | Tailwind CSS |
-| Deployment | Vercel |
-| Version Control | GitHub |
-| Forms | Formspree (endpoint: mpqjeego) |
-| Booking | IconPractice widget |
-| Analytics | Google Analytics 4 |
-| Maps | Google Maps Embed API |
-| Chatbot | Custom Claude-powered widget |
+Every piece of patient-facing content must follow these rules:
 
-### Why Astro
-Astro ships zero JavaScript by default. Pages are pre-rendered as static HTML at build time, which means lightning-fast load times and perfect SEO out of the box. JavaScript is only added where interactivity is genuinely needed (mobile menu, chatbot, forms). This is ideal for a content-driven clinic website.
+### Never Write
 
-### Booking URL
-```
-https://www.iconpractice.com/ob/7138/banorachiropractic/245386/2
-```
+- "We can cure…" or "We will fix…"
+- "Guaranteed results" or any outcome promise
+- Testimonials that imply guaranteed outcomes
+- Claims that chiropractic treats specific diseases (diabetes, cancer, etc.)
+- "Our chiropractors are the best in…"
+- Before/after comparisons that imply guaranteed outcomes
 
-### Chatbot Deployment
-Existing Netlify deployment: `thriving-conkies-08c1ca.netlify.app`
-Widget script: `banora-chatbot-widget.js`
+### Always Write
+
+- "May help with…", "Can assist in managing…", "Many patients find relief from…"
+- "Results vary between individuals"
+- "We recommend a consultation to assess your individual needs"
+- Reference to evidence-based care where appropriate
+
+### Red Flag Check
+
+Before finalising any copy, mentally check:
+1. Does this make a therapeutic claim? → Add "may" or "can help"
+2. Does this promise a specific outcome? → Remove or soften
+3. Does this use a testimonial to imply guaranteed results? → Reframe
 
 ---
 
 ## Site Architecture
 
-```
-/ (Home)
-├── /about
-│   └── Meet Dr James Shipway (BSc DC) & Dr Paul Cater (B.Sc.Chiro. & M.Chiro)
-├── /services
-│   ├── /services/chiropractic-adjustments
-│   ├── /services/posture-correction
-│   ├── /services/sports-chiropractic
-│   ├── /services/pregnancy-chiropractic
-│   ├── /services/paediatric-chiropractic
-│   └── (additional service pages as needed)
-├── /conditions
-│   ├── /conditions/back-pain
-│   ├── /conditions/neck-pain
-│   ├── /conditions/sciatica
-│   ├── /conditions/headaches-migraines
-│   ├── /conditions/shoulder-pain
-│   └── (additional condition pages as needed)
-├── /areas
-│   ├── /areas/tweed-heads-south
-│   ├── /areas/tweed-heads
-│   ├── /areas/banora-point
-│   ├── /areas/coolangatta
-│   ├── /areas/palm-beach
-│   ├── /areas/currumbin
-│   ├── /areas/elanora
-│   ├── /areas/bilinga
-│   ├── /areas/tugun
-│   ├── /areas/kirra
-│   ├── /areas/burleigh-heads
-│   ├── /areas/terranora
-│   ├── /areas/chinderah
-│   └── /areas/kingscliff
-├── /patient-resources
-│   └── Links to patient hub, exercise guides, posture information
-└── /contact
-    └── Contact form, map, phone, booking widget
-```
-
----
-
-## Project Structure
+### Pages (Current)
 
 ```
-banora-website/
-├── CLAUDE.md                    (this file)
-├── .skills/                     (Claude Code skills)
-│   ├── seo/SKILL.md
-│   ├── copywriting/SKILL.md
-│   ├── components/SKILL.md
-│   ├── performance/SKILL.md
-│   ├── brand/SKILL.md
-│   └── human-voice/SKILL.md
-├── src/
-│   ├── layouts/
-│   │   └── BaseLayout.astro     (root layout — head, nav, footer, analytics)
-│   ├── pages/
-│   │   ├── index.astro          (homepage)
-│   │   ├── about.astro
-│   │   ├── services/
-│   │   │   └── [slug].astro     (dynamic service pages)
-│   │   ├── conditions/
-│   │   │   └── [slug].astro     (dynamic condition pages)
-│   │   ├── areas/
-│   │   │   └── [slug].astro     (dynamic location pages)
-│   │   ├── patient-resources.astro
-│   │   └── contact.astro
-│   ├── components/
-│   │   ├── layout/              (Header.astro, Footer.astro, Navigation.astro, MobileMenu.astro)
-│   │   ├── ui/                  (Button.astro, Card.astro, Section.astro, Badge.astro)
-│   │   ├── forms/               (ContactForm.astro, BookingCTA.astro)
-│   │   ├── sections/            (Hero.astro, ServiceGrid.astro, CTABanner.astro, FAQAccordion.astro)
-│   │   └── integrations/        (ChatbotWidget.astro, BookingWidget.astro, GoogleMap.astro)
-│   ├── data/
-│   │   ├── clinic.ts            (clinic info — name, address, phone, hours, practitioners)
-│   │   ├── services.ts          (service definitions for dynamic routes)
-│   │   ├── conditions.ts        (condition definitions for dynamic routes)
-│   │   └── areas.ts             (suburb data for location pages)
-│   ├── utils/
-│   │   └── helpers.ts           (shared utilities)
-│   └── styles/
-│       └── global.css           (Tailwind base + custom CSS variables)
-├── public/
-│   ├── images/
-│   └── fonts/
-├── astro.config.mjs
-├── tailwind.config.mjs
-├── tsconfig.json
-└── package.json
+/                          Homepage
+/about                     About the clinic & team
+/services                  Services overview
+/services/spinal-adjustment
+/services/posture-correction
+/services/sports-chiropractic
+/services/dry-needling
+/services/paediatric-chiropractic
+/conditions                Conditions overview
+/conditions/back-pain
+/conditions/neck-pain
+/conditions/headaches
+/conditions/sciatica
+/conditions/sports-injuries
+/locations                 Suburb location pages index
+/locations/[suburb]        Dynamic suburb pages (14+ suburbs)
+/patient-resources         Resources hub
+/contact                   Contact + booking
 ```
 
----
+### Location Suburbs Covered
 
-## Astro Fundamentals
-
-### How Astro Components Work
-
-Astro components (`.astro` files) have two parts separated by `---` fences:
-
-```astro
----
-// Component Script (runs at build time — server-side only)
-// Import components, fetch data, define props
-import Button from '../components/ui/Button.astro';
-
-interface Props {
-  title: string;
-  subtitle?: string;
-}
-
-const { title, subtitle } = Astro.props;
----
-
-<!-- Component Template (HTML output) -->
-<section>
-  <h1>{title}</h1>
-  {subtitle && <p>{subtitle}</p>}
-  <Button text="Book Now" href="/contact" />
-</section>
-```
-
-The script section runs at build time and is never sent to the browser. The template section becomes static HTML. This is why Astro is so fast — no framework JavaScript ships to the client by default.
-
-### Props
-Pass data to components via props, just like HTML attributes:
-```astro
-<Hero title="Welcome to Banora Chiropractic" ctaText="Book a Visit" />
-```
-
-### Slots
-Use `<slot />` for flexible content injection:
-```astro
-<!-- Section.astro -->
-<section class="py-16">
-  <slot />
-</section>
-
-<!-- Usage -->
-<Section>
-  <h2>Our Services</h2>
-  <p>Content goes here</p>
-</Section>
-```
-
-### Client-Side JavaScript (Islands)
-Most of the site needs zero JavaScript. When you DO need interactivity, use a `<script>` tag in the component:
-
-```astro
-<button id="menu-toggle">Menu</button>
-<nav id="mobile-menu" class="hidden">...</nav>
-
-<script>
-  document.getElementById('menu-toggle')?.addEventListener('click', () => {
-    document.getElementById('mobile-menu')?.classList.toggle('hidden');
-  });
-</script>
-```
-
-Prefer vanilla JS `<script>` tags for simple interactions. Only use framework islands (React/Preact) if the interactivity is genuinely complex.
-
-### Layouts
-The base layout wraps every page and handles `<head>`, schema, analytics:
-
-```astro
----
-// src/layouts/BaseLayout.astro
-import Header from '../components/layout/Header.astro';
-import Footer from '../components/layout/Footer.astro';
-
-interface Props {
-  title: string;
-  description: string;
-  ogImage?: string;
-  canonicalUrl?: string;
-  schema?: object;
-}
-
-const { title, description, ogImage, canonicalUrl, schema } = Astro.props;
----
-
-<!DOCTYPE html>
-<html lang="en-AU">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  {ogImage && <meta property="og:image" content={ogImage} />}
-  {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
-</head>
-<body>
-  <Header />
-  <main>
-    <slot />
-  </main>
-  <Footer />
-</body>
-</html>
-```
-
----
-
-## Data-Driven Pages
-
-Services, conditions, and location pages are generated from data files using Astro's `getStaticPaths()`. This means:
-- **One template** per page type (service, condition, area)
-- **One data file** per page type with all content
-- Adding a new service/condition/suburb = adding an entry to the data file, not building a new page
-
-### Dynamic Route Pattern
-
-```astro
----
-// src/pages/services/[slug].astro
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { services } from '../../data/services';
-
-export function getStaticPaths() {
-  return services.map((service) => ({
-    params: { slug: service.slug },
-    props: { service },
-  }));
-}
-
-const { service } = Astro.props;
----
-
-<BaseLayout title={service.metaTitle} description={service.metaDescription}>
-  <h1>{service.title}</h1>
-  <!-- page content using service data -->
-</BaseLayout>
-```
-
-Each data entry includes: slug, title, meta title, meta description, hero content, body content, schema markup data, and internal links.
-
----
-
-## SEO Requirements (Every Page)
-
-1. Unique `<title>` tag following pattern: `{Page Title} | Banora Chiropractic | Tweed Heads South`
-2. Unique `<meta name="description">` (150-160 characters, includes location + service keywords)
-3. Open Graph tags (og:title, og:description, og:image, og:url)
-4. Canonical URL
-5. Semantic HTML: one `<h1>` per page, logical heading hierarchy
-6. `alt` text on every image
-7. LocalBusiness schema (JSON-LD) on every page
-8. Breadcrumb schema on inner pages
-9. Internal links to related services/conditions/areas
-10. NAP consistency: always use "2/44 Greenway Drive, Tweed Heads South NSW 2486" and "(07) 5599 2322"
-
----
-
-## AHPRA Compliance Rules
-
-All content must comply with AHPRA advertising guidelines for healthcare:
-
-- **Never** guarantee outcomes or use words like "cure", "fix", "guarantee", "best"
-- **Never** use before/after comparisons that imply guaranteed results
-- **Never** include testimonials that claim specific health outcomes
-- **Always** use phrases like "may help", "can assist", "aims to", "designed to support"
-- **Always** recommend patients consult with the practitioner for individual advice
-- Social proof must focus on experience and service quality, not clinical outcomes
-
----
-
-## Component Guidelines
-
-- All components are Astro components (`.astro` files) unless interactivity requires JavaScript
-- Use Tailwind utility classes for styling — no inline styles
-- Components accept content via props and slots — no hardcoded text in component files
-- Every interactive element (buttons, links, forms) must be accessible (ARIA labels, keyboard navigation, focus states)
-- Use Astro's `<Image>` component from `astro:assets` for automatic image optimisation, or native `<img>` with `loading="lazy"`, `width`, and `height` attributes
-- External links use `rel="noopener noreferrer"` and `target="_blank"`
-- Phone numbers use `<a href="tel:+61755992322">` for click-to-call
-- Booking CTAs link to IconPractice URL or trigger booking widget
-- Keep JavaScript to a minimum — use `<script>` tags for simple interactivity, not framework components
+Tweed Heads, Tweed Heads South, Banora Point, Terranora, Bilambil Heights, Cobaki, Cobaki Lakes, Piggabeen, Casuarina, Kingscliff, Murwillumbah, Coolangatta, Kirra, Palm Beach (QLD)
 
 ---
 
 ## Integrations
 
-### IconPractice Booking Widget
-Embed as an iframe or link to:
-`https://www.iconpractice.com/ob/7138/banorachiropractic/245386/2`
-Place a prominent "Book Now" button in the header and throughout key pages.
+### IconPractice (Booking)
 
-### Formspree Contact Form
-POST to `https://formspree.io/f/mpqjeego`
-Fields: Name, Email, Phone, Message
-Include honeypot spam protection.
-Use a standard HTML `<form>` with `method="POST"` and `action="https://formspree.io/f/mpqjeego"` — no JavaScript needed.
+Embed the booking widget on `/contact` and in the site header CTA. Use the standard IconPractice embed code. Never hardcode appointment logic — all booking flows through IconPractice.
 
-### AI Chatbot Widget
-Load the chatbot widget script from the Netlify deployment. Position: bottom-right corner, floating button that expands to chat window. Load with `defer` attribute so it doesn't block page rendering:
+### AI Chatbot
 
-```html
-<script defer src="https://thriving-conkies-08c1ca.netlify.app/banora-chatbot-widget.js"></script>
-```
+AHPRA-compliant chatbot widget deployed via Netlify serverless proxy to Claude API. System prompt enforces compliance rules and clinic info. Widget sits bottom-right on all pages. Do not modify chatbot logic without reviewing AHPRA rules above.
+
+### Formspree
+
+Contact form endpoint: `mpqjeego`
+Usage: `action="https://formspree.io/f/mpqjeego"` — plain HTML POST, no JavaScript required.
 
 ### Google Analytics 4
-Load with `async` in the `<head>` via BaseLayout:
 
-```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'GA_TRACKING_ID');
-</script>
-```
-
-Track: page views, booking button clicks, form submissions, phone number clicks.
+GA4 tag loads in `<head>` on all pages. Never block or delay the GA4 script. Use `data-astro-rerun` attribute if needed for Astro view transitions.
 
 ### Google Maps
-Embed on contact page showing clinic location at 2/44 Greenway Drive, Tweed Heads South NSW 2486.
+
+Embed for clinic location on `/contact` page. Use standard iframe embed — do not use Maps JavaScript API (unnecessary complexity).
+
+### Social Media
+
+Links in footer and header. Instagram and Facebook are primary channels. Social content is managed separately via the `banora-social-autopilot` project.
 
 ---
 
-## Performance Targets
+## Development Standards
 
-- Lighthouse Performance: 90+
-- Lighthouse Accessibility: 95+
-- Lighthouse Best Practices: 95+
-- Lighthouse SEO: 100
-- First Contentful Paint: < 1.5s
-- Largest Contentful Paint: < 2.5s
-- Cumulative Layout Shift: < 0.1
-- Total page weight: < 500KB per page (excluding images)
+### Workflow — Always Follow This Order
 
-Astro's zero-JS-by-default approach gives us a massive head start on these targets. Don't ruin it by adding unnecessary client-side JavaScript.
+1. **Plan first** — For any feature touching 3+ files, run `/plan` before writing code
+2. **Read the skill** — Check relevant skills before starting
+3. **Build** — Write code following skill and brand guidelines
+4. **Review** — Run `/code-review` before committing
+5. **Verify** — Run `/verify` to check build, types, lint
+6. **Commit** — Use conventional commit format (see below)
+7. **Save session** — Run `/save-session` before closing
+
+### Commit Format
+
+```
+<type>: <short description>
+
+Types: feat, fix, refactor, docs, style, perf, chore
+Examples:
+  feat: add sciatica condition page with schema markup
+  fix: correct NAP address on contact page
+  perf: compress hero images to WebP
+  docs: update CLAUDE.md with new suburb list
+```
+
+### Code Quality Rules (from ECC)
+
+- Functions: under 50 lines
+- Files: under 800 lines — split by feature if larger
+- No nesting deeper than 4 levels
+- No hardcoded secrets — all tokens/keys in `.env`
+- Handle errors at every level — never silently swallow
+- Validate all user inputs at system boundaries
+
+### Security Checklist (Before Every Commit)
+
+- [ ] No API keys or tokens in source code
+- [ ] Formspree endpoint is not exposing sensitive data
+- [ ] Chatbot proxy does not log patient queries
+- [ ] Environment variables validated at startup
 
 ---
 
-## Git Workflow
+## SEO Rules
 
-- `main` branch = production (auto-deploys to Vercel)
-- `dev` branch = work in progress
-- Feature branches for individual pages or components: `feature/homepage`, `feature/service-pages`, etc.
-- Commit messages: descriptive and prefixed (e.g., `feat: add homepage hero section`, `fix: mobile nav z-index`, `seo: add schema to service pages`)
+### Page Titles
+
+Format: `[Primary Keyword] | Banora Chiropractic`
+Example: `Chiropractor Tweed Heads South | Banora Chiropractic`
+
+### Meta Descriptions
+
+- 150–160 characters
+- Include primary keyword and a clear benefit
+- End with a soft CTA where natural
+
+### Schema Markup
+
+Every page includes `LocalBusiness` schema at minimum:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "Banora Chiropractic",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "2/44 Greenway Drive",
+    "addressLocality": "Tweed Heads South",
+    "addressRegion": "NSW",
+    "postalCode": "2486",
+    "addressCountry": "AU"
+  },
+  "telephone": "(07) 5599 2322",
+  "url": "https://banorachiropractic.com.au"
+}
+```
+
+Service pages add `MedicalBusiness` / `Service` schema. Condition pages add `MedicalCondition` schema. Location pages add `areaServed`.
+
+### Internal Linking Rules
+
+1. Every service page → links to 2–3 related condition pages
+2. Every condition page → links back to relevant services
+3. Every location page → links to homepage, services, conditions
+4. Breadcrumbs on all inner pages with `BreadcrumbList` schema
+5. Use descriptive anchor text with keywords — never "click here"
 
 ---
 
-## Multi-Clinic Expansion (Future)
+## File Structure
 
-All clinic-specific data lives in `src/data/clinic.ts`. When adding Palm Beach Chiropractic:
+```
+/
+├── CLAUDE.md                  ← This file
+├── .skills/
+│   ├── seo/SKILL.md
+│   ├── copywriting/SKILL.md
+│   ├── brand/SKILL.md
+│   ├── components/SKILL.md
+│   ├── performance/SKILL.md
+│   └── human-voice/SKILL.md
+├── src/
+│   ├── layouts/
+│   │   ├── Base.astro
+│   │   └── Page.astro
+│   ├── pages/
+│   │   ├── index.astro
+│   │   ├── about.astro
+│   │   ├── contact.astro
+│   │   ├── services/
+│   │   ├── conditions/
+│   │   ├── locations/
+│   │   │   └── [suburb].astro
+│   │   └── patient-resources/
+│   ├── components/
+│   │   ├── Header.astro
+│   │   ├── Footer.astro
+│   │   ├── BookingCTA.astro
+│   │   ├── ChatbotWidget.astro
+│   │   └── ...
+│   └── styles/
+│       └── global.css
+├── public/
+│   ├── images/
+│   └── fonts/
+├── astro.config.mjs
+├── tailwind.config.mjs
+└── .env.example
+```
 
-- Add a second clinic object to the config
-- Create a clinic selector or subdomain/path strategy
-- Reuse all components and templates
-- Only content and branding differences change
+---
 
-Do not hardcode clinic details anywhere outside the data files.
+## Session Management
+
+### Starting a Session
+
+If a `.claude/sessions/` file exists from a previous session, run `/resume-session` before anything else.
+
+### Ending a Session
+
+Always run `/save-session` before closing. Capture:
+- What was built and confirmed working
+- What was attempted and failed (and why)
+- Exact next step for next session
+- Any open questions or blockers
+
+### Mid-Session Checkpoints
+
+For large features, run `/checkpoint create <name>` after each phase completes. This gives a rollback point without needing a full commit.
+
+---
+
+## Future Expansion (Do Not Build Yet)
+
+- **Palm Beach Chiropractic & Remedial** — separate project, separate repo, separate domain
+- **Lennox Head "Shore" clinic** — brand identity TBD, expansion under evaluation
+- **Patient mobile app** — React Native/Expo, exercise library, care guides, booking
+- **E-commerce** — wellness products (massage guns, posture products, digital courses)
+
+Do not add Palm Beach or Shore branding, pages, or references to this project.
+
+---
+
+## Common Mistakes to Avoid
+
+1. **Wrong address** — It's `2/44 Greenway Drive`, NOT Leisure Drive or Banora Point
+2. **AHPRA violations** — Never promise outcomes; always hedge with "may help" language
+3. **Breaking the booking flow** — IconPractice handles all booking; don't add custom logic
+4. **Inconsistent NAP** — Phone, address, and name must match exactly across every page
+5. **Adding Palm Beach content** — This site is Banora only
+6. **Hardcoding secrets** — All API keys go in `.env`, never in source
