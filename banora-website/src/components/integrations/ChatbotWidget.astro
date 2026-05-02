@@ -146,13 +146,24 @@ import { clinic } from '../../data/clinic';
   </div>
 </div>
 
-<script define:vars={{ bookingUrl: clinic.bookingUrl, phone: clinic.phone, phoneFull: clinic.phoneFull }}>
+<!-- Config island: read at runtime, avoids define:vars forcing an inline script -->
+<div id="bc-chat-config" hidden aria-hidden="true"
+  data-booking-url={clinic.bookingUrl}
+  data-phone={clinic.phone}
+  data-phone-full={clinic.phoneFull}
+></div>
+
+<script>
   // ============================================
   // BANORA CHIROPRACTIC CHATBOT — BOOKING HYBRID
   // Emphasis: drive bookings, reduce friction
   // ============================================
+  const _bcCfg = (document.getElementById('bc-chat-config') as HTMLElement).dataset;
+  const bookingUrl = _bcCfg.bookingUrl as string;
+  const phone = _bcCfg.phone as string;
+  const phoneFull = _bcCfg.phoneFull as string;
 
-  const $ = (id) => document.getElementById(id);
+  const $ = (id: string) => document.getElementById(id);
   const widget = $('bc-chat-widget');
   const window_ = $('bc-chat-window');
   const toggle = $('bc-chat-toggle');

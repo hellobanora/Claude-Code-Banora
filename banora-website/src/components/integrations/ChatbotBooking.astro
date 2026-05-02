@@ -111,11 +111,22 @@ import { clinic } from '../../data/clinic';
   </div>
 </div>
 
-<script define:vars={{ bookingUrl: clinic.bookingUrl, phone: clinic.phone, phoneFull: clinic.phoneFull }}>
+<!-- Config island: read at runtime, avoids define:vars forcing an inline script -->
+<div id="bcb-config" hidden aria-hidden="true"
+  data-booking-url={clinic.bookingUrl}
+  data-phone={clinic.phone}
+  data-phone-full={clinic.phoneFull}
+></div>
+
+<script>
 // =====================================================
 // BANORA CHIROPRACTIC — CONVERSATIONAL BOOKING CHATBOT
 // IconPractice API integration via /api/booking proxy
 // =====================================================
+const _bcbCfg = (document.getElementById('bcb-config') as HTMLElement).dataset;
+const bookingUrl = _bcbCfg.bookingUrl as string;
+const phone = _bcbCfg.phone as string;
+const phoneFull = _bcbCfg.phoneFull as string;
 
 function _initChatbot() {
 

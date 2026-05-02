@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* Self-hosted fonts (Latin subset only) — eliminates external DNS lookups to fonts.googleapis.com */
+@import "@fontsource/cormorant-garamond/latin-400.css";
+@import "@fontsource/cormorant-garamond/latin-400-italic.css";
+@import "@fontsource/cormorant-garamond/latin-500.css";
+@import "@fontsource/cormorant-garamond/latin-600.css";
+@import "@fontsource/outfit/latin-300.css";
+@import "@fontsource/outfit/latin-400.css";
+@import "@fontsource/outfit/latin-500.css";
+@import "@fontsource/outfit/latin-600.css";
+
 @theme {
   --color-navy: #1B3A5C;
   --color-navy-deep: #122840;

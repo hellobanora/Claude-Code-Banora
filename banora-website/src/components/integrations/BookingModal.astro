@@ -226,15 +226,24 @@ import { clinic } from '../../data/clinic';
   }
 </style>
 
-<script define:vars={{ phone: clinic.phone, phoneFull: clinic.phoneFull }}>
+<!-- Config island: read at runtime, avoids define:vars forcing an inline script -->
+<div id="bm-config" hidden aria-hidden="true"
+  data-phone={clinic.phone}
+  data-phone-full={clinic.phoneFull}
+></div>
+
+<script>
 // ================================================================
 // BANORA — PREMIUM BOOKING MODAL
 // ================================================================
+const _bmCfg = (document.getElementById('bm-config') as HTMLElement).dataset;
+const phone = _bmCfg.phone as string;
+const phoneFull = _bmCfg.phoneFull as string;
 
 // Featherweight pre-init click handler — queues open until modal is ready
-let _bmOpen = null;
+let _bmOpen: (() => void) | null = null;
 document.addEventListener('click', (e) => {
-  if (e.target.closest('.open-booking-modal')) { e.preventDefault(); _bmOpen?.(); }
+  if ((e.target as Element).closest('.open-booking-modal')) { e.preventDefault(); _bmOpen?.(); }
 });
 
 function _initBookingModal() {
