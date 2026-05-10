@@ -179,7 +179,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Step 3: Build form-encoded body for old widget API
     // existing=1 → returning patient, existing=0 → new patient
     // new_patient mirrors existing (inverted) so both fields are explicit
-    const isExisting = body.existing === 1 || body.existing === '1';
+    const isExisting = body.existing === 1 || body.existing === '1' || body.existing === true || body.existing === 'true';
     const form = new URLSearchParams({
       first_name:  body.customer_firstname || '',
       last_name:   body.customer_lastname  || '',
