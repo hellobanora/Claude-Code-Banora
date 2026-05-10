@@ -5,7 +5,8 @@ import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 
 export default defineConfig({
-  site: 'https://banorachiropractic.com.au',
+  site: 'https://www.banorachiropractic.com.au',
+  trailingSlash: 'always',
   output: 'static',
   adapter: vercel(),
   compressHTML: true,

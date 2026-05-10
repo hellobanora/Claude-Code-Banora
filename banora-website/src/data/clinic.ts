@@ -4,7 +4,7 @@ export const clinic = {
   phone: '(07) 5599 2322',
   phoneFull: '+61755992322',
   email: 'info@banorachiropractic.com.au',
-  website: 'https://banorachiropractic.com.au',
+  website: 'https://www.banorachiropractic.com.au',
   bookingUrl: 'https://www.iconpractice.com/ob/7138/banorachiropractic/245386/2',
   address: {
     street: '2/44 Greenway Drive',

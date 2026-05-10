@@ -621,6 +621,473 @@ export const blogPosts: BlogPost[] = [
     relatedConditions: ['headaches-migraines', 'neck-pain'],
     relatedPosts: ['why-your-posture-matters-more-than-you-think', 'how-to-set-up-your-home-office-to-protect-your-back'],
   },
+  {
+    slug: 'sciatica-exercises-and-stretches',
+    title: '6 Sciatica Stretches and Exercises That May Help Relieve Your Pain',
+    metaTitle: '6 Sciatica Exercises & Stretches for Pain Relief | Banora Chiropractic',
+    metaDescription: 'Suffering from sciatica? Our Tweed Heads South chiropractors share 6 stretches and exercises for sciatica that may help relieve sciatic nerve pain. Safe, practical, AHPRA-compliant advice.',
+    excerpt: 'Sciatica pain can be relentless. Here are six stretches and exercises that may help ease sciatic nerve pain — along with guidance on what to avoid and when to get assessed.',
+    content: `
+      <p>If you have sciatica, you already know the pain. That deep ache in the buttock, the shooting sensation down the back of your leg, the numbness or tingling that makes it hard to get comfortable — it is not something you can just ignore.</p>
+
+      <p>The good news is that movement is usually your friend when it comes to sciatica. The right stretches and exercises can help reduce pressure on the sciatic nerve, ease muscle tension, and restore some of the mobility that pain takes away. The key word there is <em>right</em> — not every exercise is helpful for every type of sciatica, which is why a proper assessment matters.</p>
+
+      <p>That said, these six movements are among the most commonly recommended for sciatic nerve pain, and most people find at least some of them helpful. Try them gently, and stop anything that significantly increases your pain or causes symptoms to travel further down the leg.</p>
+
+      <h2>A quick note before you start</h2>
+
+      <p>Sciatica is a symptom, not a diagnosis. It means something is irritating your sciatic nerve — and that something could be a disc bulge, joint restriction, tight piriformis muscle, or something else entirely. The exercises below are general in nature. If your pain is severe, getting worse, or accompanied by weakness or bowel and bladder changes, see a healthcare provider before attempting these. If you have not had your sciatica properly assessed, it is worth doing so — the right approach depends on the cause.</p>
+
+      <h2>1. Piriformis stretch (figure-four)</h2>
+
+      <p>The piriformis muscle sits deep in the buttock, right next to the sciatic nerve. When it is tight or in spasm, it can compress the nerve and cause or worsen sciatica symptoms. This stretch targets it directly.</p>
+
+      <p><strong>How to do it:</strong> Lie on your back with both knees bent and feet flat on the floor. Cross your right ankle over your left knee, creating a figure-four shape. Gently draw your left knee toward your chest until you feel a stretch in the right buttock. Hold for 30 seconds, then switch sides. Repeat 2–3 times each side.</p>
+
+      <p><strong>What you should feel:</strong> A stretch deep in the buttock of the crossed leg. Not pain shooting down the leg.</p>
+
+      <h2>2. Knee-to-chest stretch</h2>
+
+      <p>This gentle sciatica stretch helps decompress the lower lumbar spine and relieve some of the pressure that may be aggravating the sciatic nerve.</p>
+
+      <p><strong>How to do it:</strong> Lie on your back with both knees bent. Gently draw one knee toward your chest with both hands and hold for 20–30 seconds. Lower and repeat on the other side. You can also draw both knees to your chest at the same time for a more general lower back release.</p>
+
+      <p><strong>Tip:</strong> This is often a good first movement in the morning before getting out of bed.</p>
+
+      <h2>3. Supine spinal rotation</h2>
+
+      <p>A gentle rotational stretch for the lower back that can help ease stiffness and reduce nerve tension without loading the spine.</p>
+
+      <p><strong>How to do it:</strong> Lie on your back with your knees bent. Keeping your shoulders flat on the floor, gently let both knees fall to one side. Hold for 20–30 seconds, breathing slowly. Bring your knees back to centre and repeat on the other side.</p>
+
+      <p><strong>Go gently:</strong> If rotating toward one side significantly increases your pain, avoid that direction and stick to the more comfortable side for now.</p>
+
+      <h2>4. Cat-cow</h2>
+
+      <p>A classic movement that mobilises the entire spine, encourages fluid movement through the lumbar discs, and gently activates the deep core muscles. It is one of the best exercises for sciatica because it is low-load and can be modified easily.</p>
+
+      <p><strong>How to do it:</strong> Start on all fours with your hands under your shoulders and knees under your hips. Breathe in, let your belly drop toward the floor, and lift your head and tailbone (cow). Breathe out, tuck your chin and tailbone, and round your back toward the ceiling (cat). Move slowly and rhythmically for 10–15 repetitions.</p>
+
+      <h2>5. Bird-dog</h2>
+
+      <p>This exercise builds stability in the deep core and lower back without compression — making it one of the more useful exercises for sciatica relief when the pain has started to ease a little.</p>
+
+      <p><strong>How to do it:</strong> On all fours, brace your core gently, then slowly extend your right arm and left leg until both are roughly parallel with the floor. Hold for 3–5 seconds, then return and repeat on the other side. Aim for 8–10 repetitions on each side. Keep your back flat — avoid letting your hips rotate or your lower back arch.</p>
+
+      <h2>6. Sciatic nerve floss</h2>
+
+      <p>Nerve flossing (or neural mobilisation) is a technique that gently moves the sciatic nerve through its surrounding tissues, which can reduce neural tension and sensitivity. It should feel like a stretch — not sharp pain.</p>
+
+      <p><strong>How to do it:</strong> Sit upright on a chair. Straighten one knee so your leg is extended in front of you, then gently flex your foot (toes toward you). Hold for 3–5 seconds, then relax the knee back down. Repeat on the other side. Do 10–15 repetitions each side, moving slowly and smoothly. If you notice a significant increase in symptoms down the leg, ease off the range and try again more gently.</p>
+
+      <h2>Exercises and positions to avoid with sciatica</h2>
+
+      <p>Just as some movements help, others can aggravate sciatic nerve pain — at least in the acute phase. Common ones to be cautious with include:</p>
+
+      <ul>
+        <li>Sitting for prolonged periods without getting up</li>
+        <li>Heavy deadlifts or bent-over rows</li>
+        <li>Full sit-ups or double leg raises</li>
+        <li>Any movement that causes sharp pain to shoot into the leg</li>
+      </ul>
+
+      <p>This is not forever — once the nerve settles and you have addressed the underlying cause, most exercises can be reintroduced gradually. But in the acute stage, less is more.</p>
+
+      <h2>How long will these exercises take to work?</h2>
+
+      <p>There is no universal answer — it depends on how long you have had sciatica and what is causing it. Some people notice improvement within a few sessions of consistent gentle exercise. Others find that exercises alone are not enough, and that the underlying cause (a restricted joint, a disc bulge, tight piriformis) needs hands-on attention before the exercises become effective.</p>
+
+      <p>If you have been doing sciatica stretches and exercises for a couple of weeks without improvement, that is a good signal to get a proper assessment rather than just adding more exercises to your routine.</p>
+
+      <h2>When to see a chiropractor for sciatica</h2>
+
+      <p>A <a href="/conditions/sciatica">chiropractic assessment for sciatica</a> will identify what is actually irritating your sciatic nerve — and from there, we can recommend the specific movements and approaches most likely to help <em>your</em> situation. This might include spinal adjustments to restore joint mobility, targeted soft tissue work on the piriformis or surrounding hip muscles, personalised exercise guidance, and advice on managing your symptoms day-to-day.</p>
+
+      <p>If your sciatica is affecting your sleep, your work, or your ability to get around comfortably — do not just keep stretching and hoping for the best. Come and see us at <a href="/about">Banora Chiropractic</a> in Tweed Heads South. We will work out what is going on and help you get on top of it.</p>
+    `,
+    author: 'dr-paul-cater',
+    publishDate: '2026-04-24',
+    status: 'published' as const,
+    category: 'Back Pain',
+    tags: ['sciatica', 'sciatica exercises', 'sciatica stretches', 'sciatic nerve pain', 'lower back pain', 'piriformis stretch', 'nerve pain'],
+    heroImage: '/images/clinic-adjustment-wide.webp',
+    heroImageAlt: 'Chiropractor assessing a patient with lower back and sciatica pain',
+    readTime: 7,
+    relatedServices: ['chiropractic-adjustments', 'sports-chiropractic'],
+    relatedConditions: ['sciatica', 'back-pain', 'hip-pain'],
+    relatedPosts: ['understanding-back-pain', 'chiropractic-care-during-pregnancy'],
+  },
+  {
+    slug: 'sciatica-during-pregnancy',
+    title: 'Sciatica During Pregnancy: Why It Happens and What May Help',
+    metaTitle: 'Sciatica During Pregnancy: Causes & Relief | Banora Chiropractic',
+    metaDescription: 'Sciatica pain during pregnancy is common but not something you have to just put up with. Our Tweed Heads South chiropractors explain why it happens and what may help.',
+    excerpt: 'Shooting pain down your leg during pregnancy? Sciatica is one of the most common complaints in the second and third trimester. Here is what is going on — and what may help.',
+    content: `
+      <p>Growing a baby is hard work. And somewhere between the morning sickness and the sleepless nights, many pregnant women develop another unwelcome companion: sciatica. That deep, shooting pain that starts in the lower back or buttock and travels down one leg.</p>
+
+      <p>If this sounds familiar, you are not alone. Sciatica during pregnancy is very common — particularly from the second trimester onwards. The good news is that it is usually very manageable with the right approach, and you do not have to just push through it.</p>
+
+      <h2>Why does sciatica happen during pregnancy?</h2>
+
+      <p>A few things are happening at once that can irritate the sciatic nerve:</p>
+
+      <p><strong>Your centre of gravity shifts.</strong> As your belly grows, your posture changes significantly. Your lower back curves more, your pelvis tilts forward, and your hips take on a different load. This can place pressure on the lumbar spine and sacroiliac joint — both of which sit close to the sciatic nerve roots.</p>
+
+      <p><strong>Relaxin is doing its job — a little too well.</strong> During pregnancy, your body releases a hormone called relaxin that softens the ligaments around your pelvis to prepare for birth. This is necessary and helpful, but it also means your joints have less stability than usual. The sacroiliac joint in particular can become irritated and contribute to sciatica-like symptoms.</p>
+
+      <p><strong>The uterus grows into your sciatic nerve's neighbourhood.</strong> In some pregnancies — particularly where the baby is positioned a certain way — the expanding uterus can directly compress the sciatic nerve or the nerves feeding into it, causing that familiar shooting pain into the buttock and leg.</p>
+
+      <p><strong>Piriformis tightness.</strong> The piriformis muscle, which sits deep in the buttock right next to the sciatic nerve, often tightens during pregnancy as the body compensates for changing posture and weight distribution. When it goes into spasm, it can compress the nerve directly.</p>
+
+      <h2>What does sciatica feel like during pregnancy?</h2>
+
+      <p>Pregnancy sciatica typically presents as:</p>
+
+      <ul>
+        <li>A shooting, burning, or electric-shock pain that travels from the lower back or buttock into one leg</li>
+        <li>Numbness or tingling in the leg, thigh, or foot</li>
+        <li>Pain that worsens when sitting for long periods, rolling over in bed, or walking</li>
+        <li>Deep buttock pain on one side</li>
+        <li>Difficulty finding a comfortable sleeping position</li>
+      </ul>
+
+      <p>It is worth noting that not all leg pain during pregnancy is true sciatica. Round ligament pain, pelvic girdle pain (PGP), and sacroiliac joint dysfunction can all produce similar symptoms. Getting a proper assessment helps ensure you are managing the right thing — and the right way.</p>
+
+      <h2>What may help sciatica during pregnancy</h2>
+
+      <h3>Gentle stretches</h3>
+
+      <p>Some of the most effective sciatica stretches for pregnancy are positions that open the hip and release the piriformis without putting pressure on the belly:</p>
+
+      <p><strong>Seated figure-four stretch:</strong> Sit upright on a chair. Cross one ankle over the opposite knee. Gently lean forward from the hips (not the back) until you feel a stretch in the outer buttock. Hold for 30 seconds each side.</p>
+
+      <p><strong>Cat-cow on all fours:</strong> A gentle spinal mobilisation that relieves lower back compression. Breathe in, let your belly drop and lift your head (cow). Breathe out, tuck your chin and round your back (cat). Repeat slowly 10–15 times.</p>
+
+      <p><strong>Child's pose (modified):</strong> Kneel on the floor with your knees wide apart to accommodate your belly. Sit your hips back toward your heels and stretch your arms forward along the floor. Hold for 30–60 seconds.</p>
+
+      <p>Always move slowly and stop anything that increases leg symptoms.</p>
+
+      <h3>Movement and position changes</h3>
+
+      <p>Prolonged sitting is one of the most common aggravators of pregnancy sciatica. Getting up and moving every 30–45 minutes — even just a short walk — can make a significant difference. When sitting, a small pillow behind the lower back helps maintain the lumbar curve. When sleeping, lying on your side with a pillow between your knees takes pressure off the pelvis and lower back.</p>
+
+      <h3>Warm (not hot) heat</h3>
+
+      <p>A warm heat pack applied to the lower back or buttock — not hot, and kept away from the abdomen — may help ease muscle tension contributing to sciatica pain. Avoid ice packs directly over the belly.</p>
+
+      <h3>Chiropractic care during pregnancy</h3>
+
+      <p>Chiropractic care is a common approach to managing <a href="/conditions/sciatica">sciatica</a> and <a href="/conditions/hip-pain">hip pain during pregnancy</a>. At Banora Chiropractic, we use gentle, pregnancy-safe techniques that do not require you to lie on your stomach. Treatment is adapted to each trimester and each individual.</p>
+
+      <p>Care may include gentle sacroiliac and pelvic adjustments to restore joint alignment, soft tissue work on tight hip and piriformis muscles, guidance on positions and movements to avoid during flare-ups, and specific exercises tailored to pregnancy.</p>
+
+      <p>Both Dr Paul and Dr James have experience caring for pregnant patients across all trimesters. We see many mums-to-be from Tweed Heads South, Banora Point, Kingscliff, and across the Tweed–Gold Coast area who come in specifically for pregnancy-related back, hip, and sciatic pain.</p>
+
+      <h2>When to seek help sooner</h2>
+
+      <p>Most pregnancy sciatica is manageable and resolves after birth. But do seek care promptly if you experience:</p>
+
+      <ul>
+        <li>Significant weakness in one leg</li>
+        <li>Any loss of bladder or bowel control</li>
+        <li>Pain that is rapidly worsening rather than fluctuating</li>
+        <li>Sciatica on both sides simultaneously</li>
+      </ul>
+
+      <p>These are less common but warrant prompt assessment by your midwife, obstetrician, or GP as well as your chiropractor.</p>
+
+      <h2>Will sciatica go away after birth?</h2>
+
+      <p>For most women, yes — pregnancy sciatica significantly improves or resolves after birth as posture normalises and relaxin levels drop. However, if the underlying cause (a disc issue, for example) is not just pregnancy-related, it may persist. Getting it properly assessed and managed during pregnancy gives you the best chance of a smooth recovery postpartum.</p>
+
+      <p>If you are pregnant and struggling with sciatica or hip pain, we would love to help. <a href="/contact">Get in touch</a> or book online — we will take good care of you.</p>
+    `,
+    author: 'dr-paul-cater',
+    publishDate: '2026-04-24',
+    status: 'published' as const,
+    category: 'Pregnancy',
+    tags: ['sciatica', 'pregnancy', 'sciatica during pregnancy', 'pregnant and sciatica', 'hip pain pregnancy', 'pregnancy back pain', 'piriformis', 'pelvic pain'],
+    heroImage: '/images/clinic-adjustment-wide.webp',
+    heroImageAlt: 'Pregnant woman receiving gentle chiropractic care for sciatica and back pain',
+    readTime: 6,
+    relatedServices: ['chiropractic-adjustments', 'pregnancy-chiropractic'],
+    relatedConditions: ['sciatica', 'back-pain', 'hip-pain'],
+    relatedPosts: ['sciatica-exercises-and-stretches', 'chiropractic-care-during-pregnancy'],
+  },
+  {
+    slug: 'cervicogenic-headache-causes-and-treatment',
+    title: 'Cervicogenic Headache: What It Is, Why It Happens, and How Chiropractic May Help',
+    metaTitle: 'Cervicogenic Headache: Causes & Chiropractic Treatment | Banora Chiropractic',
+    metaDescription: 'Cervicogenic headaches start in the neck — not the head. Our Tweed Heads South chiropractors explain the causes, symptoms, and how chiropractic headache treatment may help.',
+    excerpt: 'If your headaches always seem to start at the base of your skull, your neck may be the real culprit. Here is what cervicogenic headache is and what may help.',
+    content: `
+      <p>Not all headaches are created equal. Some start in the blood vessels. Some are triggered by hormones or food. But a significant number — far more than most people realise — actually originate in the neck. These are called cervicogenic headaches, and they are one of the most common types we see at Banora Chiropractic.</p>
+
+      <p>If you have ever noticed that your headaches always seem to start at the back of your head, get worse when you turn your neck, or come on after a long day at a desk — there is a good chance your neck is involved.</p>
+
+      <h2>What is a cervicogenic headache?</h2>
+
+      <p>The word "cervicogenic" simply means "originating from the cervical spine" — the neck. A cervicogenic headache is a headache that is caused by a problem in the upper neck: stiff or restricted joints, tight muscles, or irritated nerves that refer pain up into the skull.</p>
+
+      <p>The pain usually starts at the base of the skull (the occipital region) and can spread forward to the forehead, temples, or behind one eye. It is often felt on one side of the head. Unlike tension headaches, which tend to feel like a band of pressure around the head, cervicogenic headache pain tends to feel like it is travelling — starting at the back and moving forward.</p>
+
+      <h2>What causes cervicogenic headaches?</h2>
+
+      <p>The upper three cervical vertebrae (C1, C2, and C3) share nerve pathways with the nerves that supply parts of the head and face. When these joints become restricted or irritated, they can refer pain upward into the skull — producing what feels like a headache, but is actually coming from the neck.</p>
+
+      <p>Common contributors include:</p>
+
+      <ul>
+        <li><strong>Joint restriction in the upper cervical spine</strong> — stiff or poorly moving joints at C1, C2, or C3 are a primary driver of cervicogenic headache</li>
+        <li><strong>Forward head posture</strong> — for every centimetre your head sits forward of your shoulders, the effective load on your neck roughly doubles. This compresses the upper cervical joints and tightens the suboccipital muscles</li>
+        <li><strong>Suboccipital muscle tension</strong> — the small muscles at the base of the skull are often chronically tight in people with desk jobs or heavy screen use</li>
+        <li><strong>Old whiplash or neck injury</strong> — prior trauma to the neck can leave residual joint restriction that contributes to ongoing headaches</li>
+        <li><strong>Sustained postures</strong> — driving for long periods, working at a poorly set up workstation, or sleeping in an awkward position</li>
+      </ul>
+
+      <h2>How do I know if my headache is cervicogenic?</h2>
+
+      <p>There is no single test that definitively diagnoses cervicogenic headache, but some features that suggest a cervical origin include:</p>
+
+      <ul>
+        <li>Pain that starts at the base of the skull and spreads toward the forehead or eye</li>
+        <li>Headache triggered or worsened by certain neck positions or movements</li>
+        <li>Reduced neck range of motion on the side of the headache</li>
+        <li>Tenderness at the base of the skull or upper neck when pressed</li>
+        <li>Headache that follows a predictable pattern linked to posture or activity</li>
+        <li>Pain that is usually one-sided and does not switch sides</li>
+      </ul>
+
+      <p>Cervicogenic headaches can be confused with tension headaches, migraines, and occipital neuralgia. A thorough assessment by a chiropractor or other qualified practitioner can help clarify what you are dealing with.</p>
+
+      <h2>How chiropractic care may help cervicogenic headache</h2>
+
+      <p>Chiropractic care is one of the most well-researched approaches to cervicogenic headache treatment. Because the headache originates in the neck, addressing the dysfunction in the neck is a logical approach — and research supports this.</p>
+
+      <p>At Banora Chiropractic, assessment and treatment for cervicogenic headache typically includes:</p>
+
+      <ul>
+        <li><strong>Cervical and upper thoracic adjustments</strong> — gentle, targeted mobilisation of restricted joints in the upper neck to restore normal movement and reduce referred pain</li>
+        <li><strong>Suboccipital soft tissue work</strong> — manual release of the tight muscles at the base of the skull that often contribute to headache symptoms</li>
+        <li><strong>Postural assessment and advice</strong> — identifying the habits and positions that are loading your upper neck, and addressing them</li>
+        <li><strong>Specific neck exercises</strong> — strengthening the deep cervical flexors and improving neck mobility to support lasting improvement</li>
+      </ul>
+
+      <p>Many patients notice a reduction in headache frequency and intensity with consistent chiropractic care. Results vary depending on how long the issue has been present and what is driving it, but cervicogenic headache is one of the conditions that tends to respond well.</p>
+
+      <h2>What about tension headaches and migraines?</h2>
+
+      <p>Tension-type headaches often have a cervical component — tight neck muscles and restricted upper neck joints can contribute even when the headache is not purely cervicogenic. Similarly, many migraines are preceded by or associated with neck stiffness, suggesting cervical involvement.</p>
+
+      <p>If you have been managing <a href="/conditions/headaches-migraines">headaches or migraines</a> with medication alone and finding it only partially helpful, it may be worth exploring whether the neck is a contributing factor. A chiropractic assessment can help answer that question.</p>
+
+      <h2>Self-care between appointments</h2>
+
+      <p>In addition to hands-on care, some things that may help manage cervicogenic headaches day-to-day:</p>
+
+      <ul>
+        <li><strong>Chin tucks:</strong> Sitting upright, gently draw your chin straight back (not down). Hold for 5 seconds, relax, repeat 10 times. This engages the deep cervical flexors and counteracts forward head posture.</li>
+        <li><strong>Upper trap stretch:</strong> Drop one ear toward your shoulder and gently apply light pressure with the same-side hand. Hold 30 seconds, repeat other side. Helps release lateral neck tension.</li>
+        <li><strong>Screen height:</strong> The top of your monitor should be at eye level. Looking down — even slightly — adds significant load to the upper cervical spine over a full day.</li>
+        <li><strong>Regular movement breaks:</strong> Every 45–60 minutes, get up, move your neck gently through range, and reset your posture.</li>
+      </ul>
+
+      <p>If you are dealing with recurring headaches and have not had your neck properly assessed, we would encourage you to come in. We can usually tell you fairly quickly whether the neck is involved — and if it is, that is actually good news, because it is something we can address. <a href="/contact">Book an appointment</a> at Banora Chiropractic in Tweed Heads South.</p>
+    `,
+    author: 'dr-james-shipway',
+    publishDate: '2026-04-24',
+    status: 'published' as const,
+    category: 'Neck Pain',
+    tags: ['cervicogenic headache', 'headache treatment', 'chiropractic headache treatment', 'tension headache', 'neck pain', 'headaches', 'forward head posture'],
+    heroImage: '/images/hero-back-neck.webp',
+    heroImageAlt: 'Person with neck pain and headache holding the base of their skull',
+    readTime: 7,
+    relatedServices: ['chiropractic-adjustments', 'posture-correction'],
+    relatedConditions: ['headaches-migraines', 'neck-pain'],
+    relatedPosts: ['headache-or-migraine-how-to-tell-the-difference', 'why-your-posture-matters-more-than-you-think'],
+  },
+  {
+    slug: 'lower-back-pain-exercises',
+    title: 'Lower Back Pain Exercises: 7 Movements That May Help You Feel Better',
+    metaTitle: 'Lower Back Pain Exercises That Actually Help | Banora Chiropractic',
+    metaDescription: 'Lower back pain exercises recommended by our Tweed Heads South chiropractors. Safe, practical movements for lower back pain relief — with guidance on what to avoid.',
+    excerpt: 'Lower back pain responds well to the right movement — but the wrong exercises can make things worse. Here are seven that are commonly recommended and why they work.',
+    content: `
+      <p>When your lower back is playing up, the temptation is to rest. And while a day or two of reduced activity can help in the very acute phase, staying still for too long usually makes lower back pain worse, not better. Movement — the right movement — is one of the best things you can do for your back.</p>
+
+      <p>The challenge is knowing which exercises are actually helpful, and which might aggravate what is already uncomfortable. This list covers seven commonly recommended lower back pain exercises that most people find beneficial — along with some guidance on what to avoid and when to get a proper assessment.</p>
+
+      <h2>Before you start</h2>
+
+      <p>Lower back pain has many causes — joint restriction, disc irritation, muscle strain, lumbar facet issues — and the best exercises depend on what is actually going on in your spine. These movements are general and appropriate for most types of uncomplicated lower back pain. If your pain is severe, radiating into your legs, or accompanied by numbness, weakness, or bladder changes, see a healthcare professional before beginning any exercise program.</p>
+
+      <h2>1. Knee-to-chest stretch</h2>
+
+      <p>A gentle decompression exercise that reduces lumbar load and eases stiffness. Great first thing in the morning before getting out of bed.</p>
+
+      <p><strong>How:</strong> Lie on your back with both knees bent. Draw one knee toward your chest with both hands and hold 20–30 seconds. Repeat on the other side, then draw both knees to your chest simultaneously. Do 2–3 repetitions each side.</p>
+
+      <h2>2. Pelvic tilts</h2>
+
+      <p>A subtle but effective movement that activates the deep core muscles and gently mobilises the lumbar spine without loading it. A foundational lower back pain exercise.</p>
+
+      <p><strong>How:</strong> Lie on your back with knees bent and feet flat on the floor. Gently flatten your lower back against the floor by tightening your abdominals and tilting your pelvis — think of drawing your belly button toward your spine. Hold 5 seconds, release. Repeat 10–15 times.</p>
+
+      <h2>3. Bridges</h2>
+
+      <p>Bridges activate the glutes and hamstrings — two muscle groups that are often weak or switched off in people with persistent lower back pain. Strengthening them reduces the load on the lumbar spine.</p>
+
+      <p><strong>How:</strong> Lie on your back with knees bent and feet hip-width apart. Press through your heels and lift your hips until your body forms a straight line from shoulders to knees. Hold 3–5 seconds, lower slowly. Repeat 10–15 times. Avoid letting your lower back arch excessively at the top.</p>
+
+      <h2>4. Cat-cow</h2>
+
+      <p>A rhythmic spinal mobilisation that moves the lumbar spine through flexion and extension, encourages disc hydration, and helps ease morning stiffness. One of the most universally useful exercises for lower back pain.</p>
+
+      <p><strong>How:</strong> Start on all fours, hands under shoulders, knees under hips. Breathe in, let your belly drop and lift your tailbone (cow). Breathe out, round your back toward the ceiling and tuck your pelvis (cat). Move slowly for 10–15 repetitions.</p>
+
+      <h2>5. Bird-dog</h2>
+
+      <p>This challenges core stability without loading the lumbar spine — making it ideal for lower back pain rehabilitation. It trains the back extensors and core to work together.</p>
+
+      <p><strong>How:</strong> On all fours, brace your core gently. Slowly extend your right arm and left leg until both are roughly parallel with the floor. Hold 3–5 seconds, return slowly. Alternate sides for 8–10 repetitions each. Keep your hips level — do not rotate.</p>
+
+      <h2>6. Child's pose</h2>
+
+      <p>A passive stretch for the lower back, hips, and thoracic spine that most people find immediately relieving.</p>
+
+      <p><strong>How:</strong> Kneel on the floor and sit your hips back toward your heels. Extend your arms forward along the floor and let your forehead rest down. Hold 30–60 seconds, breathing slowly and allowing the lower back to release. If your hips do not reach your heels, place a folded blanket between them.</p>
+
+      <h2>7. Walking</h2>
+
+      <p>Simple but genuinely one of the most effective lower back pain exercises. Walking loads the spine gently and rhythmically, activates the core and glutes, and promotes the natural movement your spine is designed for. It is also one of the most sustainable — you do not need any equipment or a gym membership.</p>
+
+      <p>Aim for 20–30 minutes of comfortable walking daily. If walking aggravates your pain, start shorter and build up gradually.</p>
+
+      <h2>Exercises to avoid in the acute phase</h2>
+
+      <p>When your lower back is flared up, some movements tend to make things worse:</p>
+
+      <ul>
+        <li>Heavy deadlifts or squats with load</li>
+        <li>Full sit-ups or crunches (these load the lumbar flexors aggressively)</li>
+        <li>Double leg raises from lying</li>
+        <li>Any movement that sends pain shooting into the leg</li>
+      </ul>
+
+      <p>This is not permanent avoidance — once the pain settles and the underlying cause is addressed, most exercises can be reintroduced. But pushing through aggravating movements in the acute phase tends to prolong recovery.</p>
+
+      <h2>How long before exercises help lower back pain?</h2>
+
+      <p>Most people notice some improvement in mobility and pain within one to two weeks of consistent, appropriate exercise. If you have been doing these movements daily for two weeks without improvement, that is a signal to get a proper assessment rather than simply adding more exercises.</p>
+
+      <p>Sometimes what feels like a straightforward muscle strain has a joint or disc component that needs hands-on care before exercises become effective. A <a href="/conditions/back-pain">chiropractic assessment for lower back pain</a> can identify what is actually going on — and from there we can personalise your exercise plan to match your specific situation.</p>
+
+      <p>We see people with lower back pain every day at Banora Chiropractic in Tweed Heads South. If your back has been bothering you for more than a week or two, <a href="/contact">come in and see us</a>. We will give you a clear picture of what is going on and a practical plan to address it.</p>
+    `,
+    author: 'dr-james-shipway',
+    publishDate: '2026-04-24',
+    status: 'published' as const,
+    category: 'Back Pain',
+    tags: ['lower back pain', 'back pain exercises', 'lower back pain exercises', 'back pain relief', 'lumbar pain', 'back stretches', 'core exercises'],
+    heroImage: '/images/pexels-karola-g-4506108.webp',
+    heroImageAlt: 'Person doing lower back pain exercises on a yoga mat',
+    readTime: 7,
+    relatedServices: ['chiropractic-adjustments', 'posture-correction'],
+    relatedConditions: ['back-pain', 'sciatica', 'hip-pain'],
+    relatedPosts: ['desk-workers-guide-to-a-healthier-back', 'sciatica-exercises-and-stretches'],
+  },
+  {
+    slug: 'forward-head-posture-causes-and-exercises',
+    title: 'Forward Head Posture: What It Is, Why It Matters, and How to Fix It',
+    metaTitle: 'Forward Head Posture: Causes, Effects & Exercises | Banora Chiropractic',
+    metaDescription: 'Forward head posture causes neck pain, headaches, and upper back tension. Our Tweed Heads South chiropractors explain how to correct bad posture with exercises and care.',
+    excerpt: 'Every centimetre your head sits forward of your shoulders adds significant load to your neck. Here is what forward head posture is doing to your body — and what you can do about it.',
+    content: `
+      <p>Take a moment to notice where your head is right now. Is it sitting directly over your shoulders — or is it jutting forward, chin out, as you read this screen?</p>
+
+      <p>If it is the latter, you are in good company. Forward head posture is one of the most common postural problems we see at Banora Chiropractic, and it is becoming increasingly prevalent thanks to our screen-dominated lives. It is also responsible for far more discomfort than most people realise.</p>
+
+      <h2>What is forward head posture?</h2>
+
+      <p>Forward head posture (sometimes called "text neck" or "tech neck") is a postural pattern where the head sits forward of the body's centre of gravity rather than directly above the shoulders. In a neutral, well-aligned posture, your ear should line up over your shoulder when viewed from the side. In forward head posture, the ear is noticeably in front of the shoulder.</p>
+
+      <p>This might not sound like a big deal, but the physics are significant. The average adult head weighs around 4.5 to 5 kilograms. In a neutral position, the muscles of the neck can support this comfortably. But for every 2.5 centimetres that the head moves forward, the effective load on the neck roughly doubles. At a 7.5 centimetre forward position — not uncommon — your neck muscles are effectively managing 20–25 kilograms of force.</p>
+
+      <p>All day. Every day.</p>
+
+      <h2>What causes forward head posture?</h2>
+
+      <p>The causes are mostly modern and mostly habitual:</p>
+
+      <ul>
+        <li><strong>Prolonged screen use</strong> — leaning toward monitors, looking down at phones and laptops, and the slow drift toward screens that most of us do without realising</li>
+        <li><strong>Poorly set up workstations</strong> — a screen that is too low, a chair that is too high or too low, or working from a laptop without a separate monitor</li>
+        <li><strong>Driving</strong> — leaning forward to see better, or simply the habitual position many people adopt at the wheel</li>
+        <li><strong>Carrying heavy bags</strong> — particularly school bags or backpacks worn on one shoulder, which shifts the body's balance and affects head position</li>
+        <li><strong>Weak deep cervical flexors</strong> — the small muscles at the front of the neck that hold the head in its correct position often become weak over time, allowing the head to drift forward</li>
+      </ul>
+
+      <h2>What does forward head posture do to your body?</h2>
+
+      <p>Beyond the cosmetic appearance of a protruding chin and rounded upper back, forward head posture can contribute to a range of symptoms:</p>
+
+      <ul>
+        <li><strong>Neck pain and stiffness</strong> — chronic overloading of the posterior neck muscles and cervical joints</li>
+        <li><strong>Headaches</strong> — particularly cervicogenic headaches that originate from the upper cervical spine and radiate toward the skull</li>
+        <li><strong>Upper back and shoulder tension</strong> — the upper trapezius and levator scapulae work overtime to support the forward-weighted head</li>
+        <li><strong>Jaw pain</strong> — changes in head and neck position can affect the temporomandibular joint (jaw)</li>
+        <li><strong>Reduced lung capacity</strong> — in significant cases, forward head posture and the associated rounded upper back can restrict chest expansion</li>
+      </ul>
+
+      <h2>Can forward head posture be corrected?</h2>
+
+      <p>Yes — and the earlier it is addressed, the easier it is. Forward head posture is a habit and an adaptation. Like most postural habits, it can be changed with consistent, targeted effort. For longer-standing postural changes, hands-on care combined with exercise tends to produce the best results.</p>
+
+      <h2>Exercises to help correct forward head posture</h2>
+
+      <h3>1. Chin tucks</h3>
+
+      <p>The single most important exercise for forward head posture. It directly activates the deep cervical flexors — the muscles that hold your head in its correct position.</p>
+
+      <p><strong>How:</strong> Sitting upright, gently draw your chin straight back — as if making a double chin. Do not tilt your head up or down. Hold 5 seconds, release. Repeat 10–15 times. Do this several times throughout the day, especially after prolonged screen use. You can also do this lying on your back for a more gravity-assisted version.</p>
+
+      <h3>2. Upper trapezius stretch</h3>
+
+      <p><strong>How:</strong> Sitting tall, drop your right ear toward your right shoulder. Place your right hand lightly on top of your head for a gentle overpressure. Hold 30 seconds. Repeat on the other side. This releases the chronically tight lateral neck muscles that accompany forward head posture.</p>
+
+      <h3>3. Doorway chest stretch</h3>
+
+      <p>Forward head posture is usually accompanied by a tight chest and rounded shoulders. Opening the chest helps bring the shoulders back and supports better head position.</p>
+
+      <p><strong>How:</strong> Stand in a doorway with your arms at 90 degrees (elbows bent, forearms on the doorframe). Step one foot forward and gently lean through the doorway until you feel a stretch across the chest. Hold 30 seconds, repeat 2–3 times.</p>
+
+      <h3>4. Wall angels</h3>
+
+      <p>This retrains proper shoulder blade movement and upper back mobility — both of which are important for sustainable posture correction.</p>
+
+      <p><strong>How:</strong> Stand with your back flat against a wall, feet a few centimetres from the base. Press your lower back, upper back, and head gently into the wall. Raise your arms to form a "W" shape, then slowly slide them up into a "Y" shape — keeping your arms and elbows in contact with the wall throughout. Repeat 10–12 times.</p>
+
+      <h2>What about chiropractic care for posture correction?</h2>
+
+      <p>Exercise is essential, but forward head posture often involves joint restrictions in the cervical and thoracic spine that reduce your ability to achieve and maintain neutral posture — no matter how many exercises you do. Addressing these restrictions directly through <a href="/services/posture-correction">chiropractic posture correction</a> allows the exercises to work more effectively.</p>
+
+      <p>At Banora Chiropractic, we assess your entire spinal alignment and identify the specific areas contributing to your postural pattern. From there, we combine targeted adjustments with a personalised exercise program — and practical advice on workstation setup, sleeping position, and daily habits that either help or hinder your progress.</p>
+
+      <p>If you have been dealing with <a href="/conditions/neck-pain">neck pain</a>, recurring <a href="/conditions/headaches-migraines">headaches</a>, or upper back tension that you suspect is posture-related, a chiropractic assessment is a good place to start. We see patients for posture correction regularly at our Tweed Heads South clinic. <a href="/contact">Book in</a> and let us take a proper look.</p>
+    `,
+    author: 'dr-james-shipway',
+    publishDate: '2026-04-24',
+    status: 'published' as const,
+    category: 'Posture',
+    tags: ['forward head posture', 'posture correction', 'tech neck', 'text neck', 'neck pain', 'posture exercises', 'how to fix posture', 'bad posture'],
+    heroImage: '/images/pexels-karola-g-4506108.webp',
+    heroImageAlt: 'Person with forward head posture looking at a phone screen',
+    readTime: 8,
+    relatedServices: ['posture-correction', 'chiropractic-adjustments'],
+    relatedConditions: ['neck-pain', 'headaches-migraines', 'shoulder-pain'],
+    relatedPosts: ['why-your-posture-matters-more-than-you-think', 'desk-workers-guide-to-a-healthier-back'],
+  },
 ];
 
 // Helper functions
