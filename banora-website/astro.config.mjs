@@ -20,7 +20,7 @@ export default defineConfig({
         !page.includes('/thank-you'),
       serialize(item) {
         // Homepage
-        if (item.url === 'https://banorachiropractic.com.au/') {
+        if (item.url === 'https://www.banorachiropractic.com.au/') {
           return { ...item, priority: 1.0, changefreq: 'weekly' };
         }
         // Services, conditions, areas — high-value SEO pages
