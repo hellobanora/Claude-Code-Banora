@@ -29,6 +29,27 @@ const schema = {
     </div>
   </section>
 
+  <!-- New Patient Deal Banner — only shown when ?deal=new-patient is in the URL -->
+  <div id="deal-banner" class="hidden" style="background:linear-gradient(135deg,#1B3A5C 0%,#2C5F8A 100%);border-bottom:4px solid #FFD232">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-8">
+      <div>
+        <div class="inline-flex items-center gap-2 mb-3 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest" style="background:#FFD232;color:#1B3A5C">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 2a2 2 0 00-2 2v14l3.5-2 3.5 2 3.5-2 3.5 2V4a2 2 0 00-2-2H5zm4.707 3.707a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L8.414 10l1.293-1.293zm2.586 0l-1.293 1.293L12.293 10l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 00-1.414 0z" clip-rule="evenodd"/></svg>
+          Facebook Exclusive Offer
+        </div>
+        <h2 class="font-[family-name:var(--font-display)] text-white text-3xl md:text-4xl font-semibold leading-tight">
+          New Patient Initial Consultation
+        </h2>
+        <p class="text-white/70 text-sm mt-2 max-w-md">Full assessment, x-ray referral if needed, and your personalised care plan — at half price.</p>
+      </div>
+      <div class="text-center shrink-0 bg-white/10 rounded-2xl px-10 py-6 backdrop-blur-sm" style="border:2px solid rgba(255,210,50,0.4)">
+        <p class="text-white/50 text-xl font-medium" style="text-decoration:line-through;text-decoration-color:#ef4444;text-decoration-thickness:2px">$100</p>
+        <p class="font-bold leading-none mt-1" style="font-size:4rem;color:#FFD232">$50</p>
+        <p class="text-white/60 text-xs mt-2 font-medium uppercase tracking-wide">First visit only · Book below</p>
+      </div>
+    </div>
+  </div>
+
   <section class="py-16 md:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
@@ -173,6 +194,11 @@ const schema = {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'form_submit', form_name: 'contact' });
     });
+
+    // Show deal banner when ?deal=new-patient is in the URL (e.g. from Facebook ads)
+    if (new URLSearchParams(window.location.search).get('deal') === 'new-patient') {
+      document.getElementById('deal-banner')?.classList.remove('hidden');
+    }
 
     // Auto-open booking modal when ?book=1 is in the URL (e.g. from ads)
     if (new URLSearchParams(window.location.search).get('book') === '1') {

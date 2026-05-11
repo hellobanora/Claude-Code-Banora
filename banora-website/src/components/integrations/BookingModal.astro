@@ -240,6 +240,9 @@ const _bmCfg = (document.getElementById('bm-config') as HTMLElement).dataset;
 const phone = _bmCfg.phone as string;
 const phoneFull = _bmCfg.phoneFull as string;
 
+// Deal detection — set once on load, used throughout
+const _bmDealActive = new URLSearchParams(window.location.search).get('deal') === 'new-patient';
+
 // Featherweight pre-init click handler — queues open until modal is ready
 let _bmOpen: (() => void) | null = null;
 document.addEventListener('click', (e) => {
@@ -391,6 +394,14 @@ function showError(msg) {
 // ── Patient type context badge (shown on all steps after step 1) ──
 function buildContextBadge(isNew) {
   if (isNew === null || isNew === undefined) return '';
+  if (isNew && _bmDealActive) {
+    return `<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg mb-5 text-xs font-medium" style="background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.25);color:#1B3A5C">
+      <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#dc2626"></span>
+      New patient — Initial consult
+      <span style="text-decoration:line-through;color:#9ca3af">$100</span>
+      <span style="color:#dc2626;font-weight:800">$50</span>
+    </div>`;
+  }
   const label = isNew
     ? 'New patient — Initial consult ($100)'
     : 'Existing patient — Follow-up ($72)';
@@ -432,7 +443,14 @@ function showPatientType() {
             <div class="font-semibold text-base" style="color:#1B3A5C">New Patient</div>
             <div class="text-sm text-gray-400 mt-1">First visit to our clinic</div>
           </div>
-          <div class="text-xs px-4 py-1.5 rounded-full font-medium" style="background:rgba(212,168,83,0.12);color:#B88E3A">Initial consult — $100</div>
+          ${_bmDealActive
+            ? `<div class="px-4 py-2 rounded-full font-semibold text-sm flex items-center gap-2" style="background:rgba(239,68,68,0.08);border:1.5px solid rgba(239,68,68,0.25)">
+                <span style="text-decoration:line-through;color:#9ca3af;font-size:0.85rem">$100</span>
+                <span style="color:#dc2626;font-size:1.15rem;font-weight:800">$50</span>
+                <span style="color:#dc2626;font-size:0.7rem;font-weight:600">SPECIAL OFFER</span>
+               </div>`
+            : `<div class="text-xs px-4 py-1.5 rounded-full font-medium" style="background:rgba(212,168,83,0.12);color:#B88E3A">Initial consult — $100</div>`
+          }
         </button>
         <button class="bm-option-card flex-col text-center py-9 gap-4" data-patient="existing">
           <div class="w-16 h-16 rounded-full mx-auto flex items-center justify-center" style="background:rgba(44,95,138,0.08)">
@@ -837,7 +855,11 @@ function showDetailsForm() {
           <svg class="w-3.5 h-3.5 flex-shrink-0" style="color:#D4A853" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
           ${bm.practitionerName}
         </span>
-        ${bm.servicePrice ? `<span style="color:#B88E3A;font-weight:600">$${bm.servicePrice}</span>` : ''}
+        ${bm.servicePrice
+          ? (bm.isNew && _bmDealActive
+              ? `<span class="flex items-center gap-1.5"><span style="text-decoration:line-through;color:#9ca3af">$${bm.servicePrice}</span><span style="color:#dc2626;font-weight:800;font-size:1rem">$50</span></span>`
+              : `<span style="color:#B88E3A;font-weight:600">$${bm.servicePrice}</span>`)
+          : ''}
       </div>
 
       <!-- Form -->
