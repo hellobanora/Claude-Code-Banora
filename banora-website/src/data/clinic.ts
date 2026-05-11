@@ -54,7 +54,7 @@ export const practitioners = [
     qualifications: 'B.Sc.Chiro. & M.Chiro',
     role: 'Chiropractor & Co-founder',
     initials: 'JS',
-    techniques: ['Diversified', 'Thompson', 'Soft Tissue Therapy', 'Arthrostim'],
+    techniques: ['Diversified', 'Thompson Drop-Piece', 'Sacro-Occipital Technique (SOT)', 'Soft Tissue Therapy', 'Arthrostim', 'Pregnancy', 'Sports Performance & Injury Prevention'],
     bio: 'Dr James Shipway brings extensive experience and a genuine passion for helping people move and feel better. With qualifications in both science and chiropractic, James takes a thorough, evidence-based approach to care. He works with patients managing both acute and chronic conditions — from a sudden injury to pain that has been building for years — and tailors his approach to where you are right now. James has a special interest in sciatica, headaches, and neck pain, alongside family chiropractic, sports injuries, and posture correction. Originally based in Sydney, James relocated to the Tweed Coast eight years ago and has loved every minute of it. Over lunch you will likely find him at the gym or down at the beach, and on weekends he enjoys spending time with his wife and four children.',
     shortBio: 'Experienced chiropractor using Diversified, Thompson, Soft Tissue Therapy, and Arthrostim techniques.',
   },
