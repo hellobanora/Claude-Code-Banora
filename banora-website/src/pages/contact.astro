@@ -173,5 +173,17 @@ const schema = {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'form_submit', form_name: 'contact' });
     });
+
+    // Auto-open booking modal when ?book=1 is in the URL (e.g. from ads)
+    if (new URLSearchParams(window.location.search).get('book') === '1') {
+      const tryOpen = () => {
+        if (typeof (window as any)._bmOpen === 'function') {
+          (window as any)._bmOpen();
+        } else {
+          setTimeout(tryOpen, 100);
+        }
+      };
+      tryOpen();
+    }
   </script>
 </BaseLayout>
