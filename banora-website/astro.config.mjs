@@ -17,7 +17,8 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !page.includes('/privacy-policy') &&
-        !page.includes('/thank-you'),
+        !page.includes('/thank-you') &&
+        !page.includes('/symptom-checker'),
       serialize(item) {
         // Homepage
         if (item.url === 'https://www.banorachiropractic.com.au/') {
