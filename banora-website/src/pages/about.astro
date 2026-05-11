@@ -65,10 +65,16 @@ const schema = {
               <h3 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy">{doc.name}</h3>
               <p class="text-mid-blue font-medium mt-1">{doc.qualifications} — {doc.role}</p>
               <p class="text-grey-text text-sm leading-relaxed mt-4">{doc.bio}</p>
-              <div class="flex flex-wrap gap-2 mt-5">
-                {doc.techniques.map((tech) => (
-                  <span class="text-xs bg-blue-pale/50 text-navy px-3 py-1.5 rounded-full font-medium">{tech}</span>
-                ))}
+              <div class="mt-6 pt-5 border-t border-grey-mid/15">
+                <p class="text-xs font-semibold uppercase tracking-widest text-mid-blue mb-3">Techniques & Specialities</p>
+                <div class="flex flex-wrap gap-2">
+                  {doc.techniques.map((tech) => (
+                    <span class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border border-mid-blue/20 bg-blue-ghost text-navy hover:border-mid-blue/50 hover:bg-blue-pale/60 transition-colors">
+                      <span class="w-1.5 h-1.5 rounded-full bg-mid-blue/60 flex-shrink-0"></span>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
               <a href={`/team/${doc.slug}`} class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-mid-blue hover:text-navy transition-colors">
                 Read full bio
