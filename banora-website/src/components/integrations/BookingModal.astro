@@ -313,6 +313,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal
 
 // Wire up the pre-init handler now that openModal is defined
 _bmOpen = openModal;
+window._bmOpen = openModal;
 
 // ── Sidebar steps ──
 function renderSidebar(activeKey) {
