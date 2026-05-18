@@ -41,8 +41,6 @@
     { "source": "/about-us/", "destination": "/about", "permanent": true },
     { "source": "/contact-us", "destination": "/contact", "permanent": true },
     { "source": "/contact-us/", "destination": "/contact", "permanent": true },
-    { "source": "/new-patients", "destination": "/patient-resources", "permanent": true },
-    { "source": "/new-patients/", "destination": "/patient-resources", "permanent": true },
     { "source": "/dr-james-shipway", "destination": "/about", "permanent": true },
     { "source": "/dr-james-shipway/", "destination": "/about", "permanent": true },
     { "source": "/dr-paul-cater", "destination": "/about", "permanent": true },
