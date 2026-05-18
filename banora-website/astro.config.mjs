@@ -6,7 +6,7 @@ import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   site: 'https://www.banorachiropractic.com.au',
-  trailingSlash: 'ignore',
+  trailingSlash: 'always',
   output: 'static',
   adapter: vercel(),
   compressHTML: true,
