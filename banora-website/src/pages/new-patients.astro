@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clinic } from '../data/clinic';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: 'New Patient Information | Banora Chiropractic',
+  url: `${clinic.website}/new-patients/`,
+  description: 'What to expect at your first chiropractic visit at Banora Chiropractic, Tweed Heads South. Fees, HICAPS, what to bring, and how to book.',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: clinic.name,
+    url: clinic.website,
+  },
+};
+---
+
+<BaseLayout
+  title="New Patients | What to Expect | Banora Chiropractic"
+  description="New patient at Banora Chiropractic? Find out what to expect at your first visit, what to bring, fees, HICAPS rebates, and how to book in Tweed Heads / Banora Point."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-deep via-navy to-navy-light opacity-95"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <nav class="text-sm text-light-blue-soft/60 mb-6">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-white">New Patients</span>
+      </nav>
+      <h1 class="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-semibold text-white mb-4">New Patient Information</h1>
+      <p class="text-light-blue-soft/90 text-lg max-w-2xl">Visiting a chiropractor for the first time? At Banora Chiropractic, we make the process simple. Here's what to expect at your first appointment, what to bring, and how we can help — whether you're dealing with back pain, headaches, sciatica, a sports injury, or just want to move and feel better.</p>
+    </div>
+  </section>
+
+  <!-- What to Expect -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Your first visit</span>
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-6">What to Expect at Your First Visit</h2>
+      <div class="prose prose-lg max-w-none text-grey-text leading-relaxed space-y-5">
+        <p>Your first appointment with us takes 30–45 minutes. We'll start with a thorough consultation to understand your health history, current symptoms, and what you're hoping to achieve. This is followed by a physical examination — including posture, range of motion, and orthopaedic and neurological tests where relevant. If we believe chiropractic care is suitable for you, we'll explain our findings and recommended approach before beginning any treatment.</p>
+        <p>Our chiropractors — Dr Paul Cater and Dr James Shipway — will take the time to answer your questions and make sure you feel comfortable with the plan before proceeding.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Do I Need a Referral -->
+  <section class="py-16 md:py-24 bg-light-grey">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Referrals</span>
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-6">Do I Need a Referral?</h2>
+      <p class="text-grey-text text-lg leading-relaxed">No referral is required to see a chiropractor in Australia. You can book a new patient appointment directly. However, if you have a referral from your GP (for example, under an EPC/CDM Medicare plan), workers compensation, CTP, or DVA cover, please bring the relevant paperwork along.</p>
+    </div>
+  </section>
+
+  <!-- What to Bring -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Come prepared</span>
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-6">What to Bring</h2>
+      <p class="text-grey-text text-lg leading-relaxed mb-8">To help us provide the best possible care during your first visit, please bring:</p>
+      <ul class="space-y-4">
+        {[
+          'Any previous imaging (X-rays, MRIs, CT scans) related to your concern',
+          'A list of current medications and supplements',
+          'GP referral paperwork (if you have an EPC/CDM care plan)',
+          'Workers compensation, CTP, or DVA claim details (if applicable)',
+          'Your private health insurance card',
+          'Comfortable, loose-fitting clothing — this makes the examination easier and more comfortable',
+        ].map((item) => (
+          <li class="flex gap-3 text-grey-text">
+            <svg class="w-5 h-5 text-mid-blue mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- X-rays -->
+  <section class="py-16 md:py-24 bg-light-grey">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Imaging</span>
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-6">Do We Do X-rays In-House?</h2>
+      <p class="text-grey-text text-lg leading-relaxed">We do not take X-rays at the clinic. If imaging is clinically indicated based on your examination, we'll refer you to a local radiology provider and review the results with you at your next visit.</p>
+    </div>
+  </section>
+
+  <!-- Fees -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Costs & rebates</span>
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-6">Fees and Private Health Rebates</h2>
+      <p class="text-grey-text text-lg leading-relaxed">We process private health fund rebates on the spot using HICAPS — you'll only pay the gap on the day. For current fees, please see our <a href="/fees/" class="text-mid-blue hover:text-navy underline transition-colors">fees page</a>. If you have any questions about coverage before booking, give us a call on <a href={`tel:${clinic.phoneFull}`} class="text-mid-blue hover:text-navy underline transition-colors">{clinic.phone}</a>.</p>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section class="py-16 md:py-24 bg-light-grey">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Ready to go?</span>
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-6">Booking Your First Appointment</h2>
+      <p class="text-grey-text text-lg leading-relaxed mb-8">When you're ready to book, you can:</p>
+      <ul class="space-y-4 mb-8">
+        <li class="flex gap-3 text-grey-text">
+          <svg class="w-5 h-5 text-mid-blue mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span>Book online — <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="text-mid-blue hover:text-navy underline transition-colors">available 24/7</a></span>
+        </li>
+        <li class="flex gap-3 text-grey-text">
+          <svg class="w-5 h-5 text-mid-blue mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <span>Call us on <a href={`tel:${clinic.phoneFull}`} class="text-mid-blue hover:text-navy underline transition-colors">{clinic.phone}</a></span>
+        </li>
+        <li class="flex gap-3 text-grey-text">
+          <svg class="w-5 h-5 text-mid-blue mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span>Email <a href={`mailto:${clinic.email}`} class="text-mid-blue hover:text-navy underline transition-colors">{clinic.email}</a></span>
+        </li>
+      </ul>
+      <p class="text-grey-text">We're located at {clinic.address.full} — easy parking on site.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-20 bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 right-10 w-72 h-72 bg-light-blue rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 text-center">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">Ready to book your first visit?</h2>
+      <p class="text-light-blue-soft/90 text-lg mb-8">We'd love to help. Book online or give us a call — same-week appointments are often available.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Book Online
+        </a>
+        <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors whitespace-nowrap">
+          Call {clinic.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
