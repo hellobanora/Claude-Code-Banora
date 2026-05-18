@@ -20,7 +20,7 @@ export const GET: APIRoute = async ({ request }) => {
     });
   }
 
-  const siteUrl = import.meta.env.SITE_URL || "https://banorachiropractic.com.au";
+  const siteUrl = import.meta.env.SITE_URL || "https://www.banorachiropractic.com.au";
 
   console.log(`[Health Check] Starting at ${new Date().toISOString()}`);
 

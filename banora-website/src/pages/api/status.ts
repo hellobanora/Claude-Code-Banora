@@ -7,7 +7,7 @@ import { runAllChecks } from "../../lib/health-checks";
 export const prerender = false;
 
 export const GET: APIRoute = async () => {
-  const siteUrl = import.meta.env.SITE_URL || "https://banorachiropractic.com.au";
+  const siteUrl = import.meta.env.SITE_URL || "https://www.banorachiropractic.com.au";
   const results = await runAllChecks(siteUrl);
   const allPassed = results.every((r) => r.status === "pass");
 
