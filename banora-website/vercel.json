@@ -47,6 +47,7 @@
     { "source": "/dr-paul-cater/", "destination": "/about", "permanent": true },
     { "source": "/home", "destination": "/", "permanent": true },
     { "source": "/home/", "destination": "/", "permanent": true },
-    { "source": "/new-patients", "destination": "/new-patients/", "permanent": true }
+    { "source": "/new-patients", "destination": "/new-patient-info/", "permanent": true },
+    { "source": "/new-patients/", "destination": "/new-patient-info/", "permanent": true }
   ]
 }
