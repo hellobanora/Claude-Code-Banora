@@ -30,24 +30,24 @@
   ],
   "redirects": [
     {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "banorachiropractic.com.au" }],
-      "destination": "https://www.banorachiropractic.com.au/$1",
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.banorachiropractic.com.au" }],
+      "destination": "https://banorachiropractic.com.au/:path*",
       "permanent": true
     },
     { "source": "/book", "destination": "https://www.iconpractice.com/ob/7138/banorachiropractic/245386/2", "permanent": false },
     { "source": "/call", "destination": "tel:+61755992322", "permanent": false },
-    { "source": "/about-us", "destination": "/about", "permanent": true },
-    { "source": "/about-us/", "destination": "/about", "permanent": true },
-    { "source": "/contact-us", "destination": "/contact", "permanent": true },
-    { "source": "/contact-us/", "destination": "/contact", "permanent": true },
-    { "source": "/dr-james-shipway", "destination": "/about", "permanent": true },
-    { "source": "/dr-james-shipway/", "destination": "/about", "permanent": true },
-    { "source": "/dr-paul-cater", "destination": "/about", "permanent": true },
-    { "source": "/dr-paul-cater/", "destination": "/about", "permanent": true },
+    { "source": "/about-us", "destination": "/about/", "permanent": true },
+    { "source": "/about-us/", "destination": "/about/", "permanent": true },
+    { "source": "/contact-us", "destination": "/contact/", "permanent": true },
+    { "source": "/contact-us/", "destination": "/contact/", "permanent": true },
+    { "source": "/new-patients", "destination": "/new-patient-info/", "permanent": true },
+    { "source": "/new-patients/", "destination": "/new-patient-info/", "permanent": true },
+    { "source": "/dr-james-shipway", "destination": "/team/dr-james-shipway/", "permanent": true },
+    { "source": "/dr-james-shipway/", "destination": "/team/dr-james-shipway/", "permanent": true },
+    { "source": "/dr-paul-cater", "destination": "/team/dr-paul-cater/", "permanent": true },
+    { "source": "/dr-paul-cater/", "destination": "/team/dr-paul-cater/", "permanent": true },
     { "source": "/home", "destination": "/", "permanent": true },
-    { "source": "/home/", "destination": "/", "permanent": true },
-    { "source": "/new-patients", "destination": "/new-patient-info", "permanent": true },
-    { "source": "/new-patients/", "destination": "/new-patient-info", "permanent": true }
+    { "source": "/home/", "destination": "/", "permanent": true }
   ]
 }

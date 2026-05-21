@@ -516,6 +516,233 @@ export const blogPosts: BlogPost[] = [
     relatedPosts: ['chiropractic-care-during-pregnancy', 'why-your-posture-matters-more-than-you-think'],
   },
   {
+    slug: 'sciatica-during-pregnancy',
+    title: 'Sciatica During Pregnancy: What It Is and How to Find Relief',
+    metaTitle: 'Sciatica During Pregnancy | Banora Chiropractic Tweed Heads South',
+    metaDescription: 'Experiencing shooting leg pain during pregnancy? You may have sciatica. Our Tweed Heads South chiropractors explain why it happens and how chiropractic care may help.',
+    excerpt: "Sciatica during pregnancy is more common than most people realise. That sharp, shooting pain down your leg has a cause — and there are safe ways to manage it.",
+    content: `
+      <p>If you're pregnant and experiencing a sharp, shooting pain that runs from your lower back down through your buttock and into your leg, you're not alone. Sciatica is one of the more common and uncomfortable complaints we hear from pregnant patients at Banora Chiropractic — and the good news is that there are safe, gentle options that may help.</p>
+
+      <h2>Why does sciatica happen during pregnancy?</h2>
+
+      <p>The sciatic nerve is the longest nerve in your body, running from your lower back down through your hips and legs. During pregnancy, a few things happen that can irritate it:</p>
+
+      <ul>
+        <li><strong>Postural changes.</strong> As your bump grows, your centre of gravity shifts forward. This changes how you stand and move, which can put extra pressure on your lower back and pelvis.</li>
+        <li><strong>Pelvic changes.</strong> Your body releases a hormone called relaxin during pregnancy, which loosens your ligaments to prepare for birth. This can change the mechanics of your pelvis and lower back, potentially irritating the sciatic nerve.</li>
+        <li><strong>Baby's position.</strong> In some cases, the baby's position can put direct pressure on the sciatic nerve — particularly in the later stages of pregnancy.</li>
+        <li><strong>Weight increase.</strong> The additional weight carried during pregnancy can increase load on the spine, hips, and pelvis.</li>
+      </ul>
+
+      <h2>What does pregnancy sciatica feel like?</h2>
+
+      <p>The symptoms can vary, but common experiences include:</p>
+
+      <ul>
+        <li>A sharp, shooting, or burning pain that travels from the lower back or buttock down into one leg</li>
+        <li>Numbness or tingling in the leg or foot</li>
+        <li>Pain that worsens when sitting, standing for long periods, or climbing stairs</li>
+        <li>Difficulty finding a comfortable position to sleep</li>
+        <li>Pain on one side only (though both sides can occasionally be affected)</li>
+      </ul>
+
+      <h2>Is it safe to see a chiropractor during pregnancy?</h2>
+
+      <p>Chiropractic care during pregnancy can be safe and well-tolerated when provided by a practitioner who is experienced in pregnancy care. At Banora Chiropractic, we adjust our techniques throughout your pregnancy — using positions that are comfortable for you and your bump, and avoiding any approaches that are not appropriate during pregnancy.</p>
+
+      <p>We are trained in <a href="/services/pregnancy-chiropractic/">pregnancy chiropractic</a> and see pregnant patients regularly. If you have any concerns or specific medical conditions, we are always happy to discuss these before your first visit, and we work alongside your midwife or obstetrician when needed.</p>
+
+      <h2>How may chiropractic care help with pregnancy sciatica?</h2>
+
+      <p>The aim of chiropractic care for pregnancy-related <a href="/conditions/sciatica/">sciatica</a> is to address any spinal or pelvic restrictions that may be contributing to the nerve irritation. This may include:</p>
+
+      <ul>
+        <li>Gentle pelvic and lumbar adjustments to improve alignment and reduce tension on the sciatic nerve</li>
+        <li>Soft tissue work to ease tight muscles in the lower back, hips, and glutes</li>
+        <li>Specific stretches and positioning advice to help manage your symptoms at home</li>
+        <li>Guidance on sleeping positions and supportive pillows</li>
+      </ul>
+
+      <h2>Self-care tips that may help</h2>
+
+      <p>Alongside any professional care, these strategies may offer some relief:</p>
+
+      <ul>
+        <li><strong>Warm compress.</strong> A warm (not hot) pack on the lower back or buttock can help ease muscle tension.</li>
+        <li><strong>Gentle movement.</strong> Light walking or swimming can help keep things moving without overloading the spine.</li>
+        <li><strong>Sleep positioning.</strong> Lying on your side with a pillow between your knees can reduce the pressure on your lower back and pelvis.</li>
+        <li><strong>Avoid prolonged sitting.</strong> Take regular breaks if you're at a desk, and avoid sitting in low, soft chairs that don't support your lower back.</li>
+      </ul>
+
+      <p>Pregnancy sciatica can be miserable, but you don't have to just push through it. If you're experiencing leg pain during pregnancy and you're in the Tweed Heads South, Banora Point, or Gold Coast area, we'd love to help. <a href="/services/pregnancy-chiropractic/">Learn more about our pregnancy chiropractic care</a> or give us a call to talk through your situation.</p>
+    `,
+    author: 'dr-paul-cater',
+    publishDate: '2026-05-12',
+    status: 'published' as const,
+    category: 'Pregnancy',
+    tags: ['sciatica', 'pregnancy', 'pregnancy chiropractic', 'sciatic nerve', 'lower back pain', 'pregnancy pain'],
+    heroImage: '/images/hero-pregnancy.webp',
+    heroImageAlt: 'Pregnant woman experiencing lower back discomfort',
+    readTime: 5,
+    relatedServices: ['pregnancy-chiropractic', 'chiropractic-adjustments'],
+    relatedConditions: ['sciatica', 'back-pain'],
+    relatedPosts: ['chiropractic-care-during-pregnancy', 'understanding-back-pain'],
+  },
+  {
+    slug: 'cervicogenic-headache-causes-and-treatment',
+    title: 'Cervicogenic Headache: Causes, Symptoms, and How Chiropractic Care May Help',
+    metaTitle: 'Cervicogenic Headache Causes & Treatment | Banora Chiropractic',
+    metaDescription: 'Cervicogenic headaches originate from the neck — and they respond well to chiropractic care. Our Tweed Heads South chiropractors explain what to look for and how we may help.',
+    excerpt: "If your headaches seem to start in your neck or the base of your skull, you may be dealing with a cervicogenic headache. Here's what that means — and what may help.",
+    content: `
+      <p>Not all headaches come from the head. A cervicogenic headache originates from the neck — specifically from the joints, muscles, or nerves in the cervical spine. It's one of the more common headache types we see at Banora Chiropractic, and it's also one that can respond well to the right hands-on care.</p>
+
+      <h2>What is a cervicogenic headache?</h2>
+
+      <p>The word "cervicogenic" simply means "coming from the cervical spine" (your neck). When there is dysfunction in the upper neck — stiff joints, tight muscles, or irritated nerves — pain can be referred up into the head. The brain interprets this referred pain as a headache, even though the original problem is in the neck.</p>
+
+      <p>This type of headache is often missed or mistaken for a tension headache or even a migraine, which means people can spend years managing the wrong thing.</p>
+
+      <h2>What does a cervicogenic headache feel like?</h2>
+
+      <p>There are some patterns that often point toward the cervical spine as the source:</p>
+
+      <ul>
+        <li>Pain that starts at the base of the skull or the back of the neck and radiates toward the front of the head or behind the eye</li>
+        <li>Headache on one side of the head (though it can be both)</li>
+        <li>Associated <a href="/conditions/neck-pain/">neck pain</a> or stiffness — you may notice limited range of motion when turning your head</li>
+        <li>Headache that is triggered or worsened by certain neck positions — for example, looking up for a long time or sleeping on your stomach</li>
+        <li>Pain that gets worse after prolonged sitting at a desk or looking at a screen</li>
+        <li>Tenderness in the muscles at the back of the neck and base of the skull</li>
+      </ul>
+
+      <h2>Common causes</h2>
+
+      <p>Cervicogenic headaches are often linked to:</p>
+
+      <ul>
+        <li><strong>Poor posture.</strong> Spending long hours with your head forward of your shoulders (a position sometimes called "tech neck") places significant load on the upper cervical joints and muscles.</li>
+        <li><strong>Joint restriction in the upper neck.</strong> Stiffness in the C1, C2, or C3 vertebrae can irritate the nerves that refer pain to the head.</li>
+        <li><strong>Muscle tension.</strong> Tight suboccipital muscles (the small muscles at the base of the skull) are a common contributor.</li>
+        <li><strong>Whiplash or old injuries.</strong> A previous neck injury, even a mild one, can leave residual stiffness that contributes to headaches years later.</li>
+        <li><strong>Repetitive postures.</strong> Occupations or activities that hold the neck in one position for extended periods.</li>
+      </ul>
+
+      <h2>How is it different from a tension headache or migraine?</h2>
+
+      <p>The distinction matters because the treatment approach is different. A few key differences:</p>
+
+      <ul>
+        <li>Cervicogenic headaches are consistently linked to neck movement or position. Tension headaches and migraines are less reliably triggered this way.</li>
+        <li>Pressing on the joints or muscles in the upper neck can reproduce the headache — this is a helpful diagnostic clue.</li>
+        <li>Cervicogenic headaches typically don't cause the nausea, vomiting, or light sensitivity that characterise a true migraine.</li>
+      </ul>
+
+      <p>That said, there can be overlap, and some people experience multiple headache types. A thorough assessment is the best way to understand what you're dealing with.</p>
+
+      <h2>How may chiropractic care help?</h2>
+
+      <p>Because cervicogenic headaches originate from a physical dysfunction in the neck, hands-on treatment directed at the cervical spine can make a meaningful difference for many people. At Banora Chiropractic, our approach may include:</p>
+
+      <ul>
+        <li><strong>Cervical adjustments.</strong> Gentle, targeted adjustments to the stiff or restricted joints in the upper neck to improve movement and reduce nerve irritation.</li>
+        <li><strong>Soft tissue work.</strong> Hands-on release of tight muscles around the neck, shoulders, and base of the skull.</li>
+        <li><strong>Postural assessment and advice.</strong> Identifying the postural habits that are loading your neck and working with you to change them.</li>
+        <li><strong>Exercise guidance.</strong> Specific stretches and strengthening exercises to support your neck and reduce recurrence.</li>
+      </ul>
+
+      <p>If you've been dealing with regular <a href="/conditions/headaches-migraines/">headaches</a> and your neck always seems to be involved, it's worth getting a proper assessment. We'll look at your neck, your posture, and your history to work out what's actually going on — and whether chiropractic care can help.</p>
+
+      <p>Book a consultation at <a href="/contact/">Banora Chiropractic</a> in Tweed Heads South, or call us on (07) 5599 2322.</p>
+    `,
+    author: 'dr-james-shipway',
+    publishDate: '2026-05-05',
+    status: 'published' as const,
+    category: 'Neck Pain',
+    tags: ['cervicogenic headache', 'neck headache', 'headaches', 'neck pain', 'chiropractic headache treatment', 'tech neck'],
+    heroImage: '/images/hero-back-neck.webp',
+    heroImageAlt: 'Person holding neck and head due to cervicogenic headache pain',
+    readTime: 6,
+    relatedServices: ['chiropractic-adjustments', 'posture-correction'],
+    relatedConditions: ['headaches-migraines', 'neck-pain'],
+    relatedPosts: ['headache-or-migraine-how-to-tell-the-difference', 'why-your-posture-matters-more-than-you-think'],
+  },
+  {
+    slug: 'forward-head-posture-causes-and-exercises',
+    title: 'Forward Head Posture: What It Is, Why It Matters, and Exercises That May Help',
+    metaTitle: 'Forward Head Posture: Causes & Exercises | Banora Chiropractic',
+    metaDescription: 'Forward head posture is increasingly common — and it can lead to neck pain, headaches, and upper back tension. Our Tweed Heads chiropractors explain what helps.',
+    excerpt: "If your head sits forward of your shoulders, you've got forward head posture. It's becoming very common — and it's putting more load on your neck than you'd think.",
+    content: `
+      <p>Look at yourself side-on in a mirror. Where is your head? If it's sitting in front of your shoulders rather than directly above them, you've got what's commonly called forward head posture — and you're far from alone.</p>
+
+      <p>Thanks to smartphones, laptops, and hours spent looking at screens, forward head posture is becoming increasingly prevalent. At Banora Chiropractic, it's one of the postural patterns we see most often in our patients — and it's one that can quietly create a lot of problems if left unaddressed.</p>
+
+      <h2>Why does forward head posture matter?</h2>
+
+      <p>Your head weighs around 5–6 kg when it's in a neutral position, balanced directly over your spine. For every inch it shifts forward, the effective load on your neck roughly doubles. By the time your head is 5 cm forward of neutral, your neck muscles are managing the equivalent of 20–25 kg of force — all day, every day.</p>
+
+      <p>Over time, this sustained load can contribute to:</p>
+
+      <ul>
+        <li><a href="/conditions/neck-pain/">Neck pain</a> and stiffness</li>
+        <li>Upper back and shoulder tension</li>
+        <li><a href="/conditions/headaches-migraines/">Headaches</a>, particularly at the base of the skull</li>
+        <li>Reduced range of motion in the neck</li>
+        <li>Rounded upper back (thoracic kyphosis)</li>
+        <li>Fatigue in the muscles of the neck and shoulders</li>
+      </ul>
+
+      <h2>What causes forward head posture?</h2>
+
+      <p>The most common contributing factors we see are:</p>
+
+      <ul>
+        <li><strong>Screen use.</strong> Sitting at a computer or looking down at a phone for long periods tends to draw the head forward and round the shoulders.</li>
+        <li><strong>Poor workstation setup.</strong> A monitor that's too low, a desk that's too high, or a chair without proper lumbar support can all encourage a forward head position.</li>
+        <li><strong>Sedentary habits.</strong> Prolonged sitting without breaks reduces core and postural muscle engagement.</li>
+        <li><strong>Occupation.</strong> Certain jobs — particularly those involving looking down (dentists, tradespeople, surgeons) — create repeated postural loading on the neck.</li>
+        <li><strong>Previous injury.</strong> Whiplash or other neck injuries can alter how you hold your head.</li>
+      </ul>
+
+      <h2>Exercises that may help</h2>
+
+      <p>These exercises are a useful starting point — but they work best as part of a broader approach that addresses the underlying cause. Before starting any exercise program, it's worth getting your posture properly assessed.</p>
+
+      <h3>Chin tucks</h3>
+      <p>Sit or stand tall. Without tilting your head up or down, gently draw your chin straight back — as if trying to make a double chin. Hold for 5 seconds, then release. Repeat 10 times. This gently activates the deep neck flexors and helps counter the forward head position.</p>
+
+      <h3>Chest opener / pectoral stretch</h3>
+      <p>Stand in a doorway with your arms at 90 degrees, forearms resting on the door frame. Gently lean forward until you feel a stretch across your chest and the front of your shoulders. Hold for 30 seconds. This helps open up the chest, which tends to tighten as the head and shoulders round forward.</p>
+
+      <h3>Thoracic extension over a rolled towel</h3>
+      <p>Roll a towel and place it horizontally across your upper back (at about shoulder blade level). Lie back over the towel, supporting your head if needed. Allow your upper back to gently extend over the roll for 1–2 minutes. This can help restore some extension in the mid-back, which is often stiff in people with forward head posture.</p>
+
+      <h3>Wall angels</h3>
+      <p>Stand with your back flat against a wall, feet a little away from the wall. Press your lower back, upper back, and head against the wall. Raise your arms to shoulder height, elbows bent at 90 degrees. Slowly raise your arms overhead while keeping everything in contact with the wall, then bring them back down. Repeat 10 times.</p>
+
+      <h2>When exercises alone aren't enough</h2>
+
+      <p>Exercises can help, but if there's underlying joint stiffness in the neck or thoracic spine, or if postural muscles have become significantly weak or inhibited, exercise alone may have limited effect. Addressing the joint restriction is often an important first step — and that's where <a href="/services/posture-correction/">chiropractic care</a> and hands-on treatment come in.</p>
+
+      <p>At Banora Chiropractic, we assess your posture, cervical range of motion, and muscle function to understand what's driving your forward head position. From there, we can combine spinal care with targeted exercise guidance to help you make lasting changes.</p>
+
+      <p>If your neck has been bothering you, or you've noticed your head sitting further forward than it used to, come in and see us at <a href="/contact/">Banora Chiropractic</a> in Tweed Heads South. We're here to help you stand a little taller.</p>
+    `,
+    author: 'dr-james-shipway',
+    publishDate: '2026-04-28',
+    status: 'published' as const,
+    category: 'Posture',
+    tags: ['forward head posture', 'tech neck', 'neck pain', 'posture correction', 'posture exercises', 'neck exercises'],
+    heroImage: '/images/pexels-karola-g-4506108.webp',
+    heroImageAlt: 'Person sitting at a desk with forward head posture',
+    readTime: 6,
+    relatedServices: ['posture-correction', 'chiropractic-adjustments'],
+    relatedConditions: ['neck-pain', 'headaches-migraines'],
+    relatedPosts: ['why-your-posture-matters-more-than-you-think', 'how-to-set-up-your-home-office-to-protect-your-back'],
+  },
+  {
     slug: 'headache-or-migraine-how-to-tell-the-difference',
     title: 'Headache or Migraine? How to Tell the Difference (and What May Help)',
     metaTitle: 'Headache vs Migraine: What\'s the Difference? | Banora Chiropractic',
