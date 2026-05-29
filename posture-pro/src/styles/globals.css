@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: theme('fontFamily.body');
+  }
+  h1, h2, h3, h4 {
+    font-family: theme('fontFamily.heading');
+  }
+}
+
+/* Print styles for posture reports — A4 paper, clean page breaks, no UI chrome. */
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+  body {
+    background: white !important;
+  }
+  /* Each report-page renders on its own physical sheet */
+  .report-page {
+    page-break-after: always;
+    box-shadow: none !important;
+  }
+  .report-page:last-child {
+    page-break-after: auto;
+  }
+  /* Hide anything marked as screen-only when printing */
+  .print\:hidden {
+    display: none !important;
+  }
+}
