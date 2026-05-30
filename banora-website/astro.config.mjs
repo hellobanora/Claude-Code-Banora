@@ -8,7 +8,6 @@ export default defineConfig({
   site: 'https://www.banorachiropractic.com.au',
   trailingSlash: 'always',
   output: 'static',
-  trailingSlash: 'always',
   adapter: vercel(),
   compressHTML: true,
   build: {
