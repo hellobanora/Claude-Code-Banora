@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oswestry Disability Index — Banora Chiropractic</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:#f0f4f8;color:#1a2e4d;min-height:100vh;}
+.wrap{max-width:680px;margin:0 auto;padding:20px 16px 60px;}
+.scr{display:none;}.scr.active{display:block;}
+.hdr{background:linear-gradient(135deg,#1a2e4d,#1e3f6b);border-radius:14px;padding:20px 22px;margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+.hdr-logo{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.hdr h1{font-family:'Playfair Display',serif;font-size:20px;color:#fff;margin-bottom:2px;}
+.hdr p{font-size:12px;color:rgba(255,255,255,.7);}
+.phase-badge{margin-left:auto;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:#fff;white-space:nowrap;}
+.prog-wrap{margin-bottom:18px;}
+.prog-label{font-size:12px;color:#6b7b8d;margin-bottom:6px;display:flex;justify-content:space-between;}
+.prog-bar{height:6px;background:#dde3eb;border-radius:10px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,#1a2e4d,#4a90c4);border-radius:10px;transition:width .4s;}
+.card{background:#fff;border-radius:12px;padding:22px;margin-bottom:16px;border:1.5px solid #e8edf3;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.card-title{font-family:'Playfair Display',serif;font-size:17px;color:#1a2e4d;margin-bottom:4px;}
+.card-sub{font-size:13px;color:#6b7b8d;margin-bottom:18px;}
+label.lbl{display:block;font-size:13px;font-weight:700;color:#1a2e4d;margin-bottom:5px;}
+input[type=text]{width:100%;padding:11px 13px;border:1.5px solid #dde3eb;border-radius:9px;font-family:'Nunito',sans-serif;font-size:14px;color:#1a2e4d;outline:none;transition:border-color .2s;}
+input[type=text]:focus{border-color:#1e3f6b;}
+.field{margin-bottom:16px;}
+.opt-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+.opt{display:flex;align-items:center;gap:6px;background:#f4f7fa;border:1.5px solid #dde3eb;border-radius:8px;padding:7px 12px;cursor:pointer;font-size:13px;font-weight:600;transition:all .15s;user-select:none;width:100%;}
+.opt input{display:none;}
+.opt.sel{background:#eaf1fb;border-color:#1e3f6b;color:#1e3f6b;}
+.btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;}
+.btn{padding:12px 26px;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;}
+.btn-primary{background:linear-gradient(135deg,#1a2e4d,#1e3f6b);color:#fff;box-shadow:0 4px 12px rgba(26,46,77,.25);}
+.btn-primary:hover{transform:translateY(-1px);}
+.btn-sec{background:#fff;color:#1a2e4d;border:2px solid #dde3eb;}
+.ret-area{margin-bottom:18px;}
+.ret-label{font-size:12px;color:#6b7b8d;margin-bottom:6px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{background:#eaf1fb;border:1.5px solid #1e3f6b;border-radius:20px;padding:4px 12px;font-size:12px;font-weight:700;color:#1e3f6b;cursor:pointer;}
+.chip:hover{background:#1e3f6b;color:#fff;}
+.q-num{display:inline-block;background:linear-gradient(135deg,#1a2e4d,#1e3f6b);color:#fff;width:26px;height:26px;border-radius:50%;text-align:center;line-height:26px;font-size:12px;font-weight:700;margin-right:8px;flex-shrink:0;}
+
+.score-big{text-align:center;padding:28px;background:linear-gradient(135deg,#1a2e4d,#1e3f6b);border-radius:12px;color:#fff;margin-bottom:16px;position:relative;overflow:hidden;}
+.score-big::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.05);}
+.score-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:700;line-height:1;position:relative;}
+.score-lbl{font-size:13px;opacity:.8;margin-top:4px;position:relative;}
+.class-badge{display:inline-block;padding:6px 18px;border-radius:30px;font-size:14px;font-weight:700;margin-top:12px;position:relative;}
+.class-minimal{background:#e6f4ee;color:#2e7d52;}
+.class-moderate{background:#fef6e0;color:#b8860b;}
+.class-severe{background:#fdecd0;color:#c06000;}
+.class-crippled{background:#fdecea;color:#c0392b;}
+.class-bedbound{background:#3a3a3a;color:#fff;}
+
+.hist-card{background:#fff;border-radius:12px;padding:18px 22px;margin-bottom:16px;border:1.5px solid #e8edf3;}
+.hist-title{font-family:'Playfair Display',serif;font-size:15px;color:#1a2e4d;margin-bottom:12px;}
+.hist-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #f0f4f8;font-size:13px;}
+.hist-row:last-child{border-bottom:none;}
+.hist-visit{font-weight:700;color:#1a2e4d;min-width:56px;}
+.hist-date{color:#6b7b8d;min-width:80px;}
+.hist-score{font-weight:700;min-width:40px;}
+.hist-delta{font-size:12px;font-weight:700;margin-left:auto;}
+.delta-down{color:#2e7d52;}
+.delta-up{color:#c0392b;}
+
+.sr{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #f0f4f8;font-size:13px;}
+.sr:last-child{border-bottom:none;}
+.sk{color:#6b7b8d;font-weight:600;min-width:140px;flex-shrink:0;}
+.sv2{color:#1a2e4d;font-weight:500;flex:1;}
+.insight{background:#eaf4fb;border-left:4px solid #1e3f6b;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:8px;font-size:13px;color:#1a2e4d;line-height:1.5;}
+.insight strong{color:#1e3f6b;}
+.sync-pill{display:inline-block;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:12px;}
+.sync-ok{background:#e6f4ee;color:#2e7d52;}
+.sync-fail{background:#fdecea;color:#c0392b;}
+.sync-pend{background:#eaf1fb;color:#1e3f6b;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1a2e4d;color:#fff;padding:10px 20px;border-radius:30px;font-size:13px;font-weight:600;opacity:0;transition:all .3s;z-index:100;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+@media print{body>*:not(#print-area){display:none!important;}#print-area{display:block!important;}}
+@media screen{#print-area{display:none;}}
+.pr-doc{font-family:'Nunito',sans-serif;color:#1a2e4d;max-width:780px;margin:0 auto;padding:28px;font-size:12.5px;line-height:1.6;}
+.pr-hdr{display:flex;align-items:center;gap:14px;border-bottom:3px solid #1a2e4d;padding-bottom:12px;margin-bottom:16px;}
+.pr-logo{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1a2e4d,#1e3f6b);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.pr-brand h2{font-family:'Playfair Display',serif;font-size:17px;color:#1a2e4d;}
+.pr-brand p{font-size:10px;color:#6b7b8d;text-transform:uppercase;letter-spacing:.8px;}
+.pr-meta{margin-left:auto;text-align:right;font-size:11px;color:#6b7b8d;}
+.pr-meta strong{display:block;font-size:13px;color:#1a2e4d;}
+.pr-overall{background:linear-gradient(135deg,#1a2e4d,#1e3f6b);border-radius:8px;padding:12px 16px;color:#fff;display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+.pr-ov-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#fff;line-height:1;}
+.pr-ov-text h3{font-size:13px;margin-bottom:2px;}
+.pr-ov-text p{font-size:11px;opacity:.75;}
+.pr-sec{margin-bottom:14px;}
+.pr-sec-title{font-family:'Playfair Display',serif;font-size:13px;color:#1a2e4d;border-bottom:1px solid #e8edf3;padding-bottom:3px;margin-bottom:7px;}
+.pr-row{display:flex;gap:10px;padding:4px 0;border-bottom:1px dotted #f0f4f8;font-size:12px;}
+.pr-row:last-child{border-bottom:none;}
+.pr-key{color:#6b7b8d;font-weight:600;min-width:145px;flex-shrink:0;}
+.pr-val{color:#1a2e4d;flex:1;}
+.pr-insight{background:#eaf4fb;border-left:3px solid #1e3f6b;border-radius:0 6px 6px 0;padding:7px 11px;margin-bottom:6px;font-size:11.5px;}
+.pr-foot{margin-top:16px;border-top:1px solid #e8edf3;padding-top:7px;display:flex;justify-content:space-between;font-size:10px;color:#b8c4ce;}
+.pr-hist{margin-bottom:8px;}
+.pr-hist-row{display:flex;gap:8px;padding:3px 0;font-size:11.5px;border-bottom:1px dotted #f0f4f8;}
+.pr-hist-row:last-child{border-bottom:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="scr active" id="scr-welcome">
+  <div class="hdr"><div class="hdr-logo">🦴</div><div><h1>Oswestry Disability Index</h1><p>Banora Chiropractic — Outcome Assessment</p></div><div class="phase-badge">Back</div></div>
+  <div class="card">
+    <div class="card-title">Oswestry Disability Index (ODI)</div>
+    <div class="card-sub">This questionnaire measures how lower back pain affects your ability to manage everyday activities. It takes about 3 minutes and helps us track your progress over time.</div>
+    <div class="field"><label class="lbl">Your full name</label><input type="text" id="inp-name" placeholder="e.g. Sarah Johnson"></div>
+    <div class="ret-area" id="ret-area" style="display:none;"><div class="ret-label">Returning patient — tap to continue:</div><div class="chips" id="pchips"></div></div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="startSession()">Begin Assessment &rarr;</button></div>
+  </div>
+</div>
+
+<div class="scr" id="scr-q">
+  <div class="hdr"><div class="hdr-logo">📋</div><div><h1>ODI Questionnaire</h1><p id="q-step">Question 1 of 10</p></div><div class="phase-badge">Back</div></div>
+  <div class="prog-wrap"><div class="prog-label"><span id="prog-txt">Question 1 of 10</span><span id="prog-pct">0%</span></div><div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div></div>
+  <div id="q-container"></div>
+  <div class="btn-row" id="q-nav">
+    <button class="btn btn-sec" id="btn-prev" onclick="prevQ()">&larr; Back</button>
+    <button class="btn btn-primary" id="btn-next" onclick="nextQ()">Next &rarr;</button>
+  </div>
+</div>
+
+<div class="scr" id="scr-results">
+  <div class="hdr"><div class="hdr-logo">✅</div><div><h1 id="r-name">Your Results</h1><p>Oswestry Disability Index</p></div><div class="phase-badge">Back</div></div>
+  <div id="sync-wrap"><span class="sync-pill sync-pend" id="sync-st">&#x23F3; Sending to clinic...</span></div>
+  <div class="score-big">
+    <div class="score-num" id="score-num">—</div>
+    <div class="score-lbl">Lower Back Disability Score</div>
+    <div class="class-badge" id="class-badge"></div>
+  </div>
+  <div id="hist-wrap"></div>
+  <div class="card"><div class="card-title">Response Summary</div><div id="sum-rows"></div></div>
+  <div id="insights" style="margin-bottom:16px;"></div>
+  <div class="btn-row" style="justify-content:center;flex-wrap:wrap;">
+    <button class="btn btn-primary" onclick="window.print()">&#x1F5A8;&#xFE0F; Print / Save PDF</button>
+    <button class="btn btn-sec" onclick="location.href='index.html'">&larr; All Forms</button>
+    <button class="btn btn-sec" onclick="resetForm()">New Assessment</button>
+  </div>
+</div>
+
+</div>
+<div id="print-area"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const SK='banora_odi_pts';
+let pts={},pk=null,curQ=0,answers=new Array(10).fill(-1);
+
+const QUESTIONS=[
+{title:'Pain Intensity',options:['I have no pain at the moment','The pain is very mild at the moment','The pain is moderate at the moment','The pain is fairly severe at the moment','The pain is very severe at the moment','The pain is the worst imaginable at the moment']},
+{title:'Personal Care (washing, dressing)',options:['I can look after myself normally without causing extra pain','I can look after myself normally but it causes extra pain','It is painful to look after myself and I am slow and careful','I need some help but can manage most of my personal care','I need help every day in most aspects of self-care','I do not get dressed, I wash with difficulty and stay in bed']},
+{title:'Lifting',options:['I can lift heavy weights without extra pain','I can lift heavy weights but it gives me extra pain','Pain prevents me lifting heavy weights off the floor but I can manage if they are conveniently positioned','Pain prevents me lifting heavy weights but I can manage light to medium weights if conveniently positioned','I can only lift very light weights','I cannot lift or carry anything at all']},
+{title:'Walking',options:['Pain does not prevent me walking any distance','Pain prevents me walking more than 1.6 kilometres','Pain prevents me walking more than 800 metres','Pain prevents me walking more than 400 metres','I can only walk using a stick or crutches','I am in bed most of the time']},
+{title:'Sitting',options:['I can sit in any chair as long as I like','I can only sit in my favourite chair as long as I like','Pain prevents me sitting more than one hour','Pain prevents me sitting more than 30 minutes','Pain prevents me sitting more than 10 minutes','Pain prevents me from sitting at all']},
+{title:'Standing',options:['I can stand as long as I want without extra pain','I can stand as long as I want but it gives me extra pain','Pain prevents me from standing for more than 1 hour','Pain prevents me from standing for more than 30 minutes','Pain prevents me from standing for more than 10 minutes','Pain prevents me from standing at all']},
+{title:'Sleeping',options:['My sleep is never disturbed by pain','My sleep is occasionally disturbed by pain','Because of pain I have less than 6 hours sleep','Because of pain I have less than 4 hours sleep','Because of pain I have less than 2 hours sleep','Pain prevents me from sleeping at all']},
+{title:'Social Life',options:['My social life is normal and causes me no extra pain','My social life is normal but increases the degree of pain','Pain has no significant effect on my social life apart from limiting my more energetic interests','Pain has restricted my social life and I do not go out as often','Pain has restricted my social life to my home','I have no social life because of pain']},
+{title:'Travelling',options:['I can travel anywhere without pain','I can travel anywhere but it gives me extra pain','Pain is bad but I manage journeys over two hours','Pain restricts me to journeys of less than one hour','Pain restricts me to short necessary journeys under 30 minutes','Pain prevents me from travelling except to receive treatment']},
+{title:'Employment / Homemaking',options:['My normal homemaking or job activities do not cause pain','My normal activities cause extra pain but I can still perform all that is required of me','I can perform most of my normal activities but pain prevents me doing more physically demanding ones','Pain prevents me doing anything but light duties','Pain prevents me doing even light duties','Pain prevents me from doing any job or homemaking at all']}
+];
+
+function load(){try{return JSON.parse(localStorage.getItem(SK)||'{}')}catch(e){return{};}}
+function save(){try{localStorage.setItem(SK,JSON.stringify(pts))}catch(e){}}
+function showScr(id){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  pts=load();renderChips();
+});
+
+function renderChips(){
+  const ks=Object.keys(pts);
+  const ra=document.getElementById('ret-area');
+  const pc=document.getElementById('pchips');
+  if(!ks.length){ra.style.display='none';return;}
+  ra.style.display='block';
+  pc.innerHTML=ks.map(k=>'<span class="chip" onclick="selectPatient(\''+k+'\')">'+pts[k].displayName+'</span>').join('');
+}
+
+function selectPatient(k){
+  pk=k;
+  document.getElementById('inp-name').value=pts[k].displayName;
+  toast('Continuing as '+pts[k].displayName);
+}
+
+function startSession(){
+  const name=document.getElementById('inp-name').value.trim();
+  if(!name){toast('Please enter your name');return;}
+  pk=name.toLowerCase().replace(/\s+/g,'_');
+  if(!pts[pk])pts[pk]={displayName:name,visits:[]};
+  save();
+  curQ=0;answers=new Array(10).fill(-1);
+  renderQuestion();
+  showScr('scr-q');
+}
+
+function renderQuestion(){
+  const q=QUESTIONS[curQ];
+  const pct=Math.round((curQ/10)*100);
+  document.getElementById('q-step').textContent='Question '+(curQ+1)+' of 10';
+  document.getElementById('prog-txt').textContent='Question '+(curQ+1)+' of 10';
+  document.getElementById('prog-pct').textContent=pct+'%';
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('btn-prev').style.display=curQ===0?'none':'';
+  document.getElementById('btn-next').textContent=curQ===9?'Submit Assessment ✓':'Next →';
+
+  const c=document.getElementById('q-container');
+  c.innerHTML='<div class="card"><div class="card-title"><span class="q-num">'+(curQ+1)+'</span>'+q.title+'</div><div class="card-sub">Select the option that best describes your current situation</div><div class="field"><div class="opt-grid" id="q-opts"></div></div></div>';
+  const og=document.getElementById('q-opts');
+  q.options.forEach((txt,i)=>{
+    const label=document.createElement('label');
+    label.className='opt'+(answers[curQ]===i?' sel':'');
+    label.innerHTML='<input type="radio" name="odi-q" value="'+i+'"><span>'+txt+'</span>';
+    label.addEventListener('click',()=>{
+      answers[curQ]=i;
+      document.querySelectorAll('#q-opts .opt').forEach(o=>o.classList.remove('sel'));
+      label.classList.add('sel');
+    });
+    og.appendChild(label);
+  });
+}
+
+function prevQ(){if(curQ>0){curQ--;renderQuestion();}}
+function nextQ(){
+  if(answers[curQ]===-1){toast('Please select an option');return;}
+  if(curQ<9){curQ++;renderQuestion();window.scrollTo(0,0);}
+  else{submitForm();}
+}
+
+function classify(pct){
+  if(pct<=20)return{label:'Minimal Disability',cls:'class-minimal',emoji:'🟢'};
+  if(pct<=40)return{label:'Moderate Disability',cls:'class-moderate',emoji:'🟡'};
+  if(pct<=60)return{label:'Severe Disability',cls:'class-severe',emoji:'🟠'};
+  if(pct<=80)return{label:'Crippled',cls:'class-crippled',emoji:'🔴'};
+  return{label:'Bed-bound',cls:'class-bedbound',emoji:'⚫'};
+}
+
+const FORMSPREE_ID='mpqjeego';
+async function toFormspree(data){
+  try{
+    const r=await fetch('https://formspree.io/f/'+FORMSPREE_ID,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(data)});
+    if(r.ok)return{ok:true};
+    const err=await r.json().catch(()=>({}));
+    return{ok:false,msg:err?.errors?.[0]?.message||'HTTP '+r.status};
+  }catch(e){return{ok:false,msg:'Network error'};}
+}
+
+async function submitForm(){
+  const name=pts[pk]?.displayName||'Patient';
+  const rawScore=answers.reduce((a,b)=>a+b,0);
+  const pct=Math.round((rawScore/50)*100);
+  const cl=classify(pct);
+
+  const visit={date:new Date().toISOString(),answers:[...answers],rawScore,pct,classification:cl.label};
+  pts[pk].visits.push(visit);save();
+  showScr('scr-results');
+  renderResults(name,visit,pct,cl);
+  buildPrintDoc(name,visit,pct,cl);
+
+  const ss=document.getElementById('sync-st');
+  ss.className='sync-pill sync-pend';ss.textContent='⏳ Sending to clinic...';
+
+  const qBreakdown=QUESTIONS.map((q,i)=>q.title+': '+answers[i]+'/5').join(', ');
+  const data={
+    _subject:'ODI Assessment - '+name,
+    Patient:name,
+    Date:new Date(visit.date).toLocaleDateString('en-AU'),
+    Assessment:'Oswestry Disability Index (ODI)',
+    'Raw Score':rawScore+'/50',
+    Percentage:pct+'%',
+    Classification:cl.label,
+    'Question Breakdown':qBreakdown,
+    'Visit Number':pts[pk].visits.length
+  };
+
+  const r=await toFormspree(data);
+  ss.className='sync-pill '+(r.ok?'sync-ok':'sync-fail');
+  ss.textContent=r.ok?'✅ Results sent to clinic':'⚠️ '+(r.msg||'Send failed — data saved locally');
+}
+
+function renderResults(name,visit,pct,cl){
+  document.getElementById('r-name').textContent=name.split(' ')[0]+"'s ODI Results";
+  document.getElementById('score-num').textContent=pct+'%';
+  const badge=document.getElementById('class-badge');
+  badge.textContent=cl.emoji+' '+cl.label;
+  badge.className='class-badge '+cl.cls;
+
+  const hw=document.getElementById('hist-wrap');
+  const visits=pts[pk].visits;
+  if(visits.length>1){
+    let html='<div class="hist-card"><div class="hist-title">Score History</div>';
+    visits.forEach((v,i)=>{
+      const d=new Date(v.date).toLocaleDateString('en-AU',{day:'numeric',month:'short'});
+      const c=classify(v.pct);
+      let delta='';
+      if(i>0){
+        const diff=v.pct-visits[0].pct;
+        if(diff<0)delta='<span class="hist-delta delta-down">↓'+Math.abs(diff)+'%</span>';
+        else if(diff>0)delta='<span class="hist-delta delta-up">↑'+diff+'%</span>';
+        else delta='<span class="hist-delta">—</span>';
+      }
+      html+='<div class="hist-row"><span class="hist-visit">Visit '+(i+1)+'</span><span class="hist-date">'+d+'</span><span class="hist-score">'+v.pct+'%</span><span class="hist-class '+c.cls+'" style="padding:2px 8px;border-radius:12px;font-size:11px;">'+c.label+'</span>'+delta+'</div>';
+    });
+    html+='</div>';
+    hw.innerHTML=html;
+  } else {hw.innerHTML='';}
+
+  const rows=document.getElementById('sum-rows');rows.innerHTML='';
+  QUESTIONS.forEach((q,i)=>{
+    const r=document.createElement('div');r.className='sr';
+    r.innerHTML='<span class="sk">'+q.title+'</span><span class="sv2">'+q.options[answers[i]]+' <strong>('+answers[i]+'/5)</strong></span>';
+    rows.appendChild(r);
+  });
+
+  const iw=document.getElementById('insights');iw.innerHTML='';
+  if(pct<=20)iw.innerHTML+='<div class="insight"><strong>Minimal disability.</strong> Your lower back function is good. Maintenance care and core strengthening can help maintain this level.</div>';
+  else if(pct<=40)iw.innerHTML+='<div class="insight"><strong>Moderate disability.</strong> You\'re experiencing some limitations from lower back pain. Chiropractic care combined with targeted exercises may help improve your daily function.</div>';
+  else if(pct<=60)iw.innerHTML+='<div class="insight"><strong>Severe disability.</strong> Your lower back pain is significantly affecting your daily life. A structured care plan focusing on pain relief, mobility, and strengthening is recommended.</div>';
+  else iw.innerHTML+='<div class="insight"><strong>Significant disability.</strong> Your lower back pain is greatly limiting your activities. Intensive care with close monitoring and a graduated rehabilitation programme is recommended.</div>';
+
+  if(answers[6]>=3)iw.innerHTML+='<div class="insight"><strong>Sleep disruption.</strong> Your back pain is significantly affecting your sleep. Improving spinal function and sleep posture advice may help.</div>';
+  if(answers[3]>=3)iw.innerHTML+='<div class="insight"><strong>Walking limited.</strong> Restricted walking distance can affect overall health. Graduated walking programmes alongside care often produce good results.</div>';
+  if(answers[4]>=3)iw.innerHTML+='<div class="insight"><strong>Sitting tolerance reduced.</strong> This commonly affects desk workers. Ergonomic adjustments and regular movement breaks can complement your chiropractic care.</div>';
+
+  if(visits.length>1){
+    const first=visits[0].pct;
+    const diff=pct-first;
+    if(diff<-10)iw.innerHTML+='<div class="insight"><strong>Great progress!</strong> Your score has improved by '+Math.abs(diff)+'% since your first assessment. Keep going.</div>';
+    else if(diff>5)iw.innerHTML+='<div class="insight"><strong>Score has increased.</strong> Let\'s discuss what might be contributing to this change and adjust your care plan.</div>';
+  }
+}
+
+function buildPrintDoc(name,visit,pct,cl){
+  const date=new Date(visit.date).toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'});
+  const visitNum=pts[pk].visits.length;
+  const row=(k,val)=>'<div class="pr-row"><span class="pr-key">'+k+'</span><span class="pr-val">'+(val||'—')+'</span></div>';
+
+  let histHtml='';
+  if(pts[pk].visits.length>1){
+    histHtml='<div class="pr-sec"><div class="pr-sec-title">Score History</div><div class="pr-hist">';
+    pts[pk].visits.forEach((v,i)=>{
+      const d=new Date(v.date).toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
+      let delta='';
+      if(i>0){const diff=v.pct-pts[pk].visits[0].pct;delta=diff<0?' (↓'+Math.abs(diff)+'%)':diff>0?' (↑'+diff+'%)':'';}
+      histHtml+='<div class="pr-hist-row"><span>Visit '+(i+1)+'</span><span>'+d+'</span><span><strong>'+v.pct+'%</strong> — '+classify(v.pct).label+delta+'</span></div>';
+    });
+    histHtml+='</div></div>';
+  }
+
+  let qRows='';
+  QUESTIONS.forEach((q,i)=>{qRows+=row(q.title,visit.answers[i]+'/5 — '+q.options[visit.answers[i]]);});
+  const ins=document.getElementById('insights')?.innerHTML.replace(/class="insight"/g,'class="pr-insight"')||'';
+
+  document.getElementById('print-area').innerHTML=
+    '<div class="pr-doc">'+
+    '<div class="pr-hdr"><div class="pr-logo" style="color:#fff;font-family:Playfair Display,serif;font-size:16px;font-weight:700;">BC</div><div class="pr-brand"><h2>Banora Chiropractic</h2><p>Oswestry Disability Index Report</p></div><div class="pr-meta"><strong>'+name+'</strong>'+date+'<br>Visit '+visitNum+'</div></div>'+
+    '<div class="pr-overall"><div class="pr-ov-num">'+pct+'%</div><div class="pr-ov-text"><h3>'+cl.label+'</h3><p>ODI Score: '+visit.rawScore+'/50</p></div></div>'+
+    histHtml+
+    '<div class="pr-sec"><div class="pr-sec-title">Question Responses</div>'+qRows+'</div>'+
+    (ins?'<div class="pr-sec"><div class="pr-sec-title">Clinical Insights</div>'+ins+'</div>':'')+
+    '<div class="pr-foot"><span>Banora Chiropractic — ODI Assessment</span><span>🔒 Confidential — '+new Date().toLocaleDateString('en-AU')+'</span></div>'+
+    '</div>';
+}
+
+function resetForm(){
+  curQ=0;answers=new Array(10).fill(-1);
+  document.getElementById('inp-name').value='';
+  pk=null;renderChips();showScr('scr-welcome');
+}
+</script>
+</body>
+</html>

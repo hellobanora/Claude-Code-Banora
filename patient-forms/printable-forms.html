@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Banora Chiropractic — Printable Patient Forms</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   SCREEN STYLES — Navigation page
+═══════════════════════════════════════════════ */
+@media screen {
+  body { font-family: 'Nunito', sans-serif; background: #f4f7fa; margin: 0; padding: 0; }
+  .screen-nav { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+  .nav-header { text-align: center; margin-bottom: 32px; }
+  .nav-logo { width: 72px; height: 72px; background: linear-gradient(135deg,#1a2e4d,#1e3f6b); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; }
+  .nav-header h1 { font-family: 'Playfair Display', serif; font-size: 26px; color: #1a2e4d; margin-bottom: 6px; }
+  .nav-header p { font-size: 14px; color: #6b7b8d; line-height: 1.6; }
+  .nav-card { background: #fff; border-radius: 12px; border: 1.5px solid #e8edf3; padding: 20px 22px; margin-bottom: 12px; display: flex; align-items: center; gap: 16px; box-shadow: 0 2px 8px rgba(26,46,77,.06); }
+  .nav-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .ni-1 { background: linear-gradient(145deg,#1e3f6b,#4a90c4); }
+  .ni-2 { background: linear-gradient(145deg,#1e6b4a,#2e9e6a); }
+  .ni-3 { background: linear-gradient(145deg,#5a2d82,#8b4db8); }
+  .ni-4 { background: linear-gradient(145deg,#1a6b5a,#2a9e85); }
+  .nav-text { flex: 1; }
+  .nav-phase { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #6b7b8d; margin-bottom: 2px; }
+  .nav-title { font-family: 'Playfair Display', serif; font-size: 17px; color: #1a2e4d; margin-bottom: 2px; }
+  .nav-desc { font-size: 12px; color: #6b7b8d; }
+  .nav-btn { background: linear-gradient(135deg,#1a2e4d,#1e3f6b); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; transition: all .2s; white-space: nowrap; }
+  .nav-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26,46,77,.3); }
+  .nav-hint { text-align: center; margin-top: 24px; background: #eaf4fb; border: 1px solid #b8d8ef; border-radius: 10px; padding: 14px 18px; font-size: 13px; color: #1e3f6b; line-height: 1.6; }
+  .form-page { display: none; }
+}
+
+/* ═══════════════════════════════════════════════
+   PRINT STYLES
+═══════════════════════════════════════════════ */
+@media print {
+  .screen-nav { display: none !important; }
+  .form-page { display: block !important; }
+  .no-print { display: none !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  @page { margin: 14mm 16mm; size: A4; }
+  .page-break { page-break-before: always; }
+}
+
+/* ═══════════════════════════════════════════════
+   FORM PAGE — shared styles
+═══════════════════════════════════════════════ */
+.form-page {
+  font-family: 'Nunito', sans-serif;
+  color: #1a2e4d;
+  font-size: 11pt;
+  line-height: 1.5;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* Header */
+.f-header {
+  background: linear-gradient(135deg, #1a2e4d, #1e3f6b);
+  border-radius: 10px 10px 0 0;
+  padding: 18px 22px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 0;
+}
+.f-logo {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.35);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+  background: rgba(255,255,255,.1);
+}
+.f-brand h1 { font-family: 'Playfair Display', serif; font-size: 18pt; color: #fff; margin: 0 0 2px; }
+.f-brand p { font-size: 8.5pt; color: rgba(255,255,255,.7); margin: 0; letter-spacing: .8px; text-transform: uppercase; }
+.f-badge {
+  margin-left: auto;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 9pt;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: .5px;
+  text-align: center;
+  line-height: 1.4;
+}
+.f-badge small { display: block; font-size: 7.5pt; color: rgba(255,255,255,.65); font-weight: 400; }
+
+/* Patient info bar */
+.f-patient-bar {
+  background: #f4f7fa;
+  border: 1.5px solid #e8edf3;
+  border-top: none;
+  padding: 10px 22px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.f-patient-bar .pf {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 9.5pt; color: #6b7b8d; font-weight: 600;
+}
+.pf span { font-size: 9pt; color: #b8c4ce; }
+.pf-line { flex: 1; border-bottom: 1.5px solid #1a2e4d; min-width: 80px; height: 16px; }
+
+/* Section */
+.f-section {
+  border: 1.5px solid #e8edf3;
+  border-top: none;
+  padding: 14px 22px 10px;
+}
+.f-section:last-child { border-radius: 0 0 10px 10px; border-bottom: 1.5px solid #e8edf3; }
+.f-section-hdr {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e8edf3;
+}
+.f-section-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  background: linear-gradient(135deg,#1a2e4d,#2d5a8e);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; flex-shrink: 0;
+}
+.f-section-hdr h2 { font-family: 'Playfair Display', serif; font-size: 13pt; color: #1a2e4d; margin: 0; }
+.f-section-hdr .sec-num { margin-left: auto; font-size: 8.5pt; color: #b8c4ce; font-weight: 700; }
+
+/* Question */
+.f-q { margin-bottom: 13px; }
+.f-q-label {
+  font-size: 10pt; font-weight: 700; color: #1a2e4d;
+  margin-bottom: 5px; line-height: 1.4;
+}
+.f-q-label .hint { font-weight: 400; color: #6b7b8d; font-size: 9pt; }
+
+/* Write line */
+.write-line {
+  border-bottom: 1.5px solid #1a2e4d;
+  min-height: 22px; width: 100%;
+  margin-top: 3px;
+}
+.write-line-sm { min-height: 18px; }
+.write-lines { display: flex; flex-direction: column; gap: 8px; }
+.write-lines .write-line { min-height: 20px; }
+
+/* Tick boxes — grid */
+.tick-grid {
+  display: grid;
+  gap: 5px 14px;
+}
+.tg-2 { grid-template-columns: 1fr 1fr; }
+.tg-3 { grid-template-columns: 1fr 1fr 1fr; }
+.tg-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.tick-item {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 9.5pt; color: #1a2e4d;
+}
+.tick-box {
+  width: 14px; height: 14px;
+  border: 1.5px solid #1a2e4d;
+  border-radius: 3px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+.tick-circle {
+  width: 14px; height: 14px;
+  border: 1.5px solid #1a2e4d;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+/* Pain scale */
+.pain-scale {
+  display: flex; gap: 4px; align-items: center;
+  margin-top: 5px;
+}
+.ps-num {
+  width: 24px; height: 24px;
+  border: 1.5px solid #1a2e4d;
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9.5pt; font-weight: 700; color: #1a2e4d;
+}
+.ps-label { font-size: 8pt; color: #6b7b8d; margin-top: 3px; text-align: center; }
+.ps-wrap { display: flex; flex-direction: column; align-items: center; }
+.ps-ends { display: flex; justify-content: space-between; font-size: 8pt; color: #6b7b8d; margin-top: 3px; width: 100%; }
+
+/* Rating scale (1-5 or 1-10) */
+.rating-row {
+  display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
+  margin-top: 4px;
+}
+.rating-opt {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  font-size: 8.5pt; color: #6b7b8d; text-align: center; min-width: 36px;
+}
+.rating-opt .tick-circle { width: 26px; height: 26px; }
+
+/* Inline fields */
+.inline-fields { display: flex; gap: 16px; flex-wrap: wrap; }
+.inline-field { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 140px; }
+.inline-field label { font-size: 9.5pt; color: #6b7b8d; font-weight: 600; white-space: nowrap; }
+
+/* Score summary boxes (results area) */
+.score-summary {
+  background: #f4f7fa;
+  border: 1.5px solid #e8edf3;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 8px 0 14px;
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+.score-box {
+  flex: 1; min-width: 90px;
+  border: 1.5px solid #e8edf3;
+  border-radius: 7px;
+  padding: 9px 11px;
+  background: #fff; text-align: center;
+}
+.score-box .sb-label { font-size: 7.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: #6b7b8d; margin-bottom: 4px; }
+.score-box .sb-val { border-bottom: 2px solid #1a2e4d; min-height: 20px; margin: 0 8px; }
+
+/* Confidentiality footer */
+.f-footer {
+  margin-top: 12px;
+  border-top: 1px solid #e8edf3;
+  padding-top: 8px;
+  display: flex; justify-content: space-between;
+  font-size: 8pt; color: #b8c4ce;
+}
+
+/* Teal variant for wellness */
+.teal .f-header { background: linear-gradient(135deg,#1a6b5a,#2a9e85); }
+.teal .f-section-icon { background: linear-gradient(135deg,#1a6b5a,#2a9e85); }
+.teal .ps-num { border-color: #1a6b5a; color: #1a6b5a; }
+.teal .tick-box,.teal .tick-circle { border-color: #1a6b5a; }
+.teal .write-line { border-color: #1a6b5a; }
+.teal .pf-line { border-color: #1a6b5a; }
+.teal .score-box .sb-val { border-color: #1a6b5a; }
+.teal .f-section-hdr { border-color: #d0ede8; }
+
+/* Divider */
+.divider { border: none; border-top: 1px dashed #e8edf3; margin: 10px 0; }
+
+/* Tip boxes */
+.tip-box {
+  background: #eaf4fb;
+  border-left: 3px solid #4a90c4;
+  border-radius: 0 6px 6px 0;
+  padding: 7px 11px;
+  font-size: 9pt;
+  color: #1e3f6b;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.tip-box.teal-tip { background: #e6f5f1; border-color: #2a9e85; color: #1a6b5a; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN: Navigation page
+═══════════════════════════════════════════ -->
+<div class="screen-nav">
+  <div class="nav-header">
+    <div class="nav-logo">🦴</div>
+    <h1>Banora Chiropractic</h1>
+    <p>Printable Patient Forms — for patients who prefer paper.<br>Click a form below, then use your browser's Print function.</p>
+  </div>
+
+  <div class="nav-card">
+    <div class="nav-icon ni-1">🤝</div>
+    <div class="nav-text">
+      <div class="nav-phase">Phase 0 — New Patient</div>
+      <div class="nav-title">Initial Consultation</div>
+      <div class="nav-desc">Health history, pain baseline, goals</div>
+    </div>
+    <button class="nav-btn" onclick="printForm('form-ic')">🖨️ Print</button>
+  </div>
+
+  <div class="nav-card">
+    <div class="nav-icon ni-2">⚡</div>
+    <div class="nav-text">
+      <div class="nav-phase">Phase 1 — Active Care</div>
+      <div class="nav-title">Relief Care</div>
+      <div class="nav-desc">Pain tracking, function, treatment feedback</div>
+    </div>
+    <button class="nav-btn" onclick="printForm('form-rc')">🖨️ Print</button>
+  </div>
+
+  <div class="nav-card">
+    <div class="nav-icon ni-3">💪</div>
+    <div class="nav-text">
+      <div class="nav-phase">Phase 2 — Rehab</div>
+      <div class="nav-title">Rehab Phase</div>
+      <div class="nav-desc">Functional ability, goals, exercise compliance</div>
+    </div>
+    <button class="nav-btn" onclick="printForm('form-rh')">🖨️ Print</button>
+  </div>
+
+  <div class="nav-card">
+    <div class="nav-icon ni-4">🌿</div>
+    <div class="nav-text">
+      <div class="nav-phase">Phase 3 — Maintenance</div>
+      <div class="nav-title">Wellness & Maintenance</div>
+      <div class="nav-desc">Spinal health, lifestyle, prevention</div>
+    </div>
+    <button class="nav-btn" onclick="printForm('form-wm')">🖨️ Print</button>
+  </div>
+
+  <div class="nav-hint">
+    💡 <strong>How to use:</strong> Click Print on the form you need. Your browser will open the print dialog — select your printer or choose <em>Save as PDF</em>. Each form prints on 1–2 A4 pages with large, easy-to-read text and tick boxes.
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     FORM 1 — INITIAL CONSULTATION
+═══════════════════════════════════════════ -->
+<div class="form-page" id="form-ic">
+
+  <div class="f-header">
+    <div class="f-logo">🦴</div>
+    <div class="f-brand">
+      <h1>Banora Chiropractic</h1>
+      <p>Patient Assessment Form</p>
+    </div>
+    <div class="f-badge">Initial Consultation<small>New Patient — Phase 0</small></div>
+  </div>
+
+  <div class="f-patient-bar">
+    <div class="pf">Patient Name <span>—</span> <div class="pf-line" style="min-width:160px"></div></div>
+    <div class="pf">Date <span>—</span> <div class="pf-line" style="min-width:90px"></div></div>
+    <div class="pf">D.O.B <span>—</span> <div class="pf-line" style="min-width:90px"></div></div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">🩺</div>
+      <h2>Chief Complaint</h2>
+      <span class="sec-num">1 of 5</span>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">What is your main reason for visiting today?</div>
+      <div class="write-lines"><div class="write-line"></div><div class="write-line"></div></div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">How long have you had this problem? <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-4" style="margin-top:6px">
+        <div class="tick-item"><span class="tick-circle"></span> Less than 1 week</div>
+        <div class="tick-item"><span class="tick-circle"></span> 1–4 weeks</div>
+        <div class="tick-item"><span class="tick-circle"></span> 1–3 months</div>
+        <div class="tick-item"><span class="tick-circle"></span> 3–6 months</div>
+        <div class="tick-item"><span class="tick-circle"></span> 6–12 months</div>
+        <div class="tick-item"><span class="tick-circle"></span> Over 1 year</div>
+        <div class="tick-item"><span class="tick-circle"></span> Over 5 years</div>
+        <div class="tick-item"><span class="tick-circle"></span> Lifelong</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Where is your pain or discomfort? <span class="hint">(tick all that apply)</span></div>
+      <div class="tick-grid tg-3">
+        <div class="tick-item"><span class="tick-box"></span> Neck</div>
+        <div class="tick-item"><span class="tick-box"></span> Upper back</div>
+        <div class="tick-item"><span class="tick-box"></span> Mid back</div>
+        <div class="tick-item"><span class="tick-box"></span> Lower back</div>
+        <div class="tick-item"><span class="tick-box"></span> Shoulder / arm</div>
+        <div class="tick-item"><span class="tick-box"></span> Hip / leg</div>
+        <div class="tick-item"><span class="tick-box"></span> Head / jaw</div>
+        <div class="tick-item"><span class="tick-box"></span> Chest / ribs</div>
+        <div class="tick-item"><span class="tick-box"></span> Other: <div class="write-line write-line-sm" style="width:80px;display:inline-block"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">📊</div>
+      <h2>Pain Assessment</h2>
+      <span class="sec-num">2 of 5</span>
+    </div>
+
+    <div class="tip-box">Circle the number that best describes your pain — 0 means no pain at all, 10 means the worst pain imaginable.</div>
+
+    <div class="f-q">
+      <div class="f-q-label">Pain right now</div>
+      <div class="pain-scale">
+        <div class="ps-wrap"><div class="ps-num">0</div><div class="ps-label">None</div></div>
+        <div class="ps-wrap"><div class="ps-num">1</div></div>
+        <div class="ps-wrap"><div class="ps-num">2</div></div>
+        <div class="ps-wrap"><div class="ps-num">3</div></div>
+        <div class="ps-wrap"><div class="ps-num">4</div></div>
+        <div class="ps-wrap"><div class="ps-num">5</div></div>
+        <div class="ps-wrap"><div class="ps-num">6</div></div>
+        <div class="ps-wrap"><div class="ps-num">7</div></div>
+        <div class="ps-wrap"><div class="ps-num">8</div></div>
+        <div class="ps-wrap"><div class="ps-num">9</div></div>
+        <div class="ps-wrap"><div class="ps-num">10</div><div class="ps-label">Worst</div></div>
+      </div>
+    </div>
+
+    <div class="inline-fields" style="margin-top:10px">
+      <div class="f-q" style="flex:1">
+        <div class="f-q-label">Average pain (past week)</div>
+        <div class="pain-scale">
+          <div class="ps-wrap"><div class="ps-num">0</div></div><div class="ps-wrap"><div class="ps-num">1</div></div><div class="ps-wrap"><div class="ps-num">2</div></div><div class="ps-wrap"><div class="ps-num">3</div></div><div class="ps-wrap"><div class="ps-num">4</div></div><div class="ps-wrap"><div class="ps-num">5</div></div><div class="ps-wrap"><div class="ps-num">6</div></div><div class="ps-wrap"><div class="ps-num">7</div></div><div class="ps-wrap"><div class="ps-num">8</div></div><div class="ps-wrap"><div class="ps-num">9</div></div><div class="ps-wrap"><div class="ps-num">10</div></div>
+        </div>
+      </div>
+      <div class="f-q" style="flex:1">
+        <div class="f-q-label">Worst pain (past week)</div>
+        <div class="pain-scale">
+          <div class="ps-wrap"><div class="ps-num">0</div></div><div class="ps-wrap"><div class="ps-num">1</div></div><div class="ps-wrap"><div class="ps-num">2</div></div><div class="ps-wrap"><div class="ps-num">3</div></div><div class="ps-wrap"><div class="ps-num">4</div></div><div class="ps-wrap"><div class="ps-num">5</div></div><div class="ps-wrap"><div class="ps-num">6</div></div><div class="ps-wrap"><div class="ps-num">7</div></div><div class="ps-wrap"><div class="ps-num">8</div></div><div class="ps-wrap"><div class="ps-num">9</div></div><div class="ps-wrap"><div class="ps-num">10</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-q" style="margin-top:10px">
+      <div class="f-q-label">What makes your pain worse? <span class="hint">(tick all that apply)</span></div>
+      <div class="tick-grid tg-3">
+        <div class="tick-item"><span class="tick-box"></span> Sitting</div>
+        <div class="tick-item"><span class="tick-box"></span> Standing</div>
+        <div class="tick-item"><span class="tick-box"></span> Walking</div>
+        <div class="tick-item"><span class="tick-box"></span> Bending</div>
+        <div class="tick-item"><span class="tick-box"></span> Lifting</div>
+        <div class="tick-item"><span class="tick-box"></span> Lying down</div>
+        <div class="tick-item"><span class="tick-box"></span> Morning</div>
+        <div class="tick-item"><span class="tick-box"></span> Evening</div>
+        <div class="tick-item"><span class="tick-box"></span> Exercise / activity</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">🏃</div>
+      <h2>Function & Lifestyle</h2>
+      <span class="sec-num">3 of 5</span>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">How much does your pain affect your daily life? <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-2" style="margin-top:6px">
+        <div class="tick-item"><span class="tick-circle"></span> No effect — fully functional</div>
+        <div class="tick-item"><span class="tick-circle"></span> Mild — some limitations</div>
+        <div class="tick-item"><span class="tick-circle"></span> Moderate — many limitations</div>
+        <div class="tick-item"><span class="tick-circle"></span> Severe — very limited</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">How does it affect your work?</div>
+      <div class="tick-grid tg-2" style="margin-top:6px">
+        <div class="tick-item"><span class="tick-circle"></span> No effect on work</div>
+        <div class="tick-item"><span class="tick-circle"></span> Reduces performance</div>
+        <div class="tick-item"><span class="tick-circle"></span> Prevents some tasks</div>
+        <div class="tick-item"><span class="tick-circle"></span> Unable to work</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">How is your sleep?</div>
+      <div class="tick-grid tg-4" style="margin-top:6px">
+        <div class="tick-item"><span class="tick-circle"></span> Good — no issues</div>
+        <div class="tick-item"><span class="tick-circle"></span> Restless</div>
+        <div class="tick-item"><span class="tick-circle"></span> Woken by pain</div>
+        <div class="tick-item"><span class="tick-circle"></span> Very poor</div>
+      </div>
+    </div>
+
+    <div class="inline-fields">
+      <div class="f-q" style="flex:1">
+        <div class="f-q-label">Stress level <span class="hint">(circle)</span></div>
+        <div class="pain-scale" style="gap:5px">
+          <div class="ps-wrap"><div class="ps-num">0</div></div><div class="ps-wrap"><div class="ps-num">1</div></div><div class="ps-wrap"><div class="ps-num">2</div></div><div class="ps-wrap"><div class="ps-num">3</div></div><div class="ps-wrap"><div class="ps-num">4</div></div><div class="ps-wrap"><div class="ps-num">5</div></div><div class="ps-wrap"><div class="ps-num">6</div></div><div class="ps-wrap"><div class="ps-num">7</div></div><div class="ps-wrap"><div class="ps-num">8</div></div><div class="ps-wrap"><div class="ps-num">9</div></div><div class="ps-wrap"><div class="ps-num">10</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Occupation / type of work</div>
+      <div class="write-line"></div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">📋</div>
+      <h2>Health History</h2>
+      <span class="sec-num">4 of 5</span>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Have you seen a chiropractor before?</div>
+      <div class="tick-grid tg-3" style="margin-top:4px">
+        <div class="tick-item"><span class="tick-circle"></span> No, first time</div>
+        <div class="tick-item"><span class="tick-circle"></span> Yes — good results</div>
+        <div class="tick-item"><span class="tick-circle"></span> Yes — mixed results</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Any relevant health conditions? <span class="hint">(tick all that apply)</span></div>
+      <div class="tick-grid tg-3">
+        <div class="tick-item"><span class="tick-box"></span> Arthritis</div>
+        <div class="tick-item"><span class="tick-box"></span> Osteoporosis</div>
+        <div class="tick-item"><span class="tick-box"></span> Diabetes</div>
+        <div class="tick-item"><span class="tick-box"></span> Heart condition</div>
+        <div class="tick-item"><span class="tick-box"></span> Cancer / history</div>
+        <div class="tick-item"><span class="tick-box"></span> Disc injury</div>
+        <div class="tick-item"><span class="tick-box"></span> Fibromyalgia</div>
+        <div class="tick-item"><span class="tick-box"></span> Anxiety / depression</div>
+        <div class="tick-item"><span class="tick-box"></span> Other: <div class="write-line write-line-sm" style="width:70px;display:inline-block"></div></div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Current medications <span class="hint">(if comfortable sharing)</span></div>
+      <div class="write-line"></div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Any X-rays, scans or imaging relevant to this problem?</div>
+      <div class="tick-grid tg-2" style="margin-top:4px">
+        <div class="tick-item"><span class="tick-circle"></span> No imaging done</div>
+        <div class="tick-item"><span class="tick-circle"></span> X-ray: <div class="write-line write-line-sm" style="width:100px;display:inline-block"></div></div>
+        <div class="tick-item"><span class="tick-circle"></span> MRI: <div class="write-line write-line-sm" style="width:110px;display:inline-block"></div></div>
+        <div class="tick-item"><span class="tick-circle"></span> CT scan</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">🎯</div>
+      <h2>Goals & Expectations</h2>
+      <span class="sec-num">5 of 5</span>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">What are your main goals from chiropractic care? <span class="hint">(tick all that apply)</span></div>
+      <div class="tick-grid tg-2">
+        <div class="tick-item"><span class="tick-box"></span> Reduce my pain</div>
+        <div class="tick-item"><span class="tick-box"></span> Improve movement & flexibility</div>
+        <div class="tick-item"><span class="tick-box"></span> Return to sport or exercise</div>
+        <div class="tick-item"><span class="tick-box"></span> Return to full work capacity</div>
+        <div class="tick-item"><span class="tick-box"></span> Improve my sleep</div>
+        <div class="tick-item"><span class="tick-box"></span> Improve energy & vitality</div>
+        <div class="tick-item"><span class="tick-box"></span> Long-term health maintenance</div>
+        <div class="tick-item"><span class="tick-box"></span> Better posture</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">What would a successful outcome look like for you?</div>
+      <div class="write-lines"><div class="write-line"></div><div class="write-line"></div></div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">How did you hear about us?</div>
+      <div class="tick-grid tg-3" style="margin-top:4px">
+        <div class="tick-item"><span class="tick-circle"></span> Friend or family</div>
+        <div class="tick-item"><span class="tick-circle"></span> GP referral</div>
+        <div class="tick-item"><span class="tick-circle"></span> Google search</div>
+        <div class="tick-item"><span class="tick-circle"></span> Social media</div>
+        <div class="tick-item"><span class="tick-circle"></span> Returning patient</div>
+        <div class="tick-item"><span class="tick-circle"></span> Other: <div class="write-line write-line-sm" style="width:80px;display:inline-block"></div></div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Any additional notes or questions for your chiropractor?</div>
+      <div class="write-lines"><div class="write-line"></div><div class="write-line"></div></div>
+    </div>
+
+    <div class="score-summary">
+      <div style="width:100%;font-size:9pt;font-weight:700;color:#6b7b8d;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;">For Clinic Use — Baseline Scores</div>
+      <div class="score-box"><div class="sb-label">Pain Score</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">Function Score</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">Sleep Score</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">Overall Score</div><div class="sb-val"></div></div>
+    </div>
+
+    <div class="f-footer">
+      <span>Banora Chiropractic — Initial Consultation</span>
+      <span>🔒 Confidential Patient Record</span>
+      <span>Date: _______________</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     FORM 2 — RELIEF CARE
+═══════════════════════════════════════════ -->
+<div class="form-page page-break" id="form-rc">
+
+  <div class="f-header">
+    <div class="f-logo">🦴</div>
+    <div class="f-brand">
+      <h1>Banora Chiropractic</h1>
+      <p>Patient Assessment Form</p>
+    </div>
+    <div class="f-badge">Relief Care<small>Progress Check-In — Phase 1</small></div>
+  </div>
+
+  <div class="f-patient-bar">
+    <div class="pf">Patient Name <span>—</span> <div class="pf-line" style="min-width:160px"></div></div>
+    <div class="pf">Date <span>—</span> <div class="pf-line" style="min-width:90px"></div></div>
+    <div class="pf">Visit # <span>—</span> <div class="pf-line" style="min-width:50px"></div></div>
+  </div>
+
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">🩻</div>
+      <h2>Pain Levels</h2>
+      <span class="sec-num">1 of 4</span>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Pain right now <span class="hint">(circle)</span></div>
+      <div class="pain-scale">
+        <div class="ps-wrap"><div class="ps-num">0</div><div class="ps-label">None</div></div><div class="ps-wrap"><div class="ps-num">1</div></div><div class="ps-wrap"><div class="ps-num">2</div></div><div class="ps-wrap"><div class="ps-num">3</div></div><div class="ps-wrap"><div class="ps-num">4</div></div><div class="ps-wrap"><div class="ps-num">5</div></div><div class="ps-wrap"><div class="ps-num">6</div></div><div class="ps-wrap"><div class="ps-num">7</div></div><div class="ps-wrap"><div class="ps-num">8</div></div><div class="ps-wrap"><div class="ps-num">9</div></div><div class="ps-wrap"><div class="ps-num">10</div><div class="ps-label">Worst</div></div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Worst pain this past week <span class="hint">(circle)</span></div>
+      <div class="pain-scale">
+        <div class="ps-wrap"><div class="ps-num">0</div></div><div class="ps-wrap"><div class="ps-num">1</div></div><div class="ps-wrap"><div class="ps-num">2</div></div><div class="ps-wrap"><div class="ps-num">3</div></div><div class="ps-wrap"><div class="ps-num">4</div></div><div class="ps-wrap"><div class="ps-num">5</div></div><div class="ps-wrap"><div class="ps-num">6</div></div><div class="ps-wrap"><div class="ps-num">7</div></div><div class="ps-wrap"><div class="ps-num">8</div></div><div class="ps-wrap"><div class="ps-num">9</div></div><div class="ps-wrap"><div class="ps-num">10</div></div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">How has your pain changed since your last visit? <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-4" style="margin-top:6px">
+        <div class="tick-item"><span class="tick-circle"></span> Much better</div>
+        <div class="tick-item"><span class="tick-circle"></span> Somewhat better</div>
+        <div class="tick-item"><span class="tick-circle"></span> About the same</div>
+        <div class="tick-item"><span class="tick-circle"></span> Worse</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">🏃</div>
+      <h2>Daily Function</h2>
+      <span class="sec-num">2 of 4</span>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">How has your ability to do daily tasks changed? <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-2" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> Much improved</div>
+        <div class="tick-item"><span class="tick-circle"></span> Somewhat improved</div>
+        <div class="tick-item"><span class="tick-circle"></span> About the same</div>
+        <div class="tick-item"><span class="tick-circle"></span> More limited</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">How is your sleep this week? <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-4" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> Good</div>
+        <div class="tick-item"><span class="tick-circle"></span> Restless</div>
+        <div class="tick-item"><span class="tick-circle"></span> Woken by pain</div>
+        <div class="tick-item"><span class="tick-circle"></span> Very poor</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Stress level this week <span class="hint">(circle)</span></div>
+      <div class="pain-scale">
+        <div class="ps-wrap"><div class="ps-num">0</div><div class="ps-label">None</div></div><div class="ps-wrap"><div class="ps-num">1</div></div><div class="ps-wrap"><div class="ps-num">2</div></div><div class="ps-wrap"><div class="ps-num">3</div></div><div class="ps-wrap"><div class="ps-num">4</div></div><div class="ps-wrap"><div class="ps-num">5</div></div><div class="ps-wrap"><div class="ps-num">6</div></div><div class="ps-wrap"><div class="ps-num">7</div></div><div class="ps-wrap"><div class="ps-num">8</div></div><div class="ps-wrap"><div class="ps-num">9</div></div><div class="ps-wrap"><div class="ps-num">10</div><div class="ps-label">High</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">💬</div>
+      <h2>Treatment Feedback</h2>
+      <span class="sec-num">3 of 4</span>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Have you been doing your home exercises? <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-4" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> Yes — every day</div>
+        <div class="tick-item"><span class="tick-circle"></span> Most days</div>
+        <div class="tick-item"><span class="tick-circle"></span> Sometimes</div>
+        <div class="tick-item"><span class="tick-circle"></span> Not yet</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">How did you feel after your last adjustment? <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-2" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> Great — immediate relief</div>
+        <div class="tick-item"><span class="tick-circle"></span> Better within 24 hours</div>
+        <div class="tick-item"><span class="tick-circle"></span> Mild soreness then better</div>
+        <div class="tick-item"><span class="tick-circle"></span> No noticeable change</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Overall satisfaction with your care so far <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-4" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> Very satisfied</div>
+        <div class="tick-item"><span class="tick-circle"></span> Satisfied</div>
+        <div class="tick-item"><span class="tick-circle"></span> Neutral</div>
+        <div class="tick-item"><span class="tick-circle"></span> Unsatisfied</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">📝</div>
+      <h2>Notes</h2>
+      <span class="sec-num">4 of 4</span>
+    </div>
+    <div class="f-q">
+      <div class="f-q-label">Anything else you'd like your chiropractor to know?</div>
+      <div class="write-lines"><div class="write-line"></div><div class="write-line"></div><div class="write-line"></div></div>
+    </div>
+
+    <div class="score-summary">
+      <div style="width:100%;font-size:9pt;font-weight:700;color:#6b7b8d;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;">For Clinic Use — Visit Scores</div>
+      <div class="score-box"><div class="sb-label">Pain Score</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">Function Score</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">Sleep Score</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">Overall Score</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">vs Baseline</div><div class="sb-val"></div></div>
+    </div>
+    <div class="f-footer">
+      <span>Banora Chiropractic — Relief Care</span>
+      <span>🔒 Confidential Patient Record</span>
+      <span>Date: _______________</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     FORM 3 — REHAB PHASE
+═══════════════════════════════════════════ -->
+<div class="form-page page-break" id="form-rh">
+
+  <div class="f-header">
+    <div class="f-logo">🦴</div>
+    <div class="f-brand">
+      <h1>Banora Chiropractic</h1>
+      <p>Patient Assessment Form</p>
+    </div>
+    <div class="f-badge">Rehab Phase<small>Assessment — Phase 2</small></div>
+  </div>
+
+  <div class="f-patient-bar">
+    <div class="pf">Patient Name <span>—</span> <div class="pf-line" style="min-width:160px"></div></div>
+    <div class="pf">Date <span>—</span> <div class="pf-line" style="min-width:90px"></div></div>
+    <div class="pf">Visit # <span>—</span> <div class="pf-line" style="min-width:50px"></div></div>
+  </div>
+
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">🏋️</div>
+      <h2>Functional Ability</h2>
+      <span class="sec-num">1 of 4</span>
+    </div>
+
+    <div class="tip-box">Rate your ability for each activity — 1 = unable to do, 3 = can do with difficulty, 5 = fully able with no restriction</div>
+
+    <div class="f-q">
+      <div class="f-q-label">For each activity, circle your ability rating (1–5)</div>
+      <div style="margin-top:8px;display:flex;flex-direction:column;gap:9px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="min-width:220px;font-size:10pt;font-weight:600;color:#1a2e4d;">🏃 Walking 30+ minutes</div>
+          <div class="rating-row">
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">1</div><span>Unable</span></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">2</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">3</div><span>Difficulty</span></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">4</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">5</div><span>Fully able</span></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="min-width:220px;font-size:10pt;font-weight:600;color:#1a2e4d;">🏋️ Lifting / carrying</div>
+          <div class="rating-row">
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">1</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">2</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">3</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">4</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">5</div></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="min-width:220px;font-size:10pt;font-weight:600;color:#1a2e4d;">💺 Sitting 1+ hour</div>
+          <div class="rating-row">
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">1</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">2</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">3</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">4</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">5</div></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="min-width:220px;font-size:10pt;font-weight:600;color:#1a2e4d;">🔄 Bending forward</div>
+          <div class="rating-row">
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">1</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">2</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">3</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">4</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">5</div></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="min-width:220px;font-size:10pt;font-weight:600;color:#1a2e4d;">⚽ Sport / exercise</div>
+          <div class="rating-row">
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">1</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">2</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">3</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">4</div></div>
+            <div class="rating-opt"><div class="tick-circle" style="width:26px;height:26px;line-height:26px;text-align:center;font-weight:700;font-size:10pt">5</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="f-q" style="margin-top:10px">
+      <div class="f-q-label">Pain at rest <span class="hint">(circle)</span></div>
+      <div class="pain-scale">
+        <div class="ps-wrap"><div class="ps-num">0</div><div class="ps-label">None</div></div><div class="ps-wrap"><div class="ps-num">1</div></div><div class="ps-wrap"><div class="ps-num">2</div></div><div class="ps-wrap"><div class="ps-num">3</div></div><div class="ps-wrap"><div class="ps-num">4</div></div><div class="ps-wrap"><div class="ps-num">5</div></div><div class="ps-wrap"><div class="ps-num">6</div></div><div class="ps-wrap"><div class="ps-num">7</div></div><div class="ps-wrap"><div class="ps-num">8</div></div><div class="ps-wrap"><div class="ps-num">9</div></div><div class="ps-wrap"><div class="ps-num">10</div><div class="ps-label">Worst</div></div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Pain during activity <span class="hint">(circle)</span></div>
+      <div class="pain-scale">
+        <div class="ps-wrap"><div class="ps-num">0</div></div><div class="ps-wrap"><div class="ps-num">1</div></div><div class="ps-wrap"><div class="ps-num">2</div></div><div class="ps-wrap"><div class="ps-num">3</div></div><div class="ps-wrap"><div class="ps-num">4</div></div><div class="ps-wrap"><div class="ps-num">5</div></div><div class="ps-wrap"><div class="ps-num">6</div></div><div class="ps-wrap"><div class="ps-num">7</div></div><div class="ps-wrap"><div class="ps-num">8</div></div><div class="ps-wrap"><div class="ps-num">9</div></div><div class="ps-wrap"><div class="ps-num">10</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">💪</div>
+      <h2>Exercise & Rehab Program</h2>
+      <span class="sec-num">2 of 4</span>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">How often are you doing your home exercises? <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-3" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> Every day</div>
+        <div class="tick-item"><span class="tick-circle"></span> 4–5 times a week</div>
+        <div class="tick-item"><span class="tick-circle"></span> 2–3 times a week</div>
+        <div class="tick-item"><span class="tick-circle"></span> Once a week</div>
+        <div class="tick-item"><span class="tick-circle"></span> Rarely</div>
+        <div class="tick-item"><span class="tick-circle"></span> Haven't started</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">How would you describe your exercise progression? <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-2" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> Getting easier — progressing well</div>
+        <div class="tick-item"><span class="tick-circle"></span> Staying the same</div>
+        <div class="tick-item"><span class="tick-circle"></span> Still finding them difficult</div>
+        <div class="tick-item"><span class="tick-circle"></span> Causing discomfort</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">🎯</div>
+      <h2>Goal Achievement</h2>
+      <span class="sec-num">3 of 4</span>
+    </div>
+
+    <div class="tip-box">Think back to the goals you set at your initial consultation. How far have you progressed towards each one?</div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="flex:1;font-size:10pt;font-weight:600;color:#1a2e4d;">Goal 1: <div class="write-line write-line-sm" style="display:inline-block;width:200px"></div></div>
+        <div style="font-size:9pt;color:#6b7b8d;white-space:nowrap">0% <div class="write-line write-line-sm" style="display:inline-block;width:100px"></div> 100%</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="flex:1;font-size:10pt;font-weight:600;color:#1a2e4d;">Goal 2: <div class="write-line write-line-sm" style="display:inline-block;width:200px"></div></div>
+        <div style="font-size:9pt;color:#6b7b8d;white-space:nowrap">0% <div class="write-line write-line-sm" style="display:inline-block;width:100px"></div> 100%</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="flex:1;font-size:10pt;font-weight:600;color:#1a2e4d;">Goal 3: <div class="write-line write-line-sm" style="display:inline-block;width:200px"></div></div>
+        <div style="font-size:9pt;color:#6b7b8d;white-space:nowrap">0% <div class="write-line write-line-sm" style="display:inline-block;width:100px"></div> 100%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">🌟</div>
+      <h2>Feedback & Future Care</h2>
+      <span class="sec-num">4 of 4</span>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Are you interested in a maintenance care plan? <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-3" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> Yes — weekly</div>
+        <div class="tick-item"><span class="tick-circle"></span> Yes — fortnightly</div>
+        <div class="tick-item"><span class="tick-circle"></span> Yes — every 3 weeks</div>
+        <div class="tick-item"><span class="tick-circle"></span> Yes — monthly</div>
+        <div class="tick-item"><span class="tick-circle"></span> Maybe — tell me more</div>
+        <div class="tick-item"><span class="tick-circle"></span> No — not right now</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Overall rating of your care <span class="hint">(circle)</span></div>
+      <div class="rating-row" style="margin-top:6px">
+        <div class="rating-opt"><div class="tick-circle" style="width:32px;height:32px;line-height:32px;text-align:center;font-weight:700;font-size:12pt">1</div><span>Poor</span></div>
+        <div class="rating-opt"><div class="tick-circle" style="width:32px;height:32px;line-height:32px;text-align:center;font-weight:700;font-size:12pt">2</div><span>Fair</span></div>
+        <div class="rating-opt"><div class="tick-circle" style="width:32px;height:32px;line-height:32px;text-align:center;font-weight:700;font-size:12pt">3</div><span>Good</span></div>
+        <div class="rating-opt"><div class="tick-circle" style="width:32px;height:32px;line-height:32px;text-align:center;font-weight:700;font-size:12pt">4</div><span>Great</span></div>
+        <div class="rating-opt"><div class="tick-circle" style="width:32px;height:32px;line-height:32px;text-align:center;font-weight:700;font-size:12pt">5</div><span>Excellent</span></div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Your biggest win or improvement since starting care</div>
+      <div class="write-lines"><div class="write-line"></div><div class="write-line"></div></div>
+    </div>
+
+    <div class="score-summary">
+      <div style="width:100%;font-size:9pt;font-weight:700;color:#6b7b8d;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;">For Clinic Use</div>
+      <div class="score-box"><div class="sb-label">Pain Score</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">Function Score</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">Goal Score</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">Overall Score</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">vs Baseline</div><div class="sb-val"></div></div>
+    </div>
+    <div class="f-footer">
+      <span>Banora Chiropractic — Rehab Phase</span>
+      <span>🔒 Confidential Patient Record</span>
+      <span>Date: _______________</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     FORM 4 — WELLNESS & MAINTENANCE
+═══════════════════════════════════════════ -->
+<div class="form-page teal page-break" id="form-wm">
+
+  <div class="f-header">
+    <div class="f-logo">🦴</div>
+    <div class="f-brand">
+      <h1>Banora Chiropractic</h1>
+      <p>Patient Assessment Form</p>
+    </div>
+    <div class="f-badge">Wellness & Maintenance<small>Health Check-In — Phase 3</small></div>
+  </div>
+
+  <div class="f-patient-bar">
+    <div class="pf">Patient Name <span>—</span> <div class="pf-line" style="min-width:160px"></div></div>
+    <div class="pf">Date <span>—</span> <div class="pf-line" style="min-width:90px"></div></div>
+    <div class="pf">Visit # <span>—</span> <div class="pf-line" style="min-width:50px"></div></div>
+  </div>
+
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">🩻</div>
+      <h2>Spinal Health</h2>
+      <span class="sec-num">1 of 4</span>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Overall spinal comfort right now <span class="hint">(0 = severe pain, 10 = completely pain free — circle)</span></div>
+      <div class="pain-scale">
+        <div class="ps-wrap"><div class="ps-num">0</div><div class="ps-label">Pain</div></div><div class="ps-wrap"><div class="ps-num">1</div></div><div class="ps-wrap"><div class="ps-num">2</div></div><div class="ps-wrap"><div class="ps-num">3</div></div><div class="ps-wrap"><div class="ps-num">4</div></div><div class="ps-wrap"><div class="ps-num">5</div></div><div class="ps-wrap"><div class="ps-num">6</div></div><div class="ps-wrap"><div class="ps-num">7</div></div><div class="ps-wrap"><div class="ps-num">8</div></div><div class="ps-wrap"><div class="ps-num">9</div></div><div class="ps-wrap"><div class="ps-num">10</div><div class="ps-label">Free</div></div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Any new areas of discomfort? <span class="hint">(tick all that apply)</span></div>
+      <div class="tick-grid tg-3">
+        <div class="tick-item"><span class="tick-box"></span> None — feeling well</div>
+        <div class="tick-item"><span class="tick-box"></span> Neck / upper back</div>
+        <div class="tick-item"><span class="tick-box"></span> Mid back</div>
+        <div class="tick-item"><span class="tick-box"></span> Lower back</div>
+        <div class="tick-item"><span class="tick-box"></span> Headaches</div>
+        <div class="tick-item"><span class="tick-box"></span> Hips / legs</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Overall, compared to before you started chiropractic care <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-3" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> Much better</div>
+        <div class="tick-item"><span class="tick-circle"></span> Better</div>
+        <div class="tick-item"><span class="tick-circle"></span> Slightly better</div>
+        <div class="tick-item"><span class="tick-circle"></span> About the same</div>
+        <div class="tick-item"><span class="tick-circle"></span> Worse</div>
+        <div class="tick-item"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">🌱</div>
+      <h2>Lifestyle & Habits</h2>
+      <span class="sec-num">2 of 4</span>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Average daily sitting time <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-4" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> Under 4 hours</div>
+        <div class="tick-item"><span class="tick-circle"></span> 4–6 hours</div>
+        <div class="tick-item"><span class="tick-circle"></span> 6–9 hours</div>
+        <div class="tick-item"><span class="tick-circle"></span> 9+ hours</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Exercise or physical activity this week <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-4" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> 5+ days</div>
+        <div class="tick-item"><span class="tick-circle"></span> 3–4 days</div>
+        <div class="tick-item"><span class="tick-circle"></span> 1–2 days</div>
+        <div class="tick-item"><span class="tick-circle"></span> None</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Home exercises / stretching <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-4" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> Yes — regularly</div>
+        <div class="tick-item"><span class="tick-circle"></span> Sometimes</div>
+        <div class="tick-item"><span class="tick-circle"></span> Rarely</div>
+        <div class="tick-item"><span class="tick-circle"></span> Not doing any</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">🧘</div>
+      <h2>Stress, Sleep & Wellbeing</h2>
+      <span class="sec-num">3 of 4</span>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Stress level this past week <span class="hint">(circle)</span></div>
+      <div class="pain-scale">
+        <div class="ps-wrap"><div class="ps-num">0</div><div class="ps-label">None</div></div><div class="ps-wrap"><div class="ps-num">1</div></div><div class="ps-wrap"><div class="ps-num">2</div></div><div class="ps-wrap"><div class="ps-num">3</div></div><div class="ps-wrap"><div class="ps-num">4</div></div><div class="ps-wrap"><div class="ps-num">5</div></div><div class="ps-wrap"><div class="ps-num">6</div></div><div class="ps-wrap"><div class="ps-num">7</div></div><div class="ps-wrap"><div class="ps-num">8</div></div><div class="ps-wrap"><div class="ps-num">9</div></div><div class="ps-wrap"><div class="ps-num">10</div><div class="ps-label">Extreme</div></div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Sleep quality this week <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-4" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> Excellent</div>
+        <div class="tick-item"><span class="tick-circle"></span> Good</div>
+        <div class="tick-item"><span class="tick-circle"></span> Fair</div>
+        <div class="tick-item"><span class="tick-circle"></span> Poor</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Energy levels this week <span class="hint">(circle one)</span></div>
+      <div class="tick-grid tg-4" style="margin-top:5px">
+        <div class="tick-item"><span class="tick-circle"></span> Excellent</div>
+        <div class="tick-item"><span class="tick-circle"></span> Good</div>
+        <div class="tick-item"><span class="tick-circle"></span> Okay</div>
+        <div class="tick-item"><span class="tick-circle"></span> Low / exhausted</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="f-section">
+    <div class="f-section-hdr">
+      <div class="f-section-icon">🛡️</div>
+      <h2>Prevention & Goals</h2>
+      <span class="sec-num">4 of 4</span>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">What are you doing to support your spinal health? <span class="hint">(tick all that apply)</span></div>
+      <div class="tick-grid tg-2">
+        <div class="tick-item"><span class="tick-box"></span> Regular exercise / movement</div>
+        <div class="tick-item"><span class="tick-box"></span> Home exercises / stretching</div>
+        <div class="tick-item"><span class="tick-box"></span> Ergonomic workspace setup</div>
+        <div class="tick-item"><span class="tick-box"></span> Mindfulness / stress management</div>
+        <div class="tick-item"><span class="tick-box"></span> Good sleep habits</div>
+        <div class="tick-item"><span class="tick-box"></span> Anti-inflammatory diet</div>
+      </div>
+    </div>
+
+    <div class="f-q">
+      <div class="f-q-label">Any areas you'd like to focus on or questions for your chiropractor?</div>
+      <div class="write-lines"><div class="write-line"></div><div class="write-line"></div></div>
+    </div>
+
+    <div class="score-summary">
+      <div style="width:100%;font-size:9pt;font-weight:700;color:#6b7b8d;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;">For Clinic Use</div>
+      <div class="score-box"><div class="sb-label">Spinal Comfort</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">Lifestyle Score</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">Wellbeing Score</div><div class="sb-val"></div></div>
+      <div class="score-box"><div class="sb-label">Overall Score</div><div class="sb-val"></div></div>
+    </div>
+
+    <div class="f-footer">
+      <span>Banora Chiropractic — Wellness & Maintenance</span>
+      <span>🔒 Confidential Patient Record</span>
+      <span>Date: _______________</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function printForm(id) {
+  // Show only the target form
+  document.querySelectorAll('.form-page').forEach(el => el.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+  window.print();
+  // After print dialog closes, hide again
+  setTimeout(() => {
+    document.querySelectorAll('.form-page').forEach(el => el.style.display = 'none');
+  }, 1000);
+}
+</script>
+</body>
+</html>
