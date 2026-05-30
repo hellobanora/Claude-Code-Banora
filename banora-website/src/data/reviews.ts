@@ -49,7 +49,7 @@ export const googleReviews: Review[] = [
 
 // Aggregate stats shown in the section header — update to match your Google profile.
 export const reviewStats = {
-  rating: 5.0,
-  count: 47,
-  googleProfileUrl: 'https://g.page/r/YOUR_GOOGLE_PLACE_ID/review',
+  rating: 4.9,
+  count: 67,
+  googleProfileUrl: 'https://g.page/r/CZr5CcYSatKVEAI/review',
 };
