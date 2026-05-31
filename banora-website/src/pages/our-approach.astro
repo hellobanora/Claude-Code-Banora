@@ -1,0 +1,204 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clinic } from '../data/clinic';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: 'Our Approach to Care | Banora Chiropractic',
+  url: `${clinic.website}/our-approach/`,
+  description: 'How we treat at Banora Chiropractic — our assessment process, the chiropractic techniques we use, and how we adapt care for every age and stage.',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: clinic.name,
+    url: clinic.website,
+  },
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: clinic.website },
+      { '@type': 'ListItem', position: 2, name: 'Our Approach', item: `${clinic.website}/our-approach/` },
+    ],
+  },
+};
+
+const steps = [
+  {
+    number: '1',
+    title: 'Understand the cause',
+    body: 'We start by listening. Before anything else, we take the time to understand your symptoms, your health history, and what you are hoping to get back to — whether that is sleeping through the night, lifting your kids, or returning to sport.',
+  },
+  {
+    number: '2',
+    title: 'A thorough assessment',
+    body: 'We examine how your spine and joints move, check posture and range of motion, and carry out orthopaedic and neurological tests where relevant. This helps us work out what is actually driving your problem, rather than just where it hurts.',
+  },
+  {
+    number: '3',
+    title: 'A care plan built around you',
+    body: 'We explain what we find in plain English and recommend an honest, realistic plan — no lock-in contracts and no pressure. You will always understand why we are suggesting something before any treatment begins.',
+  },
+  {
+    number: '4',
+    title: 'Gentle treatment & ongoing support',
+    body: 'We provide hands-on care, give you practical exercises and advice to do at home, and review your progress as we go. If your needs change, your plan changes with them.',
+  },
+];
+
+const techniques = [
+  {
+    name: 'Diversified',
+    body: 'The most widely used chiropractic technique — precise, hands-on adjustments to restore movement to specific joints.',
+  },
+  {
+    name: 'Gonstead',
+    body: 'A thorough, detailed approach to assessing and adjusting the spine, focused on precision and specificity.',
+  },
+  {
+    name: 'Thompson Drop-Piece',
+    body: 'Uses a specially designed table with sections that drop slightly during an adjustment, allowing for a lighter, gentler force.',
+  },
+  {
+    name: 'Sacro-Occipital Technique (SOT)',
+    body: 'A gentle method that works with the relationship between the pelvis and the base of the skull, often well suited to sensitive cases.',
+  },
+  {
+    name: 'Arthrostim / Activator',
+    body: 'Instrument-assisted techniques that deliver a low-force, controlled impulse — a good option when a gentler approach is preferred.',
+  },
+  {
+    name: 'Soft Tissue Therapy',
+    body: 'Hands-on work to release tight muscles and address the soft-tissue tension that often accompanies joint problems.',
+  },
+];
+---
+
+<BaseLayout
+  title="Our Approach | How We Treat | Banora Chiropractic"
+  description="How we treat at Banora Chiropractic, Tweed Heads South — our step-by-step assessment process, the chiropractic techniques we use, and how we adapt care for every age and stage."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-deep via-navy to-navy-light opacity-95"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <nav class="text-sm text-light-blue-soft/60 mb-6">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-white">Our Approach</span>
+      </nav>
+      <h1 class="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-semibold text-white mb-4">Our Approach to Care</h1>
+      <p class="text-light-blue-soft/90 text-lg max-w-2xl">Good chiropractic care is not one-size-fits-all. We take the time to understand what is going on, explain it clearly, and tailor our care to you — your body, your goals, and your stage of life.</p>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Our philosophy</span>
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-6">Care That Treats the Person, Not Just the Pain</h2>
+      <div class="prose prose-lg max-w-none text-grey-text leading-relaxed space-y-5">
+        <p>With over 30 years of combined experience, Dr Paul Cater and Dr James Shipway share a simple belief: you should leave every appointment understanding your body a little better than when you walked in.</p>
+        <p>Pain is usually a signal, not the whole story. A sore lower back might trace back to how you sit, an old injury, or the way your pelvis and hips move. That is why we focus on finding and addressing the underlying cause where we can — not just chasing symptoms. Our care is evidence-informed, hands-on, and always explained in plain language. Results vary between individuals, and we will give you an honest picture of how we may be able to help.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Care Works -->
+  <section class="py-16 md:py-24 bg-light-grey">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">How care works</span>
+        <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3">Four Steps, Start to Finish</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        {steps.map((step) => (
+          <div class="bg-white rounded-2xl p-6 md:p-8 border border-grey-mid/20">
+            <div class="w-12 h-12 bg-mid-blue rounded-full flex items-center justify-center text-white font-[family-name:var(--font-display)] text-xl font-semibold mb-5">{step.number}</div>
+            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-3">{step.title}</h3>
+            <p class="text-grey-text leading-relaxed">{step.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Techniques -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">The techniques we use</span>
+        <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-5">A Range of Methods, Matched to You</h2>
+        <p class="text-grey-text text-lg leading-relaxed">There is no single "best" chiropractic technique — the right approach depends on you, your condition, and your comfort. Between them, our chiropractors are trained in a range of methods, from firmer hands-on adjustments to very gentle, low-force options for those who prefer or need them.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6">
+        {techniques.map((tech) => (
+          <div class="flex gap-4 bg-blue-ghost/40 rounded-xl p-5 md:p-6 border border-blue-pale/30">
+            <svg class="w-6 h-6 text-mid-blue mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <div>
+              <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-1.5">{tech.name}</h3>
+              <p class="text-grey-text text-sm leading-relaxed">{tech.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Adapting Care -->
+  <section class="py-16 md:py-24 bg-light-grey">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Care for every age & stage</span>
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-8">How We Adapt Our Care</h2>
+      <div class="space-y-6">
+        <div class="bg-white rounded-xl p-6 border border-grey-mid/20">
+          <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">Children &amp; babies</h3>
+          <p class="text-grey-text leading-relaxed">For our youngest patients we use very gentle, low-force techniques — nothing like an adult adjustment. The focus is on a careful assessment and a light touch. You can read more on our <a href="/services/paediatric-chiropractic/" class="text-mid-blue hover:text-navy underline transition-colors">paediatric chiropractic</a> page.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-grey-mid/20">
+          <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">Pregnancy</h3>
+          <p class="text-grey-text leading-relaxed">As your body changes through pregnancy, we adapt our techniques and use pregnancy-safe positioning and tables to keep you comfortable. Both Dr Paul and Dr James have experience caring for pregnant patients — see <a href="/services/pregnancy-chiropractic/" class="text-mid-blue hover:text-navy underline transition-colors">pregnancy chiropractic</a>.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-grey-mid/20">
+          <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">Older patients</h3>
+          <p class="text-grey-text leading-relaxed">For older patients, or anyone who prefers a softer approach, we can use low-force, instrument-assisted techniques. The goal is to help you stay mobile, comfortable, and independent for as long as possible.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-grey-mid/20">
+          <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">Active people &amp; athletes</h3>
+          <p class="text-grey-text leading-relaxed">For sports-focused care we look at both the injury and the movement patterns behind it, and give practical advice on load and return-to-activity timelines. See <a href="/services/sports-chiropractic/" class="text-mid-blue hover:text-navy underline transition-colors">sports chiropractic</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beyond the Adjustment -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">More than adjustments</span>
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-6">Exercise, Advice &amp; Knowing When to Refer</h2>
+      <div class="prose prose-lg max-w-none text-grey-text leading-relaxed space-y-5">
+        <p>Hands-on care is only part of the picture. Where it helps, we will give you simple exercises, posture and ergonomic advice, and practical tips you can use between visits — because the changes that last usually happen at home, not just in the clinic.</p>
+        <p>We also believe in knowing our limits. If your examination suggests imaging is needed, or that your problem would be better managed by your GP, a physiotherapist, or a specialist, we will tell you and help arrange the right referral. We do not take X-rays in-house; when imaging is clinically indicated, we refer you to a trusted local radiology provider and review the results with you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-20 bg-navy relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 right-10 w-72 h-72 bg-light-blue rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 text-center">
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">See How We Can Help</h2>
+      <p class="text-light-blue-soft/90 text-lg mb-8">Book an assessment and we will take the time to understand your situation and explain your options — clearly and honestly.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          Book Your Assessment
+        </a>
+        <a href="/new-patient-info/" class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+          New Patient Information
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
