@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banora Chiropractic — Brand Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:        #1B3A5C;
+    --navy-deep:   #122840;
+    --navy-light:  #234B73;
+    --mid-blue:    #2C5F8A;
+    --light-blue:  #5B9EC9;
+    --light-blue-soft: #8FBFDD;
+    --blue-pale:   #D4E8F5;
+    --blue-ghost:  #EDF5FA;
+    --gold:        #D4A853;
+    --gold-light:  #E8C97D;
+    --gold-dark:   #B88E3A;
+    --grey-light:  #F5F5F5;
+    --grey-mid:    #D8DCE0;
+    --grey-text:   #6B7280;
+    --dark-text:   #1A1A1A;
+    --white:       #FFFFFF;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body:   'Outfit', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--dark-text);
+    background: #F8F9FA;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ── Cover Page ─────────────────────────────────── */
+  .cover {
+    background: var(--navy);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    border: 2px solid rgba(212, 168, 83, 0.2);
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 2px solid rgba(212, 168, 83, 0.15);
+  }
+
+  .cover-logo-block {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .cover-logo-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--gold);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+
+  .cover-logo-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    color: white;
+  }
+
+  .cover-logo-name span {
+    display: block;
+    font-size: 12px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+
+  .cover h1 {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+
+  .cover h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .cover p {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    max-width: 480px;
+    margin-bottom: 48px;
+  }
+
+  .cover-meta {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin-bottom: 32px;
+  }
+
+  /* ── Shared Layout ───────────────────────────────── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 48px;
+  }
+
+  .page-break { page-break-before: always; }
+
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  .section-intro {
+    font-size: 17px;
+    color: var(--grey-text);
+    max-width: 600px;
+    margin-bottom: 56px;
+    line-height: 1.7;
+  }
+
+  .section-divider {
+    width: 48px;
+    height: 3px;
+    background: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  /* ── Colour Palette ──────────────────────────────── */
+  .colour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .colour-chip {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  .colour-chip-swatch {
+    height: 120px;
+    width: 100%;
+  }
+
+  .colour-chip-info {
+    background: white;
+    padding: 14px 16px;
+  }
+
+  .colour-chip-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--dark-text);
+    margin-bottom: 2px;
+  }
+
+  .colour-chip-hex {
+    font-size: 13px;
+    color: var(--grey-text);
+    font-family: 'Courier New', monospace;
+    margin-bottom: 6px;
+  }
+
+  .colour-chip-usage {
+    font-size: 12px;
+    color: var(--grey-text);
+    line-height: 1.4;
+  }
+
+  .colour-section-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 20px;
+    margin-top: 48px;
+  }
+
+  /* ── Colour Combos ───────────────────────────────── */
+  .combo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .combo-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  .combo-preview {
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 120px;
+    justify-content: center;
+  }
+
+  .combo-preview h4 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .combo-preview p {
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  .combo-preview .btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    width: fit-content;
+  }
+
+  .combo-label {
+    background: white;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: var(--grey-text);
+    font-weight: 500;
+  }
+
+  /* ── Typography ──────────────────────────────────── */
+  .type-sample {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 48px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .type-meta {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--grey-text);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  .type-sample h1 { font-family: var(--font-display); font-size: 56px; font-weight: 600; color: var(--navy); line-height: 1.1; margin-bottom: 4px; }
+  .type-sample h2 { font-family: var(--font-display); font-size: 40px; font-weight: 600; color: var(--navy); line-height: 1.15; margin-bottom: 4px; }
+  .type-sample h3 { font-family: var(--font-display); font-size: 28px; font-weight: 600; color: var(--navy); line-height: 1.2; margin-bottom: 4px; }
+  .type-sample h4 { font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--navy); line-height: 1.3; margin-bottom: 4px; }
+  .type-sample p.body-lg { font-family: var(--font-body); font-size: 18px; font-weight: 400; color: var(--dark-text); line-height: 1.7; }
+  .type-sample p.body   { font-family: var(--font-body); font-size: 16px; font-weight: 400; color: var(--dark-text); line-height: 1.7; }
+  .type-sample p.small  { font-family: var(--font-body); font-size: 14px; font-weight: 400; color: var(--grey-text); line-height: 1.6; }
+  .type-sample p.label  { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dark); }
+  .type-sample p.italic { font-family: var(--font-display); font-size: 22px; font-style: italic; font-weight: 400; color: var(--mid-blue); }
+
+  .type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .font-showcase {
+    background: white;
+    border-radius: 12px;
+    padding: 36px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .font-showcase-name {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .font-showcase-full {
+    font-size: 14px;
+    color: var(--grey-text);
+    margin-bottom: 20px;
+  }
+
+  .font-showcase-display {
+    font-size: 48px;
+    line-height: 1.1;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+
+  .font-showcase-alphabet {
+    font-size: 15px;
+    color: var(--grey-text);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    word-break: break-all;
+  }
+
+  .font-showcase-weights {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .font-weight-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .font-weight-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--grey-text);
+    width: 60px;
+    flex-shrink: 0;
+  }
+
+  /* ── Logo ────────────────────────────────────────── */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .logo-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  .logo-card-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    min-height: 180px;
+  }
+
+  .logo-card-bg img {
+    max-height: 80px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .logo-card-info {
+    background: white;
+    padding: 14px 18px;
+  }
+
+  .logo-card-info strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark-text);
+    margin-bottom: 2px;
+  }
+
+  .logo-card-info span {
+    font-size: 12px;
+    color: var(--grey-text);
+  }
+
+  .logo-icon-showcase {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .logo-icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-icon-preview {
+    width: 72px;
+    height: 72px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 28px;
+  }
+
+  .logo-icon-label {
+    font-size: 12px;
+    color: var(--grey-text);
+    text-align: center;
+  }
+
+  .logo-rules {
+    background: white;
+    border-radius: 12px;
+    padding: 36px 40px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .logo-rules h4 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+
+  .do-list, .dont-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .do-list li::before {
+    content: '✓';
+    color: #22C55E;
+    font-weight: 700;
+    margin-right: 10px;
+  }
+
+  .dont-list li::before {
+    content: '✗';
+    color: #EF4444;
+    font-weight: 700;
+    margin-right: 10px;
+  }
+
+  .do-list li, .dont-list li {
+    font-size: 14px;
+    color: var(--dark-text);
+    line-height: 1.5;
+  }
+
+  /* ── Buttons ─────────────────────────────────────── */
+  .button-showcase {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 24px;
+  }
+
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+
+  .btn-primary {
+    background: var(--mid-blue);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--navy); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--mid-blue);
+    padding: 11px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    border: 2px solid var(--mid-blue);
+    cursor: pointer;
+    font-family: var(--font-body);
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-cta {
+    background: var(--mid-blue);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    box-shadow: 0 4px 16px rgba(44,95,138,0.3);
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: white;
+    padding: 11px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    border: 2px solid rgba(255,255,255,0.5);
+    cursor: pointer;
+    font-family: var(--font-body);
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .button-label {
+    font-size: 12px;
+    color: var(--grey-text);
+    font-weight: 500;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .dark-bg {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-top: 24px;
+  }
+
+  .button-code {
+    margin-top: 14px;
+    background: var(--grey-light);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--navy);
+    line-height: 1.6;
+  }
+
+  /* ── Spacing ─────────────────────────────────────── */
+  .spacing-table {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .spacing-table th {
+    background: var(--navy);
+    color: white;
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .spacing-table td {
+    padding: 14px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--grey-light);
+    vertical-align: top;
+  }
+
+  .spacing-table tr:last-child td { border-bottom: none; }
+  .spacing-table tr:nth-child(even) td { background: var(--grey-light); }
+
+  .spacing-table td code {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    background: var(--blue-ghost);
+    color: var(--navy);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .spacing-viz {
+    display: inline-block;
+    background: var(--light-blue-soft);
+    height: 16px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  /* ── Voice ───────────────────────────────────────── */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .voice-card {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .voice-card h4 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+
+  .voice-example {
+    background: var(--blue-ghost);
+    border-left: 3px solid var(--mid-blue);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 12px;
+  }
+
+  .voice-example.bad {
+    background: #FEF2F2;
+    border-left-color: #EF4444;
+  }
+
+  .voice-example p {
+    font-size: 14px;
+    color: var(--dark-text);
+    line-height: 1.6;
+  }
+
+  .voice-example .tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--mid-blue);
+    margin-bottom: 6px;
+  }
+
+  .voice-example.bad .tag { color: #EF4444; }
+
+  .voice-traits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .voice-trait {
+    background: white;
+    border-radius: 12px;
+    padding: 28px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+
+  .voice-trait-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--blue-ghost);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 24px;
+  }
+
+  .voice-trait h5 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .voice-trait p {
+    font-size: 13px;
+    color: var(--grey-text);
+    line-height: 1.6;
+  }
+
+  /* ── Favicon / Icon ──────────────────────────────── */
+  .favicon-grid {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+    align-items: flex-end;
+  }
+
+  .favicon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .favicon-preview {
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: white;
+    background: var(--navy);
+    flex-shrink: 0;
+  }
+
+  .favicon-preview.sm  { width: 16px;  height: 16px;  font-size: 8px;  border-radius: 3px; }
+  .favicon-preview.md  { width: 32px;  height: 32px;  font-size: 14px; border-radius: 6px; }
+  .favicon-preview.lg  { width: 64px;  height: 64px;  font-size: 26px; border-radius: 10px; }
+  .favicon-preview.xl  { width: 96px;  height: 96px;  font-size: 38px; border-radius: 14px; }
+  .favicon-preview.app { width: 120px; height: 120px; font-size: 48px; border-radius: 26px; }
+
+  .favicon-item span { font-size: 12px; color: var(--grey-text); text-align: center; }
+
+  /* ── Section page backgrounds ────────────────────── */
+  .page-section {
+    background: white;
+    border-bottom: 1px solid #E8EDF2;
+  }
+
+  .page-section.alt {
+    background: #F8F9FA;
+  }
+
+  /* ── NAP / Contact ───────────────────────────────── */
+  .nap-box {
+    background: var(--navy);
+    color: white;
+    border-radius: 16px;
+    padding: 40px 48px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  .nap-item h5 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .nap-item p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* ── Footer ──────────────────────────────────────── */
+  .doc-footer {
+    background: var(--navy-deep);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 40px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .doc-footer strong { color: rgba(255,255,255,0.8); }
+
+  /* ── TOC ─────────────────────────────────────────── */
+  .toc {
+    background: white;
+    border-radius: 12px;
+    padding: 36px 40px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 0;
+  }
+
+  .toc h3 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 28px;
+  }
+
+  .toc-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 40px;
+  }
+
+  .toc-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--grey-light);
+  }
+
+  .toc-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--blue-ghost);
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .toc-list a {
+    color: var(--dark-text);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  /* ── Imagery section ─────────────────────────────── */
+  .imagery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .imagery-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .imagery-card-visual {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  .imagery-card-info {
+    padding: 18px 20px;
+  }
+
+  .imagery-card-info strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .imagery-card-info p {
+    font-size: 13px;
+    color: var(--grey-text);
+    line-height: 1.5;
+  }
+
+  .tag-do   { background: #DCFCE7; color: #166534; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 99px; }
+  .tag-dont { background: #FEE2E2; color: #991B1B; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 99px; }
+
+  @media print {
+    .cover { min-height: 100vh; }
+    .page-break { page-break-before: always; }
+    .section { padding: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     COVER PAGE
+══════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-logo-block">
+    <div class="cover-logo-icon">BC</div>
+    <div class="cover-logo-name">
+      Banora Chiropractic
+      <span>Tweed Heads South</span>
+    </div>
+  </div>
+
+  <div class="cover-divider"></div>
+
+  <h1>Brand<br><em>Identity</em><br>Guide</h1>
+
+  <p>A complete reference for the colours, typography, logo usage, voice, and visual standards that define the Banora Chiropractic brand.</p>
+
+  <div class="cover-meta">Version 1.0 &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; banorachiropractic.com.au</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     TABLE OF CONTENTS
+══════════════════════════════════════════════════════ -->
+<div class="page-section alt">
+  <div class="section" style="padding-top:64px; padding-bottom:64px;">
+    <div class="toc">
+      <h3>Contents</h3>
+      <ul class="toc-list">
+        <li><div class="toc-num">1</div><a href="#brand-overview">Brand Overview</a></li>
+        <li><div class="toc-num">2</div><a href="#colours">Colour Palette</a></li>
+        <li><div class="toc-num">3</div><a href="#typography">Typography</a></li>
+        <li><div class="toc-num">4</div><a href="#logo">Logo &amp; Icon</a></li>
+        <li><div class="toc-num">5</div><a href="#buttons">Buttons &amp; UI</a></li>
+        <li><div class="toc-num">6</div><a href="#spacing">Spacing System</a></li>
+        <li><div class="toc-num">7</div><a href="#imagery">Photography &amp; Imagery</a></li>
+        <li><div class="toc-num">8</div><a href="#voice">Brand Voice</a></li>
+        <li><div class="toc-num">9</div><a href="#nap">Clinic Details &amp; NAP</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     1. BRAND OVERVIEW
+══════════════════════════════════════════════════════ -->
+<div class="page-section" id="brand-overview">
+  <div class="section">
+    <div class="section-label">Section 01</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title">Brand Overview</h2>
+    <p class="section-intro">Banora Chiropractic is a trusted, patient-focused chiropractic clinic in Tweed Heads South. The brand communicates clinical expertise with warmth — a place patients feel confident in, not intimidated by.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px;">
+      <div style="background:white;border-radius:12px;padding:32px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+        <div style="font-size:32px;margin-bottom:16px;">🎯</div>
+        <h4 style="font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--navy);margin-bottom:10px;">Position</h4>
+        <p style="font-size:14px;color:var(--grey-text);line-height:1.6;">The trusted local chiropractor for Tweed Heads South and surrounding suburbs. Experienced, approachable, results-oriented.</p>
+      </div>
+      <div style="background:white;border-radius:12px;padding:32px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+        <div style="font-size:32px;margin-bottom:16px;">💡</div>
+        <h4 style="font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--navy);margin-bottom:10px;">Personality</h4>
+        <p style="font-size:14px;color:var(--grey-text);line-height:1.6;">Warm, knowledgeable, direct. The patient is the hero — we are the trusted guide who helps them get back to living life.</p>
+      </div>
+      <div style="background:white;border-radius:12px;padding:32px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+        <div style="font-size:32px;margin-bottom:16px;">✨</div>
+        <h4 style="font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--navy);margin-bottom:10px;">Visual Feel</h4>
+        <p style="font-size:14px;color:var(--grey-text);line-height:1.6;">Clean clinical confidence. Generous white space. Navy anchors the brand. Gold is used sparingly for high-value emphasis only.</p>
+      </div>
+    </div>
+
+    <div style="background:var(--navy);border-radius:16px;padding:40px 48px;color:white;">
+      <p style="font-family:var(--font-display);font-size:28px;font-style:italic;font-weight:400;line-height:1.5;max-width:700px;">"Real people. Real movement. Real care. Not stock photos and clinical jargon — genuine expertise delivered with warmth."</p>
+      <p style="font-size:13px;color:var(--gold);margin-top:20px;letter-spacing:1px;text-transform:uppercase;font-weight:600;">Brand Ethos</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     2. COLOUR PALETTE
+══════════════════════════════════════════════════════ -->
+<div class="page-section alt page-break" id="colours">
+  <div class="section">
+    <div class="section-label">Section 02</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title">Colour Palette</h2>
+    <p class="section-intro">The palette is anchored in deep navy — trustworthy, professional, and calm. Gold provides warmth and draws the eye to key actions. Blue tones create depth and hierarchy.</p>
+
+    <h3 class="colour-section-title" style="margin-top:0;">Primary Blues</h3>
+    <div class="colour-grid">
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#1B3A5C;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Navy</div>
+          <div class="colour-chip-hex">#1B3A5C</div>
+          <div class="colour-chip-usage">Header, footer, primary headings, dominant brand anchor</div>
+        </div>
+      </div>
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#122840;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Navy Deep</div>
+          <div class="colour-chip-hex">#122840</div>
+          <div class="colour-chip-usage">Footer background, deepest shadow states</div>
+        </div>
+      </div>
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#234B73;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Navy Light</div>
+          <div class="colour-chip-hex">#234B73</div>
+          <div class="colour-chip-usage">Hover states on navy elements, gradient midpoints</div>
+        </div>
+      </div>
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#2C5F8A;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Mid Blue</div>
+          <div class="colour-chip-hex">#2C5F8A</div>
+          <div class="colour-chip-usage">Primary buttons, links, interactive elements, CTAs</div>
+        </div>
+      </div>
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#5B9EC9;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Light Blue</div>
+          <div class="colour-chip-hex">#5B9EC9</div>
+          <div class="colour-chip-usage">Hover states, highlights, secondary CTAs</div>
+        </div>
+      </div>
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#8FBFDD;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Light Blue Soft</div>
+          <div class="colour-chip-hex">#8FBFDD</div>
+          <div class="colour-chip-usage">Subtle accents, icon backgrounds</div>
+        </div>
+      </div>
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#D4E8F5;border:1px solid #E0ECF5;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Blue Pale</div>
+          <div class="colour-chip-hex">#D4E8F5</div>
+          <div class="colour-chip-usage">Card backgrounds, subtle tints</div>
+        </div>
+      </div>
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#EDF5FA;border:1px solid #E0ECF5;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Blue Ghost</div>
+          <div class="colour-chip-hex">#EDF5FA</div>
+          <div class="colour-chip-usage">Hover backgrounds, lightest tint on white</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="colour-section-title">Gold Accent</h3>
+    <div class="colour-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#D4A853;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Gold</div>
+          <div class="colour-chip-hex">#D4A853</div>
+          <div class="colour-chip-usage">Primary accent — hero highlights, CTA emphasis, star ratings</div>
+        </div>
+      </div>
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#E8C97D;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Gold Light</div>
+          <div class="colour-chip-hex">#E8C97D</div>
+          <div class="colour-chip-usage">Tinted gold backgrounds, hover on gold</div>
+        </div>
+      </div>
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#B88E3A;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Gold Dark</div>
+          <div class="colour-chip-hex">#B88E3A</div>
+          <div class="colour-chip-usage">Section labels, supporting text on light gold backgrounds</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="colour-section-title">Neutrals</h3>
+    <div class="colour-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#1A1A1A;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Dark Text</div>
+          <div class="colour-chip-hex">#1A1A1A</div>
+          <div class="colour-chip-usage">Primary body copy on white/light backgrounds</div>
+        </div>
+      </div>
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#6B7280;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Grey Text</div>
+          <div class="colour-chip-hex">#6B7280</div>
+          <div class="colour-chip-usage">Secondary text, captions, meta info</div>
+        </div>
+      </div>
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#D8DCE0;border:1px solid #ccc;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Grey Mid</div>
+          <div class="colour-chip-hex">#D8DCE0</div>
+          <div class="colour-chip-usage">Borders, dividers, separator lines</div>
+        </div>
+      </div>
+      <div class="colour-chip">
+        <div class="colour-chip-swatch" style="background:#F5F5F5;border:1px solid #E8E8E8;"></div>
+        <div class="colour-chip-info">
+          <div class="colour-chip-name">Light Grey</div>
+          <div class="colour-chip-hex">#F5F5F5</div>
+          <div class="colour-chip-usage">Alternating section backgrounds, table rows</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="colour-section-title">Approved Colour Combinations</h3>
+    <div class="combo-grid">
+      <div class="combo-card">
+        <div class="combo-preview" style="background:var(--navy);">
+          <h4 style="color:white;">Heading on Navy</h4>
+          <p style="color:rgba(255,255,255,0.75);">Body copy on dark backgrounds</p>
+          <a class="btn" style="background:var(--gold);color:var(--navy);">Book Online</a>
+        </div>
+        <div class="combo-label">Navy background · White text · Gold CTA — Used in headers, footers, hero overlays</div>
+      </div>
+      <div class="combo-card">
+        <div class="combo-preview" style="background:white;border:1px solid var(--grey-light);">
+          <h4 style="color:var(--navy);">Heading on White</h4>
+          <p style="color:var(--grey-text);">Body copy on light backgrounds</p>
+          <a class="btn" style="background:var(--mid-blue);color:white;">Learn More</a>
+        </div>
+        <div class="combo-label">White background · Navy headings · Mid Blue CTA — Used in main content sections</div>
+      </div>
+      <div class="combo-card">
+        <div class="combo-preview" style="background:var(--grey-light);">
+          <h4 style="color:var(--navy);">Heading on Grey</h4>
+          <p style="color:var(--grey-text);">Alternating section background</p>
+          <a class="btn" style="background:var(--mid-blue);color:white;">Get Started</a>
+        </div>
+        <div class="combo-label">Light grey background · Navy headings — Used for alternating sections</div>
+      </div>
+      <div class="combo-card">
+        <div class="combo-preview" style="background:var(--mid-blue);">
+          <h4 style="color:white;">CTA Banner</h4>
+          <p style="color:rgba(255,255,255,0.8);">High-impact call-to-action areas</p>
+          <a class="btn" style="background:white;color:var(--navy);">Book Now</a>
+        </div>
+        <div class="combo-label">Mid blue background · White text — Used for CTA banners and callout blocks</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     3. TYPOGRAPHY
+══════════════════════════════════════════════════════ -->
+<div class="page-section page-break" id="typography">
+  <div class="section">
+    <div class="section-label">Section 03</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title">Typography</h2>
+    <p class="section-intro">Two fonts. An elegant serif for impact, a clean sans-serif for readability. Never mix in additional typefaces — this pairing is intentional and sufficient.</p>
+
+    <div class="type-grid" style="margin-bottom:40px;">
+      <div class="font-showcase">
+        <div class="font-showcase-name">Display Typeface</div>
+        <div class="font-showcase-full" style="font-family:var(--font-display);">Cormorant Garamond</div>
+        <div class="font-showcase-display" style="font-family:var(--font-display);color:var(--navy);">
+          Aa Bb Cc
+        </div>
+        <div class="font-showcase-alphabet" style="font-family:var(--font-display);">
+          A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br>
+          a b c d e f g h i j k l m n o p q r s t u v w x y z<br>
+          0 1 2 3 4 5 6 7 8 9
+        </div>
+        <div class="font-showcase-weights">
+          <div class="font-weight-row">
+            <span class="font-weight-label">400</span>
+            <span style="font-family:var(--font-display);font-weight:400;font-size:18px;color:var(--navy);">Regular — Body headlines</span>
+          </div>
+          <div class="font-weight-row">
+            <span class="font-weight-label">400i</span>
+            <span style="font-family:var(--font-display);font-weight:400;font-style:italic;font-size:18px;color:var(--mid-blue);">Italic — Emphasis, callouts</span>
+          </div>
+          <div class="font-weight-row">
+            <span class="font-weight-label">500</span>
+            <span style="font-family:var(--font-display);font-weight:500;font-size:18px;color:var(--navy);">Medium — Cards &amp; subheadings</span>
+          </div>
+          <div class="font-weight-row">
+            <span class="font-weight-label">600</span>
+            <span style="font-family:var(--font-display);font-weight:600;font-size:18px;color:var(--navy);">SemiBold — Page titles, hero</span>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding:12px 16px;background:var(--blue-ghost);border-radius:8px;font-size:12px;color:var(--grey-text);">
+          Loaded via: <code style="font-family:monospace;color:var(--navy);">@fontsource/cormorant-garamond</code> (self-hosted)
+        </div>
+      </div>
+
+      <div class="font-showcase">
+        <div class="font-showcase-name">Body Typeface</div>
+        <div class="font-showcase-full" style="font-family:var(--font-body);">Outfit</div>
+        <div class="font-showcase-display" style="font-family:var(--font-body);color:var(--navy);">
+          Aa Bb Cc
+        </div>
+        <div class="font-showcase-alphabet" style="font-family:var(--font-body);">
+          A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br>
+          a b c d e f g h i j k l m n o p q r s t u v w x y z<br>
+          0 1 2 3 4 5 6 7 8 9
+        </div>
+        <div class="font-showcase-weights">
+          <div class="font-weight-row">
+            <span class="font-weight-label">300</span>
+            <span style="font-family:var(--font-body);font-weight:300;font-size:16px;color:var(--dark-text);">Light — Large subtext, intros</span>
+          </div>
+          <div class="font-weight-row">
+            <span class="font-weight-label">400</span>
+            <span style="font-family:var(--font-body);font-weight:400;font-size:16px;color:var(--dark-text);">Regular — Body copy default</span>
+          </div>
+          <div class="font-weight-row">
+            <span class="font-weight-label">500</span>
+            <span style="font-family:var(--font-body);font-weight:500;font-size:16px;color:var(--dark-text);">Medium — Nav links, captions</span>
+          </div>
+          <div class="font-weight-row">
+            <span class="font-weight-label">600</span>
+            <span style="font-family:var(--font-body);font-weight:600;font-size:16px;color:var(--dark-text);">SemiBold — Buttons, labels, CTAs</span>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding:12px 16px;background:var(--blue-ghost);border-radius:8px;font-size:12px;color:var(--grey-text);">
+          Loaded via: <code style="font-family:monospace;color:var(--navy);">@fontsource/outfit</code> (self-hosted)
+        </div>
+      </div>
+    </div>
+
+    <h3 class="colour-section-title" style="margin-top:0;">Type Scale</h3>
+
+    <div class="type-sample">
+      <div class="type-meta">H1 — Page Titles · Cormorant Garamond 600 · 56px / 42px mobile</div>
+      <h1>Expert Chiropractic Care in Tweed Heads South</h1>
+    </div>
+
+    <div class="type-sample">
+      <div class="type-meta">H2 — Section Headings · Cormorant Garamond 600 · 40px / 32px mobile</div>
+      <h2>Why Patients Choose Banora Chiropractic</h2>
+    </div>
+
+    <div class="type-sample">
+      <div class="type-meta">H3 — Sub-headings · Cormorant Garamond 600 · 28px / 24px mobile</div>
+      <h3>Spinal Adjustment &amp; Posture Correction</h3>
+    </div>
+
+    <div class="type-sample">
+      <div class="type-meta">H4 — Card Titles · Cormorant Garamond 500 · 22px</div>
+      <h4>Back Pain Relief</h4>
+    </div>
+
+    <div class="type-sample">
+      <div class="type-meta">Italic Accent · Cormorant Garamond 400i · 22px · Mid Blue</div>
+      <p class="italic">"30+ years of combined experience helping patients move better and live well."</p>
+    </div>
+
+    <div class="type-sample">
+      <div class="type-meta">Section Label · Outfit 600 · 11px · Gold Dark · All Caps · 3px tracking</div>
+      <p class="label">Our Services</p>
+    </div>
+
+    <div class="type-sample">
+      <div class="type-meta">Body Large · Outfit 400 · 18px · 1.7 line-height</div>
+      <p class="body-lg">At Banora Chiropractic, our experienced team uses evidence-based techniques to help you manage pain, improve mobility, and get back to the activities you love. No referral needed — book directly online or call us today.</p>
+    </div>
+
+    <div class="type-sample">
+      <div class="type-meta">Body Regular · Outfit 400 · 16px · 1.7 line-height</div>
+      <p class="body">Chiropractic care may help with a wide range of musculoskeletal conditions. Our practitioners will conduct a thorough assessment and develop an individualised treatment plan tailored to your needs and goals.</p>
+    </div>
+
+    <div class="type-sample">
+      <div class="type-meta">Small / Caption · Outfit 400 · 14px · Grey Text</div>
+      <p class="small">Results vary between individuals. We recommend a consultation to assess your specific needs. HICAPS available for instant health fund rebates.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     4. LOGO & ICON
+══════════════════════════════════════════════════════ -->
+<div class="page-section alt page-break" id="logo">
+  <div class="section">
+    <div class="section-label">Section 04</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title">Logo &amp; Icon</h2>
+    <p class="section-intro">The Banora Chiropractic logo exists in several formats for different contexts. Always use the appropriate file — never stretch, recolour, or recreate the logo.</p>
+
+    <h3 class="colour-section-title" style="margin-top:0;">Logo Variants</h3>
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="logo-card-bg" style="background:white;border:1px solid var(--grey-light);">
+          <img src="/images/logo-horizontal-trimmed.webp" alt="Logo on white" onerror="this.parentElement.innerHTML='<div style=\'font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--navy);text-align:center;\'>Banora<br>Chiropractic</div>'">
+        </div>
+        <div class="logo-card-info">
+          <strong>Horizontal (Default)</strong>
+          <span>logo-horizontal-trimmed.webp · On white/light backgrounds</span>
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-card-bg" style="background:var(--navy);">
+          <img src="/images/logo-horizontal-trimmed.webp" alt="Logo on navy" style="filter:brightness(0) invert(1);" onerror="this.parentElement.innerHTML='<div style=\'font-family:var(--font-display);font-size:18px;font-weight:600;color:white;text-align:center;\'>Banora<br>Chiropractic</div>'">
+        </div>
+        <div class="logo-card-info">
+          <strong>Horizontal (Reversed)</strong>
+          <span>White version on navy/dark backgrounds</span>
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-card-bg" style="background:var(--grey-light);">
+          <img src="/images/logo-square.png" alt="Square logo" onerror="this.parentElement.innerHTML='<div style=\'width:80px;height:80px;background:var(--navy);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:28px;font-weight:700;color:white;\'>BC</div>'">
+        </div>
+        <div class="logo-card-info">
+          <strong>Square / Icon Mark</strong>
+          <span>logo-square.png · Social profiles, avatars</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="colour-section-title">Favicon &amp; App Icons</h3>
+    <div class="favicon-grid">
+      <div class="favicon-item">
+        <div class="favicon-preview sm">BC</div>
+        <span>16×16<br>favicon-16x16.png</span>
+      </div>
+      <div class="favicon-item">
+        <div class="favicon-preview md">BC</div>
+        <span>32×32<br>favicon-32x32.png</span>
+      </div>
+      <div class="favicon-item">
+        <div class="favicon-preview lg">BC</div>
+        <span>64×64<br>favicon.svg</span>
+      </div>
+      <div class="favicon-item">
+        <div class="favicon-preview xl">BC</div>
+        <span>96×96<br>Display</span>
+      </div>
+      <div class="favicon-item">
+        <div class="favicon-preview app">BC</div>
+        <span>120×120<br>apple-touch-icon.png</span>
+      </div>
+      <div class="favicon-item">
+        <div class="favicon-preview app" style="width:192px;height:192px;font-size:72px;border-radius:36px;">BC</div>
+        <span>192×192<br>icon-192.png (PWA)</span>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--grey-text);margin-bottom:48px;padding:14px 18px;background:var(--blue-ghost);border-radius:8px;">
+      <strong style="color:var(--navy);">Favicon design:</strong> Navy background (#1B3A5C) with white "BC" lettermark in Georgia serif. Rounded rectangle, 6px radius at 32px base size. Theme colour: #1B3A5C. Short name: "Banora Chiro".
+    </p>
+
+    <div class="logo-rules">
+      <div>
+        <h4>Do</h4>
+        <ul class="do-list">
+          <li>Use the WebP version for web (smaller file size)</li>
+          <li>Use white version on navy/dark backgrounds</li>
+          <li>Maintain minimum clear space equal to logo height</li>
+          <li>Keep aspect ratio locked when resizing</li>
+          <li>Use the square mark for small/square contexts</li>
+          <li>Minimum web display size: 120px wide</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Don't</h4>
+        <ul class="dont-list">
+          <li>Stretch or distort the proportions</li>
+          <li>Rotate or skew the logo</li>
+          <li>Apply drop shadows or effects</li>
+          <li>Place on a busy or clashing background</li>
+          <li>Recreate the logo in different fonts</li>
+          <li>Use outdated or non-optimised file versions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     5. BUTTONS & UI ELEMENTS
+══════════════════════════════════════════════════════ -->
+<div class="page-section page-break" id="buttons">
+  <div class="section">
+    <div class="section-label">Section 05</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title">Buttons &amp; UI Elements</h2>
+    <p class="section-intro">Buttons drive patient action. Use the right variant for each context — never improvise new button styles. Consistency builds trust.</p>
+
+    <div class="button-showcase">
+      <div class="button-label">Primary Button — Main actions</div>
+      <div class="button-row">
+        <button class="btn-primary">Book an Appointment</button>
+        <button class="btn-primary">View Services</button>
+        <button class="btn-primary">Contact Us</button>
+      </div>
+      <div class="button-code">bg-mid-blue text-white px-6 py-3 rounded-lg font-semibold · hover:bg-navy transition-colors</div>
+
+      <div style="margin-top:32px;">
+        <div class="button-label">Secondary Button — Supportive actions</div>
+        <div class="button-row">
+          <button class="btn-secondary">Learn More</button>
+          <button class="btn-secondary">Meet the Team</button>
+        </div>
+        <div class="button-code">border-2 border-mid-blue text-mid-blue px-6 py-3 rounded-lg font-semibold · hover:bg-mid-blue hover:text-white</div>
+      </div>
+
+      <div style="margin-top:32px;">
+        <div class="button-label">CTA Button — Hero &amp; high-impact placement</div>
+        <div class="button-row">
+          <button class="btn-cta">Book Your Appointment Today</button>
+        </div>
+        <div class="button-code">bg-mid-blue text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-md · hover:bg-navy</div>
+      </div>
+
+      <div style="margin-top:32px;">
+        <div class="button-label">Gold Button — Special emphasis (use sparingly)</div>
+        <div class="button-row">
+          <button class="btn-gold">Book Online</button>
+        </div>
+        <div class="button-code">bg-gold text-navy px-6 py-3 rounded-lg font-bold · Used for the persistent "Book Online" CTA in header</div>
+      </div>
+
+      <div class="dark-bg" style="margin-top:32px;">
+        <div class="button-label" style="color:rgba(255,255,255,0.5);">Ghost Button — On dark/navy backgrounds</div>
+        <div class="button-row" style="margin-top:10px;">
+          <button class="btn-ghost">Call (07) 5599 2322</button>
+          <button class="btn-gold">Book Online</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="colour-section-title">Cards</h3>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px;">
+      <div style="background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:28px 24px;transition:all 0.2s;">
+        <div style="width:48px;height:48px;background:var(--blue-ghost);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:22px;">🦴</div>
+        <h4 style="font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--navy);margin-bottom:8px;">Spinal Adjustment</h4>
+        <p style="font-size:14px;color:var(--grey-text);line-height:1.6;">Precise, evidence-based spinal manipulation that may help relieve joint restrictions.</p>
+      </div>
+      <div style="background:white;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,0.12);padding:28px 24px;transform:translateY(-4px);">
+        <div style="width:48px;height:48px;background:var(--blue-ghost);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:22px;">🏃</div>
+        <h4 style="font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--navy);margin-bottom:8px;">Sports Chiropractic</h4>
+        <p style="font-size:14px;color:var(--grey-text);line-height:1.6;">Supporting athletes with injury management and performance maintenance.</p>
+      </div>
+      <div style="background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);padding:28px 24px;">
+        <div style="width:48px;height:48px;background:var(--blue-ghost);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:22px;">👶</div>
+        <h4 style="font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--navy);margin-bottom:8px;">Paediatric Care</h4>
+        <p style="font-size:14px;color:var(--grey-text);line-height:1.6;">Gentle, age-appropriate chiropractic care for children and infants.</p>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--grey-text);padding:12px 18px;background:var(--blue-ghost);border-radius:8px;">
+      Card style: <code style="font-family:monospace;color:var(--navy);">bg-white rounded-xl shadow-sm p-6 md:p-8</code> · Hover: <code style="font-family:monospace;color:var(--navy);">hover:shadow-lg hover:-translate-y-1 transition-all duration-200</code>
+    </p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     6. SPACING SYSTEM
+══════════════════════════════════════════════════════ -->
+<div class="page-section alt page-break" id="spacing">
+  <div class="section">
+    <div class="section-label">Section 06</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title">Spacing System</h2>
+    <p class="section-intro">Consistent spacing creates visual rhythm and a professional, uncluttered feel. White space is generous — it signals confidence, not emptiness.</p>
+
+    <table class="spacing-table">
+      <thead>
+        <tr>
+          <th>Context</th>
+          <th>Tailwind Class</th>
+          <th>Size</th>
+          <th>Visual</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Section padding (vertical)</strong><br><span style="font-size:12px;color:var(--grey-text);">Between full-width page sections</span></td>
+          <td><code>py-16 md:py-24</code></td>
+          <td>64px / 96px</td>
+          <td><span class="spacing-viz" style="width:80px;"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Section padding (horizontal)</strong><br><span style="font-size:12px;color:var(--grey-text);">Page edge margins</span></td>
+          <td><code>px-4 md:px-8</code></td>
+          <td>16px / 32px</td>
+          <td><span class="spacing-viz" style="width:28px;"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Content max-width</strong><br><span style="font-size:12px;color:var(--grey-text);">Main layout container</span></td>
+          <td><code>max-w-7xl mx-auto</code></td>
+          <td>1280px</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>Text content max-width</strong><br><span style="font-size:12px;color:var(--grey-text);">Readable prose lines</span></td>
+          <td><code>max-w-prose</code></td>
+          <td>65ch (~600px)</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>Card padding</strong><br><span style="font-size:12px;color:var(--grey-text);">Inside service/feature cards</span></td>
+          <td><code>p-6 md:p-8</code></td>
+          <td>24px / 32px</td>
+          <td><span class="spacing-viz" style="width:40px;"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Gap between cards</strong><br><span style="font-size:12px;color:var(--grey-text);">Grid card spacing</span></td>
+          <td><code>gap-6 md:gap-8</code></td>
+          <td>24px / 32px</td>
+          <td><span class="spacing-viz" style="width:40px;"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Heading bottom margin</strong><br><span style="font-size:12px;color:var(--grey-text);">Space from heading to next element</span></td>
+          <td><code>mb-4 md:mb-6</code></td>
+          <td>16px / 24px</td>
+          <td><span class="spacing-viz" style="width:24px;"></span></td>
+        </tr>
+        <tr>
+          <td><strong>Header height (desktop)</strong><br><span style="font-size:12px;color:var(--grey-text);">Sticky navigation bar</span></td>
+          <td><code>h-[108px]</code></td>
+          <td>108px</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>Header height (mobile)</strong><br><span style="font-size:12px;color:var(--grey-text);">Mobile navigation bar</span></td>
+          <td><code>h-[80px]</code></td>
+          <td>80px</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>Logo height (desktop)</strong><br><span style="font-size:12px;color:var(--grey-text);">In sticky header</span></td>
+          <td><code>h-[100px]</code></td>
+          <td>100px</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="colour-section-title">Section Rhythm</h3>
+    <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:48px;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+      <div style="background:var(--navy);color:white;padding:20px 28px;font-family:var(--font-display);font-size:18px;font-weight:600;">Hero — Navy overlay with white text + CTA</div>
+      <div style="background:white;padding:20px 28px;font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--navy);">Section 1 — White background</div>
+      <div style="background:var(--grey-light);padding:20px 28px;font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--navy);">Section 2 — Light grey background</div>
+      <div style="background:white;padding:20px 28px;font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--navy);">Section 3 — White background</div>
+      <div style="background:var(--grey-light);padding:20px 28px;font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--navy);">Section 4 — Light grey background</div>
+      <div style="background:var(--mid-blue);color:white;padding:20px 28px;font-family:var(--font-display);font-size:18px;font-weight:600;">CTA Banner — Mid blue with white text + button</div>
+      <div style="background:var(--navy-deep);color:white;padding:20px 28px;font-family:var(--font-display);font-size:18px;font-weight:600;">Footer — Navy deep background</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     7. PHOTOGRAPHY & IMAGERY
+══════════════════════════════════════════════════════ -->
+<div class="page-section page-break" id="imagery">
+  <div class="section">
+    <div class="section-label">Section 07</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title">Photography &amp; Imagery</h2>
+    <p class="section-intro">Images communicate the human side of the clinic. Choose photos that convey trust, warmth, and real movement — not cold clinical stock imagery.</p>
+
+    <div class="imagery-grid">
+      <div class="imagery-card">
+        <div class="imagery-card-visual" style="background:var(--blue-pale);color:var(--navy);">
+          Team
+        </div>
+        <div class="imagery-card-info">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <strong>Team &amp; Practitioners</strong>
+            <span class="tag-do">Use</span>
+          </div>
+          <p>Real photos of Dr James Shipway and Dr Paul Cater in clinical settings. Warm, approachable. Use: about page, homepage trust section.</p>
+        </div>
+      </div>
+      <div class="imagery-card">
+        <div class="imagery-card-visual" style="background:#F0FDF4;color:#15803D;">
+          Real
+        </div>
+        <div class="imagery-card-info">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <strong>Real Patient Interaction</strong>
+            <span class="tag-do">Use</span>
+          </div>
+          <p>Warm natural lighting, genuine interaction, sense of movement and care. Shows the actual clinic environment.</p>
+        </div>
+      </div>
+      <div class="imagery-card">
+        <div class="imagery-card-visual" style="background:#FEF3C7;color:#92400E;" >
+          Hero
+        </div>
+        <div class="imagery-card-info">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <strong>Hero Images</strong>
+            <span class="tag-do">Use</span>
+          </div>
+          <p>Full-width images with navy overlay at 60–70% opacity. White text sits on top. Ken Burns zoom effect on homepage hero.</p>
+        </div>
+      </div>
+      <div class="imagery-card">
+        <div class="imagery-card-visual" style="background:#FEE2E2;color:#991B1B;">
+          Stock
+        </div>
+        <div class="imagery-card-info">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <strong>Generic Stock Photos</strong>
+            <span class="tag-dont">Avoid</span>
+          </div>
+          <p>Avoid stock spine/skeleton diagrams, generic "healthcare" stock imagery with obvious models, and overly staged clinical photos.</p>
+        </div>
+      </div>
+      <div class="imagery-card">
+        <div class="imagery-card-visual" style="background:var(--blue-pale);color:var(--navy);">
+          Card
+        </div>
+        <div class="imagery-card-info">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <strong>Card Images</strong>
+            <span class="tag-do">Use</span>
+          </div>
+          <p>Rounded corners (8px / rounded-lg in Tailwind). Consistent aspect ratio within grids. Use WebP format for all web images.</p>
+        </div>
+      </div>
+      <div class="imagery-card">
+        <div class="imagery-card-visual" style="background:var(--grey-light);color:var(--grey-text);">
+          Icons
+        </div>
+        <div class="imagery-card-info">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <strong>Icons &amp; Illustrations</strong>
+            <span class="tag-do">Use</span>
+          </div>
+          <p>Simple, line-style icons in navy or mid-blue. Blue Ghost (#EDF5FA) background on icon containers. Consistent sizing within grids.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:white;border-radius:12px;padding:32px 40px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+      <h4 style="font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--navy);margin-bottom:16px;">Image Format &amp; Optimisation Rules</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+        <div>
+          <p style="font-size:14px;line-height:1.7;color:var(--dark-text);">
+            <strong style="color:var(--navy);">Format:</strong> Always serve WebP for web. Provide PNG/JPG originals for print.<br><br>
+            <strong style="color:var(--navy);">Hero images:</strong> 1920×1080px minimum, WebP, compressed under 200KB.<br><br>
+            <strong style="color:var(--navy);">Card images:</strong> 600×400px, WebP, under 80KB.<br><br>
+            <strong style="color:var(--navy);">Team photos:</strong> 800×800px square crop, WebP, under 120KB.
+          </p>
+        </div>
+        <div>
+          <p style="font-size:14px;line-height:1.7;color:var(--dark-text);">
+            <strong style="color:var(--navy);">Alt text:</strong> Descriptive, keyword-aware. Include practitioner name or service name where relevant.<br><br>
+            <strong style="color:var(--navy);">Loading:</strong> Hero/above-fold: <code style="font-family:monospace;font-size:12px;background:var(--blue-ghost);padding:2px 4px;border-radius:3px;">loading="eager"</code>. Below fold: <code style="font-family:monospace;font-size:12px;background:var(--blue-ghost);padding:2px 4px;border-radius:3px;">loading="lazy"</code>.<br><br>
+            <strong style="color:var(--navy);">Aspect ratios:</strong> 16:9 for heroes, 3:2 for service cards, 1:1 for team portraits.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     8. BRAND VOICE
+══════════════════════════════════════════════════════ -->
+<div class="page-section alt page-break" id="voice">
+  <div class="section">
+    <div class="section-label">Section 08</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title">Brand Voice</h2>
+    <p class="section-intro">Every word on the site represents the clinic. Write as a knowledgeable friend who happens to be an expert — not a corporate brochure or a sales pitch.</p>
+
+    <div class="voice-traits">
+      <div class="voice-trait">
+        <div class="voice-trait-icon">🤝</div>
+        <h5>Warm</h5>
+        <p>Speak to the patient as a person, not a case. Acknowledge their pain. Show empathy first, expertise second.</p>
+      </div>
+      <div class="voice-trait">
+        <div class="voice-trait-icon">🧠</div>
+        <h5>Knowledgeable</h5>
+        <p>Confident and informed. Explain techniques and conditions clearly without condescension or jargon overload.</p>
+      </div>
+      <div class="voice-trait">
+        <div class="voice-trait-icon">✅</div>
+        <h5>Direct</h5>
+        <p>Don't bury the call to action. Get to the point. Short sentences. Clear benefit. One ask at a time.</p>
+      </div>
+      <div class="voice-trait">
+        <div class="voice-trait-icon">🛡️</div>
+        <h5>Compliant</h5>
+        <p>Always hedge therapeutic claims with "may help", "can assist". Never promise outcomes. AHPRA is non-negotiable.</p>
+      </div>
+      <div class="voice-trait">
+        <div class="voice-trait-icon">🌟</div>
+        <h5>Humble</h5>
+        <p>The patient is the hero. We are the guide who helps them get back to life. Never boastful or self-congratulatory.</p>
+      </div>
+      <div class="voice-trait">
+        <div class="voice-trait-icon">📍</div>
+        <h5>Local</h5>
+        <p>Reference the Tweed region naturally. This is a community clinic. Patients are neighbours, not leads.</p>
+      </div>
+    </div>
+
+    <div class="voice-grid">
+      <div class="voice-card">
+        <h4>Writing Tone Examples</h4>
+        <div class="voice-example">
+          <div class="tag">Write Like This</div>
+          <p>"Back pain can stop you in your tracks. Our chiropractors take the time to understand what's going on and work with you on a plan to help you get moving again."</p>
+        </div>
+        <div class="voice-example bad">
+          <div class="tag">Not Like This</div>
+          <p>"We are the premier chiropractic clinic in Tweed Heads. Our world-class treatment will cure your back pain fast. Book now!"</p>
+        </div>
+        <div class="voice-example" style="margin-top:20px;">
+          <div class="tag">Write Like This</div>
+          <p>"Many patients find that regular chiropractic care helps them manage their headaches more effectively. We'll assess your individual situation at your first visit."</p>
+        </div>
+        <div class="voice-example bad">
+          <div class="tag">Not Like This</div>
+          <p>"Chiropractic treatment cures headaches. Guaranteed results or your money back."</p>
+        </div>
+      </div>
+
+      <div class="voice-card">
+        <h4>AHPRA Compliance Rules</h4>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px;">
+          <div style="padding:14px;background:var(--blue-ghost);border-radius:8px;">
+            <p style="font-size:13px;color:var(--navy);font-weight:600;margin-bottom:4px;">Always use hedging language</p>
+            <p style="font-size:13px;color:var(--grey-text);">"may help", "can assist in managing", "many patients find relief from"</p>
+          </div>
+          <div style="padding:14px;background:var(--blue-ghost);border-radius:8px;">
+            <p style="font-size:13px;color:var(--navy);font-weight:600;margin-bottom:4px;">Add a disclaimer near claims</p>
+            <p style="font-size:13px;color:var(--grey-text);">"Results vary between individuals"</p>
+          </div>
+          <div style="padding:14px;background:#FEE2E2;border-radius:8px;">
+            <p style="font-size:13px;color:#991B1B;font-weight:600;margin-bottom:4px;">Never write</p>
+            <p style="font-size:13px;color:#7F1D1D;">"We cure...", "guaranteed results", "the best chiropractor in...", claims chiro treats non-musculoskeletal conditions</p>
+          </div>
+          <div style="padding:14px;background:var(--blue-ghost);border-radius:8px;">
+            <p style="font-size:13px;color:var(--navy);font-weight:600;margin-bottom:4px;">Recommend consultation</p>
+            <p style="font-size:13px;color:var(--grey-text);">"We recommend a consultation to assess your individual needs"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:white;border-radius:12px;padding:36px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+      <h4 style="font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--navy);margin-bottom:20px;">Word Choices</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+        <div>
+          <p style="font-size:13px;font-weight:600;color:#166534;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">Preferred Words</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="background:#DCFCE7;color:#166534;padding:6px 12px;border-radius:99px;font-size:13px;">may help</span>
+            <span style="background:#DCFCE7;color:#166534;padding:6px 12px;border-radius:99px;font-size:13px;">can assist</span>
+            <span style="background:#DCFCE7;color:#166534;padding:6px 12px;border-radius:99px;font-size:13px;">manage</span>
+            <span style="background:#DCFCE7;color:#166534;padding:6px 12px;border-radius:99px;font-size:13px;">support</span>
+            <span style="background:#DCFCE7;color:#166534;padding:6px 12px;border-radius:99px;font-size:13px;">relief from</span>
+            <span style="background:#DCFCE7;color:#166534;padding:6px 12px;border-radius:99px;font-size:13px;">experienced</span>
+            <span style="background:#DCFCE7;color:#166534;padding:6px 12px;border-radius:99px;font-size:13px;">evidence-based</span>
+            <span style="background:#DCFCE7;color:#166534;padding:6px 12px;border-radius:99px;font-size:13px;">individual</span>
+            <span style="background:#DCFCE7;color:#166534;padding:6px 12px;border-radius:99px;font-size:13px;">assess</span>
+            <span style="background:#DCFCE7;color:#166534;padding:6px 12px;border-radius:99px;font-size:13px;">gentle</span>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:13px;font-weight:600;color:#991B1B;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">Avoid These Words</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="background:#FEE2E2;color:#991B1B;padding:6px 12px;border-radius:99px;font-size:13px;">cure</span>
+            <span style="background:#FEE2E2;color:#991B1B;padding:6px 12px;border-radius:99px;font-size:13px;">fix</span>
+            <span style="background:#FEE2E2;color:#991B1B;padding:6px 12px;border-radius:99px;font-size:13px;">guaranteed</span>
+            <span style="background:#FEE2E2;color:#991B1B;padding:6px 12px;border-radius:99px;font-size:13px;">world-class</span>
+            <span style="background:#FEE2E2;color:#991B1B;padding:6px 12px;border-radius:99px;font-size:13px;">the best</span>
+            <span style="background:#FEE2E2;color:#991B1B;padding:6px 12px;border-radius:99px;font-size:13px;">number one</span>
+            <span style="background:#FEE2E2;color:#991B1B;padding:6px 12px;border-radius:99px;font-size:13px;">treat disease</span>
+            <span style="background:#FEE2E2;color:#991B1B;padding:6px 12px;border-radius:99px;font-size:13px;">eliminate</span>
+            <span style="background:#FEE2E2;color:#991B1B;padding:6px 12px;border-radius:99px;font-size:13px;">proven results</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     9. CLINIC DETAILS & NAP
+══════════════════════════════════════════════════════ -->
+<div class="page-section page-break" id="nap">
+  <div class="section">
+    <div class="section-label">Section 09</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title">Clinic Details &amp; NAP</h2>
+    <p class="section-intro">NAP (Name, Address, Phone) must be identical everywhere — website, Google Business Profile, directories, and print. Any variation harms local SEO.</p>
+
+    <div class="nap-box">
+      <div class="nap-item">
+        <h5>Clinic Name</h5>
+        <p>Banora Chiropractic</p>
+      </div>
+      <div class="nap-item">
+        <h5>Address</h5>
+        <p>2/44 Greenway Drive<br>Tweed Heads South NSW 2486</p>
+      </div>
+      <div class="nap-item">
+        <h5>Phone</h5>
+        <p>(07) 5599 2322</p>
+      </div>
+      <div class="nap-item">
+        <h5>Website</h5>
+        <p>banorachiropractic.com.au</p>
+      </div>
+    </div>
+
+    <h3 class="colour-section-title" style="margin-top:0;">Practitioners</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px;">
+      <div style="background:white;border-radius:12px;padding:32px;box-shadow:0 2px 12px rgba(0,0,0,0.06);display:flex;gap:20px;align-items:flex-start;">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:24px;font-weight:600;color:white;flex-shrink:0;">JS</div>
+        <div>
+          <h4 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--navy);margin-bottom:4px;">Dr James Shipway</h4>
+          <p style="font-size:13px;color:var(--gold-dark);font-weight:600;margin-bottom:8px;">B.Sc.Chiro. &amp; M.Chiro · Co-Owner</p>
+          <p style="font-size:14px;color:var(--grey-text);line-height:1.6;">Always use full credentials after name. Co-owner of Banora Chiropractic.</p>
+        </div>
+      </div>
+      <div style="background:white;border-radius:12px;padding:32px;box-shadow:0 2px 12px rgba(0,0,0,0.06);display:flex;gap:20px;align-items:flex-start;">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--mid-blue);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:24px;font-weight:600;color:white;flex-shrink:0;">PC</div>
+        <div>
+          <h4 style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--navy);margin-bottom:4px;">Dr Paul Cater</h4>
+          <p style="font-size:13px;color:var(--gold-dark);font-weight:600;margin-bottom:8px;">B.Sc.Chiro. &amp; M.Chiro · Co-Owner</p>
+          <p style="font-size:14px;color:var(--grey-text);line-height:1.6;">Always use full credentials after name. Co-owner of Banora Chiropractic.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="colour-section-title">Opening Hours</h3>
+    <div style="background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);margin-bottom:48px;">
+      <table style="width:100%;border-collapse:collapse;">
+        <thead>
+          <tr style="background:var(--navy);">
+            <th style="padding:14px 24px;text-align:left;color:white;font-size:14px;font-weight:600;">Day</th>
+            <th style="padding:14px 24px;text-align:left;color:white;font-size:14px;font-weight:600;">Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:13px 24px;font-size:14px;border-bottom:1px solid var(--grey-light);">Monday</td><td style="padding:13px 24px;font-size:14px;border-bottom:1px solid var(--grey-light);">8:30am – 6:00pm</td></tr>
+          <tr style="background:var(--grey-light);"><td style="padding:13px 24px;font-size:14px;border-bottom:1px solid #E8E8E8;">Tuesday</td><td style="padding:13px 24px;font-size:14px;border-bottom:1px solid #E8E8E8;">8:30am – 6:00pm</td></tr>
+          <tr><td style="padding:13px 24px;font-size:14px;border-bottom:1px solid var(--grey-light);">Wednesday</td><td style="padding:13px 24px;font-size:14px;border-bottom:1px solid var(--grey-light);">2:00pm – 6:00pm</td></tr>
+          <tr style="background:var(--grey-light);"><td style="padding:13px 24px;font-size:14px;border-bottom:1px solid #E8E8E8;">Thursday</td><td style="padding:13px 24px;font-size:14px;border-bottom:1px solid #E8E8E8;">8:30am – 6:00pm</td></tr>
+          <tr><td style="padding:13px 24px;font-size:14px;border-bottom:1px solid var(--grey-light);">Friday</td><td style="padding:13px 24px;font-size:14px;border-bottom:1px solid var(--grey-light);">12:00pm – 2:00pm</td></tr>
+          <tr style="background:var(--grey-light);"><td style="padding:13px 24px;font-size:14px;border-bottom:1px solid #E8E8E8;">Saturday</td><td style="padding:13px 24px;font-size:14px;border-bottom:1px solid #E8E8E8;">8:00am – 12:00pm</td></tr>
+          <tr><td style="padding:13px 24px;font-size:14px;">Sunday</td><td style="padding:13px 24px;font-size:14px;color:var(--grey-text);">Closed</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="colour-section-title">Key Practice Features</h3>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px;">
+      <div style="background:white;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.06);text-align:center;">
+        <div style="font-size:28px;margin-bottom:10px;">💳</div>
+        <p style="font-size:13px;font-weight:600;color:var(--navy);line-height:1.4;">HICAPS On-site</p>
+        <p style="font-size:12px;color:var(--grey-text);margin-top:4px;">Instant health fund rebates</p>
+      </div>
+      <div style="background:white;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.06);text-align:center;">
+        <div style="font-size:28px;margin-bottom:10px;">📋</div>
+        <p style="font-size:13px;font-weight:600;color:var(--navy);line-height:1.4;">No Referral Required</p>
+        <p style="font-size:12px;color:var(--grey-text);margin-top:4px;">Book directly online</p>
+      </div>
+      <div style="background:white;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.06);text-align:center;">
+        <div style="font-size:28px;margin-bottom:10px;">♿</div>
+        <p style="font-size:13px;font-weight:600;color:var(--navy);line-height:1.4;">Accessible</p>
+        <p style="font-size:12px;color:var(--grey-text);margin-top:4px;">Ground level, wheelchair access</p>
+      </div>
+      <div style="background:white;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.06);text-align:center;">
+        <div style="font-size:28px;margin-bottom:10px;">🅿️</div>
+        <p style="font-size:13px;font-weight:600;color:var(--navy);line-height:1.4;">On-site Parking</p>
+        <p style="font-size:12px;color:var(--grey-text);margin-top:4px;">Free parking available</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════ -->
+<div class="doc-footer">
+  <strong>Banora Chiropractic — Brand Guide v1.0</strong><br>
+  2/44 Greenway Drive, Tweed Heads South NSW 2486 · (07) 5599 2322 · banorachiropractic.com.au<br><br>
+  This document is confidential and intended for use by the Banora Chiropractic team and their authorised designers and developers.<br>
+  Questions? Contact the clinic directly.
+</div>
+
+</body>
+</html>
