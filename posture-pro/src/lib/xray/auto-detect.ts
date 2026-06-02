@@ -81,11 +81,16 @@ RULES:
 - Return coordinates for EVERY landmark in the list above
 - All x values must be between 0 and ${imageWidth}
 - All y values must be between 0 and ${imageHeight}
+- BE PRECISE: place each point at the exact pixel where the bone corner or edge meets the disc space
+- For posterior body corners: place the point where the posterior cortex of the vertebral body meets the endplate (disc space). Do NOT place on the spinous process or lamina — only the vertebral BODY posterior margin
+- For anterior body corners: place the point where the anterior cortex meets the endplate
+- Superior = top edge of the vertebral body, Inferior = bottom edge
+- Vertebral body corners are where two cortical lines meet at a roughly 90° angle
 - If you cannot identify a landmark clearly, estimate its most likely position and add a warning
 - Confidence should reflect how clearly you can see the vertebral structures
 - This is a LATERAL view — posterior is typically on the LEFT side of the image for cervical/lumbar laterals
-- Pay attention to vertebral body corners, not spinous processes (for lateral views)
-- The image may be inverted (posterior on right) — adapt accordingly by looking at the natural curvature direction`;
+- The image may be inverted (posterior on right) — adapt accordingly by looking at the natural curvature direction
+- Take extra care with C1/C2: C1 posterior tubercle is the small bony bump at the back of the atlas ring, C2 body corners are on the axis body below the dens`;
 }
 
 const CERVICAL_GUIDANCE = `
@@ -124,7 +129,7 @@ For a lumbar AP (anteroposterior) X-ray:
 
 // ─── Image Resizing ─────────────────────────────────────────
 
-const MAX_DIMENSION = 1600;
+const MAX_DIMENSION = 2048;
 
 function resizeImageForApi(
   imageDataUrl: string,
