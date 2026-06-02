@@ -23,11 +23,15 @@ import type {
   OverlayConfig,
   ViewType,
 } from '@/lib/xray/types';
+import type { LandmarkDefinition } from '@/lib/xray/types';
 import {
   DEFAULT_OVERLAY_CONFIG,
   OVERLAY_SIZES,
   CERVICAL_POSTERIOR_SEQUENCE,
   LUMBAR_POSTERIOR_SEQUENCE,
+  CERVICAL_LATERAL_LANDMARKS,
+  LUMBAR_LATERAL_LANDMARKS,
+  LUMBAR_AP_LANDMARKS,
 } from '@/lib/xray/constants';
 import { renderOverlays } from '@/lib/xray/overlay-renderer';
 import { getCervicalVertebralBodies } from '@/lib/xray/cervical-lateral';
@@ -709,15 +713,26 @@ const XrayCanvas = forwardRef<XrayCanvasHandle, XrayCanvasProps>(
           </div>
         )}
 
-        {/* Current landmark indicator */}
-        {currentLandmarkId && (
-          <div className="absolute top-4 left-4 bg-[#1B3A5C]/90 text-white px-3 py-2 rounded-lg text-sm">
-            Click to place:{' '}
-            <span className="text-[#FFD232] font-semibold">
-              {currentLandmarkId}
-            </span>
-          </div>
-        )}
+        {/* Current landmark indicator with label + description */}
+        {currentLandmarkId && (() => {
+          const allLandmarks: LandmarkDefinition[] =
+            viewType === 'cervical_lateral' ? CERVICAL_LATERAL_LANDMARKS :
+            viewType === 'lumbar_lateral' ? LUMBAR_LATERAL_LANDMARKS :
+            LUMBAR_AP_LANDMARKS;
+          const lmDef = allLandmarks.find((l) => l.id === currentLandmarkId);
+          return (
+            <div className="absolute top-4 left-4 right-20 bg-[#1B3A5C]/95 text-white px-4 py-3 rounded-lg shadow-lg border border-[#FFD232]/30">
+              <div className="text-[#FFD232] font-bold text-sm">
+                {lmDef?.label ?? currentLandmarkId}
+              </div>
+              {lmDef?.description && (
+                <div className="text-white/80 text-xs mt-1 leading-relaxed">
+                  {lmDef.description}
+                </div>
+              )}
+            </div>
+          );
+        })()}
       </div>
     );
   },
