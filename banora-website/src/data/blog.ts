@@ -58,15 +58,15 @@ export const blogPosts: BlogPost[] = [
 
       <h2>When your back needs more than ergonomic tips</h2>
 
-      <p>If you've tried the desk setup changes and you're still dealing with persistent <a href="/conditions/back-pain">back pain</a>, it might be worth getting it assessed. Sometimes what feels like a simple posture problem can have underlying causes that benefit from hands-on care.</p>
+      <p>If you've tried the desk setup changes and you're still dealing with persistent <a href="/conditions/back-pain/">back pain</a>, it might be worth getting it assessed. Sometimes what feels like a simple posture problem can have underlying causes that benefit from hands-on care.</p>
 
-      <p>A <a href="/services/chiropractic-adjustments">chiropractic assessment</a> can help identify what's going on — whether it's joint stiffness, muscle tension, or postural habits that need addressing. From there, we can work with you on a plan that fits your situation.</p>
+      <p>A <a href="/services/chiropractic-adjustments/">chiropractic assessment</a> can help identify what's going on — whether it's joint stiffness, muscle tension, or postural habits that need addressing. From there, we can work with you on a plan that fits your situation.</p>
 
       <h2>The bottom line</h2>
 
       <p>You don't need a standing desk or a fancy ergonomic setup to start feeling better. Small, consistent changes to how you move throughout the day can go a long way. And if your back's been bothering you for a while, don't just push through it — get it checked out.</p>
 
-      <p>We see desk workers every week at <a href="/about">Banora Chiropractic</a> in Tweed Heads South. If that's you, we're here to help.</p>
+      <p>We see desk workers every week at <a href="/about/">Banora Chiropractic</a> in Tweed Heads South. If that's you, we're here to help.</p>
     `,
     author: 'dr-james-shipway',
     publishDate: '2026-03-24',
@@ -99,7 +99,7 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Joint stiffness or restriction</strong> — when the joints in your spine aren't moving as freely as they should, the surrounding muscles often tighten up to compensate.</li>
         <li><strong>Muscle tension and fatigue</strong> — overworked or underused muscles (especially in the core and glutes) can contribute to pain in the lower back.</li>
         <li><strong>Postural habits</strong> — how you sit, stand, and move throughout the day has a cumulative effect on your spine. Small habits can add up over time.</li>
-        <li><strong>Disc-related issues</strong> — disc bulges or irritation can cause localised back pain, and sometimes <a href="/conditions/sciatica">referred pain into the legs (sciatica)</a>.</li>
+        <li><strong>Disc-related issues</strong> — disc bulges or irritation can cause localised back pain, and sometimes <a href="/conditions/sciatica/">referred pain into the legs (sciatica)</a>.</li>
         <li><strong>Stress and tension</strong> — physical and emotional stress can both contribute to muscle tightness and pain, particularly in the upper back and shoulders.</li>
       </ul>
 
@@ -118,9 +118,9 @@ export const blogPosts: BlogPost[] = [
 
       <h2>How chiropractic care may help</h2>
 
-      <p>Chiropractic care aims to address the underlying cause of your back pain — not just mask the symptoms. Through <a href="/services/chiropractic-adjustments">hands-on adjustments</a>, soft tissue work, and personalised advice, we can work to improve how your spine moves and functions.</p>
+      <p>Chiropractic care aims to address the underlying cause of your back pain — not just mask the symptoms. Through <a href="/services/chiropractic-adjustments/">hands-on adjustments</a>, soft tissue work, and personalised advice, we can work to improve how your spine moves and functions.</p>
 
-      <p>At <a href="/about">Banora Chiropractic</a>, we take the time to do a thorough assessment before recommending any treatment. We want to understand what's going on, explain it clearly, and give you honest advice about whether we can help.</p>
+      <p>At <a href="/about/">Banora Chiropractic</a>, we take the time to do a thorough assessment before recommending any treatment. We want to understand what's going on, explain it clearly, and give you honest advice about whether we can help.</p>
 
       <p>If you're in the Tweed Heads South area and you've been putting up with back pain, come in and let us have a look. The sooner you address it, the easier it usually is to manage.</p>
     `,
@@ -162,14 +162,14 @@ export const blogPosts: BlogPost[] = [
 
       <h2>What happens when posture goes off track</h2>
 
-      <p>Poor posture doesn't just cause <a href="/conditions/back-pain">back pain</a>. It can contribute to a whole range of issues:</p>
+      <p>Poor posture doesn't just cause <a href="/conditions/back-pain/">back pain</a>. It can contribute to a whole range of issues:</p>
 
       <ul>
-        <li><strong><a href="/conditions/neck-pain">Neck pain</a> and stiffness</strong> — forward head posture puts extra strain on the muscles at the back of your neck. For every inch your head moves forward, the effective weight on your neck roughly doubles.</li>
-        <li><strong><a href="/conditions/headaches-migraines">Headaches</a></strong> — tension in the neck and upper back muscles is one of the most common contributors to tension-type headaches.</li>
+        <li><strong><a href="/conditions/neck-pain/">Neck pain</a> and stiffness</strong> — forward head posture puts extra strain on the muscles at the back of your neck. For every inch your head moves forward, the effective weight on your neck roughly doubles.</li>
+        <li><strong><a href="/conditions/headaches-migraines/">Headaches</a></strong> — tension in the neck and upper back muscles is one of the most common contributors to tension-type headaches.</li>
         <li><strong>Reduced breathing capacity</strong> — a slumped posture compresses your rib cage, making it harder for your lungs to fully expand.</li>
         <li><strong>Fatigue</strong> — when your muscles are constantly working to hold you in an inefficient position, you burn more energy. That afternoon slump might be partly postural.</li>
-        <li><strong><a href="/conditions/shoulder-pain">Shoulder problems</a></strong> — rounded shoulders can change how your shoulder joint moves, potentially contributing to impingement and discomfort.</li>
+        <li><strong><a href="/conditions/shoulder-pain/">Shoulder problems</a></strong> — rounded shoulders can change how your shoulder joint moves, potentially contributing to impingement and discomfort.</li>
       </ul>
 
       <h2>What you can do about it</h2>
@@ -181,14 +181,14 @@ export const blogPosts: BlogPost[] = [
       <ul>
         <li><strong>Move more.</strong> The best posture is your next posture. Regular movement throughout the day is more important than any single "perfect" position.</li>
         <li><strong>Strengthen your core.</strong> A strong core supports your spine and makes it easier to maintain good posture without thinking about it.</li>
-        <li><strong>Get assessed.</strong> If you've had poor posture for years, there may be structural changes that benefit from professional support. A <a href="/services/posture-correction">posture assessment</a> can identify specific areas to work on.</li>
+        <li><strong>Get assessed.</strong> If you've had poor posture for years, there may be structural changes that benefit from professional support. A <a href="/services/posture-correction/">posture assessment</a> can identify specific areas to work on.</li>
       </ul>
 
       <h2>How we can help</h2>
 
-      <p>At Banora Chiropractic, <a href="/services/posture-correction">posture correction</a> is something we work on with a lot of our patients. It's not about forcing your body into a position — it's about improving how your spine moves and helping your body find a more balanced alignment naturally.</p>
+      <p>At Banora Chiropractic, <a href="/services/posture-correction/">posture correction</a> is something we work on with a lot of our patients. It's not about forcing your body into a position — it's about improving how your spine moves and helping your body find a more balanced alignment naturally.</p>
 
-      <p>We use a combination of <a href="/services/chiropractic-adjustments">chiropractic adjustments</a>, soft tissue work, and practical advice to help you make lasting changes. If posture is something you've been meaning to address, we're here to help you get started.</p>
+      <p>We use a combination of <a href="/services/chiropractic-adjustments/">chiropractic adjustments</a>, soft tissue work, and practical advice to help you make lasting changes. If posture is something you've been meaning to address, we're here to help you get started.</p>
     `,
     author: 'dr-james-shipway',
     publishDate: '2026-03-10',
@@ -235,7 +235,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>Your warm-up is actually a great diagnostic tool. If something feels tight, restricted, or a bit off during your warm-up — that's your body giving you information. Pushing through and hoping it loosens up during the workout is how minor niggles can become bigger problems.</p>
 
-      <p><strong>What to do instead:</strong> Listen to what your body is telling you. Spend extra time on the area that feels off. If a joint feels restricted or a muscle feels unusually tight, adjust your session accordingly. And if it's been coming up consistently, it might be worth getting a <a href="/services/chiropractic-adjustments">chiropractic assessment</a> to see what's going on.</p>
+      <p><strong>What to do instead:</strong> Listen to what your body is telling you. Spend extra time on the area that feels off. If a joint feels restricted or a muscle feels unusually tight, adjust your session accordingly. And if it's been coming up consistently, it might be worth getting a <a href="/services/chiropractic-adjustments/">chiropractic assessment</a> to see what's going on.</p>
 
       <h2>5. Rushing through it</h2>
 
@@ -247,7 +247,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>If you're warming up properly and still dealing with recurring tightness, stiffness, or pain during exercise, there might be something else going on. Joint restrictions, muscle imbalances, or postural issues can all affect how your body handles load — and they don't always resolve on their own.</p>
 
-      <p>A <a href="/services/sports-chiropractic">sports chiropractic assessment</a> can help identify what's going on and give you a plan to address it. At <a href="/about">Banora Chiropractic</a> in Tweed Heads South, we work with runners, surfers, gym-goers, and weekend warriors to help keep them doing what they love.</p>
+      <p>A <a href="/services/sports-chiropractic/">sports chiropractic assessment</a> can help identify what's going on and give you a plan to address it. At <a href="/about/">Banora Chiropractic</a> in Tweed Heads South, we work with runners, surfers, gym-goers, and weekend warriors to help keep them doing what they love.</p>
 
       <p>If something's been holding you back, come in and let us have a look.</p>
     `,
@@ -287,9 +287,9 @@ export const blogPosts: BlogPost[] = [
       <p>Common reasons expecting mums visit us include:</p>
 
       <ul>
-        <li><strong><a href="/conditions/back-pain">Lower back pain</a></strong> — particularly as the bump grows and your lower back has to work harder to support the extra weight out front.</li>
+        <li><strong><a href="/conditions/back-pain/">Lower back pain</a></strong> — particularly as the bump grows and your lower back has to work harder to support the extra weight out front.</li>
         <li><strong>Pelvic girdle pain (PGP)</strong> — a common pregnancy complaint involving pain around the pelvis, hips, and groin, often made worse by walking, climbing stairs, or turning over in bed.</li>
-        <li><strong><a href="/conditions/sciatica">Sciatica</a></strong> — the growing uterus can put pressure on the sciatic nerve, causing pain that runs from the lower back into the leg.</li>
+        <li><strong><a href="/conditions/sciatica/">Sciatica</a></strong> — the growing uterus can put pressure on the sciatic nerve, causing pain that runs from the lower back into the leg.</li>
         <li><strong>Upper back and rib pain</strong> — as your rib cage expands and your centre of gravity changes, the mid-back can come under more strain.</li>
         <li><strong>General stiffness and discomfort</strong> — some women simply find that regular care helps them feel more comfortable throughout pregnancy.</li>
       </ul>
@@ -308,7 +308,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>The postnatal period is another time when chiropractic care can be helpful. Labour and delivery place significant demands on the body — and then the feeding, carrying, and sleep deprivation of early parenthood add their own load. Many of our patients continue care after birth, and we also offer gentle checks for newborns.</p>
 
-      <p>If you're expecting and wondering whether chiropractic care might help you stay comfortable, come in for a chat. We see many pregnant patients at our <a href="/areas/tweed-heads-south">Tweed Heads South</a> clinic and would love to support you through your pregnancy.</p>
+      <p>If you're expecting and wondering whether chiropractic care might help you stay comfortable, come in for a chat. We see many pregnant patients at our <a href="/areas/tweed-heads-south/">Tweed Heads South</a> clinic and would love to support you through your pregnancy.</p>
     `,
     author: 'dr-james-shipway',
     publishDate: '2026-04-22',
@@ -368,7 +368,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>We're chiropractors, so we're obviously going to say chiropractic care is great — but we also believe the best practitioner for you is the one who will give you an honest assessment, explain what's going on clearly, and put your health first. If we can't help you, we'll tell you, and we'll point you in the right direction.</p>
 
-      <p>If you'd like to find out whether chiropractic care might be right for your situation, book a consultation at <a href="/about">Banora Chiropractic</a> in <a href="/areas/tweed-heads-south">Tweed Heads South</a>. We're always happy to have an honest conversation.</p>
+      <p>If you'd like to find out whether chiropractic care might be right for your situation, book a consultation at <a href="/about/">Banora Chiropractic</a> in <a href="/areas/tweed-heads-south/">Tweed Heads South</a>. We're always happy to have an honest conversation.</p>
     `,
     author: 'dr-paul-cater',
     publishDate: '2026-05-06',
@@ -391,7 +391,7 @@ export const blogPosts: BlogPost[] = [
     content: `
       <p>Working from home has become normal for a lot of us. And while it has plenty of upsides, one consistent downside we see at the clinic is this: home office setups are often far worse for the body than office ones.</p>
 
-      <p>Kitchen tables. Laptops on couches. Dining chairs that weren't designed for eight hours of sitting. We see the results in the form of <a href="/conditions/back-pain">back pain</a>, <a href="/conditions/neck-pain">neck stiffness</a>, and <a href="/conditions/headaches-migraines">tension headaches</a> that have crept in since people started working from home.</p>
+      <p>Kitchen tables. Laptops on couches. Dining chairs that weren't designed for eight hours of sitting. We see the results in the form of <a href="/conditions/back-pain/">back pain</a>, <a href="/conditions/neck-pain/">neck stiffness</a>, and <a href="/conditions/headaches-migraines/">tension headaches</a> that have crept in since people started working from home.</p>
 
       <p>The good news is, a few targeted changes can make a real difference — and you don't need to spend a lot of money to do it.</p>
 
@@ -434,9 +434,9 @@ export const blogPosts: BlogPost[] = [
 
       <h2>When the setup fix isn't enough</h2>
 
-      <p>If you've made changes to your workspace and you're still dealing with persistent <a href="/conditions/back-pain">back pain</a>, <a href="/conditions/neck-pain">neck stiffness</a>, or headaches, it might be worth getting your spine assessed. Sometimes the discomfort you're feeling has an underlying cause that ergonomic changes alone won't resolve.</p>
+      <p>If you've made changes to your workspace and you're still dealing with persistent <a href="/conditions/back-pain/">back pain</a>, <a href="/conditions/neck-pain/">neck stiffness</a>, or headaches, it might be worth getting your spine assessed. Sometimes the discomfort you're feeling has an underlying cause that ergonomic changes alone won't resolve.</p>
 
-      <p>At <a href="/about">Banora Chiropractic</a> in <a href="/areas/tweed-heads-south">Tweed Heads South</a>, we work with a lot of remote workers and desk-based professionals. If that's you, we're here to help.</p>
+      <p>At <a href="/about/">Banora Chiropractic</a> in <a href="/areas/tweed-heads-south/">Tweed Heads South</a>, we work with a lot of remote workers and desk-based professionals. If that's you, we're here to help.</p>
     `,
     author: 'dr-james-shipway',
     publishDate: '2026-05-20',
@@ -501,7 +501,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>If you have concerns about your child's posture, movement, comfort, or general wellbeing — it's always worth getting them assessed. The worst case is that everything's fine and you have peace of mind. The best case is that we identify something worth addressing early, before it becomes a bigger issue.</p>
 
-      <p>If you're in the Tweed Heads South area and would like to book a check-up for your child, we'd love to meet them. <a href="/services/paediatric-chiropractic">Learn more about our paediatric chiropractic services</a> or book a consultation at <a href="/about">Banora Chiropractic</a>.</p>
+      <p>If you're in the Tweed Heads South area and would like to book a check-up for your child, we'd love to meet them. <a href="/services/paediatric-chiropractic/">Learn more about our paediatric chiropractic services</a> or book a consultation at <a href="/about/">Banora Chiropractic</a>.</p>
     `,
     author: 'dr-paul-cater',
     publishDate: '2026-06-03',
@@ -622,7 +622,7 @@ export const blogPosts: BlogPost[] = [
       <p>Cervicogenic headaches are often linked to:</p>
 
       <ul>
-        <li><strong>Poor posture.</strong> Spending long hours with your head forward of your shoulders (a position sometimes called "tech neck") places significant load on the upper cervical joints and muscles.</li>
+        <li><strong>Poor posture.</strong> Spending long hours with your head forward of your shoulders (a position sometimes called <a href="/conditions/posture-tech-neck/">"tech neck"</a>) places significant load on the upper cervical joints and muscles.</li>
         <li><strong>Joint restriction in the upper neck.</strong> Stiffness in the C1, C2, or C3 vertebrae can irritate the nerves that refer pain to the head.</li>
         <li><strong>Muscle tension.</strong> Tight suboccipital muscles (the small muscles at the base of the skull) are a common contributor.</li>
         <li><strong>Whiplash or old injuries.</strong> A previous neck injury, even a mild one, can leave residual stiffness that contributes to headaches years later.</li>
@@ -677,7 +677,7 @@ export const blogPosts: BlogPost[] = [
     content: `
       <p>Look at yourself side-on in a mirror. Where is your head? If it's sitting in front of your shoulders rather than directly above them, you've got what's commonly called forward head posture — and you're far from alone.</p>
 
-      <p>Thanks to smartphones, laptops, and hours spent looking at screens, forward head posture is becoming increasingly prevalent. At Banora Chiropractic, it's one of the postural patterns we see most often in our patients — and it's one that can quietly create a lot of problems if left unaddressed.</p>
+      <p>Thanks to smartphones, laptops, and hours spent looking at screens, forward head posture — sometimes called <a href="/conditions/posture-tech-neck/">tech neck</a> — is becoming increasingly prevalent. At Banora Chiropractic, it's one of the postural patterns we see most often in our patients — and it's one that can quietly create a lot of problems if left unaddressed.</p>
 
       <h2>Why does forward head posture matter?</h2>
 
@@ -789,7 +789,7 @@ export const blogPosts: BlogPost[] = [
       <p>These headaches typically:</p>
       <ul>
         <li>Start at the base of the skull and radiate forward</li>
-        <li>Are associated with <a href="/conditions/neck-pain">neck pain</a> or stiffness</li>
+        <li>Are associated with <a href="/conditions/neck-pain/">neck pain</a> or stiffness</li>
         <li>May be triggered or worsened by certain neck movements or positions</li>
         <li>Are often worse after sleeping in an awkward position or sitting at a screen for a long time</li>
       </ul>
@@ -816,7 +816,7 @@ export const blogPosts: BlogPost[] = [
       <p>Chiropractic care isn't a treatment for all headache types — but it may be genuinely helpful for certain kinds, particularly:</p>
 
       <ul>
-        <li><strong>Cervicogenic headaches</strong> — where there's a clear neck component, <a href="/services/chiropractic-adjustments">chiropractic adjustments</a> and soft tissue therapy targeting the upper cervical spine may help reduce both the frequency and intensity of headaches.</li>
+        <li><strong>Cervicogenic headaches</strong> — where there's a clear neck component, <a href="/services/chiropractic-adjustments/">chiropractic adjustments</a> and soft tissue therapy targeting the upper cervical spine may help reduce both the frequency and intensity of headaches.</li>
         <li><strong>Tension headaches</strong> — addressing muscle tension and joint stiffness in the neck and upper back may help reduce the frequency of tension-type headaches.</li>
         <li><strong>Migraines with a cervical component</strong> — some migraine sufferers have found that addressing neck dysfunction helps reduce the frequency of their migraines, though the evidence is more variable here.</li>
       </ul>
@@ -834,7 +834,7 @@ export const blogPosts: BlogPost[] = [
         <li>Headache with vision changes, weakness, difficulty speaking, or confusion</li>
       </ul>
 
-      <p>If you're dealing with <a href="/conditions/headaches-migraines">frequent headaches</a> and haven't been able to get on top of them, come in and see us at <a href="/about">Banora Chiropractic</a> in <a href="/areas/tweed-heads-south">Tweed Heads South</a>. We'll assess what's going on and give you an honest picture of whether we can help.</p>
+      <p>If you're dealing with <a href="/conditions/headaches-migraines/">frequent headaches</a> and haven't been able to get on top of them, come in and see us at <a href="/about/">Banora Chiropractic</a> in <a href="/areas/tweed-heads-south/">Tweed Heads South</a>. We'll assess what's going on and give you an honest picture of whether we can help.</p>
     `,
     author: 'dr-james-shipway',
     publishDate: '2026-06-17',
@@ -928,9 +928,9 @@ export const blogPosts: BlogPost[] = [
 
       <h2>When to see a chiropractor for sciatica</h2>
 
-      <p>A <a href="/conditions/sciatica">chiropractic assessment for sciatica</a> will identify what is actually irritating your sciatic nerve — and from there, we can recommend the specific movements and approaches most likely to help <em>your</em> situation. This might include spinal adjustments to restore joint mobility, targeted soft tissue work on the piriformis or surrounding hip muscles, personalised exercise guidance, and advice on managing your symptoms day-to-day.</p>
+      <p>A <a href="/conditions/sciatica/">chiropractic assessment for sciatica</a> will identify what is actually irritating your sciatic nerve — and from there, we can recommend the specific movements and approaches most likely to help <em>your</em> situation. This might include spinal adjustments to restore joint mobility, targeted soft tissue work on the piriformis or surrounding hip muscles, personalised exercise guidance, and advice on managing your symptoms day-to-day.</p>
 
-      <p>If your sciatica is affecting your sleep, your work, or your ability to get around comfortably — do not just keep stretching and hoping for the best. Come and see us at <a href="/about">Banora Chiropractic</a> in Tweed Heads South. We will work out what is going on and help you get on top of it.</p>
+      <p>If your sciatica is affecting your sleep, your work, or your ability to get around comfortably — do not just keep stretching and hoping for the best. Come and see us at <a href="/about/">Banora Chiropractic</a> in Tweed Heads South. We will work out what is going on and help you get on top of it.</p>
     `,
     author: 'dr-paul-cater',
     publishDate: '2026-04-24',
@@ -1005,7 +1005,7 @@ export const blogPosts: BlogPost[] = [
 
       <h3>Chiropractic care during pregnancy</h3>
 
-      <p>Chiropractic care is a common approach to managing <a href="/conditions/sciatica">sciatica</a> and <a href="/conditions/hip-pain">hip pain during pregnancy</a>. At Banora Chiropractic, we use gentle, pregnancy-safe techniques that do not require you to lie on your stomach. Treatment is adapted to each trimester and each individual.</p>
+      <p>Chiropractic care is a common approach to managing <a href="/conditions/sciatica/">sciatica</a> and <a href="/conditions/hip-pain/">hip pain during pregnancy</a>. At Banora Chiropractic, we use gentle, pregnancy-safe techniques that do not require you to lie on your stomach. Treatment is adapted to each trimester and each individual.</p>
 
       <p>Care may include gentle sacroiliac and pelvic adjustments to restore joint alignment, soft tissue work on tight hip and piriformis muscles, guidance on positions and movements to avoid during flare-ups, and specific exercises tailored to pregnancy.</p>
 
@@ -1028,7 +1028,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>For most women, yes — pregnancy sciatica significantly improves or resolves after birth as posture normalises and relaxin levels drop. However, if the underlying cause (a disc issue, for example) is not just pregnancy-related, it may persist. Getting it properly assessed and managed during pregnancy gives you the best chance of a smooth recovery postpartum.</p>
 
-      <p>If you are pregnant and struggling with sciatica or hip pain, we would love to help. <a href="/contact">Get in touch</a> or book online — we will take good care of you.</p>
+      <p>If you are pregnant and struggling with sciatica or hip pain, we would love to help. <a href="/contact/">Get in touch</a> or book online — we will take good care of you.</p>
     `,
     author: 'dr-paul-cater',
     publishDate: '2026-04-24',
@@ -1107,7 +1107,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>Tension-type headaches often have a cervical component — tight neck muscles and restricted upper neck joints can contribute even when the headache is not purely cervicogenic. Similarly, many migraines are preceded by or associated with neck stiffness, suggesting cervical involvement.</p>
 
-      <p>If you have been managing <a href="/conditions/headaches-migraines">headaches or migraines</a> with medication alone and finding it only partially helpful, it may be worth exploring whether the neck is a contributing factor. A chiropractic assessment can help answer that question.</p>
+      <p>If you have been managing <a href="/conditions/headaches-migraines/">headaches or migraines</a> with medication alone and finding it only partially helpful, it may be worth exploring whether the neck is a contributing factor. A chiropractic assessment can help answer that question.</p>
 
       <h2>Self-care between appointments</h2>
 
@@ -1120,7 +1120,7 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Regular movement breaks:</strong> Every 45–60 minutes, get up, move your neck gently through range, and reset your posture.</li>
       </ul>
 
-      <p>If you are dealing with recurring headaches and have not had your neck properly assessed, we would encourage you to come in. We can usually tell you fairly quickly whether the neck is involved — and if it is, that is actually good news, because it is something we can address. <a href="/contact">Book an appointment</a> at Banora Chiropractic in Tweed Heads South.</p>
+      <p>If you are dealing with recurring headaches and have not had your neck properly assessed, we would encourage you to come in. We can usually tell you fairly quickly whether the neck is involved — and if it is, that is actually good news, because it is something we can address. <a href="/contact/">Book an appointment</a> at Banora Chiropractic in Tweed Heads South.</p>
     `,
     author: 'dr-james-shipway',
     publishDate: '2026-04-24',
@@ -1208,9 +1208,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>Most people notice some improvement in mobility and pain within one to two weeks of consistent, appropriate exercise. If you have been doing these movements daily for two weeks without improvement, that is a signal to get a proper assessment rather than simply adding more exercises.</p>
 
-      <p>Sometimes what feels like a straightforward muscle strain has a joint or disc component that needs hands-on care before exercises become effective. A <a href="/conditions/back-pain">chiropractic assessment for lower back pain</a> can identify what is actually going on — and from there we can personalise your exercise plan to match your specific situation.</p>
+      <p>Sometimes what feels like a straightforward muscle strain has a joint or disc component that needs hands-on care before exercises become effective. A <a href="/conditions/back-pain/">chiropractic assessment for lower back pain</a> can identify what is actually going on — and from there we can personalise your exercise plan to match your specific situation.</p>
 
-      <p>We see people with lower back pain every day at Banora Chiropractic in Tweed Heads South. If your back has been bothering you for more than a week or two, <a href="/contact">come in and see us</a>. We will give you a clear picture of what is going on and a practical plan to address it.</p>
+      <p>We see people with lower back pain every day at Banora Chiropractic in Tweed Heads South. If your back has been bothering you for more than a week or two, <a href="/contact/">come in and see us</a>. We will give you a clear picture of what is going on and a practical plan to address it.</p>
     `,
     author: 'dr-james-shipway',
     publishDate: '2026-04-24',
@@ -1297,11 +1297,11 @@ export const blogPosts: BlogPost[] = [
 
       <h2>What about chiropractic care for posture correction?</h2>
 
-      <p>Exercise is essential, but forward head posture often involves joint restrictions in the cervical and thoracic spine that reduce your ability to achieve and maintain neutral posture — no matter how many exercises you do. Addressing these restrictions directly through <a href="/services/posture-correction">chiropractic posture correction</a> allows the exercises to work more effectively.</p>
+      <p>Exercise is essential, but forward head posture often involves joint restrictions in the cervical and thoracic spine that reduce your ability to achieve and maintain neutral posture — no matter how many exercises you do. Addressing these restrictions directly through <a href="/services/posture-correction/">chiropractic posture correction</a> allows the exercises to work more effectively.</p>
 
       <p>At Banora Chiropractic, we assess your entire spinal alignment and identify the specific areas contributing to your postural pattern. From there, we combine targeted adjustments with a personalised exercise program — and practical advice on workstation setup, sleeping position, and daily habits that either help or hinder your progress.</p>
 
-      <p>If you have been dealing with <a href="/conditions/neck-pain">neck pain</a>, recurring <a href="/conditions/headaches-migraines">headaches</a>, or upper back tension that you suspect is posture-related, a chiropractic assessment is a good place to start. We see patients for posture correction regularly at our Tweed Heads South clinic. <a href="/contact">Book in</a> and let us take a proper look.</p>
+      <p>If you have been dealing with <a href="/conditions/neck-pain/">neck pain</a>, recurring <a href="/conditions/headaches-migraines/">headaches</a>, or upper back tension that you suspect is posture-related, a chiropractic assessment is a good place to start. We see patients for posture correction regularly at our Tweed Heads South clinic. <a href="/contact/">Book in</a> and let us take a proper look.</p>
     `,
     author: 'dr-james-shipway',
     publishDate: '2026-04-24',
