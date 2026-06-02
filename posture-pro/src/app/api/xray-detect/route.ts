@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-6-20250610',
         max_tokens: 4096,
         system: systemPrompt,
         messages: [
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
       const errorText = await anthropicResponse.text();
       console.error('Anthropic API error:', anthropicResponse.status, errorText);
       return NextResponse.json(
-        { error: `Claude API error: ${anthropicResponse.status}` },
+        { error: `Claude API error: ${anthropicResponse.status}`, detail: errorText },
         { status: 502 }
       );
     }
