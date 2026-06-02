@@ -9,7 +9,7 @@ import type { PatientRepository } from './patient-repository';
  */
 export class IndexedDBPatientRepository implements PatientRepository {
   private readonly dbName = 'posture-pro-clinic';
-  private readonly version = 1;
+  private readonly version = 2;
 
   private async db(): Promise<IDBPDatabase> {
     return openDB(this.dbName, this.version, {
@@ -19,6 +19,12 @@ export class IndexedDBPatientRepository implements PatientRepository {
         }
         if (!db.objectStoreNames.contains('images')) {
           db.createObjectStore('images'); // key = `${patientId}/${imageKey}`
+        }
+        // v2: x-ray analyses store (shared with xray-store.ts)
+        if (!db.objectStoreNames.contains('xray_analyses')) {
+          const store = db.createObjectStore('xray_analyses', { keyPath: 'id' });
+          store.createIndex('by_patient', 'patientId');
+          store.createIndex('by_date', 'examDate');
         }
       },
     });

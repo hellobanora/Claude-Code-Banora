@@ -17,6 +17,7 @@ interface CaptureFlowProps {
 export function CaptureFlow({ patient, sessionId, onCaptureComplete, saveImage, upsertPatient }: CaptureFlowProps) {
   const [step, setStep] = useState<CaptureStep>(patient.consentSigned ? 'lateral' : 'consent');
   const [lateralCapture, setLateralCapture] = useState<PostureCapture | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   const handleConsent = useCallback(async () => {
     const updated: Patient = { ...patient, consentSigned: true, consentDate: new Date().toISOString() };
@@ -26,8 +27,12 @@ export function CaptureFlow({ patient, sessionId, onCaptureComplete, saveImage, 
 
   const handleCapture = useCallback(
     async (blob: Blob, view: PostureView, width: number, height: number) => {
+      setSaveError(null);
       const imageKey = await saveImage(blob, patient.id, `${view}-${sessionId}`);
-      if (!imageKey) return;
+      if (!imageKey) {
+        setSaveError('Failed to save image — please try again.');
+        return;
+      }
 
       const capture: PostureCapture = {
         id: crypto.randomUUID(),
@@ -63,10 +68,23 @@ export function CaptureFlow({ patient, sessionId, onCaptureComplete, saveImage, 
   }
 
   return (
-    <CameraCapture
-      view={step}
-      onCapture={(blob, w, h) => handleCapture(blob, step, w, h)}
-    />
+    <div className="space-y-3">
+      {step === 'ap' && (
+        <div className="rounded-lg border border-green-300 bg-green-50 px-4 py-3 text-sm font-medium text-green-800">
+          ✓ Side photo saved — now upload or capture the front-facing photo
+        </div>
+      )}
+      {saveError && (
+        <div className="rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {saveError}
+        </div>
+      )}
+      <CameraCapture
+        key={step}
+        view={step}
+        onCapture={(blob, w, h) => handleCapture(blob, step, w, h)}
+      />
+    </div>
   );
 }
 
@@ -225,6 +243,7 @@ function CameraCapture({
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       if (!file) return;
+      e.target.value = ''; // allow re-selecting the same file
 
       const img = new Image();
       img.onload = () => {
@@ -316,7 +335,6 @@ function CameraCapture({
           ref={fileInputRef}
           type="file"
           accept="image/*"
-          capture="environment"
           onChange={handleFileSelect}
           className="hidden"
         />

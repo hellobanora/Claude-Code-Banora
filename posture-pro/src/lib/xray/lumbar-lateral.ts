@@ -3,7 +3,7 @@
 // Takes placed landmarks → returns MeasurementResult.
 // ═══════════════════════════════════════════════════════════════
 
-import type { LandmarkMap, MeasurementResult, Point, Severity } from './types';
+import type { LandmarkMap, MeasurementResult, Point, SegmentAngle } from './types';
 import {
   LUMBAR_IDEAL_LORDOSIS,
   LUMBAR_IDEAL_SACRAL_BASE_ANGLE,
@@ -37,12 +37,12 @@ function get(landmarks: LandmarkMap, id: string): Point | null {
  * - L1_sup_ant
  */
 export function analyseLumbarLateral(landmarks: LandmarkMap): MeasurementResult {
-  const segments = Object.keys(LUMBAR_IDEAL_ANGLES).map((seg) => ({
+  const segments: SegmentAngle[] = Object.keys(LUMBAR_IDEAL_ANGLES).map((seg) => ({
     segment: seg,
-    measured: null as number | null,
+    measured: null,
     ideal: LUMBAR_IDEAL_ANGLES[seg],
-    deviationPercent: null as number | null,
-    severity: null as Severity | null,
+    deviationPercent: null,
+    severity: null,
   }));
 
   // ─── Lumbar Lordosis (L1–S1 Cobb) ─────────────────────
@@ -134,4 +134,43 @@ export function analyseLumbarLateral(landmarks: LandmarkMap): MeasurementResult 
     lumbarLordosis,
     sacralBaseAngle,
   };
+}
+
+/**
+ * Get all posterior points that have been placed (for posterior body line rendering).
+ * Returns points in anatomical order (L1 → S1).
+ */
+export function getLumbarPosteriorPoints(landmarks: LandmarkMap): Point[] {
+  const ids = [
+    'L1_sup_post', 'L1_inf_post',
+    'L2_sup_post', 'L2_inf_post',
+    'L3_sup_post', 'L3_inf_post',
+    'L4_sup_post', 'L4_inf_post',
+    'L5_sup_post', 'L5_inf_post',
+    'S1_sup_post',
+  ];
+
+  return ids
+    .map((id) => landmarks[id])
+    .filter((pt): pt is Point => pt !== undefined && pt !== null);
+}
+
+/**
+ * Get vertebral body pairs for endplate line rendering.
+ */
+export function getLumbarVertebralBodies(
+  landmarks: LandmarkMap,
+): Array<{ level: string; sup: Point; inf: Point; index: number }> {
+  const levels = ['L1', 'L2', 'L3', 'L4', 'L5'];
+  const bodies: Array<{ level: string; sup: Point; inf: Point; index: number }> = [];
+
+  levels.forEach((level, i) => {
+    const sup = get(landmarks, `${level}_sup_post`);
+    const inf = get(landmarks, `${level}_inf_post`);
+    if (sup && inf) {
+      bodies.push({ level, sup, inf, index: i + 1 });
+    }
+  });
+
+  return bodies;
 }

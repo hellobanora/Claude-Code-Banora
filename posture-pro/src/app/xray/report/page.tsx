@@ -13,7 +13,6 @@ import { useRouter } from 'next/navigation';
 import type { XrayAnalysis, ViewType, ClinicId, MeasurementResult, LandmarkMap } from '@/lib/xray/types';
 import { generateId } from '@/lib/xray/geometry';
 import { downloadReport } from '@/lib/xray/pdf-builder';
-import { getSpineViewSession } from '@/lib/xray/session-store';
 import { ReportView } from '@/components/xray';
 
 export default function ReportPage() {
@@ -22,13 +21,21 @@ export default function ReportPage() {
   const [patientName, setPatientName] = useState('');
 
   useEffect(() => {
-    const session = getSpineViewSession();
+    const sessionRaw = sessionStorage.getItem('spineview_session');
     const resultsRaw = sessionStorage.getItem('spineview_results');
 
-    if (!session || !resultsRaw) {
+    if (!sessionRaw || !resultsRaw) {
       router.push('/xray');
       return;
     }
+
+    const session = JSON.parse(sessionRaw) as {
+      patientName: string;
+      examDate: string;
+      viewType: ViewType;
+      clinicId: ClinicId;
+      imageDataUrl: string;
+    };
 
     const results = JSON.parse(resultsRaw) as {
       landmarks: LandmarkMap;
@@ -84,8 +91,8 @@ export default function ReportPage() {
 
   if (!analysis) {
     return (
-      <div className="min-h-screen bg-[#0F1A2E] flex items-center justify-center">
-        <div className="text-[#8BA4C4]">Loading report...</div>
+      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
+        <div className="text-neutral-500">Loading report...</div>
       </div>
     );
   }

@@ -8,6 +8,7 @@ import type {
   Severity,
   ClinicBranding,
   OverlayConfig,
+  ViewType,
 } from './types';
 
 // ─── Brand Colours ───────────────────────────────────────────
@@ -283,6 +284,16 @@ export const CERVICAL_SEGMENT_PAIRS: Array<{
 // LUMBAR LATERAL
 // ═══════════════════════════════════════════════════════════════
 
+/** Ordered posterior landmark IDs for lumbar posterior body line */
+export const LUMBAR_POSTERIOR_SEQUENCE: string[] = [
+  'L1_sup_post', 'L1_inf_post',
+  'L2_sup_post', 'L2_inf_post',
+  'L3_sup_post', 'L3_inf_post',
+  'L4_sup_post', 'L4_inf_post',
+  'L5_sup_post', 'L5_inf_post',
+  'S1_sup_post',
+];
+
 export const LUMBAR_IDEAL_LORDOSIS = -50.0; // L1–S1, range 40–60°
 export const LUMBAR_IDEAL_SACRAL_BASE_ANGLE = 40.0; // Ferguson's, range 34–45°
 
@@ -334,6 +345,29 @@ export const LUMBAR_AP_LANDMARKS: LandmarkDefinition[] = [
   { id: 'cobb_lower_L', label: 'Cobb Lower-Left', level: 'cobb', position: 'inf_ant', description: 'Click the LEFT corner of the LOWER end vertebra\'s inferior endplate.' },
   { id: 'cobb_lower_R', label: 'Cobb Lower-Right', level: 'cobb', position: 'inf_post', description: 'Click the RIGHT corner of the LOWER end vertebra\'s inferior endplate.' },
 ];
+
+// ═══════════════════════════════════════════════════════════════
+// REFERENCE X-RAY IMAGES (textbook normal comparisons)
+// ═══════════════════════════════════════════════════════════════
+
+/** Static reference image paths for side-by-side comparison on reports */
+export const REFERENCE_XRAY_IMAGES: Record<ViewType, { path: string; label: string; description: string }> = {
+  cervical_lateral: {
+    path: '/xray/reference/cervical-lateral-normal.jpg',
+    label: 'Normal Cervical Lordosis',
+    description: 'Textbook normal C-spine lateral showing ideal ARA of -42° with smooth lordotic arc.',
+  },
+  lumbar_lateral: {
+    path: '/xray/reference/lumbar-lateral-normal.jpg',
+    label: 'Normal Lumbar Lordosis',
+    description: 'Textbook normal lumbar lateral showing ideal lordosis of 40-60° with normal sacral base angle.',
+  },
+  lumbar_ap: {
+    path: '/xray/reference/lumbar-ap-normal.jpg',
+    label: 'Normal Lumbar AP',
+    description: 'Textbook normal lumbar AP showing level pelvis and aligned spinous processes.',
+  },
+};
 
 // ═══════════════════════════════════════════════════════════════
 // CLINIC BRANDING

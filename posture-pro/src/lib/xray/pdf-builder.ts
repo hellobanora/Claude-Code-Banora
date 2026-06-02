@@ -5,7 +5,7 @@
 // ═══════════════════════════════════════════════════════════════
 
 import type { XrayAnalysis, ClinicBranding, Severity } from './types';
-import { CLINICS, SEVERITY_COLOURS, SEVERITY_LABELS, EDUCATION_TEXT } from './constants';
+import { CLINICS, SEVERITY_COLOURS, SEVERITY_LABELS, EDUCATION_TEXT, REFERENCE_XRAY_IMAGES } from './constants';
 
 /**
  * Generate a branded PDF report for an X-ray analysis.
@@ -89,9 +89,9 @@ export async function generateReport(options: PdfOptions): Promise<Blob> {
   // ─── PAGE 1: Cover ──────────────────────────────────────
   drawCoverPage(doc, clinic, patientName, patientDOB, analysis.examDate, practitionerName, pageWidth, pageHeight, margin);
 
-  // ─── PAGE 2: Annotated X-Ray ────────────────────────────
+  // ─── PAGE 2: Annotated X-Ray (+ reference side-by-side) ─
   doc.addPage();
-  drawAnnotatedPage(doc, analysis, pageWidth, pageHeight, margin, contentWidth);
+  await drawAnnotatedPage(doc, analysis, pageWidth, pageHeight, margin, contentWidth);
 
   // ─── PAGE 3: Comparison ─────────────────────────────────
   doc.addPage();
@@ -165,32 +165,122 @@ function drawCoverPage(
   doc.text(clinic.phone, pageWidth / 2, pageHeight - 35, { align: 'center' });
 }
 
-function drawAnnotatedPage(
+/**
+ * Load an image from a URL and convert to a data URL for jsPDF.
+ * Returns null if the image can't be loaded (e.g. file missing).
+ */
+function loadImageAsDataUrl(src: string): Promise<string | null> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) { resolve(null); return; }
+      ctx.drawImage(img, 0, 0);
+      resolve(canvas.toDataURL('image/jpeg', 0.85));
+    };
+    img.onerror = () => resolve(null);
+    img.src = src;
+  });
+}
+
+async function drawAnnotatedPage(
   doc: any,
   analysis: XrayAnalysis,
   pageWidth: number,
   pageHeight: number,
   margin: number,
   contentWidth: number,
-): void {
+): Promise<void> {
+  const ref = REFERENCE_XRAY_IMAGES[analysis.viewType];
+
   // Page title
   doc.setFontSize(16);
   doc.setTextColor(27, 58, 92);
-  doc.text('Annotated X-Ray', margin, 25);
-
-  // TODO: Claude Code — add the annotated X-ray image
-  // Use: doc.addImage(analysis.annotatedImageDataUrl, 'PNG', x, y, w, h)
-  // Calculate aspect-ratio-correct dimensions within contentWidth
+  doc.text(ref ? 'Your X-Ray vs. Normal' : 'Annotated X-Ray', margin, 25);
 
   if (analysis.annotatedImageDataUrl) {
-    // Placeholder: Claude Code will implement proper image sizing
-    const imgHeight = (pageHeight - 80) * 0.7;
-    try {
-      doc.addImage(analysis.annotatedImageDataUrl, 'PNG', margin, 35, contentWidth, imgHeight);
-    } catch {
-      doc.setFontSize(12);
-      doc.setTextColor(150, 150, 150);
-      doc.text('[Annotated X-ray image]', pageWidth / 2, 100, { align: 'center' });
+    // Try to load the reference image for side-by-side
+    const refDataUrl = ref ? await loadImageAsDataUrl(ref.path) : null;
+
+    if (refDataUrl) {
+      // ─── Side-by-side: Patient (left) vs Reference (right) ───
+      const gap = 6;
+      const colWidth = (contentWidth - gap) / 2;
+      const maxImgHeight = pageHeight - 100; // room for title + labels + ARA card + footer
+
+      // Patient image (left)
+      const { w: imgW, h: imgH } = analysis.imageDimensions;
+      const patientAspect = imgW / imgH;
+      let patW = colWidth;
+      let patH = colWidth / patientAspect;
+      if (patH > maxImgHeight) { patH = maxImgHeight; patW = maxImgHeight * patientAspect; }
+      const patX = margin + (colWidth - patW) / 2;
+
+      try {
+        doc.addImage(analysis.annotatedImageDataUrl, 'PNG', patX, 35, patW, patH);
+      } catch {
+        doc.setFontSize(10); doc.setTextColor(150, 150, 150);
+        doc.text('[Patient X-ray]', margin + colWidth / 2, 80, { align: 'center' });
+      }
+
+      // Label: Patient
+      doc.setFontSize(9);
+      doc.setTextColor(212, 160, 23); // Gold
+      doc.text('Patient', margin + colWidth / 2, 35 + Math.min(patH, maxImgHeight) + 6, { align: 'center' });
+
+      // Reference image (right)
+      // Detect reference image dimensions from the loaded data URL
+      const refImg = new Image();
+      refImg.src = refDataUrl;
+      // Image is already loaded (from loadImageAsDataUrl), so dimensions are available
+      const refAspect = refImg.naturalWidth / refImg.naturalHeight || patientAspect;
+      let refW = colWidth;
+      let refH = colWidth / refAspect;
+      if (refH > maxImgHeight) { refH = maxImgHeight; refW = maxImgHeight * refAspect; }
+      const refX = margin + colWidth + gap + (colWidth - refW) / 2;
+
+      try {
+        doc.addImage(refDataUrl, 'JPEG', refX, 35, refW, refH);
+      } catch {
+        doc.setFontSize(10); doc.setTextColor(150, 150, 150);
+        doc.text('[Normal reference]', margin + colWidth + gap + colWidth / 2, 80, { align: 'center' });
+      }
+
+      // Label: Normal
+      doc.setFontSize(9);
+      doc.setTextColor(46, 204, 113); // Green
+      doc.text(ref.label, margin + colWidth + gap + colWidth / 2, 35 + Math.min(refH, maxImgHeight) + 6, { align: 'center' });
+
+      // Description
+      doc.setFontSize(8);
+      doc.setTextColor(130, 130, 130);
+      doc.text(ref.description, pageWidth / 2, 35 + Math.min(patH, maxImgHeight) + 14, { align: 'center' });
+
+    } else {
+      // ─── Fallback: full-width patient image only ───
+      const { w: imgW, h: imgH } = analysis.imageDimensions;
+      const maxHeight = pageHeight - 95;
+      const imgAspect = imgW / imgH;
+      let drawW = contentWidth;
+      let drawH = contentWidth / imgAspect;
+
+      if (drawH > maxHeight) {
+        drawH = maxHeight;
+        drawW = maxHeight * imgAspect;
+      }
+
+      const drawX = margin + (contentWidth - drawW) / 2;
+      try {
+        doc.addImage(analysis.annotatedImageDataUrl, 'PNG', drawX, 35, drawW, drawH);
+      } catch {
+        doc.setFontSize(12);
+        doc.setTextColor(150, 150, 150);
+        doc.text('[Annotated X-ray image]', pageWidth / 2, 100, { align: 'center' });
+      }
     }
   }
 
@@ -255,7 +345,13 @@ function drawComparisonPage(
     doc.text(seg.measured !== null ? `${seg.measured.toFixed(1)}°` : '—', xPos, rowY + 5); xPos += colWidths[2];
     doc.text(seg.deviationPercent !== null ? `${seg.deviationPercent.toFixed(0)}%` : '—', xPos, rowY + 5); xPos += colWidths[3];
     if (seg.severity) {
+      const sevColour = SEVERITY_COLOURS[seg.severity];
+      const r = parseInt(sevColour.slice(1, 3), 16);
+      const g = parseInt(sevColour.slice(3, 5), 16);
+      const b = parseInt(sevColour.slice(5, 7), 16);
+      doc.setTextColor(r, g, b);
       doc.text(SEVERITY_LABELS[seg.severity], xPos, rowY + 5);
+      doc.setTextColor(50, 50, 50);
     }
     rowY += 7;
   }
