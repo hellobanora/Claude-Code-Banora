@@ -6,3 +6,5 @@ export { default as IdealComparison } from './IdealComparison';
 export { default as SeverityBadge } from './SeverityBadge';
 export { default as ReportView } from './ReportView';
 export { default as PdfGenerator } from './PdfGenerator';
+export { default as AiConsentModal } from './AiConsentModal';
+export { default as AutoDetectPanel } from './AutoDetectPanel';

@@ -128,3 +128,92 @@ Later options (design must not block them):
 - Patient identifier — should we use the IconPractice patient ID as a foreign key for future linkage?
 - PDF report styling — match Banora Navy/Gold palette
 - Whether to support multi-clinician sync now (CloudKit equivalent on the web is custom server-side)
+
+## SpineView Module (X-Ray Analysis)
+
+### Purpose
+Upload X-rays, place anatomical landmarks, calculate spinal
+angles/alignment, generate branded PDF comparison reports.
+Inspired by PostureRay AI / Spinalogic.
+
+### Module location
+- Routes: src/app/xray/
+- Components: src/components/xray/
+- Business logic: src/lib/xray/
+- Tests: src/tests/xray/
+
+### Key principles
+- All calculations in pure functions (src/lib/xray/geometry.ts)
+- No patient data leaves the browser (IndexedDB storage)
+- Canvas overlay rendering (NOT SVG on top of image)
+- PDF generation client-side (jsPDF + html2canvas)
+- Same PatientRepository interface as posture module
+- Severity grading: normal/mild/moderate/marked
+
+### Canvas overlay style
+- George's Line: #E74C3C (red), 2px solid
+- Arc of Life: #2ECC71 (green), 2.5px, quadratic Bézier
+- Endplate lines: rgba(255,255,255,0.5), 4px dash
+- Landmarks: #FFD232 fill, #1B3A5C stroke, 5px radius
+- Level numbers: #FFD232, bold 14px
+
+### Measurements (cervical lateral)
+- ARA (C2–C7 Cobb): posterior tangent, ideal -42°
+- Segmental angles: C1/C2 (-29°), C2/C3 through C6/C7 (-8° to -10°), C7/T1 (-8°)
+- George's Line: posterior body alignment
+- Anterior head carriage: C2–C7 horizontal offset, ideal <15mm
+- Arc of Life: smoothed lordotic curve through posterior points
+
+### Measurements (lumbar lateral) — Phase 2
+- Lumbar lordosis (L1–S1 Cobb): ideal 40–60°
+- Sacral base angle (Ferguson's): ideal 34–45°
+- Segmental angles: L1/L2 through L5/S1 (progressive increase)
+
+### Measurements (lumbar AP) — Phase 2
+- Scoliosis Cobb angle: ideal <10°
+- Pelvic unleveling: iliac crest height difference, ideal <5mm
+- Femur head height: leg length inequality
+- Sacral base unleveling
+
+### Views (build order)
+1. Cervical Lateral (Phase 1)
+2. Lumbar Lateral (Phase 2)
+3. Lumbar AP / Pelvis (Phase 2)
+
+### Branding
+- Clinic toggle: banora | palmbeach
+- Navy #1B3A5C, Mid Blue #2C5F8A, Light Blue #5B9EC9
+- Gold #FFD232 / #D4A017
+- Typography: Outfit (body), Cormorant Garamond (display)
+- Same dark-mode aesthetic as the posture module
+
+### Architecture notes
+- XrayCanvas uses HTML Canvas (not SVG) for rendering
+- overlay-renderer.ts draws 7 layers (endplates, George's Line, Arc of Life, level numbers, angle text, landmark dots, ARA summary)
+- ideal-spines.ts has SVG path data for comparison diagrams
+- pdf-builder.ts uses jsPDF with dynamic import (tree-shaking friendly)
+- Session data passed via sessionStorage between routes (to be migrated to React context or Zustand)
+
+### File responsibilities
+- types.ts — all interfaces/types (XrayAnalysis, MeasurementResult, Severity, etc.)
+- constants.ts — landmark sequences, ideal angles, severity thresholds, overlay colours, clinic branding, education text
+- geometry.ts — pure angle/distance calculation functions (no DOM, no side effects)
+- cervical-lateral.ts — cervical lateral analyser: landmarks → MeasurementResult
+- lumbar-lateral.ts — lumbar lateral analyser (Phase 2)
+- lumbar-ap.ts — lumbar AP analyser (Phase 2)
+- overlay-renderer.ts — canvas drawing functions for all overlay layers
+- ideal-spines.ts — SVG path data for ideal spine diagrams + patient arc generator
+- pdf-builder.ts — client-side PDF report generation (4 pages)
+- auto-detect.ts — AI landmark detection: sends X-ray to Claude Vision, returns coordinates
+- auto-detect-overlay.ts — canvas rendering for draft/confirmed/manual landmark states
+
+### AI Auto-Detect Landmarks
+- Uses Claude Sonnet Vision API via server-side proxy (/api/xray-detect)
+- API key stored in ANTHROPIC_API_KEY env var (server-side only)
+- Privacy: ONLY the image is sent. No patient name, DOB, or clinic info.
+- Consent modal shown before sending (AHPRA-compliant)
+- Landmarks returned as draft (orange) → practitioner reviews → confirmed (green)
+- Practitioner can: confirm individually, confirm all, drag to adjust, or switch to manual
+- auto-detect.ts handles: API call, coordinate validation, status management
+- auto-detect-overlay.ts handles: draft pulse animation, status colours, hit testing
+- Analyse page supports two modes: auto-detect and manual (user chooses on entry)

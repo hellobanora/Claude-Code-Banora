@@ -3,7 +3,7 @@
 // Takes placed landmarks → returns MeasurementResult.
 // ═══════════════════════════════════════════════════════════════
 
-import type { LandmarkMap, MeasurementResult, Point, SegmentAngle } from './types';
+import type { LandmarkMap, MeasurementResult, Point, Severity } from './types';
 import {
   LUMBAR_IDEAL_LORDOSIS,
   LUMBAR_IDEAL_SACRAL_BASE_ANGLE,
@@ -37,12 +37,12 @@ function get(landmarks: LandmarkMap, id: string): Point | null {
  * - L1_sup_ant
  */
 export function analyseLumbarLateral(landmarks: LandmarkMap): MeasurementResult {
-  const segments: SegmentAngle[] = Object.keys(LUMBAR_IDEAL_ANGLES).map((seg) => ({
+  const segments = Object.keys(LUMBAR_IDEAL_ANGLES).map((seg) => ({
     segment: seg,
-    measured: null,
+    measured: null as number | null,
     ideal: LUMBAR_IDEAL_ANGLES[seg],
-    deviationPercent: null,
-    severity: null,
+    deviationPercent: null as number | null,
+    severity: null as Severity | null,
   }));
 
   // ─── Lumbar Lordosis (L1–S1 Cobb) ─────────────────────
