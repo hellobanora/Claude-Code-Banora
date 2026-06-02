@@ -15,6 +15,7 @@ import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import type { LandmarkMap, MeasurementResult, ViewType, ClinicId } from '@/lib/xray/types';
 import type { LandmarkStatusMap } from '@/lib/xray/auto-detect';
+import { getSpineViewSession } from '@/lib/xray/session-store';
 import {
   CERVICAL_LATERAL_LANDMARKS,
   LUMBAR_LATERAL_LANDMARKS,
@@ -53,9 +54,9 @@ export default function AnalysePage() {
   } | null>(null);
 
   useEffect(() => {
-    const raw = sessionStorage.getItem('spineview_session');
-    if (raw) {
-      setSessionData(JSON.parse(raw));
+    const session = getSpineViewSession();
+    if (session) {
+      setSessionData(session);
     } else {
       router.push('/xray');
     }

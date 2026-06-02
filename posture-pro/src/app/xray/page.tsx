@@ -12,6 +12,7 @@
 import React, { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import type { ViewType, ClinicId } from '@/lib/xray/types';
+import { setSpineViewSession } from '@/lib/xray/session-store';
 import { ViewSelector } from '@/components/xray';
 
 export default function XrayLandingPage() {
@@ -50,19 +51,13 @@ export default function XrayLandingPage() {
   const handleStart = useCallback(() => {
     if (!imagePreview || !patientName.trim()) return;
 
-    // TODO: Claude Code — store image + metadata in state/context
-    // and navigate to /xray/analyse
-    // For now, using sessionStorage as a temporary bridge
-    sessionStorage.setItem(
-      'spineview_session',
-      JSON.stringify({
-        patientName,
-        examDate,
-        viewType,
-        clinicId,
-        imageDataUrl: imagePreview,
-      })
-    );
+    setSpineViewSession({
+      patientName,
+      examDate,
+      viewType,
+      clinicId,
+      imageDataUrl: imagePreview,
+    });
 
     router.push('/xray/analyse');
   }, [imagePreview, patientName, examDate, viewType, clinicId, router]);

@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 import type { XrayAnalysis, ViewType, ClinicId, MeasurementResult, LandmarkMap } from '@/lib/xray/types';
 import { generateId } from '@/lib/xray/geometry';
 import { downloadReport } from '@/lib/xray/pdf-builder';
+import { getSpineViewSession } from '@/lib/xray/session-store';
 import { ReportView } from '@/components/xray';
 
 export default function ReportPage() {
@@ -21,21 +22,13 @@ export default function ReportPage() {
   const [patientName, setPatientName] = useState('');
 
   useEffect(() => {
-    const sessionRaw = sessionStorage.getItem('spineview_session');
+    const session = getSpineViewSession();
     const resultsRaw = sessionStorage.getItem('spineview_results');
 
-    if (!sessionRaw || !resultsRaw) {
+    if (!session || !resultsRaw) {
       router.push('/xray');
       return;
     }
-
-    const session = JSON.parse(sessionRaw) as {
-      patientName: string;
-      examDate: string;
-      viewType: ViewType;
-      clinicId: ClinicId;
-      imageDataUrl: string;
-    };
 
     const results = JSON.parse(resultsRaw) as {
       landmarks: LandmarkMap;
