@@ -147,7 +147,8 @@ export default function AnalysePage() {
     } catch (err: any) {
       console.error('Auto-detect failed:', err);
       setDetectError(err.message ?? 'Auto-detection failed');
-      setMode('manual');
+      // Stay in auto mode and show the error — don't silently fall back
+      setMode('choosing');
     } finally {
       setIsDetecting(false);
     }

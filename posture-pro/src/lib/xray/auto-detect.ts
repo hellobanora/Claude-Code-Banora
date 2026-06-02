@@ -122,6 +122,41 @@ For a lumbar AP (anteroposterior) X-ray:
   - Patient's LEFT appears on the RIGHT side of the image
   - Patient's RIGHT appears on the LEFT side of the image`;
 
+// ─── Image Resizing ─────────────────────────────────────────
+
+const MAX_DIMENSION = 1600;
+
+function resizeImageForApi(
+  imageDataUrl: string,
+  origW: number,
+  origH: number,
+): Promise<{ dataUrl: string; w: number; h: number }> {
+  return new Promise((resolve) => {
+    if (origW <= MAX_DIMENSION && origH <= MAX_DIMENSION) {
+      resolve({ dataUrl: imageDataUrl, w: origW, h: origH });
+      return;
+    }
+
+    const scale = Math.min(MAX_DIMENSION / origW, MAX_DIMENSION / origH);
+    const newW = Math.round(origW * scale);
+    const newH = Math.round(origH * scale);
+
+    const img = new window.Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = newW;
+      canvas.height = newH;
+      const ctx = canvas.getContext('2d')!;
+      ctx.drawImage(img, 0, 0, newW, newH);
+      resolve({ dataUrl: canvas.toDataURL('image/jpeg', 0.85), w: newW, h: newH });
+    };
+    img.onerror = () => {
+      resolve({ dataUrl: imageDataUrl, w: origW, h: origH });
+    };
+    img.src = imageDataUrl;
+  });
+}
+
 // ─── API Call ────────────────────────────────────────────────
 
 /**
@@ -132,7 +167,7 @@ For a lumbar AP (anteroposterior) X-ray:
  * @param viewType - Which X-ray view type
  * @param imageDimensions - Original image width and height
  * @param apiEndpoint - API endpoint URL (default: /api/xray-detect)
- * @returns Detected landmarks with draft status
+ * @returns Detected landmarks with draft status (scaled back to original dimensions)
  */
 export async function autoDetectLandmarks(
   imageDataUrl: string,
@@ -140,15 +175,20 @@ export async function autoDetectLandmarks(
   imageDimensions: { w: number; h: number },
   apiEndpoint: string = '/api/xray-detect',
 ): Promise<AutoDetectResult> {
+  // Resize large images to stay within API limits
+  const resized = await resizeImageForApi(imageDataUrl, imageDimensions.w, imageDimensions.h);
+  const scaleX = imageDimensions.w / resized.w;
+  const scaleY = imageDimensions.h / resized.h;
+
   // Extract base64 data and media type from data URL
-  const match = imageDataUrl.match(/^data:(image\/\w+);base64,(.+)$/);
+  const match = resized.dataUrl.match(/^data:(image\/\w+);base64,(.+)$/);
   if (!match) {
     throw new Error('Invalid image data URL format');
   }
   const mediaType = match[1];
   const base64Data = match[2];
 
-  const systemPrompt = buildSystemPrompt(viewType, imageDimensions.w, imageDimensions.h);
+  const systemPrompt = buildSystemPrompt(viewType, resized.w, resized.h);
 
   const response = await fetch(apiEndpoint, {
     method: 'POST',
@@ -158,7 +198,7 @@ export async function autoDetectLandmarks(
       imageBase64: base64Data,
       mediaType,
       viewType,
-      imageDimensions,
+      imageDimensions: { w: resized.w, h: resized.h },
     }),
   });
 
@@ -184,10 +224,13 @@ export async function autoDetectLandmarks(
   const validatedLandmarks: LandmarkMap = {};
 
   for (const [id, point] of Object.entries(data.landmarks) as [string, Point][]) {
-    const clampedX = Math.max(0, Math.min(imageDimensions.w, point.x));
-    const clampedY = Math.max(0, Math.min(imageDimensions.h, point.y));
+    // Scale coordinates back to original image dimensions
+    const scaledX = point.x * scaleX;
+    const scaledY = point.y * scaleY;
+    const clampedX = Math.max(0, Math.min(imageDimensions.w, scaledX));
+    const clampedY = Math.max(0, Math.min(imageDimensions.h, scaledY));
 
-    if (clampedX !== point.x || clampedY !== point.y) {
+    if (clampedX !== scaledX || clampedY !== scaledY) {
       warnings.push(`${id}: coordinates were outside image bounds and were clamped`);
     }
 
