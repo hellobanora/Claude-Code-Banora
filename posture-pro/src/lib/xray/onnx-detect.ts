@@ -135,8 +135,10 @@ export async function detectLandmarksONNX(
   const config = MODEL_CONFIG[viewType as keyof typeof MODEL_CONFIG];
   if (!config) return null;
 
-  // Dynamic import of ONNX Runtime Web (tree-shaking friendly)
-  const ort = await import('onnxruntime-web');
+  // Dynamic import of ONNX Runtime Web — must use variable to prevent
+  // Next.js from statically analysing and bundling it server-side
+  const ortModuleName = 'onnxruntime-web';
+  const ort = await (Function('m', 'return import(m)')(ortModuleName) as Promise<typeof import('onnxruntime-web')>);
 
   // Load the model
   const session = await ort.InferenceSession.create(config.modelPath, {

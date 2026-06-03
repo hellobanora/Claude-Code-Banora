@@ -31,6 +31,7 @@ import {
   confirmAllLandmarks,
   adjustLandmark,
 } from '@/lib/xray/auto-detect';
+import { detectLandmarksONNX, hasONNXModel } from '@/lib/xray/onnx-detect';
 import {
   XrayCanvas,
   LandmarkGuide,
@@ -134,11 +135,27 @@ export default function AnalysePage() {
     setDetectError(null);
 
     try {
-      const result = await autoDetectLandmarks(
-        sessionData.imageDataUrl,
-        sessionData.viewType,
-        imageDimensions,
-      );
+      let result;
+
+      // Use ONNX model if available (cervical lateral), otherwise Claude API
+      if (hasONNXModel(sessionData.viewType)) {
+        console.log('Using ONNX in-browser model...');
+        result = await detectLandmarksONNX(
+          sessionData.imageDataUrl,
+          sessionData.viewType,
+          imageDimensions,
+        );
+      }
+
+      // Fall back to Claude API if ONNX not available or returned null
+      if (!result) {
+        console.log('Using Claude Vision API...');
+        result = await autoDetectLandmarks(
+          sessionData.imageDataUrl,
+          sessionData.viewType,
+          imageDimensions,
+        );
+      }
 
       setLandmarks(result.landmarks);
       setStatuses(result.statuses);
@@ -147,7 +164,6 @@ export default function AnalysePage() {
     } catch (err: any) {
       console.error('Auto-detect failed:', err);
       setDetectError(err.message ?? 'Auto-detection failed');
-      // Stay in auto mode and show the error — don't silently fall back
       setMode('choosing');
     } finally {
       setIsDetecting(false);
@@ -330,7 +346,14 @@ export default function AnalysePage() {
             </h2>
 
             <button
-              onClick={() => setShowConsentModal(true)}
+              onClick={() => {
+                // ONNX runs locally — no consent needed. Claude API needs consent.
+                if (sessionData && hasONNXModel(sessionData.viewType)) {
+                  handleAutoDetectConsent();
+                } else {
+                  setShowConsentModal(true);
+                }
+              }}
               disabled={imageDimensions.w === 0}
               className="w-full p-6 bg-white border-2 border-neutral-200 rounded-xl hover:border-navy transition-all text-left group disabled:opacity-50 shadow-sm"
             >
@@ -341,7 +364,9 @@ export default function AnalysePage() {
                 <div>
                   <h3 className="text-navy font-bold text-lg">AI Auto-Detect</h3>
                   <p className="text-neutral-500 text-sm">
-                    AI estimates all landmark positions. You review and adjust any that need correcting.
+                    {sessionData && hasONNXModel(sessionData.viewType)
+                      ? 'Instant in-browser detection — no data leaves your device.'
+                      : 'AI estimates all landmark positions. You review and adjust any that need correcting.'}
                   </p>
                 </div>
               </div>
