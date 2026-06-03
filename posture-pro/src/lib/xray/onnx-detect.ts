@@ -16,6 +16,32 @@ import {
   LUMBAR_AP_LANDMARKS,
 } from './constants';
 
+// ─── Load ONNX Runtime from CDN ────────────────────────────
+let ortCache: any = null;
+
+async function loadOrt(): Promise<any> {
+  if (ortCache) return ortCache;
+  if (typeof window === 'undefined') throw new Error('ONNX only runs in browser');
+
+  // Check if already loaded via script tag
+  if ((window as any).ort) {
+    ortCache = (window as any).ort;
+    return ortCache;
+  }
+
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.21.0/dist/ort.min.js';
+    script.onload = () => {
+      ortCache = (window as any).ort;
+      if (ortCache) resolve(ortCache);
+      else reject(new Error('ONNX Runtime failed to load'));
+    };
+    script.onerror = () => reject(new Error('Failed to load ONNX Runtime from CDN'));
+    document.head.appendChild(script);
+  });
+}
+
 // Model metadata (must match training config)
 const MODEL_CONFIG = {
   cervical_lateral: {
@@ -135,10 +161,8 @@ export async function detectLandmarksONNX(
   const config = MODEL_CONFIG[viewType as keyof typeof MODEL_CONFIG];
   if (!config) return null;
 
-  // Dynamic import of ONNX Runtime Web — must use variable to prevent
-  // Next.js from statically analysing and bundling it server-side
-  const ortModuleName = 'onnxruntime-web';
-  const ort = await (Function('m', 'return import(m)')(ortModuleName) as Promise<typeof import('onnxruntime-web')>);
+  // Load ONNX Runtime from CDN to avoid Next.js webpack bundling issues
+  const ort = await loadOrt();
 
   // Load the model
   const session = await ort.InferenceSession.create(config.modelPath, {
