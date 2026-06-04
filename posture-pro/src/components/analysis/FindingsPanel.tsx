@@ -38,7 +38,6 @@ export function FindingsPanel({ analysis }: { analysis: PostureAnalysis }) {
       </Section>
 
       <Section title="Pelvis">
-        <Row label="Tilt (lat)" value={fmtDeg(analysis.pelvicTiltLateralDeg)} />
         <Row label="Unleveling (AP)" value={fmtMm(analysis.pelvicUnlevelingMm)} />
       </Section>
 
