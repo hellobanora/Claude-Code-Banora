@@ -34,6 +34,11 @@ export interface PostureAnalysis {
   qAngleLDeg?: number;
   qAngleRDeg?: number;
   lateralSwayMm?: number;
+  /** Lateral shift of each structure's midpoint relative to the pelvic plumb line.
+   *  Positive = shifted image-right. Requires patient height for mm conversion. */
+  headLateralShiftMm?: number;
+  shoulderLateralShiftMm?: number;
+  hipLateralShiftMm?: number;
 
   // Meta
   generatedAt: string;

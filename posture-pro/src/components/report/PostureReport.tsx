@@ -6,7 +6,6 @@ import { patientFullName } from '@/lib/models/patient';
 import { buildNarrative } from '@/lib/biomechanics/narrative';
 import { computePostureIndex } from '@/lib/biomechanics/posture-index';
 import { estimateHeadWeightKg } from '@/lib/biomechanics/cervical-load';
-import { NormalSilhouette } from './NormalSilhouette';
 import { AnnotatedPhoto } from './AnnotatedPhoto';
 import { ReportLetterhead } from './ReportLetterhead';
 import { DownloadPdfButton } from './DownloadPdfButton';
@@ -49,11 +48,8 @@ export function PostureReport({
           <div className="rounded-t bg-gradient-to-r from-navy to-midblue px-3 py-1.5 text-white">
             <h2 className="text-sm font-semibold tracking-wide">Posture viewed from the front</h2>
           </div>
-          <div className="grid grid-cols-[80px_1fr] gap-3 rounded-b border border-t-0 border-neutral-200 p-3">
-            <div className="flex flex-col items-center">
-              <span className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-neutral-500">Normal</span>
-              <NormalSilhouette view="ap" />
-            </div>
+          <div className="grid grid-cols-2 gap-4 rounded-b border border-t-0 border-neutral-200 p-4">
+            {/* Left: photo with plumb line */}
             <div>
               {apImageUrl ? (
                 <AnnotatedPhoto
@@ -65,18 +61,27 @@ export function PostureReport({
               ) : (
                 <PlaceholderPhoto view="Anterior" />
               )}
-              {narrative.anteriorBullets.length > 0 && (
-                <ul className="mt-2 space-y-1">
-                  {narrative.anteriorBullets.map((b, i) => (
-                    <li key={i} className="flex gap-1.5 text-sm leading-snug text-neutral-800">
-                      <span className="mt-0.5 text-gold">●</span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              )}
+            </div>
+            {/* Right: findings */}
+            <div className="flex flex-col justify-center gap-2">
+              <FindingRow
+                label="Head"
+                valueMm={analysis.headLateralShiftMm}
+                fallbackAngleDeg={analysis.headTiltDeg}
+                axis="lateral"
+              />
+              <FindingRow
+                label="Shoulders"
+                valueMm={analysis.shoulderLateralShiftMm}
+                axis="lateral"
+              />
+              <FindingRow
+                label="Hips"
+                valueMm={analysis.hipLateralShiftMm}
+                axis="lateral"
+              />
               <PostureIndexBox
-                label="Posture Index — Front View"
+                label="Posture Index — Front"
                 shiftsCm={index.anterior.totalShiftsCm}
                 tiltsDeg={index.anterior.totalTiltsDeg}
               />
@@ -89,11 +94,8 @@ export function PostureReport({
           <div className="rounded-t bg-gradient-to-r from-navy to-midblue px-3 py-1.5 text-white">
             <h2 className="text-sm font-semibold tracking-wide">Posture viewed from the side</h2>
           </div>
-          <div className="grid grid-cols-[80px_1fr] gap-3 rounded-b border border-t-0 border-neutral-200 p-3">
-            <div className="flex flex-col items-center">
-              <span className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-neutral-500">Normal</span>
-              <NormalSilhouette view="lateral" />
-            </div>
+          <div className="grid grid-cols-2 gap-4 rounded-b border border-t-0 border-neutral-200 p-4">
+            {/* Left: photo with plumb line */}
             <div>
               {lateralImageUrl ? (
                 <AnnotatedPhoto
@@ -105,26 +107,32 @@ export function PostureReport({
               ) : (
                 <PlaceholderPhoto view="Lateral" />
               )}
-              {narrative.lateralBullets.length > 0 && (
-                <ul className="mt-2 space-y-1">
-                  {narrative.lateralBullets.map((b, i) => (
-                    <li key={i} className="flex gap-1.5 text-sm leading-snug text-neutral-800">
-                      <span className="mt-0.5 text-gold">●</span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+            </div>
+            {/* Right: findings */}
+            <div className="flex flex-col justify-center gap-2">
+              {analysis.cervicalLoadKg !== undefined && (
+                <EffectiveHeadWeightCallout loadKg={analysis.cervicalLoadKg} />
               )}
-              <div className="mt-2 grid grid-cols-2 gap-2">
-                <PostureIndexBox
-                  label="Posture Index — Side View"
-                  shiftsCm={index.lateral.totalShiftsCm}
-                  tiltsDeg={index.lateral.totalTiltsDeg}
-                />
-                {analysis.cervicalLoadKg !== undefined && (
-                  <EffectiveHeadWeightCallout loadKg={analysis.cervicalLoadKg} />
-                )}
-              </div>
+              <FindingRow
+                label="Shoulders"
+                valueMm={getPlumbDevMm(analysis, 'acromionLat')}
+                axis="sagittal"
+              />
+              <FindingRow
+                label="Hips"
+                valueMm={getPlumbDevMm(analysis, 'greaterTrochanter')}
+                axis="sagittal"
+              />
+              <FindingRow
+                label="Knees"
+                valueMm={getPlumbDevMm(analysis, 'lateralKnee')}
+                axis="sagittal"
+              />
+              <PostureIndexBox
+                label="Posture Index — Side"
+                shiftsCm={index.lateral.totalShiftsCm}
+                tiltsDeg={index.lateral.totalTiltsDeg}
+              />
             </div>
           </div>
         </section>
@@ -227,6 +235,58 @@ function EffectiveHeadWeightCallout({ loadKg }: { loadKg: number }) {
         {loadKg.toFixed(1)}
         <span className="ml-1 text-sm font-normal opacity-80">kg</span>
       </span>
+    </div>
+  );
+}
+
+/** Returns the horizontal offset (mm) for a named lateral landmark, or undefined if absent/zero. */
+function getPlumbDevMm(analysis: PostureAnalysis, landmarkId: string): number | undefined {
+  const dev = analysis.plumbLineDeviations.find((d) => d.landmark === landmarkId);
+  if (!dev || dev.horizontalOffsetMm === 0) return undefined;
+  return dev.horizontalOffsetMm;
+}
+
+/**
+ * A single finding row showing e.g. "Head — 2.14 cm right".
+ * axis="lateral"  → directions are "left" / "right"
+ * axis="sagittal" → directions are "forward" / "backward"
+ */
+function FindingRow({
+  label,
+  valueMm,
+  fallbackAngleDeg,
+  axis,
+}: {
+  label: string;
+  valueMm?: number;
+  fallbackAngleDeg?: number;
+  axis: 'lateral' | 'sagittal';
+}) {
+  let valueText: string;
+  let dirText: string;
+
+  if (valueMm !== undefined) {
+    const cm = Math.abs(valueMm / 10).toFixed(2);
+    if (axis === 'lateral') {
+      dirText = valueMm > 0 ? 'right' : 'left';
+    } else {
+      dirText = valueMm > 0 ? 'forward' : 'backward';
+    }
+    valueText = `${cm} cm`;
+  } else if (fallbackAngleDeg !== undefined) {
+    dirText = fallbackAngleDeg > 0 ? 'right' : 'left';
+    valueText = `${Math.abs(fallbackAngleDeg).toFixed(1)}°`;
+  } else {
+    return null;
+  }
+
+  return (
+    <div className="rounded border border-neutral-100 bg-neutral-50 px-3 py-2">
+      <div className="text-[10px] font-semibold uppercase tracking-wider text-neutral-400">{label}</div>
+      <div className="mt-0.5 text-sm font-medium text-navy">
+        {valueText}{' '}
+        <span className="font-semibold text-midblue">{dirText}</span>
+      </div>
     </div>
   );
 }

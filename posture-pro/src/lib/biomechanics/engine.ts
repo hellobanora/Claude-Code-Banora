@@ -30,6 +30,9 @@ export function runPostureAnalysis(
     result.qAngleLDeg = ap.qAngleLDeg;
     result.qAngleRDeg = ap.qAngleRDeg;
     result.lateralSwayMm = ap.lateralSwayMm;
+    result.headLateralShiftMm = ap.headLateralShiftMm;
+    result.shoulderLateralShiftMm = ap.shoulderLateralShiftMm;
+    result.hipLateralShiftMm = ap.hipLateralShiftMm;
   }
 
   result.inputCompleteness = completeness(session);

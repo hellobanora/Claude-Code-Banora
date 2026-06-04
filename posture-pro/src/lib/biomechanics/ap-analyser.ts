@@ -7,6 +7,11 @@ export interface APFindings {
   qAngleLDeg?: number;
   qAngleRDeg?: number;
   lateralSwayMm?: number;
+  /** Lateral shift of each structure's midpoint relative to the pelvic plumb line.
+   *  Positive = shifted image-right. Requires patient height for mm conversion. */
+  headLateralShiftMm?: number;
+  shoulderLateralShiftMm?: number;
+  hipLateralShiftMm?: number;
 }
 
 export function analyseAP(
@@ -14,6 +19,7 @@ export function analyseAP(
   patientHeightCm: number | undefined
 ): APFindings {
   const mmPerUnit = millimetersPerNormalisedUnit(landmarks, patientHeightCm);
+  const plumbX = computeApPlumbX(landmarks);
 
   return {
     headTiltDeg: computeHeadTiltDeg(landmarks),
@@ -38,7 +44,49 @@ export function analyseAP(
       findLandmark(landmarks, 'ankleCentreR')
     ),
     lateralSwayMm: computeLateralSwayMm(landmarks, mmPerUnit),
+    headLateralShiftMm: lateralShiftMm(
+      midX(findLandmark(landmarks, 'eyeOuterL'), findLandmark(landmarks, 'eyeOuterR')),
+      plumbX,
+      mmPerUnit
+    ),
+    shoulderLateralShiftMm: lateralShiftMm(
+      midX(findLandmark(landmarks, 'acromionL'), findLandmark(landmarks, 'acromionR')),
+      plumbX,
+      mmPerUnit
+    ),
+    hipLateralShiftMm: lateralShiftMm(
+      midX(findLandmark(landmarks, 'iliacCrestL'), findLandmark(landmarks, 'iliacCrestR')),
+      plumbX,
+      mmPerUnit
+    ),
   };
+}
+
+/** The X coordinate of the vertical plumb line for the AP view (pelvic midpoint). */
+function computeApPlumbX(landmarks: Landmark[]): number {
+  const asisL = findLandmark(landmarks, 'asisL');
+  const asisR = findLandmark(landmarks, 'asisR');
+  if (asisL && asisR) return (asisL.position.x + asisR.position.x) / 2;
+  const ankleL = findLandmark(landmarks, 'ankleCentreL');
+  const ankleR = findLandmark(landmarks, 'ankleCentreR');
+  if (ankleL && ankleR) return (ankleL.position.x + ankleR.position.x) / 2;
+  return 0.5;
+}
+
+/** Normalised X midpoint of two paired landmarks. */
+function midX(a: Landmark | undefined, b: Landmark | undefined): number | undefined {
+  if (!a || !b) return undefined;
+  return (a.position.x + b.position.x) / 2;
+}
+
+/** Lateral shift (mm) of a structure midpoint from the plumb line X. */
+function lateralShiftMm(
+  structureMidX: number | undefined,
+  plumbX: number,
+  mmPerUnit: number | undefined
+): number | undefined {
+  if (structureMidX === undefined || mmPerUnit === undefined) return undefined;
+  return (structureMidX - plumbX) * mmPerUnit;
 }
 
 /** Eye-line tilt vs true horizontal. */

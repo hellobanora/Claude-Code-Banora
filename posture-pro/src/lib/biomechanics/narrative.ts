@@ -42,31 +42,36 @@ export function buildNarrative(
 function buildAnteriorBullets(a: PostureAnalysis): string[] {
   const out: string[] = [];
 
-  // Head: lateral shift (mm) and tilt (degrees). Sign → direction word.
-  if (a.headTiltDeg !== undefined) {
+  // Head: prefer lateral shift (cm) if available, fall back to tilt angle.
+  if (a.headLateralShiftMm !== undefined) {
+    const cm = Math.abs(a.headLateralShiftMm / 10).toFixed(2);
+    const dir = a.headLateralShiftMm > 0 ? 'right' : 'left';
+    out.push(`Head is shifted ${cm} cm ${dir}.`);
+  } else if (a.headTiltDeg !== undefined) {
     const dir = a.headTiltDeg > 0 ? 'right' : 'left';
     out.push(`Head is tilted ${Math.abs(a.headTiltDeg).toFixed(1)}° ${dir}.`);
   }
 
-  // Shoulder unleveling. + = right side higher in this convention.
-  if (a.shoulderUnlevelingMm !== undefined) {
+  // Shoulders: prefer lateral shift (cm) if available.
+  if (a.shoulderLateralShiftMm !== undefined) {
+    const cm = Math.abs(a.shoulderLateralShiftMm / 10).toFixed(2);
+    const dir = a.shoulderLateralShiftMm > 0 ? 'right' : 'left';
+    out.push(`Shoulders shifted ${cm} cm ${dir}.`);
+  } else if (a.shoulderUnlevelingMm !== undefined) {
     const mm = a.shoulderUnlevelingMm;
     const dir = mm > 0 ? 'right' : 'left';
     out.push(`Shoulders are unlevel by ${Math.abs(mm / 10).toFixed(2)} cm, ${dir} side higher.`);
   }
 
-  // Pelvic unleveling.
-  if (a.pelvicUnlevelingMm !== undefined) {
+  // Hips: prefer lateral shift (cm) if available.
+  if (a.hipLateralShiftMm !== undefined) {
+    const cm = Math.abs(a.hipLateralShiftMm / 10).toFixed(2);
+    const dir = a.hipLateralShiftMm > 0 ? 'right' : 'left';
+    out.push(`Hips shifted ${cm} cm ${dir}.`);
+  } else if (a.pelvicUnlevelingMm !== undefined) {
     const mm = a.pelvicUnlevelingMm;
     const dir = mm > 0 ? 'right' : 'left';
     out.push(`Hips are unlevel by ${Math.abs(mm / 10).toFixed(2)} cm, ${dir} side higher.`);
-  }
-
-  // Lateral postural sway — torso shift relative to pelvic midline.
-  if (a.lateralSwayMm !== undefined) {
-    const mm = a.lateralSwayMm;
-    const dir = mm > 0 ? 'right' : 'left';
-    out.push(`Ribcage is shifted ${Math.abs(mm / 10).toFixed(2)} cm ${dir} of midline.`);
   }
 
   return out;
@@ -75,42 +80,35 @@ function buildAnteriorBullets(a: PostureAnalysis): string[] {
 function buildLateralBullets(a: PostureAnalysis, neutralHead: number): string[] {
   const out: string[] = [];
 
-  // The signature finding — same sentence shape as PostureScreen.
-  if (a.forwardHeadAngleDeg !== undefined && a.cervicalLoadKg !== undefined) {
+  // Head weight — the signature finding.
+  if (a.cervicalLoadKg !== undefined) {
     out.push(
-      `Head weighs approximately ${neutralHead.toFixed(1)} kg. ` +
-        `It is angled ${a.forwardHeadAngleDeg.toFixed(1)}° forward of vertical.`
-    );
-    out.push(
-      `Based on physics, the head now effectively weighs ${a.cervicalLoadKg.toFixed(
-        1
-      )} kg instead of ${neutralHead.toFixed(1)} kg — ${plainLanguageEquivalent(
-        a.cervicalLoadKg
-      )}.`
+      `Head weighs approximately ${a.cervicalLoadKg.toFixed(1)} kg due to forward head posture.`
     );
   }
 
-  // Shoulder protraction (forward roll). + value here = acromion forward of ear.
-  if (a.shoulderProtractionDeg !== undefined) {
-    const v = a.shoulderProtractionDeg;
-    const dir = v > 0 ? 'forward' : 'backward';
-    out.push(`Shoulders sit ${Math.abs(v).toFixed(1)}° ${dir} of vertical through the ear.`);
+  // Plumb-line deviations: shoulders, hips, knees (in that order).
+  const devMap = new Map(a.plumbLineDeviations.map((d) => [d.landmark, d]));
+
+  const shoulderDev = devMap.get('acromionLat');
+  if (shoulderDev && shoulderDev.horizontalOffsetMm !== 0) {
+    const cm = Math.abs(shoulderDev.horizontalOffsetMm / 10).toFixed(2);
+    const dir = shoulderDev.horizontalOffsetMm > 0 ? 'forward' : 'backward';
+    out.push(`Shoulders shifted ${cm} cm ${dir}.`);
   }
 
-  // Pelvic tilt — anterior vs posterior.
-  if (a.pelvicTiltLateralDeg !== undefined) {
-    const v = a.pelvicTiltLateralDeg;
-    const dir = v > 0 ? 'anterior' : 'posterior';
-    out.push(`Pelvis shows ${Math.abs(v).toFixed(1)}° of ${dir} tilt.`);
+  const hipDev = devMap.get('greaterTrochanter');
+  if (hipDev && hipDev.horizontalOffsetMm !== 0) {
+    const cm = Math.abs(hipDev.horizontalOffsetMm / 10).toFixed(2);
+    const dir = hipDev.horizontalOffsetMm > 0 ? 'forward' : 'backward';
+    out.push(`Hips shifted ${cm} cm ${dir}.`);
   }
 
-  // Plumb-line summaries for each measured landmark.
-  for (const dev of a.plumbLineDeviations) {
-    if (dev.horizontalOffsetMm === 0) continue;
-    const cm = Math.abs(dev.horizontalOffsetMm / 10).toFixed(2);
-    const dir = dev.horizontalOffsetMm > 0 ? 'forward' : 'backward';
-    const label = humanLandmarkLabel(dev.landmark);
-    out.push(`${label} sits ${cm} cm ${dir} of the plumb line.`);
+  const kneeDev = devMap.get('lateralKnee');
+  if (kneeDev && kneeDev.horizontalOffsetMm !== 0) {
+    const cm = Math.abs(kneeDev.horizontalOffsetMm / 10).toFixed(2);
+    const dir = kneeDev.horizontalOffsetMm > 0 ? 'forward' : 'backward';
+    out.push(`Knees shifted ${cm} cm ${dir}.`);
   }
 
   return out;

@@ -68,7 +68,7 @@ function APOverlay({ lm }: { lm: Landmark[] }) {
   return (
     <>
       {/* Green plumb line */}
-      <line x1={plumbX} y1={0} x2={plumbX} y2={1} stroke="#2C8A3B" strokeWidth="0.003" />
+      <line x1={plumbX} y1={0} x2={plumbX} y2={1} stroke="#2ECC71" strokeWidth="0.005" strokeDasharray="0.012 0.006" />
 
       {/* Horizontal red lines between paired landmarks */}
       <PairedHorizontalLine left={findLandmark(lm, 'eyeOuterL')} right={findLandmark(lm, 'eyeOuterR')} />
@@ -112,7 +112,7 @@ function LateralOverlay({ lm }: { lm: Landmark[] }) {
   return (
     <>
       {/* Green plumb line */}
-      <line x1={plumbX} y1={0} x2={plumbX} y2={1} stroke="#2C8A3B" strokeWidth="0.003" />
+      <line x1={plumbX} y1={0} x2={plumbX} y2={1} stroke="#2ECC71" strokeWidth="0.005" strokeDasharray="0.012 0.006" />
       {/* Red posture chain */}
       {path && <path d={path} fill="none" stroke="#C0392B" strokeWidth="0.003" />}
       {/* Landmark dots */}
