@@ -133,12 +133,20 @@ export default function XrayLandingPage() {
               X-Ray Analysis
             </span>
           </h1>
-          <Link
-            href="/"
-            className="text-white/60 hover:text-white transition-colors text-sm"
-          >
-            ← Posture Pro
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/xray/guide"
+              className="text-[#FFD232]/70 hover:text-[#FFD232] transition-colors text-sm"
+            >
+              Landmark Guide
+            </Link>
+            <Link
+              href="/"
+              className="text-white/60 hover:text-white transition-colors text-sm"
+            >
+              ← Posture Pro
+            </Link>
+          </div>
         </div>
       </div>
 
