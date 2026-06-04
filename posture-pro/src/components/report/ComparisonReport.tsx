@@ -124,15 +124,6 @@ export function ComparisonReport({ patient, sessionA, sessionB }: ComparisonRepo
       <section className="mt-4">
         <SectionHeader title="Pelvis" />
         <ComparisonRow
-          label="Tilt (lateral)"
-          valueA={analysisA.pelvicTiltLateralDeg}
-          valueB={analysisB.pelvicTiltLateralDeg}
-          unit="°"
-          decimals={1}
-          lowerIsBetter
-          useAbsolute
-        />
-        <ComparisonRow
           label="Unleveling (AP)"
           valueA={analysisA.pelvicUnlevelingMm}
           valueB={analysisB.pelvicUnlevelingMm}
