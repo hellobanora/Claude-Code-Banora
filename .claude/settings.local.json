@@ -60,7 +60,15 @@
       "Bash(mv clinic-neck-assessment-1000w.webp clinic-neck-assessment.webp)",
       "Bash(mv hero-paediatric-new.webp hero-paediatric.webp)",
       "Bash(mv hero-sports-new.webp hero-sports.webp)",
-      "Bash(mv logo-horizontal-300w.webp logo-horizontal.webp)"
+      "Bash(mv logo-horizontal-300w.webp logo-horizontal.webp)",
+      "Bash(git push *)",
+      "Bash(npx astro *)",
+      "Bash(git stash *)",
+      "mcp__47f362ab-f2b5-4288-a11b-74c47a6767de__list_teams",
+      "mcp__47f362ab-f2b5-4288-a11b-74c47a6767de__list_deployments",
+      "Bash(npx tsc:*)",
+      "Bash(./node_modules/.bin/tsc --noEmit)",
+      "mcp__claude_ai_Vercel__get_deployment"
     ]
   }
 }
