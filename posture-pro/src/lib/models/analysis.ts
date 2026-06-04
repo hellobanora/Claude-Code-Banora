@@ -24,7 +24,6 @@ export interface PostureAnalysis {
   forwardHeadAngleDeg?: number;
   cervicalLoadKg?: number;
   shoulderProtractionDeg?: number;
-  pelvicTiltLateralDeg?: number;
   plumbLineDeviations: PlumbLineDeviation[];
 
   // AP findings

@@ -6,7 +6,6 @@ export interface LateralFindings {
   forwardHeadAngleDeg?: number;
   cervicalLoadKg?: number;
   shoulderProtractionDeg?: number;
-  pelvicTiltDeg?: number;
   plumbDeviations: PlumbLineDeviation[];
 }
 
@@ -29,7 +28,6 @@ export function analyseLateral(
   }
 
   result.shoulderProtractionDeg = computeShoulderProtractionDeg(landmarks);
-  result.pelvicTiltDeg = computePelvicTiltDeg(landmarks);
   result.plumbDeviations = computePlumbDeviations(landmarks, patientHeightCm);
 
   return result;
@@ -68,19 +66,6 @@ function computeShoulderProtractionDeg(landmarks: Landmark[]): number | undefine
   return (radians * 180) / Math.PI;
 }
 
-/** ASIS-to-PSIS line angle vs horizontal. Positive = anterior tilt. */
-function computePelvicTiltDeg(landmarks: Landmark[]): number | undefined {
-  const asis = findLandmark(landmarks, 'asisLat');
-  const psis = findLandmark(landmarks, 'psisLat');
-  if (!asis || !psis) return undefined;
-
-  // From PSIS to ASIS. In a neutral pelvis this line is roughly horizontal,
-  // with ASIS slightly lower than PSIS (mild anterior tilt is normal).
-  const dx = asis.position.x - psis.position.x;
-  const dy = asis.position.y - psis.position.y; // positive = ASIS lower in image
-  const radians = Math.atan2(dy, Math.abs(dx));
-  return (radians * 180) / Math.PI;
-}
 
 /**
  * Horizontal distance each landmark sits from a plumb line through the lateral

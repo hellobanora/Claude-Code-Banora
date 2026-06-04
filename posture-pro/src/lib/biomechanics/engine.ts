@@ -18,7 +18,6 @@ export function runPostureAnalysis(
     result.forwardHeadAngleDeg = lat.forwardHeadAngleDeg;
     result.cervicalLoadKg = lat.cervicalLoadKg;
     result.shoulderProtractionDeg = lat.shoulderProtractionDeg;
-    result.pelvicTiltLateralDeg = lat.pelvicTiltDeg;
     result.plumbLineDeviations = lat.plumbDeviations;
   }
 

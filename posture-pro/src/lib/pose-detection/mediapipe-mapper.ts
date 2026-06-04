@@ -49,8 +49,6 @@ interface APMapping {
 const LATERAL_MAPPINGS_LEFT: LateralMapping[] = [
   { landmarkId: 'tragus', mpIndex: 7 },           // left_ear
   { landmarkId: 'acromionLat', mpIndex: 11 },      // left_shoulder
-  { landmarkId: 'asisLat', mpIndex: 23 },           // left_hip (proxy for ASIS)
-  { landmarkId: 'psisLat', mpIndex: 23 },           // left_hip (will need manual refinement)
   { landmarkId: 'greaterTrochanter', mpIndex: 23 }, // left_hip (proxy)
   { landmarkId: 'lateralKnee', mpIndex: 25 },       // left_knee
   { landmarkId: 'lateralMalleolus', mpIndex: 27 },  // left_ankle
@@ -59,8 +57,6 @@ const LATERAL_MAPPINGS_LEFT: LateralMapping[] = [
 const LATERAL_MAPPINGS_RIGHT: LateralMapping[] = [
   { landmarkId: 'tragus', mpIndex: 8 },           // right_ear
   { landmarkId: 'acromionLat', mpIndex: 12 },      // right_shoulder
-  { landmarkId: 'asisLat', mpIndex: 24 },           // right_hip
-  { landmarkId: 'psisLat', mpIndex: 24 },           // right_hip (proxy)
   { landmarkId: 'greaterTrochanter', mpIndex: 24 }, // right_hip
   { landmarkId: 'lateralKnee', mpIndex: 26 },       // right_knee
   { landmarkId: 'lateralMalleolus', mpIndex: 28 },  // right_ankle
@@ -135,12 +131,7 @@ export function mapMediaPipeToLandmarks(
       if (placed.has(mapping.landmarkId)) continue;
       const pos = resolvePosition(mpLandmarks, mapping);
       if (!pos) continue;
-      // For psisLat, offset slightly behind the hip marker
       let { x, y } = pos;
-      if (mapping.landmarkId === 'psisLat') {
-        // PSIS is posterior to ASIS — nudge backward in image (direction depends on side)
-        x += side === 'left' ? -0.03 : 0.03;
-      }
       if (mapping.landmarkId === 'greaterTrochanter') {
         // Greater trochanter sits slightly below and lateral to hip centre
         y += 0.01;

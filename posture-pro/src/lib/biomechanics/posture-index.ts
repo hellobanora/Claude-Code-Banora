@@ -40,8 +40,7 @@ export function computePostureIndex(a: PostureAnalysis): PostureIndex {
 
   const lateralTiltDeg =
     Math.abs(analysisValueOr0(a.forwardHeadAngleDeg)) +
-    Math.abs(analysisValueOr0(a.shoulderProtractionDeg)) +
-    Math.abs(analysisValueOr0(a.pelvicTiltLateralDeg));
+    Math.abs(analysisValueOr0(a.shoulderProtractionDeg));
 
   return {
     anterior: {

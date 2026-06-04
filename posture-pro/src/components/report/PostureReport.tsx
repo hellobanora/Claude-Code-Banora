@@ -111,7 +111,10 @@ export function PostureReport({
             {/* Right: findings */}
             <div className="flex flex-col justify-center gap-2">
               {analysis.cervicalLoadKg !== undefined && (
-                <EffectiveHeadWeightCallout loadKg={analysis.cervicalLoadKg} />
+                <EffectiveHeadWeightCallout
+                  loadKg={analysis.cervicalLoadKg}
+                  neutralKg={neutralHeadKg}
+                />
               )}
               <FindingRow
                 label="Shoulders"
@@ -225,16 +228,26 @@ function PostureIndexBox({
   );
 }
 
-function EffectiveHeadWeightCallout({ loadKg }: { loadKg: number }) {
+function EffectiveHeadWeightCallout({ loadKg, neutralKg }: { loadKg: number; neutralKg: number }) {
   return (
-    <div className="mt-3 flex flex-col items-center justify-center rounded bg-gradient-to-br from-navy to-midblue px-3 py-3 text-white shadow-sm">
+    <div className="rounded bg-gradient-to-br from-navy to-midblue px-3 py-3 text-white shadow-sm">
       <span className="text-[10px] font-semibold uppercase tracking-widest text-gold">
-        Effective Head Weight
+        Head Weight
       </span>
-      <span className="text-3xl font-bold leading-none">
-        {loadKg.toFixed(1)}
-        <span className="ml-1 text-sm font-normal opacity-80">kg</span>
-      </span>
+      <div className="mt-1.5 flex flex-col gap-1">
+        <div className="flex items-baseline justify-between gap-2">
+          <span className="text-xs opacity-70">Should be</span>
+          <span className="font-mono text-base font-semibold">
+            {neutralKg.toFixed(1)}<span className="ml-0.5 text-xs font-normal opacity-70"> kg</span>
+          </span>
+        </div>
+        <div className="flex items-baseline justify-between gap-2 border-t border-white/20 pt-1">
+          <span className="text-xs text-gold">With FHP</span>
+          <span className="font-mono text-xl font-bold text-gold">
+            {loadKg.toFixed(1)}<span className="ml-0.5 text-xs font-normal opacity-80"> kg</span>
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

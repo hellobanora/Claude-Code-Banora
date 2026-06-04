@@ -8,8 +8,6 @@ export type LandmarkID =
   // Lateral — shoulder & thorax
   | 'acromionLat'
   // Lateral — pelvis & lower limb
-  | 'asisLat'
-  | 'psisLat'
   | 'greaterTrochanter'
   | 'lateralKnee'
   | 'lateralMalleolus'
@@ -37,8 +35,6 @@ export type PostureView = 'lateral' | 'ap';
 export const LANDMARK_VIEW: Record<LandmarkID, PostureView> = {
   tragus: 'lateral',
   acromionLat: 'lateral',
-  asisLat: 'lateral',
-  psisLat: 'lateral',
   greaterTrochanter: 'lateral',
   lateralKnee: 'lateral',
   lateralMalleolus: 'lateral',
@@ -60,8 +56,6 @@ export const LANDMARK_VIEW: Record<LandmarkID, PostureView> = {
 export const LANDMARK_LABEL: Record<LandmarkID, string> = {
   tragus: 'Tragus',
   acromionLat: 'Acromion (lat)',
-  asisLat: 'ASIS (lat)',
-  psisLat: 'PSIS (lat)',
   greaterTrochanter: 'Greater trochanter',
   lateralKnee: 'Lateral knee',
   lateralMalleolus: 'Lateral malleolus',
