@@ -300,7 +300,7 @@ function LandmarkWorkflow({
               onLandmarksChange={handleLateralChange}
             />
             {/* Live key metrics — updates as dots are placed/dragged */}
-            <LiveMetrics analysis={analysis} />
+            <LiveMetrics analysis={analysis} landmarks={liveLateral} />
           </>
         )}
         {activeTab === 'ap' && session.apCapture && (
@@ -317,40 +317,21 @@ function LandmarkWorkflow({
 }
 
 /**
- * Compact live readout shown below the lateral landmark editor.
- * Updates in real-time as dots are placed or dragged — no tab switch needed.
+ * DEBUG: shows raw landmark coords + calculated values so we can see
+ * exactly what the engine is receiving. Remove once bug is confirmed fixed.
  */
-function LiveMetrics({ analysis }: { analysis: PostureAnalysis }) {
-  const hasAngle = analysis.forwardHeadAngleDeg !== undefined;
-  const hasLoad = analysis.cervicalLoadKg !== undefined;
-
-  if (!hasAngle && !hasLoad) {
-    return (
-      <p className="mt-3 text-center text-xs text-neutral-400">
-        Place <strong>Tragus</strong> and <strong>Acromion</strong> to calculate head load
-      </p>
-    );
-  }
+function LiveMetrics({ analysis, landmarks }: { analysis: PostureAnalysis; landmarks: import('@/lib/models/landmark').Landmark[] }) {
+  const tragus = landmarks.find(l => l.id === 'tragus');
+  const acromion = landmarks.find(l => l.id === 'acromionLat');
 
   return (
-    <div className="mt-3 flex items-center justify-center gap-6 rounded-lg bg-navy/5 px-4 py-3">
-      {hasAngle && (
-        <div className="text-center">
-          <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">FHC angle</div>
-          <div className="text-2xl font-bold text-navy">
-            {analysis.forwardHeadAngleDeg!.toFixed(1)}°
-          </div>
-        </div>
-      )}
-      {hasLoad && (
-        <div className="text-center">
-          <div className="text-xs font-medium uppercase tracking-wide text-neutral-500">Effective load</div>
-          <div className="text-2xl font-bold text-navy">
-            {analysis.cervicalLoadKg!.toFixed(1)} kg
-          </div>
-          <div className="text-xs text-neutral-500">{plainLanguageEquivalent(analysis.cervicalLoadKg!)}</div>
-        </div>
-      )}
+    <div className="mt-3 rounded-lg border border-amber-300 bg-amber-50 p-3 text-xs font-mono space-y-1">
+      <div className="font-bold text-amber-800 text-sm">Debug — landmark state</div>
+      <div>tragus: {tragus ? `x=${tragus.position.x.toFixed(3)} y=${tragus.position.y.toFixed(3)}` : 'NOT PLACED'}</div>
+      <div>acromion: {acromion ? `x=${acromion.position.x.toFixed(3)} y=${acromion.position.y.toFixed(3)}` : 'NOT PLACED'}</div>
+      <div>FHC angle: {analysis.forwardHeadAngleDeg !== undefined ? `${analysis.forwardHeadAngleDeg.toFixed(2)}°` : 'undefined'}</div>
+      <div>Effective load: {analysis.cervicalLoadKg !== undefined ? `${analysis.cervicalLoadKg.toFixed(2)} kg` : 'undefined'}</div>
+      <div>Total landmarks in state: {landmarks.length}</div>
     </div>
   );
 }
