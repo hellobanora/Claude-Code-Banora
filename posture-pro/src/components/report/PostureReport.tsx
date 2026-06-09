@@ -214,15 +214,28 @@ function PostureIndexBox({
   tiltsDeg: number;
 }) {
   return (
-    <div className="mt-3 overflow-hidden rounded border border-neutral-200 text-xs">
-      <div className="bg-gradient-to-r from-navy/10 to-lightblue/10 px-2 py-1 font-semibold text-navy">{label}</div>
-      <div className="flex justify-between border-t border-neutral-100 px-2 py-1">
-        <span className="text-neutral-600">Total Shifts</span>
-        <span className="font-mono font-medium text-navy">{shiftsCm.toFixed(2)} cm</span>
+    <div className="mt-3 overflow-hidden rounded-lg shadow-md">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-navy to-midblue px-3 py-2">
+        <span className="text-[10px] font-bold uppercase tracking-widest text-gold">{label}</span>
+        <p className="text-[9px] text-white/60 mt-0.5">Posture Index</p>
       </div>
-      <div className="flex justify-between border-t border-neutral-100 px-2 py-1">
-        <span className="text-neutral-600">Total Tilts</span>
-        <span className="font-mono font-medium text-navy">{tiltsDeg.toFixed(1)}°</span>
+      {/* Values */}
+      <div className="bg-gradient-to-br from-[#1B3A5C] to-[#2C5F8A] divide-y divide-white/10">
+        <div className="flex items-center justify-between px-3 py-2.5">
+          <span className="text-[11px] font-medium text-white/70">Total Shifts</span>
+          <span className="font-mono text-lg font-bold text-gold leading-none">
+            {shiftsCm.toFixed(2)}
+            <span className="ml-0.5 text-[10px] font-normal text-gold/70"> cm</span>
+          </span>
+        </div>
+        <div className="flex items-center justify-between px-3 py-2.5">
+          <span className="text-[11px] font-medium text-white/70">Total Tilts</span>
+          <span className="font-mono text-lg font-bold text-gold leading-none">
+            {tiltsDeg.toFixed(1)}
+            <span className="ml-0.5 text-[10px] font-normal text-gold/70">°</span>
+          </span>
+        </div>
       </div>
     </div>
   );
