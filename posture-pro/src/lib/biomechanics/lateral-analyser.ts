@@ -23,11 +23,16 @@ export function analyseLateral(
 
   const fwd = computeForwardHeadAngleDeg(landmarks);
   if (fwd !== undefined) {
-    result.forwardHeadAngleDeg = fwd;
-    result.cervicalLoadKg = effectiveCervicalLoad(fwd, { neutralHeadWeightKg });
+    // Use magnitude so the calculation works regardless of whether the
+    // patient faces left or right in the photo. Forward head carriage
+    // is always a positive deviation from neutral.
+    const magnitude = Math.abs(fwd);
+    result.forwardHeadAngleDeg = magnitude;
+    result.cervicalLoadKg = effectiveCervicalLoad(magnitude, { neutralHeadWeightKg });
   }
 
-  result.shoulderProtractionDeg = computeShoulderProtractionDeg(landmarks);
+  const prot = computeShoulderProtractionDeg(landmarks);
+  result.shoulderProtractionDeg = prot !== undefined ? Math.abs(prot) : undefined;
   result.plumbDeviations = computePlumbDeviations(landmarks, patientHeightCm);
 
   return result;
