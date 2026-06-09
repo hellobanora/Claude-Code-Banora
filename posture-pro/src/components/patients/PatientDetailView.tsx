@@ -66,6 +66,17 @@ export function PatientDetailView({ patient, store }: { patient: Patient; store:
     [patient, activeSessionId, store]
   );
 
+  // Stable per-view callbacks passed to LandmarkWorkflow — stable references
+  // prevent LandmarkEditor's useEffect from firing on every unrelated re-render.
+  const onLateralChange = useCallback(
+    (landmarks: Landmark[]) => handleLandmarksChange('lateral', landmarks),
+    [handleLandmarksChange]
+  );
+  const onApChange = useCallback(
+    (landmarks: Landmark[]) => handleLandmarksChange('ap', landmarks),
+    [handleLandmarksChange]
+  );
+
   const handleResumeSession = useCallback(
     (sessionId: string) => {
       const s = patient.sessions.find((sess) => sess.id === sessionId);
@@ -116,8 +127,8 @@ export function PatientDetailView({ patient, store }: { patient: Patient; store:
         <LandmarkWorkflow
           patient={patient}
           session={activeSession}
-          onLateralChange={(lm) => handleLandmarksChange('lateral', lm)}
-          onApChange={(lm) => handleLandmarksChange('ap', lm)}
+          onLateralChange={onLateralChange}
+          onApChange={onApChange}
         />
       )}
 
@@ -205,7 +216,47 @@ function LandmarkWorkflow({
   onApChange: (landmarks: Landmark[]) => void;
 }) {
   const [activeTab, setActiveTab] = useState<'lateral' | 'ap' | 'findings'>('lateral');
-  const analysis = runPostureAnalysis(session, patient);
+
+  // Track live landmark positions in local state so the analysis updates
+  // immediately as dots are dragged — without waiting for the IndexedDB
+  // round-trip through the store.
+  const [liveLateral, setLiveLateral] = useState<Landmark[]>(
+    session.lateralCapture?.landmarks ?? []
+  );
+  const [liveAp, setLiveAp] = useState<Landmark[]>(
+    session.apCapture?.landmarks ?? []
+  );
+
+  // Build a synthetic session from the live landmark state so
+  // runPostureAnalysis always reflects the current dot positions.
+  const liveSession: PostureSession = {
+    ...session,
+    lateralCapture: session.lateralCapture
+      ? { ...session.lateralCapture, landmarks: liveLateral }
+      : undefined,
+    apCapture: session.apCapture
+      ? { ...session.apCapture, landmarks: liveAp }
+      : undefined,
+  };
+  const analysis = runPostureAnalysis(liveSession, patient);
+
+  // Stable callbacks — won't cause LandmarkEditor's useEffect to re-fire
+  // just because PatientDetailView re-rendered.
+  const handleLateralChange = useCallback(
+    (landmarks: Landmark[]) => {
+      setLiveLateral(landmarks);
+      onLateralChange(landmarks);
+    },
+    [onLateralChange]
+  );
+
+  const handleApChange = useCallback(
+    (landmarks: Landmark[]) => {
+      setLiveAp(landmarks);
+      onApChange(landmarks);
+    },
+    [onApChange]
+  );
 
   return (
     <section className="space-y-3">
@@ -243,14 +294,14 @@ function LandmarkWorkflow({
           <LandmarkEditor
             capture={session.lateralCapture}
             patientId={patient.id}
-            onLandmarksChange={onLateralChange}
+            onLandmarksChange={handleLateralChange}
           />
         )}
         {activeTab === 'ap' && session.apCapture && (
           <LandmarkEditor
             capture={session.apCapture}
             patientId={patient.id}
-            onLandmarksChange={onApChange}
+            onLandmarksChange={handleApChange}
           />
         )}
         {activeTab === 'findings' && <FindingsPanel analysis={analysis} />}
