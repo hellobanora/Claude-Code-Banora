@@ -18,10 +18,11 @@ export default defineConfig({
       filter: (page) =>
         !page.includes('/privacy-policy') &&
         !page.includes('/thank-you') &&
-        !page.includes('/symptom-checker'),
+        !page.includes('/symptom-checker') &&
+        !page.includes('/_archive'),
       serialize(item) {
         // Homepage
-        if (item.url === 'https://www.banorachiropractic.com.au/') {
+        if (item.url === 'https://banorachiropractic.com.au/') {
           return { ...item, priority: 1.0, changefreq: 'weekly' };
         }
         // Services, conditions, areas — high-value SEO pages
