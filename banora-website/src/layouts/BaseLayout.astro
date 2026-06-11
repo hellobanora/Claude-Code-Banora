@@ -11,7 +11,7 @@ interface Props {
   title: string;
   description: string;
   canonicalUrl?: string;
-  schema?: object;
+  schema?: object | object[];
   ogImage?: string;
   chatbotVariant?: 'standard' | 'booking';
   noindex?: boolean;
@@ -113,7 +113,9 @@ const localBusinessSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 
   <!-- Page-specific schema -->
-  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  {schema && (Array.isArray(schema) ? schema : [schema]).map((s) => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))}
 
   <!-- LCP image preload (passed by page for above-the-fold hero images) -->
   {lcpImage && !lcpImageSrcset && <link rel="preload" as="image" href={lcpImage} fetchpriority="high" />}

@@ -2,18 +2,66 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { clinic } from '../data/clinic';
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'MedicalWebPage',
-  name: 'New Patient Information | Banora Chiropractic',
-  url: `${clinic.website}/new-patient-info/`,
-  description: 'What to expect at your first chiropractic visit at Banora Chiropractic, Tweed Heads South. Fees, HICAPS, what to bring, and how to book.',
-  isPartOf: {
-    '@type': 'WebSite',
-    name: clinic.name,
-    url: clinic.website,
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalWebPage',
+    name: 'New Patient Information | Banora Chiropractic',
+    url: `${clinic.website}/new-patient-info/`,
+    description: 'What to expect at your first chiropractic visit at Banora Chiropractic, Tweed Heads South. Fees, HICAPS, what to bring, and how to book.',
+    isPartOf: {
+      '@type': 'WebSite',
+      name: clinic.name,
+      url: clinic.website,
+    },
   },
-};
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Do I need a referral to see a chiropractor at Banora Chiropractic?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No referral is required. You can book directly online or call us on (07) 5599 2322.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What should I bring to my first chiropractic appointment?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Bring any relevant X-rays or scan results, your health fund card if you have one, and wear comfortable clothing. Arrive a few minutes early to complete your new patient paperwork.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does Banora Chiropractic accept health fund rebates?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. We have HICAPS on-site so most health fund rebates are processed instantly. You only pay the gap on the day.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does a first chiropractic appointment take?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Your initial consultation is typically 45–60 minutes. This includes a full health history, postural assessment, and your first treatment if appropriate.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Where is Banora Chiropractic located?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We are located at 2/44 Greenway Drive, Tweed Heads South NSW 2486. We have on-site parking and are ground level with wheelchair access.',
+        },
+      },
+    ],
+  },
+];
 ---
 
 <BaseLayout
