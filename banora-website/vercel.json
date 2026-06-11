@@ -39,6 +39,10 @@
     { "source": "/services/${svc.slug}", "destination": "/services/", "permanent": true },
     { "source": "/conditions/${cond.slug}", "destination": "/conditions/", "permanent": true },
 
+    { "source": "/home-2", "destination": "/", "permanent": true },
+    { "source": "/home-2/", "destination": "/", "permanent": true },
+    { "source": "/page-sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
+
     { "source": "/fees", "destination": "/fees/", "permanent": true },
     { "source": "/conditions", "destination": "/conditions/", "permanent": true },
     { "source": "/services", "destination": "/services/", "permanent": true },
