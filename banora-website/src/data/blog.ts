@@ -1034,6 +1034,229 @@ export const blogPosts: BlogPost[] = [
     relatedConditions: ['back-pain', 'sciatica', 'hip-pain'],
     relatedPosts: ['desk-workers-guide-to-a-healthier-back', 'sciatica-exercises-and-stretches'],
   },
+
+  {
+    slug: 'what-to-expect-from-a-chiropractor-tweed-heads-south',
+    title: 'What to Expect From a Chiropractor in Tweed Heads South',
+    metaTitle: 'What to Expect From a Chiropractor | Tweed Heads South | Banora Chiropractic',
+    metaDescription: 'Wondering what happens at a chiropractic appointment in Tweed Heads South? Dr James Shipway and Dr Paul Cater explain the assessment, treatment, and what patients typically experience.',
+    excerpt: 'Not sure what a chiropractic appointment actually involves? Here is a clear, honest guide to what you can expect — from your first visit to your ongoing care plan.',
+    content: `
+      <p>If you have never seen a chiropractor before — or you have heard mixed things and are not sure what to expect — this guide is for you. At Banora Chiropractic in Tweed Heads South, we see a lot of new patients who arrive unsure of what the assessment involves, whether it will be uncomfortable, and how many visits they will need. These are all fair questions, and we would rather answer them clearly than have you guessing.</p>
+
+      <h2>What is chiropractic care?</h2>
+
+      <p>Chiropractic is a regulated health profession focused on the assessment and management of musculoskeletal conditions — problems involving the spine, joints, muscles, and nerves. In Australia, chiropractors are required to complete a five-year university degree (typically a Bachelor and Master of Chiropractic Science) and are registered with the Australian Health Practitioner Regulation Agency (AHPRA).</p>
+
+      <p>Dr James Shipway and Dr Paul Cater, the co-owners of Banora Chiropractic, both hold a Bachelor of Science in Chiropractic and a Master of Chiropractic. Between them, they bring over 30 years of combined clinical experience to the practice.</p>
+
+      <p>Chiropractic care is not about cracking backs for its own sake. It is about accurately assessing what is happening in your body and applying appropriate, evidence-informed care to help restore normal movement and reduce pain. The approach is hands-on and individualised — what works for one patient may not be what another needs.</p>
+
+      <h2>Your first appointment</h2>
+
+      <p>The first visit is primarily an assessment, and it usually takes around 45 to 60 minutes. Here is what that typically involves:</p>
+
+      <h3>Health history</h3>
+      <p>We start by asking about your current concern — when it started, what makes it better or worse, and how it is affecting your daily life. We also ask about your general health history, any previous injuries, current medications, and relevant lifestyle factors. This is not box-ticking — understanding your full picture helps us assess and treat you more accurately.</p>
+
+      <h3>Physical examination</h3>
+      <p>We then examine the relevant area of your body. For most presentations, this includes assessing your posture, checking your range of movement, feeling for areas of joint restriction or muscle tension, and carrying out orthopaedic tests where relevant. If neurological involvement is a possibility — for example, if you have pain or tingling radiating into your arms or legs — we will perform neurological screening as well.</p>
+
+      <h3>Explanation of findings</h3>
+      <p>Before any treatment begins, we explain what we have found in plain language. We tell you what we believe is driving your symptoms, what we think chiropractic care can and cannot do for your situation, and what a realistic care plan looks like. If we believe your condition is better managed by another health professional — your GP, a physiotherapist, or a specialist — we will tell you that too.</p>
+
+      <h3>First treatment (if appropriate)</h3>
+      <p>If it is appropriate to begin treatment at the first visit — and it usually is — we will proceed with the relevant techniques. What this looks like depends on your presentation.</p>
+
+      <h2>What techniques does Banora Chiropractic use?</h2>
+
+      <p>Our chiropractors are trained in a range of techniques and select the most appropriate approach for each individual patient. These include:</p>
+
+      <ul>
+        <li><strong>Gonstead technique</strong> — a systematic, specific method of spinal assessment and adjustment, considered one of the most thorough approaches in chiropractic practice</li>
+        <li><strong>Diversified technique</strong> — the most widely used form of manual spinal adjustment, involving precise, controlled thrusts to specific joints</li>
+        <li><strong>Thompson Drop technique</strong> — uses a specialised adjusting table with drop pieces to assist the adjustment, allowing for a lighter force delivery</li>
+        <li><strong>Activator method</strong> — a low-force, instrument-assisted technique well suited to patients who prefer a gentler approach, or for specific areas like the extremities</li>
+        <li><strong>SOT (Sacro Occipital Technique)</strong> — a whole-body approach using blocks and gentle pressure to address the relationship between the sacrum and the skull</li>
+        <li><strong>Soft tissue techniques</strong> — including myofascial release and trigger point work to address muscle tension alongside joint treatment</li>
+        <li><strong>Extremity adjusting</strong> — treatment of joints outside the spine, including shoulders, hips, knees, ankles, and wrists</li>
+      </ul>
+
+      <p>Patients who are nervous about manual adjustments, or who have conditions where high-velocity techniques are not appropriate, can be treated effectively using low-force and instrument-assisted approaches. We always discuss the planned approach with you beforehand.</p>
+
+      <h2>Does chiropractic treatment hurt?</h2>
+
+      <p>Most chiropractic treatment is not painful. You may feel pressure during an adjustment, and some patients notice mild muscle soreness in the day or two following treatment — similar to how you might feel after exercise. This is a normal response as your body adjusts to changes in joint position and movement.</p>
+
+      <p>If you are in significant pain when you come in, we will work gently and appropriately for your level of comfort. We do not push through pain.</p>
+
+      <h2>How many visits will you need?</h2>
+
+      <p>This varies depending on what is being treated, how long the problem has been present, and how your body responds to care. We give every patient an honest, individualised estimate at the first appointment rather than a generic treatment count.</p>
+
+      <p>As a general guide:</p>
+      <ul>
+        <li>Acute problems that have been present for less than a few weeks often respond within 4 to 8 visits</li>
+        <li>Chronic conditions that have been present for months or years generally take longer — often 8 to 16 visits or more — and may benefit from periodic maintenance care to maintain improvement</li>
+        <li>Some patients come in for a one-off assessment and a few visits to address a specific concern, with no ongoing commitment</li>
+      </ul>
+
+      <p>We reassess your progress regularly and will always discuss whether continuing care is appropriate and why. You are not locked into anything.</p>
+
+      <h2>What conditions do chiropractors treat?</h2>
+
+      <p>The most common presentations we see at Banora Chiropractic include:</p>
+      <ul>
+        <li><a href="/conditions/back-pain/">Lower back pain</a> — including disc-related pain, facet joint problems, and sacroiliac joint dysfunction</li>
+        <li><a href="/conditions/neck-pain/">Neck pain</a> and stiffness — including tech neck from prolonged screen use</li>
+        <li><a href="/conditions/headaches-migraines/">Headaches and migraines</a> — particularly cervicogenic headaches that originate in the neck</li>
+        <li><a href="/conditions/sciatica/">Sciatica</a> — leg pain, numbness, or tingling caused by sciatic nerve irritation</li>
+        <li><a href="/conditions/shoulder-pain/">Shoulder pain</a> — including impingement, rotator cuff issues, and referred pain from the neck</li>
+        <li><a href="/conditions/hip-pain/">Hip pain</a> — including sacroiliac joint problems and referred pain from the lumbar spine</li>
+        <li><a href="/conditions/sports-injuries/">Sports injuries</a> — assessment and management of musculoskeletal injuries from sport and exercise</li>
+        <li><a href="/conditions/posture-tech-neck/">Posture and tech neck</a> — treatment and rehabilitation for forward head posture and related symptoms</li>
+      </ul>
+
+      <h2>Do you need a referral?</h2>
+
+      <p>No. Chiropractors in Australia are primary contact practitioners, which means you can book directly without a GP referral. If you have a referral from your GP under an Enhanced Primary Care (EPC) plan, workers compensation, CTP, or DVA cover, please bring the relevant paperwork and we will work within that framework.</p>
+
+      <h2>Practical information for Tweed Heads South and surrounding areas</h2>
+
+      <p>Banora Chiropractic is located at 2/44 Greenway Drive, Tweed Heads South NSW 2486 — ground level, with on-site parking directly in front of the clinic. We are easily accessible from Banora Point, Tweed Heads, Terranora, Bilambil Heights, Coolangatta, and surrounding areas.</p>
+
+      <p>We offer HICAPS on-site, which means most private health fund rebates are processed instantly — you only pay the gap on the day. No referral is required to book.</p>
+
+      <p>If you have questions about whether chiropractic care is right for your situation, call us on <strong>(07) 5599 2322</strong> and we will have an honest conversation about whether we can help.</p>
+    `,
+    author: 'dr-james-shipway',
+    publishDate: '2026-06-11',
+    status: 'published' as const,
+    category: 'Wellness',
+    tags: ['what to expect', 'first chiropractic visit', 'chiropractor tweed heads south', 'chiropractic assessment', 'banora chiropractic'],
+    heroImage: '/images/clinic-neck-assessment.webp',
+    heroImageAlt: 'Chiropractor performing neck assessment at Banora Chiropractic Tweed Heads South',
+    readTime: 8,
+    relatedServices: ['chiropractic-adjustments', 'posture-correction'],
+    relatedConditions: ['back-pain', 'neck-pain'],
+    relatedPosts: ['understanding-back-pain', 'how-chiropractic-helps-back-pain'],
+  },
+
+  {
+    slug: 'how-chiropractic-helps-back-pain',
+    title: 'How Chiropractic May Help Back Pain — An Evidence-Based Guide',
+    metaTitle: 'How Chiropractic Helps Back Pain | Evidence-Based Guide | Banora Chiropractic',
+    metaDescription: 'How does chiropractic care actually work for back pain? Dr Paul Cater of Banora Chiropractic explains the evidence, the techniques, and what the research shows.',
+    excerpt: 'Back pain is the leading cause of disability worldwide. Here is what the evidence says about chiropractic care, how it works, and who is most likely to benefit.',
+    content: `
+      <p>Back pain affects around 4 million Australians at any given time, and it is the leading cause of years lived with disability globally. It is also one of the most common reasons people seek chiropractic care. But how does chiropractic actually work for back pain — and what does the evidence say?</p>
+
+      <p>This guide explains the research clearly, without overstating what chiropractic can do or underselling the genuine evidence that exists for it.</p>
+
+      <h2>What the research shows</h2>
+
+      <p>The evidence base for chiropractic care in the management of back pain — particularly low back pain — is well established. Key findings from the research include:</p>
+
+      <ul>
+        <li>A 2017 systematic review published in the <em>Journal of the American Medical Association</em> (JAMA) found that spinal manipulative therapy (the technical term for chiropractic adjustment) produced statistically significant improvements in pain and function for acute low back pain compared to sham manipulation</li>
+        <li>Clinical guidelines from multiple countries — including Australia's own clinical care standard for low back pain — list spinal manipulation as one of the recommended treatment options for acute and subacute low back pain</li>
+        <li>A 2018 Cochrane Review found moderate-quality evidence that spinal manipulation is more effective than sham manipulation for acute low back pain, with effects on pain and function comparable to other recommended treatments</li>
+        <li>For chronic low back pain, evidence supports combining spinal manipulation with exercise and patient education for sustained outcomes</li>
+      </ul>
+
+      <p>It is important to note that no single treatment is universally effective for back pain — its causes are varied, and what works depends significantly on the individual presentation. Chiropractic care is not appropriate for every type of back pain, and a thorough assessment is essential before treatment begins.</p>
+
+      <h2>Types of back pain that may respond to chiropractic care</h2>
+
+      <p>Chiropractic assessment and treatment may be appropriate for:</p>
+
+      <ul>
+        <li><strong>Acute low back pain</strong> — back pain that has come on suddenly, often from a specific incident like lifting or twisting, or from a sustained poor posture. Joint restriction and muscle spasm are common features. Chiropractic adjustments can help restore normal joint movement and reduce protective muscle tension.</li>
+        <li><strong>Subacute and chronic low back pain</strong> — pain that has persisted for weeks to months. Research supports combining chiropractic care with active rehabilitation (exercise) for the best long-term outcomes.</li>
+        <li><strong>Facet joint syndrome</strong> — pain from the small joints at the back of each spinal segment, often worse with extension (bending backwards) and rotation. Chiropractic adjustment is well suited to restoring movement in restricted facet joints.</li>
+        <li><strong>Sacroiliac joint dysfunction</strong> — the sacroiliac joints connect the spine to the pelvis and are a commonly overlooked source of low back and buttock pain. Chiropractic assessment includes evaluation of the SI joints, and manipulation can help restore normal movement.</li>
+        <li><strong>Disc-related low back pain</strong> — disc bulges and herniations can cause local back pain and referred leg pain (sciatica). The evidence for chiropractic care for disc-related pain is more nuanced — gentle, appropriate techniques can help many patients, but treatment must be carefully tailored to avoid aggravating the disc.</li>
+        <li><strong>Postural back pain</strong> — pain that develops from prolonged poor posture, particularly during desk work or sustained positions. Chiropractic care addresses joint stiffness while providing guidance on posture, ergonomics, and movement habits.</li>
+      </ul>
+
+      <h2>How chiropractic adjustment works for back pain</h2>
+
+      <p>When a spinal joint is restricted — not moving through its full range of motion — the surrounding tissues respond. Muscles tighten to protect the area. Nerve endings in the joint become sensitised, contributing to localised pain. Movement becomes guarded. Over time, these protective responses can maintain or worsen the original problem.</p>
+
+      <p>A chiropractic adjustment applies a controlled, precise force to a specific spinal joint, with the aim of restoring normal movement. The mechanisms through which this helps include:</p>
+
+      <ul>
+        <li><strong>Mechanical effect</strong> — restoring joint mobility directly reduces the load on surrounding muscles and other spinal structures</li>
+        <li><strong>Neurological effect</strong> — spinal manipulation has been shown to influence pain-processing pathways, reducing the central sensitisation that can develop with persistent pain</li>
+        <li><strong>Muscle relaxation</strong> — by restoring joint movement, the associated muscle guarding often reduces, easing local tension and spasm</li>
+      </ul>
+
+      <p>It is worth noting that the audible "pop" that sometimes occurs during an adjustment is not the bone cracking — it is gas being released from the joint fluid as the joint surfaces briefly separate. It is not required for the adjustment to be effective.</p>
+
+      <h2>What a thorough back pain assessment involves</h2>
+
+      <p>At Banora Chiropractic, every patient presenting with back pain receives a thorough assessment before any treatment is recommended. This includes:</p>
+
+      <ul>
+        <li>A detailed history — when the pain started, what makes it better or worse, how it has changed over time, and any relevant medical history</li>
+        <li>Postural and movement analysis — observing how you stand, sit, and move, and identifying patterns that may be contributing to your pain</li>
+        <li>Orthopaedic testing — specific tests to help identify which structures are most likely involved (joints, discs, muscles, nerves)</li>
+        <li>Neurological screening — if there is any leg pain, numbness, tingling, or weakness, we assess nerve function to determine the extent of any nerve involvement</li>
+        <li>Red flag screening — we check for any features that might indicate a serious underlying cause requiring urgent medical assessment</li>
+      </ul>
+
+      <p>Only after this assessment do we recommend a course of care — and we explain our findings and reasoning clearly before proceeding.</p>
+
+      <h2>What you can do alongside chiropractic care</h2>
+
+      <p>Research consistently shows that the best outcomes for back pain come from a combination of hands-on care and active self-management. At Banora Chiropractic, we provide:</p>
+
+      <ul>
+        <li>Specific exercises and stretches appropriate to your presentation — given at each visit and progressed as you improve</li>
+        <li>Advice on positions and movements to avoid during recovery, and how to gradually return to full activity</li>
+        <li>Ergonomic guidance for desk workers, drivers, and anyone spending long hours in sustained postures</li>
+        <li>Load management advice for active patients and athletes returning to sport</li>
+      </ul>
+
+      <p>Staying as active as possible during recovery — within what is comfortable — generally produces better outcomes than bed rest. We will guide you on what level of activity is appropriate for your specific situation.</p>
+
+      <h2>When to seek care — and when to see your GP</h2>
+
+      <p>Most back pain does not require imaging (X-rays or MRI scans) at the outset. Research shows that imaging findings often do not correlate well with pain levels and can sometimes lead to unnecessary anxiety or interventions.</p>
+
+      <p>However, certain features — called red flags — indicate that back pain should be assessed medically before or alongside chiropractic care. These include:</p>
+
+      <ul>
+        <li>Back pain following significant trauma (a fall, motor vehicle accident)</li>
+        <li>Pain that is constant, severe, and does not respond to any position changes</li>
+        <li>Back pain accompanied by bladder or bowel changes</li>
+        <li>Back pain with unexplained weight loss, fever, or night sweats</li>
+        <li>Pain that is worse at night and not relieved by lying down</li>
+        <li>Back pain in someone with a history of cancer</li>
+      </ul>
+
+      <p>If any of these features are present, we will refer you to your GP or an emergency department as appropriate. We do not treat anything outside the scope of what chiropractic care can safely and effectively manage.</p>
+
+      <h2>Chiropractic for back pain at Banora Chiropractic, Tweed Heads South</h2>
+
+      <p>Dr James Shipway and Dr Paul Cater have been assessing and managing back pain at Banora Chiropractic for a combined total of over 30 years. They use a range of techniques — including Gonstead, Diversified, Thompson Drop, and Activator — and tailor every treatment plan to the individual.</p>
+
+      <p>The clinic is located at 2/44 Greenway Drive, Tweed Heads South NSW 2486, with ground-level access, on-site parking, and HICAPS for instant private health rebates. No referral is required.</p>
+
+      <p>If you are dealing with back pain and want an honest assessment of what is going on and what can be done about it, call us on <strong>(07) 5599 2322</strong> or book online.</p>
+    `,
+    author: 'dr-paul-cater',
+    publishDate: '2026-06-11',
+    status: 'published' as const,
+    category: 'Back Pain',
+    tags: ['chiropractic back pain', 'evidence-based chiropractic', 'how chiropractic works', 'back pain treatment tweed heads', 'spinal manipulation'],
+    heroImage: '/images/pexels-kindelmedia-7298427.webp',
+    heroImageAlt: 'Chiropractor treating patient back pain at Banora Chiropractic',
+    readTime: 10,
+    relatedServices: ['chiropractic-adjustments', 'posture-correction'],
+    relatedConditions: ['back-pain', 'sciatica', 'hip-pain'],
+    relatedPosts: ['understanding-back-pain', 'what-to-expect-from-a-chiropractor-tweed-heads-south'],
+  },
 ];
 
 // Helper functions
