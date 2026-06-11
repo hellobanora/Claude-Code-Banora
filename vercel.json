@@ -31,11 +31,32 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.banorachiropractic.com.au" }],
+      "destination": "https://banorachiropractic.com.au/:path*",
+      "permanent": true
+    },
+
     { "source": "/book", "destination": "https://www.iconpractice.com/ob/7138/banorachiropractic/245386/2", "permanent": false },
     { "source": "/call", "destination": "tel:+61755992322", "permanent": false },
 
+    { "source": "/services/${svc.slug}", "destination": "/services/", "permanent": true },
+    { "source": "/conditions/${cond.slug}", "destination": "/conditions/", "permanent": true },
+
+    { "source": "/fees", "destination": "/fees/", "permanent": true },
+    { "source": "/conditions", "destination": "/conditions/", "permanent": true },
+    { "source": "/services", "destination": "/services/", "permanent": true },
+    { "source": "/areas", "destination": "/areas/", "permanent": true },
+    { "source": "/about", "destination": "/about/", "permanent": true },
+    { "source": "/contact", "destination": "/contact/", "permanent": true },
+    { "source": "/team", "destination": "/team/", "permanent": true },
+    { "source": "/blog", "destination": "/blog/", "permanent": true },
+
     { "source": "/home", "destination": "/", "permanent": true },
     { "source": "/home/", "destination": "/", "permanent": true },
+    { "source": "/home-2", "destination": "/", "permanent": true },
+    { "source": "/home-2/", "destination": "/", "permanent": true },
 
     { "source": "/about-us", "destination": "/about/", "permanent": true },
     { "source": "/about-us/", "destination": "/about/", "permanent": true },
@@ -43,18 +64,54 @@
     { "source": "/contact-us", "destination": "/contact/", "permanent": true },
     { "source": "/contact-us/", "destination": "/contact/", "permanent": true },
 
+    { "source": "/new-patients", "destination": "/new-patient-info/", "permanent": true },
+    { "source": "/new-patients/", "destination": "/new-patient-info/", "permanent": true },
+
     { "source": "/dr-paul-cater", "destination": "/team/dr-paul-cater/", "permanent": true },
     { "source": "/dr-paul-cater/", "destination": "/team/dr-paul-cater/", "permanent": true },
 
     { "source": "/dr-james-shipway", "destination": "/team/dr-james-shipway/", "permanent": true },
     { "source": "/dr-james-shipway/", "destination": "/team/dr-james-shipway/", "permanent": true },
 
+    { "source": "/our-team", "destination": "/team/", "permanent": true },
+    { "source": "/our-team/", "destination": "/team/", "permanent": true },
+    { "source": "/meet-the-team", "destination": "/team/", "permanent": true },
+    { "source": "/meet-the-team/", "destination": "/team/", "permanent": true },
+
+    { "source": "/services/chiropractic", "destination": "/services/chiropractic-adjustments/", "permanent": true },
+    { "source": "/services/chiropractic/", "destination": "/services/chiropractic-adjustments/", "permanent": true },
+    { "source": "/services/chiropractic-adjustment", "destination": "/services/chiropractic-adjustments/", "permanent": true },
+    { "source": "/services/chiropractic-adjustment/", "destination": "/services/chiropractic-adjustments/", "permanent": true },
+
+    { "source": "/conditions/headaches", "destination": "/conditions/headaches-migraines/", "permanent": true },
+    { "source": "/conditions/headaches/", "destination": "/conditions/headaches-migraines/", "permanent": true },
+    { "source": "/conditions/migraines", "destination": "/conditions/headaches-migraines/", "permanent": true },
+    { "source": "/conditions/migraines/", "destination": "/conditions/headaches-migraines/", "permanent": true },
+
+    { "source": "/locations", "destination": "/areas/", "permanent": true },
+    { "source": "/locations/", "destination": "/areas/", "permanent": true },
+    { "source": "/locations/:slug*", "destination": "/areas/:slug*", "permanent": true },
+
+    { "source": "/patient-resources", "destination": "/patient-resources/", "permanent": true },
+    { "source": "/resources", "destination": "/patient-resources/", "permanent": true },
+    { "source": "/resources/", "destination": "/patient-resources/", "permanent": true },
+    { "source": "/pricing", "destination": "/fees/", "permanent": true },
+    { "source": "/pricing/", "destination": "/fees/", "permanent": true },
+
+    { "source": "/page-sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
+    { "source": "/sitemap_index.xml", "destination": "/sitemap-index.xml", "permanent": true },
+
     { "source": "/category/:slug*", "destination": "/blog/", "permanent": true },
     { "source": "/tag/:slug*", "destination": "/blog/", "permanent": true },
     { "source": "/author/:slug*", "destination": "/about/", "permanent": true },
     { "source": "/wp-admin/:path*", "destination": "/", "permanent": true },
     { "source": "/wp-login.php", "destination": "/", "permanent": true },
+    { "source": "/wp-content/:path*", "destination": "/", "permanent": true },
+    { "source": "/wp-includes/:path*", "destination": "/", "permanent": true },
+    { "source": "/xmlrpc.php", "destination": "/", "permanent": true },
     { "source": "/feed", "destination": "/", "permanent": true },
-    { "source": "/feed/", "destination": "/", "permanent": true }
+    { "source": "/feed/", "destination": "/", "permanent": true },
+    { "source": "/sample-page", "destination": "/", "permanent": true },
+    { "source": "/sample-page/", "destination": "/", "permanent": true }
   ]
 }
