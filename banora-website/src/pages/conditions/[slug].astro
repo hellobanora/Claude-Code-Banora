@@ -73,7 +73,11 @@ const schema = [
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <div class="lg:col-span-2">
           <h2 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy mb-4">Understanding {condition.title}</h2>
-          <p class="text-grey-text leading-relaxed text-lg">{condition.overview}</p>
+          <div class="space-y-4">
+            {condition.overview.split('\n\n').map((para) => (
+              <p class="text-grey-text leading-relaxed text-lg">{para.trim()}</p>
+            ))}
+          </div>
 
           <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mt-10 mb-4">Common symptoms</h3>
           <ul class="space-y-3">
@@ -85,8 +89,15 @@ const schema = [
             ))}
           </ul>
 
-          <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mt-10 mb-4">How we may help</h3>
+          <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mt-10 mb-4">How chiropractic may help</h3>
           <p class="text-grey-text leading-relaxed">{condition.howWeHelp}</p>
+
+          {condition.whatToExpect && (
+            <>
+              <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mt-10 mb-4">What to expect at Banora Chiropractic</h3>
+              <p class="text-grey-text leading-relaxed">{condition.whatToExpect}</p>
+            </>
+          )}
         </div>
 
         <!-- Sidebar -->
