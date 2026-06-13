@@ -164,7 +164,10 @@
       "Bash(npm ls *)",
       "Bash(npm uninstall *)",
       "Bash(cp ~/Downloads/spine_landmarks_cervical_full.onnx /Users/jamesshipway/projects/Claude-Code-Banora/posture-pro/public/models/spine_landmarks_cervical.onnx && ls -la /Users/jamesshipway/projects/Claude-Code-Banora/posture-pro/public/models/)",
-      "Bash(git stash *)"
+      "Bash(git stash *)",
+      "mcp__plugin_brand-voice_figma__whoami",
+      "mcp__plugin_brand-voice_figma__create_new_file",
+      "mcp__plugin_brand-voice_figma__use_figma"
     ]
   }
 }
