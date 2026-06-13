@@ -1,0 +1,151 @@
+/* ============================================
+   BANORA CHIROPRACTIC — SECTION PATTERNS
+   banorachiropractic.com.au
+   ============================================ */
+
+/* === HERO === */
+.hero {
+  position:    relative;
+  min-height:  clamp(500px, 70vh, 800px);
+  display:     flex;
+  align-items: center;
+  overflow:    hidden;
+  background:  var(--color-navy);
+}
+.hero-bg {
+  position:   absolute;
+  inset:      0;
+  object-fit: cover;
+  width:      100%;
+  height:     100%;
+  opacity:    0.25;
+}
+.hero-overlay {
+  position:   absolute;
+  inset:      0;
+  background: linear-gradient(135deg, rgba(27, 58, 92, 0.92) 0%, rgba(44, 95, 138, 0.70) 100%);
+}
+.hero-content {
+  position:   relative;
+  z-index:    1;
+  max-width:  var(--container-md);
+}
+.hero-eyebrow {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             var(--space-2);
+  background:      rgba(255, 210, 50, 0.15);
+  border:          1px solid rgba(255, 210, 50, 0.30);
+  border-radius:   var(--radius-full);
+  padding:         var(--space-2) var(--space-4);
+  font-size:       var(--text-body-xs);
+  font-weight:     var(--fw-semibold);
+  letter-spacing:  var(--ls-widest);
+  text-transform:  uppercase;
+  color:           var(--color-gold);
+  margin-bottom:   var(--space-5);
+}
+.hero-title {
+  font-family:    var(--font-display);
+  font-size:      var(--text-display-lg);
+  font-weight:    var(--fw-light);
+  line-height:    var(--lh-tight);
+  color:          var(--color-white);
+  margin-bottom:  var(--space-6);
+  letter-spacing: var(--ls-tight);
+}
+.hero-title strong { font-weight: var(--fw-semibold); color: var(--color-gold); }
+.hero-subtitle {
+  font-size:      var(--text-body-xl);
+  line-height:    var(--lh-relaxed);
+  color:          rgba(255, 255, 255, 0.80);
+  margin-bottom:  var(--space-8);
+  max-width:      560px;
+}
+.hero-actions {
+  display:     flex;
+  flex-wrap:   wrap;
+  gap:         var(--space-4);
+  align-items: center;
+}
+
+/* === SECTION HEADER === */
+.section-header { margin-bottom: var(--space-12); max-width: var(--container-sm); }
+.section-header.centered { margin-left: auto; margin-right: auto; text-align: center; }
+.section-header .eyebrow { margin-bottom: var(--space-3); display: block; }
+.section-header h2 { font-size: var(--text-h2); margin-bottom: var(--space-4); }
+.section-header p { font-size: var(--text-body-lg); color: var(--color-grey-600); line-height: var(--lh-relaxed); margin-bottom: 0; }
+
+/* === DARK NAVY SECTION === */
+.section-navy { background: var(--color-navy); color: var(--color-white); }
+.section-navy h1,
+.section-navy h2,
+.section-navy h3,
+.section-navy h4 { color: var(--color-white); }
+.section-navy p   { color: rgba(255, 255, 255, 0.80); }
+.section-navy .eyebrow { color: var(--color-gold); }
+
+/* === TINT SECTION === */
+.section-tint {
+  background: linear-gradient(180deg, var(--color-off-white) 0%, rgba(91, 158, 201, 0.06) 100%);
+}
+
+/* === OFF-WHITE SECTION === */
+.section-light { background: var(--color-off-white); }
+
+/* === CTA BAND === */
+.cta-band {
+  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-mid-blue) 100%);
+  padding:    var(--section-padding-sm);
+  text-align: center;
+}
+.cta-band h2 { color: var(--color-white); margin-bottom: var(--space-4); font-size: var(--text-h2); }
+.cta-band p  { color: rgba(255, 255, 255, 0.75); margin-bottom: var(--space-8); font-size: var(--text-body-lg); max-width: 600px; margin-left: auto; margin-right: auto; }
+
+/* === TRUST BAR === */
+.trust-bar {
+  background:      var(--color-navy);
+  padding:         var(--space-6) 0;
+  border-top:      3px solid var(--color-gold);
+}
+.trust-bar-inner {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  flex-wrap:       wrap;
+  gap:             var(--space-8);
+}
+.trust-item {
+  display:     flex;
+  align-items: center;
+  gap:         var(--space-3);
+  color:       var(--color-white);
+}
+.trust-item-value {
+  font-family:  var(--font-display);
+  font-size:    var(--text-h3);
+  font-weight:  var(--fw-semibold);
+  color:        var(--color-gold);
+  line-height:  1;
+}
+.trust-item-label {
+  font-size:   var(--text-body-xs);
+  color:       rgba(255, 255, 255, 0.70);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  font-weight: var(--fw-medium);
+}
+
+/* === DIVIDERS === */
+.divider {
+  border:     none;
+  height:     1px;
+  background: var(--color-grey-100);
+  margin:     var(--space-16) 0;
+}
+.divider-gold {
+  border:     none;
+  height:     2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  margin:     var(--space-12) 0;
+}

@@ -1,0 +1,136 @@
+/* ============================================
+   BANORA CHIROPRACTIC — UTILITY CLASSES
+   banorachiropractic.com.au
+   ============================================ */
+
+/* === COLOUR TEXT === */
+.text-navy       { color: var(--color-navy) !important; }
+.text-mid-blue   { color: var(--color-mid-blue) !important; }
+.text-light-blue { color: var(--color-light-blue) !important; }
+.text-gold       { color: var(--color-gold) !important; }
+.text-gold-dark  { color: var(--color-gold-dark) !important; }
+.text-white      { color: var(--color-white) !important; }
+.text-muted      { color: var(--color-grey-600) !important; }
+.text-subtle     { color: var(--color-grey-400) !important; }
+
+/* === COLOUR BACKGROUNDS === */
+.bg-navy       { background-color: var(--color-navy) !important; }
+.bg-mid-blue   { background-color: var(--color-mid-blue) !important; }
+.bg-light-blue { background-color: var(--color-light-blue) !important; }
+.bg-gold       { background-color: var(--color-gold) !important; }
+.bg-surface    { background-color: var(--color-surface-2) !important; }
+.bg-white      { background-color: var(--color-white) !important; }
+.bg-off-white  { background-color: var(--color-off-white) !important; }
+
+/* === GRADIENTS === */
+.gradient-navy {
+  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-mid-blue) 100%);
+}
+.gradient-blue {
+  background: linear-gradient(135deg, var(--color-mid-blue) 0%, var(--color-light-blue) 100%);
+}
+.gradient-subtle {
+  background: linear-gradient(180deg, var(--color-white) 0%, var(--color-off-white) 100%);
+}
+.gradient-text-gold {
+  background:              linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip:         text;
+}
+
+/* === TYPOGRAPHY === */
+.text-left    { text-align: left !important; }
+.text-center  { text-align: center !important; }
+.text-right   { text-align: right !important; }
+.uppercase    { text-transform: uppercase !important; }
+.italic       { font-style: italic !important; }
+.font-display { font-family: var(--font-display) !important; }
+.font-body    { font-family: var(--font-body) !important; }
+.font-light   { font-weight: var(--fw-light) !important; }
+.font-medium  { font-weight: var(--fw-medium) !important; }
+.font-semibold{ font-weight: var(--fw-semibold) !important; }
+.font-bold    { font-weight: var(--fw-bold) !important; }
+
+/* === DISPLAY === */
+.hidden    { display: none !important; }
+.block     { display: block !important; }
+.inline    { display: inline !important; }
+.flex      { display: flex !important; }
+.grid      { display: grid !important; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* === FLEXBOX === */
+.flex-col      { flex-direction: column !important; }
+.flex-wrap     { flex-wrap: wrap !important; }
+.items-center  { align-items: center !important; }
+.items-start   { align-items: flex-start !important; }
+.items-end     { align-items: flex-end !important; }
+.justify-center  { justify-content: center !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-end     { justify-content: flex-end !important; }
+.flex-1        { flex: 1 !important; }
+.flex-shrink-0 { flex-shrink: 0 !important; }
+
+/* === GAP === */
+.gap-1  { gap: var(--space-1) !important; }
+.gap-2  { gap: var(--space-2) !important; }
+.gap-3  { gap: var(--space-3) !important; }
+.gap-4  { gap: var(--space-4) !important; }
+.gap-6  { gap: var(--space-6) !important; }
+.gap-8  { gap: var(--space-8) !important; }
+.gap-12 { gap: var(--space-12) !important; }
+
+/* === SPACING === */
+.mt-0  { margin-top: 0 !important; }
+.mt-4  { margin-top: var(--space-4) !important; }
+.mt-6  { margin-top: var(--space-6) !important; }
+.mt-8  { margin-top: var(--space-8) !important; }
+.mb-0  { margin-bottom: 0 !important; }
+.mb-4  { margin-bottom: var(--space-4) !important; }
+.mb-6  { margin-bottom: var(--space-6) !important; }
+.mb-8  { margin-bottom: var(--space-8) !important; }
+.mb-12 { margin-bottom: var(--space-12) !important; }
+
+/* === BORDERS === */
+.border-top-gold    { border-top: 3px solid var(--color-gold) !important; }
+.border-left-navy   { border-left: 4px solid var(--color-navy) !important; }
+.border-gold        { border-color: var(--color-gold) !important; }
+.border-navy        { border-color: var(--color-navy) !important; }
+.rounded-full       { border-radius: var(--radius-full) !important; }
+.rounded-xl         { border-radius: var(--radius-xl) !important; }
+
+/* === SHADOWS === */
+.shadow-sm   { box-shadow: var(--shadow-sm) !important; }
+.shadow-md   { box-shadow: var(--shadow-md) !important; }
+.shadow-lg   { box-shadow: var(--shadow-lg) !important; }
+.shadow-gold { box-shadow: var(--shadow-gold) !important; }
+.shadow-none { box-shadow: none !important; }
+
+/* === WIDTH === */
+.w-full  { width: 100% !important; }
+.w-auto  { width: auto !important; }
+.max-w-sm  { max-width: var(--container-sm) !important; }
+.max-w-md  { max-width: var(--container-md) !important; }
+.max-w-lg  { max-width: var(--container-lg) !important; }
+
+/* === OVERFLOW === */
+.overflow-hidden { overflow: hidden !important; }
+
+/* === POSITION === */
+.relative { position: relative !important; }
+.absolute { position: absolute !important; }
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration:       0.01ms !important;
+    scroll-behavior:           auto !important;
+  }
+}

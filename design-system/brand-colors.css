@@ -1,0 +1,45 @@
+/* ============================================
+   BANORA CHIROPRACTIC — BRAND COLOR TOKENS
+   banorachiropractic.com.au
+   ============================================ */
+
+:root {
+
+  /* === PRIMARY PALETTE === */
+  --color-navy:          #1B3A5C;   /* Primary — headings, nav, main CTAs */
+  --color-mid-blue:      #2C5F8A;   /* Secondary — hover states, links, subheadings */
+  --color-light-blue:    #5B9EC9;   /* Accent — highlights, icon fills, active states */
+  --color-gold:          #FFD232;   /* Key accent — Book Now CTA, star ratings, warmth */
+  --color-gold-dark:     #D4A017;   /* Eyebrow labels, hover on gold elements */
+
+  /* === GOLD VARIANTS === */
+  --color-gold-light:    #FFF4C2;   /* Gold tint — badge backgrounds, tag fills */
+  --color-gold-border:   #F5C842;   /* Gold border variant */
+
+  /* === NAVY VARIANTS === */
+  --color-navy-90:       #2A4A6B;   /* Lighter navy for layered dark sections */
+  --color-navy-80:       #3A5C7C;   /* Hover on navy backgrounds */
+  --color-navy-overlay:  rgba(27, 58, 92, 0.85); /* Hero overlays over images */
+
+  /* === NEUTRALS === */
+  --color-white:         #FFFFFF;
+  --color-off-white:     #F8F9FB;   /* Page backgrounds, card fills */
+  --color-grey-50:       #F2F4F7;   /* Subtle section separators */
+  --color-grey-100:      #E4E7EC;   /* Borders, dividers */
+  --color-grey-200:      #D0D5DD;   /* Input borders, disabled states */
+  --color-grey-400:      #98A2B3;   /* Placeholder text */
+  --color-grey-600:      #475467;   /* Secondary body copy */
+  --color-grey-800:      #1D2939;   /* Primary body copy */
+  --color-black:         #101828;   /* High-contrast text */
+
+  /* === SEMANTIC / FUNCTIONAL === */
+  --color-success:       #12B76A;   /* Confirmation states, checkmarks */
+  --color-warning:       #F79009;   /* Alert banners */
+  --color-error:         #F04438;   /* Form errors */
+  --color-info:          #0086C9;   /* Info tooltips, banners */
+
+  /* === SURFACE LAYERS === */
+  --color-surface-1:     var(--color-white);
+  --color-surface-2:     var(--color-off-white);
+  --color-surface-3:     var(--color-grey-50);
+}

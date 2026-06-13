@@ -1,0 +1,144 @@
+/* ============================================
+   BANORA CHIROPRACTIC — NAVIGATION
+   banorachiropractic.com.au
+   ============================================ */
+
+.navbar {
+  position:      sticky;
+  top:           0;
+  z-index:       var(--z-sticky);
+  background:    var(--color-white);
+  border-bottom: 1px solid var(--color-grey-100);
+  box-shadow:    var(--shadow-sm);
+  transition:    box-shadow var(--transition-base);
+}
+.navbar.scrolled { box-shadow: var(--shadow-md); }
+
+.navbar-inner {
+  max-width:       var(--container-max);
+  margin:          0 auto;
+  padding:         0 var(--space-8);
+  height:          4.5rem;
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  gap:             var(--space-8);
+}
+
+/* === LOGO === */
+.navbar-logo {
+  display:         flex;
+  align-items:     center;
+  gap:             var(--space-3);
+  text-decoration: none;
+  flex-shrink:     0;
+}
+.navbar-logo-mark { width: 2.25rem; height: 2.25rem; }
+.navbar-logo-text {
+  font-family:    var(--font-display);
+  font-size:      var(--text-h4);
+  font-weight:    var(--fw-semibold);
+  color:          var(--color-navy);
+  letter-spacing: var(--ls-tight);
+  line-height:    1;
+}
+.navbar-logo-sub {
+  font-family:    var(--font-body);
+  font-size:      var(--text-body-xs);
+  color:          var(--color-grey-400);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  line-height:    1;
+}
+
+/* === NAV LINKS === */
+.navbar-nav {
+  display:     flex;
+  align-items: center;
+  gap:         var(--space-1);
+  list-style:  none;
+  padding:     0;
+  margin:      0;
+}
+.navbar-link {
+  font-family:     var(--font-body);
+  font-size:       var(--text-body-sm);
+  font-weight:     var(--fw-medium);
+  color:           var(--color-grey-600);
+  text-decoration: none;
+  padding:         var(--space-2) var(--space-3);
+  border-radius:   var(--radius-md);
+  letter-spacing:  var(--ls-wide);
+  transition:      all var(--transition-fast);
+  white-space:     nowrap;
+}
+.navbar-link:hover { color: var(--color-navy); background: var(--color-grey-50); text-decoration: none; }
+.navbar-link.active { color: var(--color-navy); font-weight: var(--fw-semibold); }
+
+/* === CLINIC SWITCHER === */
+.clinic-switcher {
+  display:       flex;
+  align-items:   center;
+  gap:           var(--space-2);
+  padding:       var(--space-2) var(--space-3);
+  background:    var(--color-surface-2);
+  border:        1px solid var(--color-grey-100);
+  border-radius: var(--radius-full);
+  font-size:     var(--text-body-xs);
+  font-weight:   var(--fw-medium);
+  color:         var(--color-grey-600);
+  cursor:        pointer;
+  transition:    all var(--transition-fast);
+  white-space:   nowrap;
+}
+.clinic-switcher:hover { border-color: var(--color-light-blue); color: var(--color-navy); }
+.clinic-dot {
+  width:         0.4rem;
+  height:        0.4rem;
+  border-radius: var(--radius-full);
+  background:    var(--color-success);
+  flex-shrink:   0;
+}
+
+/* === NAV ACTIONS === */
+.navbar-actions {
+  display:     flex;
+  align-items: center;
+  gap:         var(--space-3);
+  flex-shrink: 0;
+}
+.navbar-phone {
+  font-size:       var(--text-body-sm);
+  font-weight:     var(--fw-semibold);
+  color:           var(--color-navy);
+  text-decoration: none;
+  display:         flex;
+  align-items:     center;
+  gap:             var(--space-2);
+  white-space:     nowrap;
+}
+.navbar-phone:hover { color: var(--color-mid-blue); text-decoration: none; }
+
+/* === MOBILE NAV === */
+.navbar-hamburger {
+  display:         none;
+  flex-direction:  column;
+  gap:             5px;
+  background:      none;
+  border:          none;
+  cursor:          pointer;
+  padding:         var(--space-2);
+}
+.navbar-hamburger span {
+  display:          block;
+  width:            22px;
+  height:           2px;
+  background:       var(--color-navy);
+  border-radius:    var(--radius-full);
+  transition:       all var(--transition-base);
+}
+@media (max-width: 768px) {
+  .navbar-nav       { display: none; }
+  .navbar-hamburger { display: flex; }
+  .navbar-inner     { padding: 0 var(--space-4); }
+}

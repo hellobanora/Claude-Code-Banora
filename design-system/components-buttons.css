@@ -1,0 +1,139 @@
+/* ============================================
+   BANORA CHIROPRACTIC — BUTTON COMPONENTS
+   banorachiropractic.com.au
+   ============================================ */
+
+.btn {
+  display:          inline-flex;
+  align-items:      center;
+  justify-content:  center;
+  gap:              var(--space-2);
+  font-family:      var(--font-body);
+  font-weight:      var(--fw-semibold);
+  font-size:        var(--text-body-sm);
+  letter-spacing:   var(--ls-wider);
+  text-transform:   uppercase;
+  text-decoration:  none;
+  border:           2px solid transparent;
+  border-radius:    var(--radius-sm);
+  cursor:           pointer;
+  transition:       all var(--transition-base);
+  white-space:      nowrap;
+  -webkit-appearance: none;
+  line-height:      1;
+}
+
+/* === SIZES === */
+.btn-sm  { padding: var(--space-2) var(--space-4);  font-size: var(--text-body-xs); }
+.btn-md  { padding: var(--space-3) var(--space-6);  font-size: var(--text-body-sm); }
+.btn-lg  { padding: var(--space-4) var(--space-8);  font-size: var(--text-body-md); }
+.btn-xl  { padding: var(--space-5) var(--space-10); font-size: var(--text-body-lg); }
+
+/* === PRIMARY — Navy === */
+.btn-primary {
+  background:   var(--color-navy);
+  color:        var(--color-white);
+  border-color: var(--color-navy);
+}
+.btn-primary:hover {
+  background:   var(--color-mid-blue);
+  border-color: var(--color-mid-blue);
+  box-shadow:   var(--shadow-md);
+  transform:    translateY(-1px);
+  text-decoration: none;
+  color:        var(--color-white);
+}
+.btn-primary:active { transform: translateY(0); box-shadow: none; }
+
+/* === GOLD — Primary CTA (Book Now) === */
+.btn-gold {
+  background:   var(--color-gold);
+  color:        var(--color-navy);
+  border-color: var(--color-gold);
+}
+.btn-gold:hover {
+  background:   var(--color-gold-dark);
+  border-color: var(--color-gold-dark);
+  box-shadow:   var(--shadow-gold);
+  transform:    translateY(-1px);
+  text-decoration: none;
+  color:        var(--color-navy);
+}
+.btn-gold:active { transform: translateY(0); }
+
+/* === OUTLINE NAVY === */
+.btn-outline {
+  background:   transparent;
+  color:        var(--color-navy);
+  border-color: var(--color-navy);
+}
+.btn-outline:hover {
+  background:   var(--color-navy);
+  color:        var(--color-white);
+  text-decoration: none;
+}
+
+/* === OUTLINE GOLD === */
+.btn-outline-gold {
+  background:   transparent;
+  color:        var(--color-gold-dark);
+  border-color: var(--color-gold);
+}
+.btn-outline-gold:hover {
+  background:   var(--color-gold);
+  color:        var(--color-navy);
+  text-decoration: none;
+}
+
+/* === GHOST — For dark/navy backgrounds === */
+.btn-ghost {
+  background:   transparent;
+  color:        var(--color-white);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.btn-ghost:hover {
+  background:   rgba(255, 255, 255, 0.1);
+  border-color: var(--color-white);
+  text-decoration: none;
+  color:        var(--color-white);
+}
+
+/* === TEXT ONLY === */
+.btn-text {
+  background:    transparent;
+  color:         var(--color-mid-blue);
+  border:        none;
+  padding-left:  0;
+  padding-right: 0;
+}
+.btn-text:hover { color: var(--color-navy); text-decoration: underline; }
+
+/* === STATES === */
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity:        0.45;
+  cursor:         not-allowed;
+  pointer-events: none;
+}
+
+.btn-loading { position: relative; color: transparent; }
+.btn-loading::after {
+  content:       '';
+  position:      absolute;
+  width:         1rem;
+  height:        1rem;
+  border:        2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation:     btn-spin 0.6s linear infinite;
+}
+@keyframes btn-spin { to { transform: rotate(360deg); } }
+
+/* === FULL WIDTH === */
+.btn-full { width: 100%; }
+
+/* === ICON BUTTON === */
+.btn-icon {
+  padding:       var(--space-3);
+  border-radius: var(--radius-md);
+}

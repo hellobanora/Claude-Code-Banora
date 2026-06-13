@@ -1,0 +1,118 @@
+{
+  "meta": {
+    "brand": "Banora Chiropractic",
+    "website": "banorachiropractic.com.au",
+    "version": "1.0.0",
+    "updated": "2026-06"
+  },
+  "color": {
+    "brand": {
+      "navy":       { "value": "#1B3A5C", "type": "color", "description": "Primary — headings, nav, CTAs" },
+      "midBlue":    { "value": "#2C5F8A", "type": "color", "description": "Secondary — hover, links" },
+      "lightBlue":  { "value": "#5B9EC9", "type": "color", "description": "Accent — highlights, icons" },
+      "gold":       { "value": "#FFD232", "type": "color", "description": "Key accent — Book Now, stars" },
+      "goldDark":   { "value": "#D4A017", "type": "color", "description": "Eyebrows, hover on gold" },
+      "goldLight":  { "value": "#FFF4C2", "type": "color", "description": "Gold tint for badge backgrounds" }
+    },
+    "neutral": {
+      "white":      { "value": "#FFFFFF", "type": "color" },
+      "offWhite":   { "value": "#F8F9FB", "type": "color", "description": "Section backgrounds" },
+      "grey50":     { "value": "#F2F4F7", "type": "color" },
+      "grey100":    { "value": "#E4E7EC", "type": "color", "description": "Borders, dividers" },
+      "grey200":    { "value": "#D0D5DD", "type": "color", "description": "Input borders" },
+      "grey400":    { "value": "#98A2B3", "type": "color", "description": "Placeholder text" },
+      "grey600":    { "value": "#475467", "type": "color", "description": "Secondary copy" },
+      "grey800":    { "value": "#1D2939", "type": "color", "description": "Primary copy" },
+      "black":      { "value": "#101828", "type": "color" }
+    },
+    "semantic": {
+      "success":    { "value": "#12B76A", "type": "color" },
+      "warning":    { "value": "#F79009", "type": "color" },
+      "error":      { "value": "#F04438", "type": "color" },
+      "info":       { "value": "#0086C9", "type": "color" }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "display": { "value": "Cormorant Garamond, Georgia, serif", "type": "fontFamily", "description": "Headings only" },
+      "body":    { "value": "Outfit, system-ui, sans-serif",       "type": "fontFamily", "description": "All body copy and UI" }
+    },
+    "fontWeight": {
+      "light":    { "value": 300, "type": "fontWeight" },
+      "regular":  { "value": 400, "type": "fontWeight" },
+      "medium":   { "value": 500, "type": "fontWeight" },
+      "semibold": { "value": 600, "type": "fontWeight" },
+      "bold":     { "value": 700, "type": "fontWeight" }
+    },
+    "fontSize": {
+      "xs":   { "value": "12px", "type": "fontSize" },
+      "sm":   { "value": "14px", "type": "fontSize" },
+      "md":   { "value": "16px", "type": "fontSize" },
+      "lg":   { "value": "18px", "type": "fontSize" },
+      "xl":   { "value": "20px", "type": "fontSize" },
+      "2xl":  { "value": "24px", "type": "fontSize" },
+      "3xl":  { "value": "30px", "type": "fontSize" },
+      "4xl":  { "value": "36px", "type": "fontSize" },
+      "5xl":  { "value": "48px", "type": "fontSize" },
+      "6xl":  { "value": "64px", "type": "fontSize" },
+      "7xl":  { "value": "88px", "type": "fontSize" }
+    },
+    "lineHeight": {
+      "tight":   { "value": 1.15, "type": "lineHeight" },
+      "snug":    { "value": 1.25, "type": "lineHeight" },
+      "normal":  { "value": 1.5,  "type": "lineHeight" },
+      "relaxed": { "value": 1.7,  "type": "lineHeight" }
+    },
+    "letterSpacing": {
+      "tight":   { "value": "-0.03em", "type": "letterSpacing" },
+      "normal":  { "value": "0",       "type": "letterSpacing" },
+      "wide":    { "value": "0.05em",  "type": "letterSpacing" },
+      "wider":   { "value": "0.1em",   "type": "letterSpacing" },
+      "widest":  { "value": "0.15em",  "type": "letterSpacing" }
+    }
+  },
+  "spacing": {
+    "1":  { "value": "4px",   "type": "spacing" },
+    "2":  { "value": "8px",   "type": "spacing" },
+    "3":  { "value": "12px",  "type": "spacing" },
+    "4":  { "value": "16px",  "type": "spacing" },
+    "5":  { "value": "20px",  "type": "spacing" },
+    "6":  { "value": "24px",  "type": "spacing" },
+    "8":  { "value": "32px",  "type": "spacing" },
+    "10": { "value": "40px",  "type": "spacing" },
+    "12": { "value": "48px",  "type": "spacing" },
+    "16": { "value": "64px",  "type": "spacing" },
+    "20": { "value": "80px",  "type": "spacing" },
+    "24": { "value": "96px",  "type": "spacing" },
+    "32": { "value": "128px", "type": "spacing" }
+  },
+  "borderRadius": {
+    "none": { "value": "0",      "type": "borderRadius" },
+    "xs":   { "value": "2px",    "type": "borderRadius" },
+    "sm":   { "value": "4px",    "type": "borderRadius" },
+    "md":   { "value": "8px",    "type": "borderRadius" },
+    "lg":   { "value": "12px",   "type": "borderRadius" },
+    "xl":   { "value": "16px",   "type": "borderRadius" },
+    "2xl":  { "value": "24px",   "type": "borderRadius" },
+    "3xl":  { "value": "32px",   "type": "borderRadius" },
+    "full": { "value": "9999px", "type": "borderRadius" }
+  },
+  "shadow": {
+    "xs":   { "value": "0 1px 2px rgba(27,58,92,0.04)",                                      "type": "boxShadow" },
+    "sm":   { "value": "0 1px 3px rgba(27,58,92,0.08), 0 1px 2px rgba(27,58,92,0.04)",       "type": "boxShadow" },
+    "md":   { "value": "0 4px 6px rgba(27,58,92,0.07), 0 2px 4px rgba(27,58,92,0.05)",       "type": "boxShadow" },
+    "lg":   { "value": "0 10px 15px rgba(27,58,92,0.08), 0 4px 6px rgba(27,58,92,0.04)",     "type": "boxShadow" },
+    "xl":   { "value": "0 20px 25px rgba(27,58,92,0.10), 0 10px 10px rgba(27,58,92,0.04)",   "type": "boxShadow" },
+    "gold": { "value": "0 4px 14px rgba(255,210,50,0.35)",                                    "type": "boxShadow" }
+  },
+  "zIndex": {
+    "below":    { "value": -1,  "type": "zIndex" },
+    "base":     { "value": 0,   "type": "zIndex" },
+    "raised":   { "value": 10,  "type": "zIndex" },
+    "dropdown": { "value": 100, "type": "zIndex" },
+    "sticky":   { "value": 200, "type": "zIndex" },
+    "overlay":  { "value": 300, "type": "zIndex" },
+    "modal":    { "value": 400, "type": "zIndex" },
+    "toast":    { "value": 500, "type": "zIndex" }
+  }
+}

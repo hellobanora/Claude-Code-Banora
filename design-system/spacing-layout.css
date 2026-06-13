@@ -1,0 +1,101 @@
+/* ============================================
+   BANORA CHIROPRACTIC — SPACING & LAYOUT
+   banorachiropractic.com.au
+   ============================================ */
+
+:root {
+
+  /* === SPACING SCALE (8pt grid) === */
+  --space-0:    0;
+  --space-1:    0.25rem;   /*  4px */
+  --space-2:    0.5rem;    /*  8px */
+  --space-3:    0.75rem;   /* 12px */
+  --space-4:    1rem;      /* 16px */
+  --space-5:    1.25rem;   /* 20px */
+  --space-6:    1.5rem;    /* 24px */
+  --space-8:    2rem;      /* 32px */
+  --space-10:   2.5rem;    /* 40px */
+  --space-12:   3rem;      /* 48px */
+  --space-16:   4rem;      /* 64px */
+  --space-20:   5rem;      /* 80px */
+  --space-24:   6rem;      /* 96px */
+  --space-32:   8rem;      /* 128px */
+  --space-40:   10rem;     /* 160px */
+
+  /* === SECTION RHYTHM === */
+  --section-padding-y:   clamp(4rem, 8vw, 7rem);
+  --section-padding-sm:  clamp(2.5rem, 5vw, 4rem);
+  --section-padding-lg:  clamp(6rem, 10vw, 10rem);
+
+  /* === CONTAINER WIDTHS === */
+  --container-xs:   480px;
+  --container-sm:   640px;
+  --container-md:   768px;
+  --container-lg:   1024px;
+  --container-xl:   1280px;
+  --container-2xl:  1440px;
+  --container-max:  var(--container-xl);
+
+  /* === BORDER RADIUS === */
+  --radius-none:   0;
+  --radius-xs:     0.125rem;
+  --radius-sm:     0.25rem;
+  --radius-md:     0.5rem;
+  --radius-lg:     0.75rem;
+  --radius-xl:     1rem;
+  --radius-2xl:    1.5rem;
+  --radius-3xl:    2rem;
+  --radius-full:   9999px;
+
+  /* === SHADOWS (navy-tinted) === */
+  --shadow-xs:    0 1px 2px rgba(27, 58, 92, 0.04);
+  --shadow-sm:    0 1px 3px rgba(27, 58, 92, 0.08), 0 1px 2px rgba(27, 58, 92, 0.04);
+  --shadow-md:    0 4px 6px rgba(27, 58, 92, 0.07), 0 2px 4px rgba(27, 58, 92, 0.05);
+  --shadow-lg:    0 10px 15px rgba(27, 58, 92, 0.08), 0 4px 6px rgba(27, 58, 92, 0.04);
+  --shadow-xl:    0 20px 25px rgba(27, 58, 92, 0.10), 0 10px 10px rgba(27, 58, 92, 0.04);
+  --shadow-gold:  0 4px 14px rgba(255, 210, 50, 0.35);
+  --shadow-card:  var(--shadow-md);
+
+  /* === Z-INDEX === */
+  --z-below:     -1;
+  --z-base:       0;
+  --z-raised:    10;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-toast:    500;
+
+  /* === TRANSITIONS === */
+  --transition-fast:    150ms ease;
+  --transition-base:    250ms ease;
+  --transition-slow:    400ms ease;
+  --transition-spring:  300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* === CONTAINER === */
+.container {
+  width:         100%;
+  max-width:     var(--container-max);
+  margin-left:   auto;
+  margin-right:  auto;
+  padding-left:  var(--space-6);
+  padding-right: var(--space-6);
+}
+@media (min-width: 768px) {
+  .container { padding-left: var(--space-8); padding-right: var(--space-8); }
+}
+@media (min-width: 1280px) {
+  .container { padding-left: var(--space-12); padding-right: var(--space-12); }
+}
+
+.container-sm  { max-width: var(--container-sm); margin: 0 auto; }
+.container-md  { max-width: var(--container-md); margin: 0 auto; }
+.container-lg  { max-width: var(--container-lg); margin: 0 auto; }
+.container-xl  { max-width: var(--container-xl); margin: 0 auto; }
+.container-2xl { max-width: var(--container-2xl); margin: 0 auto; }
+
+/* === SECTION SPACING === */
+.section       { padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); }
+.section-sm    { padding-top: var(--section-padding-sm); padding-bottom: var(--section-padding-sm); }
+.section-lg    { padding-top: var(--section-padding-lg); padding-bottom: var(--section-padding-lg); }
