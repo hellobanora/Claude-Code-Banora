@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clinic } from '../data/clinic';
+---
+
+<BaseLayout
+  title="Book Online | Banora Chiropractic"
+  description="Book your appointment with Banora Chiropractic in Tweed Heads South. Choose your practitioner, day, and time online — 24/7."
+  noindex={true}
+>
+  <section class="min-h-[70vh] flex items-center bg-off-white">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+
+      <div class="w-16 h-16 bg-mid-blue/10 rounded-full flex items-center justify-center mx-auto mb-8">
+        <svg class="w-8 h-8 text-mid-blue animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+      </div>
+
+      <h1 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mb-4">
+        Book Online
+      </h1>
+      <p class="text-grey-text text-lg leading-relaxed mb-8">
+        Opening the booking system… if it doesn't appear in a moment, tap the button below.
+      </p>
+
+      <button
+        id="book-open-btn"
+        class="open-booking-modal inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors shadow-md"
+      >
+        Open Booking
+      </button>
+
+      <p class="text-sm text-grey-text mt-10">
+        Prefer to call? <a href={`tel:${clinic.phoneFull}`} class="text-mid-blue font-medium hover:underline">{clinic.phone}</a>
+      </p>
+      <p class="text-sm text-grey-text mt-1">
+        {clinic.address.full}
+      </p>
+
+    </div>
+  </section>
+
+  <script>
+    const fire = () => {
+      const btn = document.getElementById('book-open-btn');
+      btn?.click();
+    };
+    const ready = () => typeof (window as any).closeBookingModal === 'function';
+
+    if (ready()) {
+      fire();
+    } else {
+      const id = window.setInterval(() => {
+        if (ready()) {
+          window.clearInterval(id);
+          fire();
+        }
+      }, 100);
+      window.setTimeout(() => window.clearInterval(id), 5000);
+    }
+  </script>
+</BaseLayout>
