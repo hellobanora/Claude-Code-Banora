@@ -311,13 +311,12 @@ function startSession(){
   save();showScr('scr-s1');
 }
 
-const FORMSPREE_ID='mpqjeego';
 async function toFormspree(data){
   try{
-    const r=await fetch('https://formspree.io/f/'+FORMSPREE_ID,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(data)});
+    const r=await fetch('/api/intake/',{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(data)});
     if(r.ok)return{ok:true};
     const err=await r.json().catch(()=>({}));
-    return{ok:false,msg:err?.errors?.[0]?.message||'HTTP '+r.status};
+    return{ok:false,msg:err?.msg||err?.errors?.[0]?.message||'HTTP '+r.status};
   }catch(e){return{ok:false,msg:'Network error'};}
 }
 

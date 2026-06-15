@@ -66,10 +66,10 @@ const schema = {
         <!-- Contact Form -->
         <div>
           <h2 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy mb-6">Send Us a Message</h2>
-          <form id="contact-form" action={clinic.formspreeEndpoint} method="POST" class="space-y-5">
+          <form id="contact-form" action="/api/contact/" method="POST" class="space-y-5">
             <!-- Honeypot -->
-            <input type="text" name="_gotcha" style="display:none" />
-            <input type="hidden" name="_next" value={`${clinic.website}/thank-you`} />
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="_next" value="/thank-you/" />
 
             <div>
               <label for="name" class="block text-sm font-medium text-navy mb-1.5">Your Name</label>
