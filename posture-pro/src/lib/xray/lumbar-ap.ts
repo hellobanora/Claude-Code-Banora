@@ -81,15 +81,22 @@ export function analyseLumbarAP(landmarks: LandmarkMap): MeasurementResult {
   let cobbResult: MeasurementResult['cobbAngle'] = undefined;
   if (cobbUL && cobbUR && cobbLL && cobbLR) {
     const measured = cobbAngle(cobbUL, cobbUR, cobbLL, cobbLR);
-    // Determine convexity: if the midpoint of spinous processes
-    // deviates left, convexity is right (and vice versa)
+    // Determine convexity from the apex spinous process position.
+    //
+    // In scoliosis the spinous processes deviate toward the CONCAVE side,
+    // so convexity is on the OPPOSITE side to the spinous deviation.
+    //
+    // AP radiographs use radiographic convention: patient's LEFT appears on
+    // the RIGHT of the image (higher x). So:
+    //   spinous at lower x (image-left)  = patient RIGHT  → curve concave right  → convex LEFT
+    //   spinous at higher x (image-right) = patient LEFT   → curve concave left   → convex RIGHT
     const midUpper = { x: (cobbUL.x + cobbUR.x) / 2, y: (cobbUL.y + cobbUR.y) / 2 };
     const midLower = { x: (cobbLL.x + cobbLR.x) / 2, y: (cobbLL.y + cobbLR.y) / 2 };
     const l3Spinous = get(landmarks, 'L3_spinous');
     let convexity: 'L' | 'R' = 'R';
     if (l3Spinous) {
       const midline = (midUpper.x + midLower.x) / 2;
-      convexity = l3Spinous.x < midline ? 'R' : 'L';
+      convexity = l3Spinous.x < midline ? 'L' : 'R';
     }
 
     cobbResult = {
