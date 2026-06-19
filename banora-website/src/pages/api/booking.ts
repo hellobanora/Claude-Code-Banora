@@ -26,9 +26,15 @@ function json(data: unknown, status = 200) {
 }
 
 // ---- Confirmation email via Resend ----
-async function sendConfirmationEmail(body: any) {
+type EmailResult =
+  | { ok: true; id?: string }
+  | { ok: false; skipped: string }
+  | { ok: false; status?: number; error: string };
+
+async function sendConfirmationEmail(body: any): Promise<EmailResult> {
   const apiKey = import.meta.env.RESEND_API_KEY;
-  if (!apiKey || !body.customer_email) return;
+  if (!apiKey) return { ok: false, skipped: 'RESEND_API_KEY missing' };
+  if (!body.customer_email) return { ok: false, skipped: 'customer_email blank' };
 
   const ts = Number(body.ts_schedule_start);
   const apptDate = new Date(ts * 1000);
@@ -123,11 +129,13 @@ async function sendConfirmationEmail(body: any) {
       }),
     });
     if (!res.ok) {
-      const err = await res.text();
-      console.error('[resend error]', res.status, err);
+      const errText = (await res.text()).slice(0, 500);
+      return { ok: false, status: res.status, error: errText };
     }
-  } catch (e) {
-    console.error('[resend exception]', e);
+    const data = await res.json().catch(() => ({} as any));
+    return { ok: true, id: data?.id };
+  } catch (e: any) {
+    return { ok: false, error: e?.message || String(e) };
   }
 }
 
@@ -226,8 +234,16 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     if (r.ok && result?.success !== false) {
-      // Fire confirmation email (non-blocking — failure won't break the booking)
-      sendConfirmationEmail(body).catch(() => {});
+      // Await the send — fire-and-forget can be killed by Vercel's serverless lifecycle
+      // before the Resend fetch completes. Adds ~300ms but guarantees the email actually goes.
+      const email = await sendConfirmationEmail(body);
+      if (email.ok) {
+        console.log('[booking] confirmation email SENT to', body.customer_email, 'id:', email.id);
+      } else if ('skipped' in email) {
+        console.warn('[booking] confirmation email SKIPPED:', email.skipped, '— to:', body.customer_email);
+      } else {
+        console.error('[booking] confirmation email FAILED — status:', email.status, 'error:', email.error, '— to:', body.customer_email);
+      }
       return json(result ?? { success: true, confirmed: true });
     }
 

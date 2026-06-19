@@ -97,7 +97,7 @@ const schema = [
           <div class="bg-blue-ghost/50 rounded-xl p-6 border border-blue-pale/30">
             <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-4">Book This Service</h3>
             <p class="text-grey-text text-sm mb-4">Ready to get started? Book your appointment online or call us.</p>
-            <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="block w-full bg-mid-blue hover:bg-navy text-white text-center px-4 py-3 rounded-lg font-medium transition-colors mb-3">
+            <a href="#book" class="open-booking-modal block w-full bg-mid-blue hover:bg-navy text-white text-center px-4 py-3 rounded-lg font-medium transition-colors mb-3">
               Book Online
             </a>
             <a href={`tel:${clinic.phoneFull}`} class="block w-full bg-white border border-grey-mid/30 text-navy text-center px-4 py-3 rounded-lg font-medium hover:border-mid-blue transition-colors whitespace-nowrap">
@@ -174,7 +174,7 @@ const schema = [
       <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">Ready to book your {service.title.toLowerCase()} appointment?</h2>
       <p class="text-light-blue-soft/90 text-lg mb-8">New patients welcome. We will take the time to understand your situation and create a plan that works for you.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+        <a href="#book" class="open-booking-modal inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
           Book Online
         </a>
         <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors whitespace-nowrap">

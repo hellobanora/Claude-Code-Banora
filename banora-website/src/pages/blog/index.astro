@@ -123,7 +123,7 @@ function formatDate(dateStr: string) {
       <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">Got a question about your health?</h2>
       <p class="text-light-blue-soft/90 text-lg mb-8">Our chiropractors are here to help. Book an appointment or give us a call — we'd love to chat.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={clinic.bookingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+        <a href="#book" class="open-booking-modal inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
           Book Online
         </a>
         <a href={`tel:${clinic.phoneFull}`} class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors whitespace-nowrap">

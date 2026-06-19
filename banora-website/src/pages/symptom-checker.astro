@@ -326,7 +326,7 @@ const schema = {
   }
 </style>
 
-<script define:vars={{ bookingUrl: clinic.bookingUrl, phone: clinic.phone, phoneFull: clinic.phoneFull }}>
+<script define:vars={{ phone: clinic.phone, phoneFull: clinic.phoneFull }}>
   const answers = {};
   let currentStep = 1;
   const totalSteps = 5;
@@ -442,7 +442,7 @@ const schema = {
         <h3 class="text-xl md:text-2xl font-bold mb-2" style="font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);">Ready to Feel Better?</h3>
         <p class="text-white/80 mb-6">Book your initial consultation and let us put together a personalised care plan for you.</p>
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="${bookingUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-[var(--color-gold,#D4A853)] hover:bg-[var(--color-gold-dark,#B88E3A)] text-white px-8 py-3.5 rounded-xl font-semibold transition-colors text-lg shadow-lg">
+          <a href="#book" class="open-booking-modal inline-flex items-center justify-center gap-2 bg-[var(--color-gold,#D4A853)] hover:bg-[var(--color-gold-dark,#B88E3A)] text-white px-8 py-3.5 rounded-xl font-semibold transition-colors text-lg shadow-lg">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             Book Now — $100 Initial Visit
           </a>
