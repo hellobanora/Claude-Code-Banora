@@ -11,7 +11,7 @@ import { openDB, type IDBPDatabase } from 'idb';
 import type { XrayAnalysis } from './types';
 
 const DB_NAME = 'posture-pro-clinic';
-const DB_VERSION = 2; // Bumped from 1 to add xray_analyses store
+const DB_VERSION = 3; // Bumped from 2 to add rom_assessments store (see rom-store.ts)
 const STORE_NAME = 'xray_analyses';
 
 async function getDB(): Promise<IDBPDatabase> {
@@ -29,6 +29,12 @@ async function getDB(): Promise<IDBPDatabase> {
         const store = db.createObjectStore(STORE_NAME, { keyPath: 'id' });
         store.createIndex('by_patient', 'patientId');
         store.createIndex('by_date', 'examDate');
+      }
+      // New in v3
+      if (!db.objectStoreNames.contains('rom_assessments')) {
+        const store = db.createObjectStore('rom_assessments', { keyPath: 'id' });
+        store.createIndex('by_patient', 'patientId');
+        store.createIndex('by_date', 'date');
       }
     },
   });

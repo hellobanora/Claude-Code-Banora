@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { Patient, PostureCapture, PostureSession } from '@/lib/models/patient';
 import type { Landmark } from '@/lib/models/landmark';
 import { patientFullName } from '@/lib/models/patient';
@@ -12,6 +12,9 @@ import { FindingsPanel } from '@/components/analysis/FindingsPanel';
 import { runPostureAnalysis } from '@/lib/biomechanics/engine';
 import { plainLanguageEquivalent } from '@/lib/biomechanics/cervical-load';
 import type { PostureAnalysis } from '@/lib/models/analysis';
+import { loadPatientRomAssessments } from '@/lib/rom/rom-store';
+import { RomTrafficLightDots } from '@/components/rom/RomTrafficLightBadge';
+import type { RomAssessment } from '@/lib/rom/types';
 
 type StoreApi = ReturnType<typeof usePatientStore>;
 type ActivePhase = 'idle' | 'capture' | 'landmarks';
@@ -19,8 +22,13 @@ type ActivePhase = 'idle' | 'capture' | 'landmarks';
 export function PatientDetailView({ patient, store }: { patient: Patient; store: StoreApi }) {
   const [activeSessionId, setActiveSessionId] = useState<string | null>(null);
   const [phase, setPhase] = useState<ActivePhase>('idle');
+  const [romAssessments, setRomAssessments] = useState<RomAssessment[]>([]);
 
   const activeSession = patient.sessions.find((s) => s.id === activeSessionId);
+
+  useEffect(() => {
+    loadPatientRomAssessments(patient.id).then(setRomAssessments).catch(() => setRomAssessments([]));
+  }, [patient.id]);
 
   const handleNewSession = useCallback(async () => {
     const session: PostureSession = {
@@ -199,6 +207,54 @@ export function PatientDetailView({ patient, store }: { patient: Patient; store:
                 </div>
               </li>
             ))}
+          </ul>
+        )}
+      </section>
+
+      {/* ROM assessments */}
+      <section>
+        <div className="mb-3 flex items-center justify-between">
+          <h2 className="text-xl font-semibold">Range of Motion</h2>
+          <Link
+            href={`/patient/${patient.id}/rom/capture`}
+            className="rounded-md bg-navy px-4 py-2 text-sm font-medium text-white hover:bg-midblue"
+          >
+            + New ROM assessment
+          </Link>
+        </div>
+
+        {romAssessments.length === 0 ? (
+          <p className="rounded-md border border-dashed border-neutral-300 p-8 text-center text-sm text-neutral-500">
+            No ROM assessments yet. Start one to screen cervical and lumbar movement.
+          </p>
+        ) : (
+          <ul className="divide-y divide-neutral-200 rounded-md border border-neutral-200 bg-white">
+            {romAssessments.map((a) => {
+              const overall = a.results.some((r) => r.trafficLight === 'red')
+                ? 'red'
+                : a.results.some((r) => r.trafficLight === 'yellow')
+                  ? 'yellow'
+                  : 'green';
+              return (
+                <li key={a.id} className="flex items-center justify-between p-4">
+                  <div>
+                    <div className="font-medium">{new Date(a.date).toLocaleString('en-AU')}</div>
+                    <div className="text-xs text-neutral-500">
+                      {a.practitioner} · {a.results.length} movement{a.results.length !== 1 ? 's' : ''}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <RomTrafficLightDots active={overall} />
+                    <Link
+                      href={`/patient/${patient.id}/rom/${a.id}/results`}
+                      className="rounded bg-gold px-3 py-1 text-xs font-medium text-navy hover:bg-goldlight"
+                    >
+                      View results
+                    </Link>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         )}
       </section>

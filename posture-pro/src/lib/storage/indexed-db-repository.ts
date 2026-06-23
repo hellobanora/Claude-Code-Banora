@@ -9,7 +9,7 @@ import type { PatientRepository } from './patient-repository';
  */
 export class IndexedDBPatientRepository implements PatientRepository {
   private readonly dbName = 'posture-pro-clinic';
-  private readonly version = 2;
+  private readonly version = 3;
 
   private async db(): Promise<IDBPDatabase> {
     return openDB(this.dbName, this.version, {
@@ -25,6 +25,12 @@ export class IndexedDBPatientRepository implements PatientRepository {
           const store = db.createObjectStore('xray_analyses', { keyPath: 'id' });
           store.createIndex('by_patient', 'patientId');
           store.createIndex('by_date', 'examDate');
+        }
+        // v3: ROM assessments store (shared with rom-store.ts)
+        if (!db.objectStoreNames.contains('rom_assessments')) {
+          const store = db.createObjectStore('rom_assessments', { keyPath: 'id' });
+          store.createIndex('by_patient', 'patientId');
+          store.createIndex('by_date', 'date');
         }
       },
     });
