@@ -87,7 +87,7 @@ async function sendConfirmationEmail(body: any): Promise<EmailResult> {
               ${isNew ? `<tr><td style="padding:0 20px 16px;">
                 <p style="margin:0 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;color:#888;">What to expect</p>
                 <p style="margin:0;font-size:15px;color:#333;">Initial consultation — allow 30–45 minutes.<br>
-                  <span style="color:#888;font-size:13px;">No referral needed. Arrive 5 mins early if possible.</span></p>
+                  <span style="color:#888;font-size:13px;">No referral needed. Please arrive 15 minutes early to complete your new patient paperwork.</span></p>
               </td></tr>` : ''}
             </table>
             <!-- Reschedule note -->
