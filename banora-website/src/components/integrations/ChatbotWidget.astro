@@ -338,7 +338,7 @@ import { clinic } from '../../data/clinic';
     },
     cost: () => {
       addUserMessage("How much does it cost?");
-      addBotMessage("Initial consult is $100 (about 30-45 mins). Follow-up adjustments are $72. We're registered with all major health funds and have HICAPS for on-the-spot claiming.");
+      addBotMessage("Initial consult is $100 (about 30-45 mins). Follow-up adjustments are $75. We're registered with all major health funds and have HICAPS for on-the-spot claiming.");
       setTimeout(() => {
         addBotMessage("Most patients with private health cover pay around $15-25 out of pocket. Want to book in?", 600);
         setTimeout(() => addBookingCTA(), 1200);
@@ -400,7 +400,7 @@ import { clinic } from '../../data/clinic';
       addBotMessage("We're open Mon–Fri 8am–6pm, Sat 8am–12pm. Want to book a time?");
       setTimeout(() => addBookingCTA(), 1200);
     } else if (/cost|price|fee|how much|charge|afford|expensive|bulk.?bill/i.test(lower)) {
-      addBotMessage("Initial consult is $100, follow-ups $72. Health fund rebates apply — most people pay about $15–25 gap. Want me to open the booking calendar?");
+      addBotMessage("Initial consult is $100, follow-ups $75. Health fund rebates apply — most people pay about $15–25 gap. Want me to open the booking calendar?");
       setTimeout(() => addBookingCTA(), 1200);
     } else if (/new.?patient|first.?time|first.?visit|never.?been/i.test(lower)) {
       addBotMessage("Welcome! First visit's about 30-45 mins — we'll do a full check and chat about what's going on. No referral needed. $100 for the initial consult.");

@@ -725,7 +725,7 @@ $('bcb-qb-new')?.addEventListener('click', async () => {
 $('bcb-qb-cost')?.addEventListener('click', async () => {
   hideQuickBtns();
   userMsg("How much does it cost?");
-  await botMsg("Initial consult is $100 (30–45 mins). Follow-up adjustments are $72. We're registered with all major health funds and have HICAPS for on-the-spot claiming — most patients with cover pay about $15–25 out of pocket.");
+  await botMsg("Initial consult is $100 (30–45 mins). Follow-up adjustments are $75. We're registered with all major health funds and have HICAPS for on-the-spot claiming — most patients with cover pay about $15–25 out of pocket.");
   setTimeout(async () => {
     await botMsg("Want to book in and see for yourself?", 500);
     choiceButtons([{ label: "Book an appointment", value: "yes", action: "start-booking" }]);
@@ -771,7 +771,7 @@ async function handleFreeText(text) {
     await botMsg("We're open Monday, Tuesday, Thursday 8:30am–6pm, Wednesday 2pm–6pm, Friday 12pm–2pm, and Saturday 8am–12pm.");
     setTimeout(() => botMsg("Want to grab a spot?", 400), 800);
   } else if (/cost|price|fee|how much|charge|bulk.?bill/i.test(lower)) {
-    await botMsg("Initial consult is $100, follow-ups $72. Health fund rebates apply via HICAPS — most people pay about $15–25 gap. Want to book?");
+    await botMsg("Initial consult is $100, follow-ups $75. Health fund rebates apply via HICAPS — most people pay about $15–25 gap. Want to book?");
   } else if (/new.?patient|first.?time|first.?visit|never.?been/i.test(lower)) {
     await botMsg("Welcome! First visit is 30–45 mins — full assessment, no referral needed. $100 initial consult.");
     setTimeout(() => botMsg("Want to grab a time?", 400), 800);
