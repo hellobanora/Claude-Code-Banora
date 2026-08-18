@@ -274,6 +274,7 @@ function CameraCapture({
 
     // Wait for the video to actually have frame data before showing capture button.
     // iOS Safari needs this — play() can resolve before frames are ready.
+    let playFailed = false;
     await new Promise<void>((resolve) => {
       const onPlaying = () => {
         video.removeEventListener('playing', onPlaying);
@@ -281,10 +282,21 @@ function CameraCapture({
       };
       video.addEventListener('playing', onPlaying);
       video.play().catch(() => {
+        playFailed = true;
         video.removeEventListener('playing', onPlaying);
         resolve();
       });
     });
+
+    // If playback itself was rejected, the camera hardware may still be active (the
+    // stream was granted) but nothing will ever render — show a clear retry prompt
+    // instead of leaving a blank/black preview with no explanation.
+    if (playFailed) {
+      stream.getTracks().forEach((t) => t.stop());
+      streamRef.current = null;
+      setCameraError('Camera preview failed to start. Tap "Start camera" to try again.');
+      return;
+    }
 
     // Double-check video dimensions are available (may take an extra frame on iOS)
     if (video.videoWidth === 0) {
@@ -404,7 +416,6 @@ function CameraCapture({
               playsInline
               muted
               className="block w-full"
-              style={{ WebkitTransform: 'translateZ(0)' }}
             />
             <CaptureOverlay view={view} />
           </div>
