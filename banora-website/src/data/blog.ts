@@ -1257,6 +1257,178 @@ export const blogPosts: BlogPost[] = [
     relatedConditions: ['back-pain', 'sciatica', 'hip-pain'],
     relatedPosts: ['understanding-back-pain', 'what-to-expect-from-a-chiropractor-tweed-heads-south'],
   },
+  {
+    slug: 'hip-pain-causes-and-when-to-see-a-chiropractor',
+    title: 'Hip Pain: Common Causes and When to Get It Checked',
+    metaTitle: 'Hip Pain Causes & Chiropractic Care | Banora Chiropractic Tweed Heads',
+    metaDescription: 'Aching, stiff, or painful hips? Our Tweed Heads South chiropractors explain common causes of hip pain — including referred pain from the back — and when to seek care.',
+    excerpt: "Hip pain doesn't always come from the hip itself. Here's what might actually be going on, and what you can do about it.",
+    content: `
+      <p>Getting out of the car and feeling your hip catch. A dull ache in the groin that's been there for weeks. Stiffness first thing in the morning that takes a few minutes to walk off. Hip pain shows up in a lot of different ways, and it's one of the more confusing complaints to figure out on your own — because the hip doesn't always hurt where the actual problem is.</p>
+
+      <h2>Where is your hip pain actually coming from?</h2>
+
+      <p>The hip joint itself can absolutely be the source of pain. But a lot of what people call "hip pain" is coming from somewhere else entirely — the lower back, the sacroiliac joint, or a small muscle deep in the buttock called the piriformis, which sits right alongside the sciatic nerve. When it's tight or irritated, it can produce pain in the hip and buttock that feels exactly like a hip problem.</p>
+
+      <p>This matters because treating the hip when the actual problem is in your lower back won't get you very far. Working out where the pain is coming from is the first step, not an afterthought.</p>
+
+      <h2>Common causes of hip pain</h2>
+
+      <ul>
+        <li><strong>Tight hip flexors.</strong> Long hours sitting shorten the muscles at the front of the hip, which can pull on the joint and contribute to stiffness and discomfort when you stand or walk.</li>
+        <li><strong>Referred pain from the lower back or sacroiliac joint.</strong> Very common, and easy to mistake for a hip problem.</li>
+        <li><strong>Piriformis tightness.</strong> Can produce deep buttock and hip pain, sometimes with a hint of pain running down the back of the leg.</li>
+        <li><strong>Trochanteric bursitis.</strong> Inflammation of the bursa on the outer hip, often linked to hip mechanics and muscle imbalance rather than a single injury.</li>
+        <li><strong>Wear and tear changes in the joint.</strong> More common as we get older, and often made more comfortable with the right movement and management approach.</li>
+        <li><strong>Sport and training load.</strong> Running, football, and anything involving repeated hip flexion can bring on hip pain in active people of any age.</li>
+      </ul>
+
+      <h2>Signs your hip pain might be coming from your back</h2>
+
+      <p>If your pain sits deep in the buttock rather than the front of the hip or groin, if it changes with certain back positions rather than hip movements, or if you've also got some <a href="/conditions/back-pain/">lower back stiffness</a> you hadn't connected to it — there's a decent chance your lower back is involved. This is exactly what a proper assessment is for.</p>
+
+      <h2>What might help in the meantime</h2>
+
+      <ul>
+        <li><strong>Break up long sitting.</strong> Stand and move every 30–45 minutes. Tight hip flexors are one of the most common contributors we see, and they're largely a habit problem.</li>
+        <li><strong>Stretch the front of the hip.</strong> A gentle kneeling hip flexor stretch, held for 30 seconds each side, can ease some of the tightness that builds up from sitting.</li>
+        <li><strong>Keep moving.</strong> Walking within a comfortable range tends to help more than resting completely.</li>
+        <li><strong>Watch your footwear.</strong> Worn-out or unsupportive shoes can change how load travels up through your hips.</li>
+      </ul>
+
+      <h2>When to get it assessed</h2>
+
+      <p>If hip pain has been hanging around for more than a couple of weeks, is limiting how you walk or sleep, or keeps coming back after you think it's settled, it's worth getting a proper look. It's also worth mentioning if the pain started after a fall or a specific incident, or if you're getting any numbness or weakness down the leg.</p>
+
+      <h2>How chiropractic care may help</h2>
+
+      <p>At <a href="/about/">Banora Chiropractic</a>, we assess the hip joint, pelvis, and lower back together, because they work as a team and problems in one area often show up in another. Depending on what we find, care may include hip joint mobilisation, soft tissue work on the hip flexors, glutes, or piriformis, and adjustments to the lower back or sacroiliac joint where that's part of the picture. We'll also give you exercises to work on between visits — home exercise is a big part of getting hips moving well again.</p>
+
+      <p>If your hips have been giving you trouble, come in and let us take a look. <a href="/conditions/hip-pain/">Learn more about hip pain treatment</a> at our Tweed Heads South clinic, or call us on <strong>(07) 5599 2322</strong> to have a chat first.</p>
+    `,
+    author: 'dr-paul-cater',
+    publishDate: '2026-06-24',
+    status: 'published' as const,
+    category: 'Wellness',
+    tags: ['hip pain', 'hip flexor tightness', 'piriformis', 'referred pain', 'chiropractor tweed heads south'],
+    heroImage: '/images/pexels-vlada-karpovich-8940016.webp',
+    heroImageAlt: 'Woman stretching her hip flexor during a home workout',
+    readTime: 5,
+    relatedServices: ['chiropractic-adjustments', 'sports-chiropractic'],
+    relatedConditions: ['hip-pain', 'back-pain', 'sciatica'],
+    relatedPosts: ['understanding-back-pain', 'sciatica-exercises-and-stretches'],
+  },
+  {
+    slug: 'shoulder-pain-causes-and-how-chiropractic-may-help',
+    title: 'Shoulder Pain: Common Causes and How Chiropractic Care May Help',
+    metaTitle: 'Shoulder Pain Causes & Treatment | Banora Chiropractic Tweed Heads',
+    metaDescription: 'Struggling to reach, lift, or sleep on your shoulder? Our Tweed Heads South chiropractors explain common causes of shoulder pain and how chiropractic care may help.',
+    excerpt: "Can't reach the top shelf, can't sleep on that side — shoulder pain gets in the way of everything. Here's what's usually behind it.",
+    content: `
+      <p>The shoulder is the most mobile joint in your body, and that mobility comes at a price — it relies on a delicate balance of muscles, tendons, and ligaments to stay stable, which means there's a lot that can go wrong. If you're struggling to reach into a cupboard, get dressed, or sleep on one side without waking up sore, you'll know exactly what we mean.</p>
+
+      <h2>Common causes of shoulder pain</h2>
+
+      <ul>
+        <li><strong>Impingement.</strong> Structures inside the shoulder get pinched during certain arm movements, especially reaching overhead.</li>
+        <li><strong>Rotator cuff strain.</strong> The small muscles that stabilise the shoulder can become strained through overuse or a specific injury.</li>
+        <li><strong>Frozen shoulder (adhesive capsulitis).</strong> The joint gradually stiffens and becomes increasingly painful over weeks or months, often without an obvious cause.</li>
+        <li><strong>AC joint problems.</strong> Often from a fall directly onto the shoulder or a knock during contact sport.</li>
+        <li><strong>Referred pain from the neck.</strong> More common than most people expect — we'll get to this one below.</li>
+      </ul>
+
+      <h2>Is your shoulder pain actually coming from your neck?</h2>
+
+      <p>It happens more often than you'd think. The nerves that supply the shoulder and arm exit the spine through the neck, so a problem in the cervical spine can produce pain, weakness, or tingling that's felt deep in the shoulder or running down the arm — without the shoulder joint itself being the issue at all. If your <a href="/conditions/neck-pain/">neck</a> has been stiff or sore around the same time your shoulder started playing up, that's worth mentioning to whoever assesses you.</p>
+
+      <p>This is why a proper shoulder assessment looks at the neck and upper back too, not just the shoulder itself.</p>
+
+      <h2>What might help in the meantime</h2>
+
+      <ul>
+        <li><strong>Avoid loading it overhead.</strong> Reaching, lifting, and pushing movements above shoulder height tend to aggravate most shoulder problems. Give it a break where you can.</li>
+        <li><strong>Keep it moving gently.</strong> Complete rest can make a stiff shoulder stiffer. Gentle range-of-motion movement, within a comfortable limit, is usually better than avoiding it altogether.</li>
+        <li><strong>Adjust your sleep position.</strong> If lying on the sore side wakes you up, try a pillow tucked under that arm for support when lying on your back or the other side.</li>
+        <li><strong>Check your posture.</strong> Rounded shoulders and a forward head position put extra strain on the structures around the shoulder joint.</li>
+      </ul>
+
+      <h2>When to get it assessed</h2>
+
+      <p>If shoulder pain has lasted more than a couple of weeks, is stopping you from sleeping properly, or is gradually getting harder to move — that's a good sign it's time for a proper look rather than waiting to see if it settles on its own. It's also worth getting checked sooner if the pain followed a fall or direct knock, or if you're noticing weakness when lifting or carrying.</p>
+
+      <h2>How chiropractic care may help</h2>
+
+      <p>At <a href="/about/">Banora Chiropractic</a>, we assess the shoulder alongside the neck and upper back, because that combination gives us a much clearer picture of what's actually driving your pain. Depending on what we find, care may include shoulder mobilisation and extremity adjustment techniques, cervical and thoracic adjustments where the neck is contributing, soft tissue work through the rotator cuff and upper trapezius, and a progressive set of exercises to rebuild strength and range of motion as you improve.</p>
+
+      <p>If shoulder pain is getting in the way of your day, come in and let us have a look. <a href="/conditions/shoulder-pain/">Learn more about shoulder pain treatment</a> at our Tweed Heads South clinic, or call <strong>(07) 5599 2322</strong> for an honest chat about whether we can help.</p>
+    `,
+    author: 'dr-james-shipway',
+    publishDate: '2026-07-08',
+    status: 'published' as const,
+    category: 'Wellness',
+    tags: ['shoulder pain', 'rotator cuff', 'frozen shoulder', 'impingement', 'chiropractor tweed heads south'],
+    heroImage: '/images/pexels-karola-g-4506161.webp',
+    heroImageAlt: "Chiropractor assessing a patient's neck and shoulder",
+    readTime: 5,
+    relatedServices: ['chiropractic-adjustments', 'sports-chiropractic'],
+    relatedConditions: ['shoulder-pain', 'neck-pain', 'sports-injuries'],
+    relatedPosts: ['cervicogenic-headache-causes-and-treatment', '5-warmup-mistakes-setting-you-up-for-injury'],
+  },
+  {
+    slug: 'chiropractic-care-after-a-car-accident-what-to-expect',
+    title: 'What to Expect From Chiropractic Care After a Car Accident',
+    metaTitle: 'Chiropractic Care After a Car Accident | Banora Chiropractic',
+    metaDescription: 'Sore neck or back after a car accident? Our Tweed Heads South chiropractors explain why whiplash symptoms often appear later, and what a chiropractic assessment involves.',
+    excerpt: "Feeling fine at the scene and stiff two days later is more common than you'd think after a car accident. Here's why — and what to do about it.",
+    content: `
+      <p>It's a familiar story at the clinic: someone's involved in a car accident, feels a bit shaken but otherwise okay, and then wakes up two or three days later with a neck that barely turns and a headache that won't quit. If that's happened to you, you're not imagining it, and you're definitely not overreacting.</p>
+
+      <h2>Why symptoms often show up later</h2>
+
+      <p>In a collision — even a relatively minor one — your neck and upper back go through a rapid back-and-forth movement that the muscles and joints aren't braced for. This is what's commonly called whiplash. The immediate adrenaline of the moment can mask how much strain actually happened, and the inflammation and muscle guarding that follow an injury like this often build over the following 24 to 72 hours rather than hitting straight away.</p>
+
+      <p>So feeling "fine" right after the accident doesn't mean nothing happened. It's genuinely common for the worst of it to show up a couple of days later.</p>
+
+      <h2>Common symptoms after a car accident</h2>
+
+      <ul>
+        <li>Neck pain and stiffness, often worse when turning your head</li>
+        <li><a href="/conditions/headaches-migraines/">Headaches</a>, particularly starting at the base of the skull</li>
+        <li>Upper back and shoulder tension</li>
+        <li>Reduced range of motion in the neck</li>
+        <li>Jaw tightness or discomfort</li>
+        <li>Fatigue or difficulty concentrating in the days following</li>
+        <li>Lower back pain, especially if the impact involved braking or bracing</li>
+      </ul>
+
+      <h2>What to do after a car accident</h2>
+
+      <p>If you've been in an accident, get checked by a GP or hospital first if there's any chance of a more serious injury — that always comes first. Once anything urgent has been ruled out, don't just wait to see if the stiffness goes away on its own. Getting your spine assessed early, even if the pain feels manageable, gives you a clearer picture of what's actually going on and a plan for dealing with it properly.</p>
+
+      <p>If you're working through an insurance or CTP claim, your insurer or a solicitor is the right person to guide you through that process — our focus is on assessing and treating what's actually going on with your body.</p>
+
+      <h2>How chiropractic care may help with recovery</h2>
+
+      <p>At <a href="/about/">Banora Chiropractic</a>, our approach to whiplash and post-accident care starts with a thorough assessment of your neck, upper back, and lower back — even if the pain feels concentrated in one spot, the forces from a collision often affect the whole spine. From there, care may include gentle cervical and thoracic adjustments to restore movement, soft tissue work to ease muscle guarding and tension, and specific exercises to support recovery and reduce the risk of ongoing stiffness. We keep techniques gentle in the early stages and adjust the approach as your body settles.</p>
+
+      <h2>What your first visit involves</h2>
+
+      <p>We'll take a detailed history of the accident — how it happened, what you felt at the time, and how things have changed since. We'll examine your <a href="/conditions/neck-pain/">neck</a> and <a href="/conditions/back-pain/">back</a>, check your range of motion, and carry out relevant orthopaedic and neurological tests. We'll explain what we find in plain language and give you a realistic sense of what recovery is likely to look like — most whiplash-type injuries improve steadily over several weeks with the right care, though this varies from person to person.</p>
+
+      <p>If you've been in a car accident and something still doesn't feel right, don't wait it out. Book a consultation at our Tweed Heads South clinic or call us on <strong>(07) 5599 2322</strong> — we'll take a proper look and let you know honestly what we find.</p>
+    `,
+    author: 'dr-paul-cater',
+    publishDate: '2026-07-22',
+    status: 'published' as const,
+    category: 'Neck Pain',
+    tags: ['whiplash', 'car accident', 'chiropractic after accident', 'neck pain', 'CTP', 'chiropractor tweed heads south'],
+    heroImage: '/images/pexels-pavel-danilyuk-6443479.webp',
+    heroImageAlt: 'Chiropractor performing a gentle adjustment on a patient at Banora Chiropractic',
+    readTime: 6,
+    relatedServices: ['chiropractic-adjustments', 'posture-correction'],
+    relatedConditions: ['neck-pain', 'back-pain', 'headaches-migraines'],
+    relatedPosts: ['cervicogenic-headache-causes-and-treatment', 'understanding-back-pain'],
+  },
 ];
 
 // Helper functions
