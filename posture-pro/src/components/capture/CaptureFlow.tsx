@@ -407,19 +407,26 @@ function CameraCapture({
       </div>
 
       <div className="relative overflow-hidden rounded-lg border border-neutral-300 bg-black">
-        {cameraActive ? (
-          <div className="relative">
-            {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              muted
-              className="block w-full"
-            />
-            <CaptureOverlay view={view} />
-          </div>
-        ) : (
+        {/*
+          The <video> stays mounted at all times, even before the camera starts, so
+          videoRef.current is already attached by the time startCamera() runs. Gating
+          this element behind `cameraActive` meant the ref was still null when
+          startCamera() checked it (cameraActive only flips true *after* that check),
+          so every attempt silently bailed out after already acquiring the camera
+          stream — hardware indicator on, UI stuck on "Camera not started".
+        */}
+        <div className={cameraActive ? 'relative' : 'hidden'}>
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video
+            ref={videoRef}
+            autoPlay
+            playsInline
+            muted
+            className="block w-full"
+          />
+          <CaptureOverlay view={view} />
+        </div>
+        {!cameraActive && (
           <div className="flex h-72 flex-col items-center justify-center gap-3 text-neutral-400">
             {cameraError ? (
               <p className="max-w-xs text-center text-sm text-red-500">{cameraError}</p>
