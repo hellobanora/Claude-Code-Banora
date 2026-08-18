@@ -3,8 +3,25 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Patient, PostureCapture } from '@/lib/models/patient';
 import type { PostureView } from '@/lib/models/landmark';
+import { checkFraming } from '@/lib/pose-detection/framing-check';
+import { withTimeout } from '@/lib/utils/with-timeout';
+
+/**
+ * Some iOS Safari configurations (Settings > Safari > Camera set to "Deny", or a Content &
+ * Privacy Restriction) don't reject getUserMedia with an error — the promise just never
+ * settles, so no permission prompt, no error, and the UI silently hangs. Cap each attempt.
+ */
+const GET_USER_MEDIA_TIMEOUT_MS = 8000;
 
 type CaptureStep = 'consent' | 'lateral' | 'ap' | 'done';
+
+interface PendingFramingIssue {
+  blob: Blob;
+  view: PostureView;
+  width: number;
+  height: number;
+  missing: string[];
+}
 
 interface CaptureFlowProps {
   patient: Patient;
@@ -18,6 +35,8 @@ export function CaptureFlow({ patient, sessionId, onCaptureComplete, saveImage, 
   const [step, setStep] = useState<CaptureStep>(patient.consentSigned ? 'lateral' : 'consent');
   const [lateralCapture, setLateralCapture] = useState<PostureCapture | null>(null);
   const [saveError, setSaveError] = useState<string | null>(null);
+  const [checkingPhoto, setCheckingPhoto] = useState(false);
+  const [framingIssue, setFramingIssue] = useState<PendingFramingIssue | null>(null);
 
   const handleConsent = useCallback(async () => {
     const updated: Patient = { ...patient, consentSigned: true, consentDate: new Date().toISOString() };
@@ -25,7 +44,7 @@ export function CaptureFlow({ patient, sessionId, onCaptureComplete, saveImage, 
     setStep('lateral');
   }, [patient, upsertPatient]);
 
-  const handleCapture = useCallback(
+  const finalizeCapture = useCallback(
     async (blob: Blob, view: PostureView, width: number, height: number) => {
       setSaveError(null);
       const imageKey = await saveImage(blob, patient.id, `${view}-${sessionId}`);
@@ -55,6 +74,38 @@ export function CaptureFlow({ patient, sessionId, onCaptureComplete, saveImage, 
     [patient.id, sessionId, saveImage, lateralCapture, onCaptureComplete]
   );
 
+  // Runs right after a photo is taken/uploaded, before it's saved: checks that the
+  // head and feet (or eyes and feet, for AP) are clearly visible, since that's what
+  // the app needs to convert pixel measurements to accurate cm figures. If something
+  // critical looks missing, we pause and let the practitioner decide whether to retake
+  // rather than silently producing an inaccurate report later.
+  const handleCapture = useCallback(
+    async (blob: Blob, view: PostureView, width: number, height: number) => {
+      setSaveError(null);
+      setCheckingPhoto(true);
+      const framing = await checkFraming(blob, view);
+      setCheckingPhoto(false);
+
+      if (!framing.ok) {
+        setFramingIssue({ blob, view, width, height, missing: framing.missing });
+        return;
+      }
+      await finalizeCapture(blob, view, width, height);
+    },
+    [finalizeCapture]
+  );
+
+  const handleRetake = useCallback(() => {
+    setFramingIssue(null);
+  }, []);
+
+  const handleUseAnyway = useCallback(async () => {
+    if (!framingIssue) return;
+    const { blob, view, width, height } = framingIssue;
+    setFramingIssue(null);
+    await finalizeCapture(blob, view, width, height);
+  }, [framingIssue, finalizeCapture]);
+
   if (step === 'consent') {
     return <ConsentGate patientName={patient.firstName} onAccept={handleConsent} />;
   }
@@ -79,11 +130,66 @@ export function CaptureFlow({ patient, sessionId, onCaptureComplete, saveImage, 
           {saveError}
         </div>
       )}
+      {checkingPhoto && (
+        <div className="rounded-lg border border-lightblue/40 bg-lightblue/5 px-4 py-3 text-sm font-medium text-midblue">
+          Checking photo for head and feet visibility…
+        </div>
+      )}
       <CameraCapture
         key={step}
         view={step}
         onCapture={(blob, w, h) => handleCapture(blob, step, w, h)}
       />
+      {framingIssue && (
+        <FramingWarningModal
+          missing={framingIssue.missing}
+          onRetake={handleRetake}
+          onUseAnyway={handleUseAnyway}
+        />
+      )}
+    </div>
+  );
+}
+
+function FramingWarningModal({
+  missing,
+  onRetake,
+  onUseAnyway,
+}: {
+  missing: string[];
+  onRetake: () => void;
+  onUseAnyway: () => void;
+}) {
+  const missingText = missing.join(' and ');
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+      <div className="w-full max-w-sm rounded-lg bg-white p-6 shadow-xl">
+        <h3 className="text-lg font-semibold text-navy">Can&apos;t clearly see the {missingText}</h3>
+        <p className="mt-2 text-sm text-neutral-700">
+          This photo doesn&apos;t clearly show the patient&apos;s {missingText}. That&apos;s what the
+          app uses to convert the measurements into accurate cm figures — without it, some findings
+          may come back blank or less accurate.
+        </p>
+        <p className="mt-2 text-sm text-neutral-500">
+          For best results, step back until the patient&apos;s head and feet both fit in frame.
+        </p>
+        <div className="mt-5 flex gap-2">
+          <button
+            type="button"
+            onClick={onRetake}
+            className="flex-1 rounded-md bg-navy px-4 py-2 text-sm font-medium text-white hover:bg-midblue"
+          >
+            Retake photo
+          </button>
+          <button
+            type="button"
+            onClick={onUseAnyway}
+            className="rounded-md border border-neutral-300 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100"
+          >
+            Use this photo anyway
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
@@ -136,17 +242,26 @@ function CameraCapture({
 
     let stream: MediaStream | null = null;
     for (const c of constraints) {
+      // If this attempt times out but the browser grants it later anyway (a delayed
+      // permission resolution), stop the orphaned stream instead of leaving the
+      // camera silently running.
+      let timedOut = false;
       try {
-        stream = await navigator.mediaDevices.getUserMedia(c);
+        const rawPromise = navigator.mediaDevices.getUserMedia(c);
+        rawPromise.then((s) => {
+          if (timedOut) s.getTracks().forEach((t) => t.stop());
+        }, () => {});
+        stream = await withTimeout(rawPromise, GET_USER_MEDIA_TIMEOUT_MS, 'getUserMedia timed out');
         break;
       } catch {
-        // try next constraint
+        timedOut = true;
       }
     }
 
     if (!stream) {
       setCameraError(
-        'Could not access camera. Check browser permissions, then try the upload option below.'
+        'Could not access camera. On iPhone, check Settings → Safari → Camera is set to ' +
+          '"Ask" or "Allow" for this site — then reload. Or use the upload option below.'
       );
       return;
     }

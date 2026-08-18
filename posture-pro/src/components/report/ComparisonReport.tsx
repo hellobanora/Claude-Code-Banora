@@ -112,10 +112,10 @@ export function ComparisonReport({ patient, sessionA, sessionB }: ComparisonRepo
         />
         <ComparisonRow
           label="Unleveling (AP)"
-          valueA={analysisA.shoulderUnlevelingMm}
-          valueB={analysisB.shoulderUnlevelingMm}
-          unit="mm"
-          decimals={1}
+          valueA={mmToCm(analysisA.shoulderUnlevelingMm)}
+          valueB={mmToCm(analysisB.shoulderUnlevelingMm)}
+          unit="cm"
+          decimals={2}
           lowerIsBetter
           useAbsolute
         />
@@ -125,10 +125,10 @@ export function ComparisonReport({ patient, sessionA, sessionB }: ComparisonRepo
         <SectionHeader title="Pelvis" />
         <ComparisonRow
           label="Unleveling (AP)"
-          valueA={analysisA.pelvicUnlevelingMm}
-          valueB={analysisB.pelvicUnlevelingMm}
-          unit="mm"
-          decimals={1}
+          valueA={mmToCm(analysisA.pelvicUnlevelingMm)}
+          valueB={mmToCm(analysisB.pelvicUnlevelingMm)}
+          unit="cm"
+          decimals={2}
           lowerIsBetter
           useAbsolute
         />
@@ -147,10 +147,10 @@ export function ComparisonReport({ patient, sessionA, sessionB }: ComparisonRepo
         />
         <ComparisonRow
           label="Lateral sway"
-          valueA={analysisA.lateralSwayMm}
-          valueB={analysisB.lateralSwayMm}
-          unit="mm"
-          decimals={1}
+          valueA={mmToCm(analysisA.lateralSwayMm)}
+          valueB={mmToCm(analysisB.lateralSwayMm)}
+          unit="cm"
+          decimals={2}
           lowerIsBetter
           useAbsolute
         />
@@ -173,6 +173,11 @@ export function ComparisonReport({ patient, sessionA, sessionB }: ComparisonRepo
       </div>
     </article>
   );
+}
+
+/** Measurements are stored internally in mm but always shown to the practitioner in cm. */
+function mmToCm(mm?: number): number | undefined {
+  return mm === undefined ? undefined : mm / 10;
 }
 
 function SectionHeader({ title }: { title: string }) {

@@ -32,13 +32,13 @@ export function FindingsPanel({ analysis }: { analysis: PostureAnalysis }) {
         <Row label="Protraction (lat)" value={fmtDeg(analysis.shoulderProtractionDeg)} />
         <Row
           label="Unleveling (AP)"
-          value={fmtMm(analysis.shoulderUnlevelingMm)}
+          value={fmtCm(analysis.shoulderUnlevelingMm)}
           severity={shoulderUnlevelingSeverity(analysis.shoulderUnlevelingMm)}
         />
       </Section>
 
       <Section title="Pelvis">
-        <Row label="Unleveling (AP)" value={fmtMm(analysis.pelvicUnlevelingMm)} />
+        <Row label="Unleveling (AP)" value={fmtCm(analysis.pelvicUnlevelingMm)} />
       </Section>
 
       <Section title="Lower limb">
@@ -52,7 +52,7 @@ export function FindingsPanel({ analysis }: { analysis: PostureAnalysis }) {
           value={fmtDeg(analysis.headTiltDeg)}
           severity={headTiltSeverity(analysis.headTiltDeg)}
         />
-        <Row label="Lateral sway" value={fmtMm(analysis.lateralSwayMm)} />
+        <Row label="Lateral sway" value={fmtCm(analysis.lateralSwayMm)} />
       </Section>
     </div>
   );
@@ -97,6 +97,7 @@ function Row({
 function fmtDeg(d?: number): string | undefined {
   return d === undefined ? undefined : `${d.toFixed(1)}°`;
 }
-function fmtMm(m?: number): string | undefined {
-  return m === undefined ? undefined : `${m.toFixed(1)} mm`;
+/** Measurements are stored internally in mm but always shown to the practitioner in cm. */
+function fmtCm(m?: number): string | undefined {
+  return m === undefined ? undefined : `${(m / 10).toFixed(2)} cm`;
 }
