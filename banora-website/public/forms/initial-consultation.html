@@ -24,8 +24,8 @@ body{font-family:'Nunito',sans-serif;background:#f0f4f8;color:#1a2e4d;min-height
 .card-title{font-family:'Playfair Display',serif;font-size:17px;color:#1a2e4d;margin-bottom:4px;}
 .card-sub{font-size:13px;color:#6b7b8d;margin-bottom:18px;}
 label.lbl{display:block;font-size:13px;font-weight:700;color:#1a2e4d;margin-bottom:5px;}
-input[type=text],input[type=date],textarea,select{width:100%;padding:11px 13px;border:1.5px solid #dde3eb;border-radius:9px;font-family:'Nunito',sans-serif;font-size:14px;color:#1a2e4d;outline:none;transition:border-color .2s;}
-input[type=text]:focus,textarea:focus{border-color:#1e3f6b;}
+input[type=text],input[type=date],input[type=email],input[type=tel],textarea,select{width:100%;padding:11px 13px;border:1.5px solid #dde3eb;border-radius:9px;font-family:'Nunito',sans-serif;font-size:14px;color:#1a2e4d;outline:none;transition:border-color .2s;}
+input[type=text]:focus,input[type=date]:focus,input[type=email]:focus,input[type=tel]:focus,textarea:focus{border-color:#1e3f6b;}
 textarea{resize:vertical;min-height:80px;}
 .field{margin-bottom:16px;}
 .opt-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
@@ -114,8 +114,13 @@ input[type=range]{width:100%;accent-color:#1e3f6b;cursor:pointer;}
   <div class="hdr"><div class="hdr-logo">🦴</div><div><h1>Initial Consultation</h1><p>Banora Chiropractic — Baseline Assessment</p></div><div class="phase-badge">Phase 0</div></div>
   <div class="card">
     <div class="card-title">Welcome to Banora Chiropractic</div>
-    <div class="card-sub">This assessment establishes your health baseline. Enter your name to begin.</div>
+    <div class="card-sub">This assessment establishes your health baseline. Enter your details to begin.</div>
     <div class="field"><label class="lbl">Your full name</label><input type="text" id="inp-name" placeholder="e.g. Sarah Johnson"></div>
+    <div class="field"><label class="lbl">Date of birth</label><input type="date" id="inp-dob"></div>
+    <div class="field"><label class="lbl">Email address</label><input type="email" id="inp-email" placeholder="e.g. sarah@email.com"></div>
+    <div class="field"><label class="lbl">Phone number</label><input type="tel" id="inp-phone" placeholder="e.g. 0412 345 678"></div>
+    <div class="field"><label class="lbl">Home address</label><input type="text" id="inp-address" placeholder="Street address, suburb, postcode"></div>
+    <div class="field"><label class="lbl">Your GP / medical centre (optional)</label><input type="text" id="inp-gp" placeholder="e.g. Dr Smith, Tweed Family Medical Centre"></div>
     <div class="ret-area" id="ret-area" style="display:none;"><div class="ret-label">Returning patient — tap to continue:</div><div class="chips" id="pchips"></div></div>
     <div class="btn-row"><button class="btn btn-primary" onclick="startSession()">Begin Assessment →</button></div>
   </div>
@@ -230,6 +235,7 @@ input[type=range]{width:100%;accent-color:#1e3f6b;cursor:pointer;}
         <label class="opt"><input type="radio" name="occupation" value="Stay at home"><span>Stay at home</span></label>
       </div>
     </div>
+    <div class="field"><label class="lbl">Job title (optional)</label><input type="text" id="jobTitle" placeholder="e.g. Registered nurse, Carpenter, Primary school teacher"></div>
     <div class="field"><label class="lbl">How much does it affect your work?</label>
       <div class="opt-grid">
         <label class="opt"><input type="radio" name="workImpact" value="Not at all"><span>Not at all</span></label>
@@ -398,15 +404,28 @@ function renderChips(){
 
 function selectPatient(k){
   pk=k;
-  document.getElementById('inp-name').value=pts[k].displayName;
-  toast('Continuing as '+pts[k].displayName);
+  const p=pts[k];
+  document.getElementById('inp-name').value=p.displayName;
+  document.getElementById('inp-dob').value=p.dob||'';
+  document.getElementById('inp-email').value=p.email||'';
+  document.getElementById('inp-phone').value=p.phone||'';
+  document.getElementById('inp-address').value=p.address||'';
+  document.getElementById('inp-gp').value=p.gp||'';
+  toast('Continuing as '+p.displayName);
 }
 
 function startSession(){
   const name=document.getElementById('inp-name').value.trim();
+  const dob=document.getElementById('inp-dob').value;
+  const email=document.getElementById('inp-email').value.trim();
+  const phone=document.getElementById('inp-phone').value.trim();
+  const address=document.getElementById('inp-address').value.trim();
+  const gp=document.getElementById('inp-gp').value.trim();
   if(!name){toast('Please enter your name');return;}
+  if(!dob||!email||!phone||!address){toast('Please fill in your date of birth, email, phone and address');return;}
   pk=name.toLowerCase().replace(/\s+/g,'_');
   if(!pts[pk])pts[pk]={displayName:name,visits:[]};
+  pts[pk].dob=dob;pts[pk].email=email;pts[pk].phone=phone;pts[pk].address=address;pts[pk].gp=gp;
   save();
   showScr('scr-s1');
 }
@@ -445,7 +464,7 @@ async function submitForm(){
     chiefComplaint:document.getElementById('chiefComplaint').value,
     duration:getRadio('duration'),onset:getChecked('onset'),locations:getChecked('location'),
     painNow,painAvg,painWorst,painTypes:getChecked('painType'),worseWith:getChecked('worse'),
-    occupation:getRadio('occupation'),workImpact:getRadio('workImpact'),dailyImpact:getRadio('dailyImpact'),
+    occupation:getRadio('occupation'),jobTitle:document.getElementById('jobTitle').value,workImpact:getRadio('workImpact'),dailyImpact:getRadio('dailyImpact'),
     activity:getRadio('activity'),sleepQ:getRadio('sleepQ'),stress,
     prevChiro:getRadio('prevChiro'),conditions:getChecked('conditions'),
     medications:document.getElementById('medications').value,imaging:getRadio('imaging'),
@@ -461,7 +480,8 @@ async function submitForm(){
   buildPrintDoc(visit,sc.overall,sc,goals,name);
   const ss=document.getElementById('sync-st');
   ss.className='sync-pill sync-pend';ss.textContent='⏳ Sending to clinic...';
-  const data={_subject:'Initial Consultation - '+name,Patient:name,Date:new Date(visit.date).toLocaleDateString('en-AU'),'Chief Complaint':visit.chiefComplaint,Duration:visit.duration,'Pain Now/Avg/Worst':painNow+'/'+painAvg+'/'+painWorst,Locations:visit.locations.join(', '),Goals:goals.join(', '),'Overall Score':sc.overall+'%','Pain Score':sc.pain+'%','Function Score':sc.func+'%','Sleep Score':sc.sleep+'%','Wellbeing Score':sc.wb+'%',Occupation:visit.occupation,'Work Impact':visit.workImpact,'Sleep Quality':visit.sleepQ,'Stress Level':stress+'/10',Motivation:motiv+'/10','Prev Chiro':visit.prevChiro,Conditions:visit.conditions.join(', '),Medications:visit.medications,Imaging:visit.imaging,Referral:visit.referral,Notes:visit.notes};
+  const p=pts[pk]||{};
+  const data={_subject:'Initial Consultation - '+name,Patient:name,'Date of Birth':p.dob?new Date(p.dob).toLocaleDateString('en-AU'):'—',Email:p.email||'—',Phone:p.phone||'—',Address:p.address||'—','GP / Medical Centre':p.gp||'—',Date:new Date(visit.date).toLocaleDateString('en-AU'),'Chief Complaint':visit.chiefComplaint,Duration:visit.duration,'Pain Now/Avg/Worst':painNow+'/'+painAvg+'/'+painWorst,Locations:visit.locations.join(', '),Goals:goals.join(', '),'Overall Score':sc.overall+'%','Pain Score':sc.pain+'%','Function Score':sc.func+'%','Sleep Score':sc.sleep+'%','Wellbeing Score':sc.wb+'%',Occupation:visit.occupation,'Job Title':visit.jobTitle||'—','Work Impact':visit.workImpact,'Sleep Quality':visit.sleepQ,'Stress Level':stress+'/10',Motivation:motiv+'/10','Prev Chiro':visit.prevChiro,Conditions:visit.conditions.join(', '),Medications:visit.medications,Imaging:visit.imaging,Referral:visit.referral,Notes:visit.notes};
   const r=await toFormspree(data);
   ss.className='sync-pill '+(r.ok?'sync-ok':'sync-fail');
   ss.textContent=r.ok?'✅ Results sent to clinic':'⚠️ '+(r.msg||'Send failed — data saved locally');
@@ -498,9 +518,10 @@ function buildPrintDoc(v,overall,sc,goals,name){
     '<div class="pr-doc">'+
     '<div class="pr-hdr"><div class="pr-logo">🦴</div><div class="pr-brand"><h2>Banora Chiropractic</h2><p>Initial Consultation Report</p></div><div class="pr-meta"><strong>'+name+'</strong>'+date+'<br>Baseline — Visit 1</div></div>'+
     '<div class="pr-overall"><div class="pr-ov-num">'+overall+'%</div><div class="pr-ov-text"><h3>Overall Health Score</h3><p>Baseline established — all future visits track from this point</p></div></div>'+
+    '<div class="pr-sec"><div class="pr-sec-title">Contact Details</div>'+row('Date of birth',pts[pk]?.dob?new Date(pts[pk].dob).toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'}):'')+row('Email',pts[pk]?.email)+row('Phone',pts[pk]?.phone)+row('Address',pts[pk]?.address)+row('GP / medical centre',pts[pk]?.gp)+'</div>'+
     '<div class="pr-scores">'+sbox('Pain Score',sc.pain)+sbox('Function Score',sc.func)+sbox('Sleep Score',sc.sleep)+sbox('Wellbeing Score',sc.wb)+'</div>'+
     '<div class="pr-sec"><div class="pr-sec-title">Chief Complaint & History</div>'+row('Chief complaint',v.chiefComplaint)+row('Duration',v.duration)+row('Onset',v.onset?.join(', '))+row('Pain locations',v.locations?.join(', '))+row('Pain now/avg/worst',v.painNow+' / '+v.painAvg+' / '+v.painWorst+' out of 10')+row('Pain types',v.painTypes?.join(', '))+row('Made worse by',v.worseWith?.join(', '))+'</div>'+
-    '<div class="pr-sec"><div class="pr-sec-title">Function & Lifestyle</div>'+row('Occupation',v.occupation)+row('Work impact',v.workImpact)+row('Daily tasks impact',v.dailyImpact)+row('Activity level',v.activity)+row('Sleep quality',v.sleepQ)+row('Stress level',v.stress+'/10')+'</div>'+
+    '<div class="pr-sec"><div class="pr-sec-title">Function & Lifestyle</div>'+row('Occupation',v.occupation)+row('Job title',v.jobTitle)+row('Work impact',v.workImpact)+row('Daily tasks impact',v.dailyImpact)+row('Activity level',v.activity)+row('Sleep quality',v.sleepQ)+row('Stress level',v.stress+'/10')+'</div>'+
     '<div class="pr-sec"><div class="pr-sec-title">Health History</div>'+row('Previous chiro care',v.prevChiro)+row('Health conditions',v.conditions?.join(', '))+row('Medications',v.medications)+row('Imaging',v.imaging)+'</div>'+
     '<div class="pr-sec"><div class="pr-sec-title">Goals & Expectations</div>'+row('Goals',goals.join(', '))+row('Success vision',v.successVision)+row('Motivation',v.motivation+'/10')+row('Referral',v.referral)+row('Notes',v.notes)+'</div>'+
     (ins?'<div class="pr-sec"><div class="pr-sec-title">Clinical Insights</div>'+ins+'</div>':'')+
