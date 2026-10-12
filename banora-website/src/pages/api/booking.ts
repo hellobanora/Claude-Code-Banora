@@ -235,6 +235,11 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     if (r.ok && result?.success !== false) {
+      // IconPractice already emails its own confirmation, so the Resend one is off by default
+      // to avoid duplicates. Set SEND_RESEND_CONFIRMATION=true in Vercel to re-enable it.
+      if (import.meta.env.SEND_RESEND_CONFIRMATION !== 'true') {
+        return json(result ?? { success: true, confirmed: true });
+      }
       // Await the send — fire-and-forget can be killed by Vercel's serverless lifecycle
       // before the Resend fetch completes. Adds ~300ms but guarantees the email actually goes.
       const email = await sendConfirmationEmail(body);
