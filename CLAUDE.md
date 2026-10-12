@@ -373,6 +373,10 @@ For large features, run `/checkpoint create <name>` after each phase completes. 
 
 Do not add Palm Beach or Shore branding, pages, or references to this project.
 
+**One approved exception:** the single "Palm Beach Chiropractic & Remedial" link in the site header
+(`banora-website/src/components/layout/Header.astro`) is intentional — keep it, but don't add any
+other Palm Beach links, pages, or content.
+
 ---
 
 ## Common Mistakes to Avoid
@@ -381,5 +385,5 @@ Do not add Palm Beach or Shore branding, pages, or references to this project.
 2. **AHPRA violations** — Never promise outcomes; always hedge with "may help" language
 3. **Breaking the booking flow** — IconPractice handles all booking; don't add custom logic
 4. **Inconsistent NAP** — Phone, address, and name must match exactly across every page
-5. **Adding Palm Beach content** — This site is Banora only
+5. **Adding Palm Beach content** — This site is Banora only (the one header link is the sole exception)
 6. **Hardcoding secrets** — All API keys go in `.env`, never in source
