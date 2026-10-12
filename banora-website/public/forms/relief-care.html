@@ -336,7 +336,7 @@ function calcScores(painNow,painWorst,painChange,dailyImpact,workImpact,sleepQ,s
   const painAdj=Math.min(100,Math.max(0,pain+(changeBonus[painChange]||0)));
   const dailyMap={'No impact — fully functional':100,'Mild impact':75,'Moderate impact':50,'Significant impact':25,'Cannot do most tasks':0};
   const workMap={'No impact':100,'Mild impact':75,'Moderate impact':50,'Significant impact':25,'Unable to work':0};
-  const func=Math.round(((dailyMap[dailyImpact]||50)+(workMap[workImpact]||50))/2);
+  const func=Math.round(((dailyMap[dailyImpact]??50)+(workMap[workImpact]??50))/2);
   const sleepMap={'Good — sleeping well':100,'Fair':65,'Poor — still woken by pain':35,'Very poor':10};
   const slp=sleepMap[sleepQ]||50;
   const moodMap={'Great — positive and hopeful':100,'Good':75,'OK — managing':50,'Low — frustrated or down':25};

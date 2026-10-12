@@ -444,7 +444,7 @@ function calcScores(painNow,painAvg,painWorst,workImpact,dailyImpact,sleepQ,stre
   const pain=Math.round(Math.max(0,(10-avgPain)/10*100));
   const workMap={'Not at all':100,'Mildly':75,'Moderately':50,'Significantly':25,'Cannot work':0};
   const dailyMap={'Not at all':100,'Mildly':75,'Moderately':50,'Significantly':25,'Cannot do most tasks':0};
-  const func=Math.round(((workMap[workImpact]||50)+(dailyMap[dailyImpact]||50))/2);
+  const func=Math.round(((workMap[workImpact]??50)+(dailyMap[dailyImpact]??50))/2);
   const sleepMap={'Good':100,'Fair':65,'Poor — woken by pain':35,'Very poor':10};
   const slp=sleepMap[sleepQ]||50;
   const wb=Math.round(((10-stress)/9*60)+((motiv-1)/9*40));
