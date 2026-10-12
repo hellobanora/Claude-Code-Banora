@@ -29,6 +29,12 @@
       "runtimeArgs": ["-m", "http.server", "8787"],
       "port": 8787,
       "cwd": "patient-forms"
+    },
+    {
+      "name": "Patient App (prod build)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "../banora-patient-app", "run", "start", "--", "-p", "3100"],
+      "port": 3100
     }
   ]
 }
