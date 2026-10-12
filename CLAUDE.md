@@ -95,9 +95,11 @@ Light grey:        #E8EDF2
 
 ### Typography
 
-- **Headings**: Playfair Display (serif, trustworthy, professional)
-- **Body**: Inter (clean, readable, accessible)
-- **Accent/callouts**: Playfair Display italic
+- **Headings**: Cormorant Garamond (serif, trustworthy, professional)
+- **Body**: Outfit (clean, readable, accessible)
+- **Accent/callouts**: Cormorant Garamond italic
+
+Both are self-hosted via `@fontsource` in `banora-website/src/styles/global.css` (the source of truth for brand tokens).
 
 ### Voice
 
@@ -354,11 +356,19 @@ For large features, run `/checkpoint create <name>` after each phase completes. 
 
 ---
 
+## Related Projects
+
+- **Patient app (PWA)** — in active development as a **separate repo**: `Desktop/banora-patient-app`
+  (GitHub `hellobanora/banora-patient-app`, live at banora-patient-app.vercel.app). Next.js + Supabase
+  (Sydney). Rehab videos, exercise tracking, forms, later messaging and appointments. Has its own
+  CLAUDE.md and brief (`docs/brief.md`) — work on it there, not in this repo.
+
+---
+
 ## Future Expansion (Do Not Build Yet)
 
 - **Palm Beach Chiropractic & Remedial** — separate project, separate repo, separate domain
 - **Lennox Head "Shore" clinic** — brand identity TBD, expansion under evaluation
-- **Patient mobile app** — React Native/Expo, exercise library, care guides, booking
 - **E-commerce** — wellness products (massage guns, posture products, digital courses)
 
 Do not add Palm Beach or Shore branding, pages, or references to this project.
