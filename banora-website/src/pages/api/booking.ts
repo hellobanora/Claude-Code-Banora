@@ -40,13 +40,14 @@ async function sendConfirmationEmail(body: any): Promise<EmailResult> {
   const apptDate = new Date(ts * 1000);
   const isNew = body.new_patient === 1 || body.new_patient === '1';
 
+  // Clinic is in NSW — must follow NSW daylight saving (not Brisbane, which has none)
   const longDate = apptDate.toLocaleString('en-AU', {
-    timeZone: 'Australia/Brisbane',
+    timeZone: 'Australia/Sydney',
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
     hour: 'numeric', minute: '2-digit', hour12: true,
   });
   const shortDate = apptDate.toLocaleDateString('en-AU', {
-    timeZone: 'Australia/Brisbane',
+    timeZone: 'Australia/Sydney',
     weekday: 'short', day: 'numeric', month: 'short',
   });
 
