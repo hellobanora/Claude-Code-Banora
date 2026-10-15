@@ -167,11 +167,55 @@ export function gradeSeverity(
 }
 
 /**
- * Calculate percentage loss from ideal.
+ * Calculate percentage deviation from ideal.
  */
 export function lossPercentage(measured: number, ideal: number): number {
   if (ideal === 0) return Math.abs(measured) * 100;
   return (Math.abs(measured - ideal) / Math.abs(ideal)) * 100;
+}
+
+/**
+ * Determine whether a measured spinal curve represents a loss of curve
+ * or excess curve relative to the ideal.
+ *
+ * For lordotic ideals (negative values like -42° cervical ARA):
+ *   - measured closer to 0 or positive = loss of lordosis
+ *   - measured further from 0 (more negative) = excess lordosis
+ */
+export function curveDeviationDirection(
+  measured: number,
+  ideal: number,
+): 'loss' | 'excess' | 'normal' {
+  const deviationPct = lossPercentage(measured, ideal);
+  if (deviationPct <= 10) return 'normal';
+  if (ideal < 0) {
+    return measured > ideal ? 'loss' : 'excess';
+  }
+  return measured < ideal ? 'loss' : 'excess';
+}
+
+/**
+ * Format ARA/lordosis deviation as patient-friendly text.
+ * Shows absolute degree value and directional loss/excess wording.
+ */
+export function formatCurveDeviation(
+  measured: number,
+  ideal: number,
+): { absAngle: string; deviationText: string } {
+  const absAngle = Math.abs(measured).toFixed(1);
+  const pct = lossPercentage(measured, ideal);
+  const direction = curveDeviationDirection(measured, ideal);
+
+  let deviationText: string;
+  if (direction === 'normal') {
+    deviationText = 'Within normal range';
+  } else if (direction === 'loss') {
+    deviationText = `${pct.toFixed(0)}% loss of normal curve`;
+  } else {
+    deviationText = `${pct.toFixed(0)}% excess curvature`;
+  }
+
+  return { absAngle, deviationText };
 }
 
 // ─── Curve Rendering Helpers ─────────────────────────────────
