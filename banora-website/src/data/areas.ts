@@ -12,6 +12,10 @@ export interface Area {
   servicesHighlight: string;
   /** True for the suburb the clinic is in — templates swap travel copy for local copy. */
   isLocal?: boolean;
+  /** Optional extra local sections (body paragraphs separated by blank lines). */
+  sections?: { heading: string; body: string }[];
+  /** Optional suburb FAQs — rendered on the page and as FAQPage schema. */
+  faqs?: { question: string; answer: string }[];
 }
 
 export const areas: Area[] = [
@@ -60,13 +64,41 @@ export const areas: Area[] = [
     name: 'Coolangatta',
     state: 'QLD',
     metaTitle: 'Chiropractor Near Coolangatta | Banora Chiropractic',
-    metaDescription: 'Chiropractor near Coolangatta. Banora Chiropractic is just 10 minutes from Coolangatta. Back pain, neck pain, sports chiropractic. Book online.',
+    metaDescription: 'Chiropractor near Coolangatta, 10 minutes south in Tweed Heads South. Care for surfers, desk workers and families. Free parking, HICAPS. Book online.',
     heroHeading: 'Chiropractor Near Coolangatta',
     distance: '7 km',
     driveTime: '10 min drive',
-    description: 'Living in Coolangatta and looking for a chiropractor? Banora Chiropractic is just 10 minutes south of the border. Many of our Coolangatta patients appreciate avoiding the busier Gold Coast clinics and enjoy our personal, unhurried approach to care.',
-    localInfo: 'An easy 10-minute drive via the Gold Coast Highway or Pacific Motorway. Cross the border and you are practically at our door — with free on-site parking waiting for you.',
-    servicesHighlight: 'Whether you have tweaked your back surfing at Snapper Rocks or your neck is stiff from working at your desk, our chiropractors can help. We treat surfers, office workers, families, and everyone in between.',
+    description: "Coolangatta and Tweed Heads are really one town with a state line running through the middle, so plenty of our patients live on the Queensland side. Banora Chiropractic is about 10 minutes south of Coolangatta, at 2/44 Greenway Drive in Tweed Heads South. Dr James Shipway and Dr Paul Cater see people from right along the southern Gold Coast, from surfers who paddle out at Snapper and Greenmount to people who work at the airport or spend their days at a desk.",
+    localInfo: "Head south through Tweed Heads and you'll reach us in around 10 minutes, depending on traffic. We're on Greenway Drive between Reece Plumbing and Border Bikes. Parking is free and right out the front, and the clinic is on the ground floor with no steps, so you won't be hunting for a park near the beach or feeding a meter.",
+    servicesHighlight: "We see a lot of the same problems from the Coolangatta side of the border: stiff necks and sore lower backs from long sessions in the surf, shoulders that have had enough of paddling, and the neck and mid-back tightness that comes with screens and desk work. We also look after families, including pregnancy and paediatric care.",
+    sections: [
+      {
+        heading: 'Surfing, swimming and sore necks',
+        body: "Paddling a board means holding your head up and your back arched for long stretches. That can load the joints and muscles of the neck, upper back and lower back, and it often shows up as stiffness the morning after a big session. Shoulders take a share of the work too.\n\nIf that sounds familiar, we'll assess how your neck, back and shoulders are moving and explain what we find. Care may include adjustments, soft tissue work and a few exercises you can do between surfs. Results vary from person to person, and we'll tell you honestly if we think you'd be better served by someone else.",
+      },
+      {
+        heading: 'Crossing the border: time zones and health cover',
+        body: "Our appointment times are NSW time. From the first Sunday in October to the first Sunday in April, NSW is on daylight saving and Queensland isn't, so a 9:00am booking with us is 8:00am in Coolangatta. Outside daylight saving, the clocks match.\n\nYour Queensland address doesn't change how you claim. We have HICAPS on-site, so private health fund rebates are processed on the spot and you only pay the gap. A Medicare care plan from your Queensland GP works here too, as does DVA cover. If you have a workers compensation or CTP claim, give us a call before your first visit and we'll check what paperwork you need.",
+      },
+    ],
+    faqs: [
+      {
+        question: 'How far is Banora Chiropractic from Coolangatta?',
+        answer: "About 7 km, or roughly a 10-minute drive south through Tweed Heads. We're at 2/44 Greenway Drive, Tweed Heads South, with free on-site parking.",
+      },
+      {
+        question: 'Are appointment times in NSW or Queensland time?',
+        answer: "NSW time. During daylight saving (October to April) NSW is an hour ahead of Coolangatta, so a 9:00am appointment is 8:00am Queensland time. For the rest of the year the times are the same.",
+      },
+      {
+        question: 'Can I claim on my Queensland health fund?',
+        answer: "Yes. Health fund rebates work the same on both sides of the border. We have HICAPS on-site, so your rebate is processed on the spot and you only pay the gap.",
+      },
+      {
+        question: 'Do I need a referral?',
+        answer: "No. You can book directly online or call us on (07) 5599 2322. If you have a Medicare care plan from your GP, bring it along.",
+      },
+    ],
   },
   {
     slug: 'palm-beach',

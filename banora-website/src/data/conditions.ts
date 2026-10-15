@@ -65,7 +65,7 @@ Once we have a clear picture of what is going on, we will explain our findings i
         answer: 'No referral is needed. Chiropractors are primary contact practitioners, which means you can book directly. If you have recent imaging, bring it along — it can be very useful. If we believe X-rays or scans are warranted after our assessment, we will refer you for the appropriate imaging.',
       },
     ],
-    relatedConditions: ['sciatica', 'neck-pain', 'hip-pain'],
+    relatedConditions: ['sciatica', 'mid-back-pain', 'neck-pain', 'hip-pain'],
     relatedServices: ['chiropractic-adjustments', 'posture-correction'],
   },
 
@@ -113,7 +113,7 @@ After the assessment, we explain what we have found in straightforward terms and
         answer: 'Clicking or popping in the neck is common and not usually a sign of anything serious. It often reflects normal movement of gas in the joint fluid, or tendons moving over bony landmarks. However, if clicking is accompanied by pain, catching, or neurological symptoms like tingling or numbness, it is worth having it assessed to understand what is happening.',
       },
     ],
-    relatedConditions: ['headaches-migraines', 'shoulder-pain', 'posture-tech-neck'],
+    relatedConditions: ['headaches-migraines', 'whiplash', 'shoulder-pain', 'posture-tech-neck'],
     relatedServices: ['chiropractic-adjustments', 'posture-correction'],
   },
 
@@ -172,8 +172,8 @@ Some people with sciatica notice improvement within a few visits. Others — par
   {
     slug: 'headaches-migraines',
     title: 'Headaches & Migraines',
-    metaTitle: 'Headache & Migraine Treatment Tweed Heads South | Banora Chiropractic',
-    metaDescription: 'Chiropractic care for headaches and migraines at Banora Chiropractic, Tweed Heads South. Cervicogenic headaches, tension headaches, and neck-related migraines assessed and treated. Book online.',
+    metaTitle: 'Headache & Migraine Chiropractor Tweed Heads | Banora Chiropractic',
+    metaDescription: 'Headache and migraine chiropractor in Tweed Heads South. We assess neck-related, tension and cervicogenic headaches and explain your options. Book online.',
     heroHeading: 'Headaches & Migraines',
     heroSubheading: 'Tired of reaching for painkillers? Many headaches start in the neck — and that is something we can assess and address.',
     icon: '🤕',
@@ -217,7 +217,7 @@ If your headaches appear to have a significant cervical or muscular component, w
         answer: 'Daily headaches are not something you should accept as normal. There are many possible causes, and persistent patterns deserve a proper assessment. We will take a thorough history, examine your neck and posture, and give you an honest view of whether chiropractic care is likely to help — or whether we think you should also see your GP.',
       },
     ],
-    relatedConditions: ['neck-pain', 'shoulder-pain', 'posture-tech-neck'],
+    relatedConditions: ['neck-pain', 'jaw-pain-tmj', 'shoulder-pain', 'posture-tech-neck'],
     relatedServices: ['chiropractic-adjustments', 'posture-correction'],
   },
 
@@ -265,7 +265,7 @@ We will explain our findings clearly and outline our recommended approach. For h
         answer: 'Trochanteric bursitis — inflammation of the bursa on the outer hip — is often associated with underlying issues in hip mechanics, lower back alignment, and surrounding muscle tension. Addressing these contributing factors through chiropractic care can form part of an effective management approach. We will give you an honest assessment of what we can and cannot help with in your specific situation.',
       },
     ],
-    relatedConditions: ['back-pain', 'sciatica'],
+    relatedConditions: ['back-pain', 'sciatica', 'knee-pain'],
     relatedServices: ['chiropractic-adjustments', 'sports-chiropractic'],
   },
 
@@ -361,7 +361,7 @@ We give practical, honest advice about training during recovery. In most cases, 
         answer: 'Chiropractors and physiotherapists have overlapping skills in many areas of musculoskeletal injury management. In many cases, chiropractic care is entirely appropriate for sports injuries. Sometimes a combined approach or a referral is the right answer — we will give you an honest assessment and work collaboratively with other practitioners where that serves your recovery best.',
       },
     ],
-    relatedConditions: ['back-pain', 'shoulder-pain', 'sciatica'],
+    relatedConditions: ['back-pain', 'shoulder-pain', 'knee-pain', 'sciatica'],
     relatedServices: ['sports-chiropractic', 'chiropractic-adjustments'],
   },
 
@@ -413,7 +413,208 @@ Improvement in posture-related pain is usually noticeable within the first few w
         answer: 'They may well be. Forward-head posture places significant tension on the muscles and joints at the base of the skull — a common driver of cervicogenic and tension-type headaches. If your headaches tend to build through the working day and are accompanied by neck stiffness or upper back tension, posture is worth investigating as a contributing factor.',
       },
     ],
-    relatedConditions: ['neck-pain', 'headaches-migraines'],
+    relatedConditions: ['neck-pain', 'headaches-migraines', 'mid-back-pain', 'jaw-pain-tmj'],
     relatedServices: ['posture-correction', 'chiropractic-adjustments'],
+  },
+  // ── Added 2026-10-15, copy reviewed by Dr James Shipway ──
+
+  {
+    slug: 'knee-pain',
+    title: 'Knee Pain',
+    metaTitle: 'Knee Pain Chiropractor Tweed Heads | Banora Chiropractic',
+    metaDescription: 'Knee pain assessment and chiropractic care in Tweed Heads South. We check the knee, hip and foot to find what is loading the joint. Book online.',
+    heroHeading: 'Knee Pain',
+    heroSubheading: "Sore knees on the stairs, after a run or first thing in the morning? Let's work out what's putting the load through them.",
+    icon: '🦵',
+    shortDescription: 'Chiropractic assessment and care for knee pain, looking at the knee itself and at the hip, foot and lower back that affect how it moves.',
+    overview: `Knee pain shows up in a lot of different ways. For some people it's an ache at the front of the knee that gets worse on stairs or after sitting through a movie. For others it's pain on the inside or outside of the knee after running, a stiff knee in the morning, or a knee that just doesn't feel trustworthy since a twist on the footy field.
+
+The knee sits between the hip and the foot, and it often takes the strain when one of those isn't moving well. Tight hips, weak glutes, flat feet or a stiff ankle can all change the way force travels through the knee. That's why we look above and below the sore spot, not just at the knee.
+
+Common causes we assess include patellofemoral pain (pain around the kneecap), iliotibial band irritation on the outside of the knee, tendon pain below the kneecap, and the general stiffness and aching that can come with age-related joint changes. Some knee problems, like a suspected ligament or meniscus tear, need imaging or a specialist opinion, and we'll tell you if we think that's the case.`,
+    symptoms: [
+      'Pain at the front of the knee, around or behind the kneecap',
+      'Pain on the inside or outside of the knee after running or walking',
+      'Knee pain going up or down stairs, squatting or kneeling',
+      'Stiffness after sitting for a while or first thing in the morning',
+      'Clicking or grinding with some aching',
+      'Knee pain that started after a change in training, footwear or activity',
+    ],
+    howWeHelp: `We start by working out where the load on your knee is coming from. That means checking how your hip, knee, ankle and foot move, watching how you squat, step and balance, and testing the strength of the muscles that control the knee.
+
+Depending on what we find, care may include gentle adjusting of the knee, hip, ankle or foot joints, soft tissue work on tight muscles around the thigh and hip, and specific strengthening exercises. Strength work matters a lot for knees, so you'll leave with a small number of exercises that suit your stage. We'll also talk about training load, footwear and how to keep doing the things you enjoy while your knee settles. Results vary between individuals, and if your knee needs imaging or a referral we'll organise it.`,
+    whatToExpect: `Your first visit starts with a conversation about how the pain started, what makes it better or worse, and what you'd like to get back to doing. We then examine your knee and the joints around it and run through some simple movement tests.
+
+We'll explain what we think is going on in plain language and suggest a plan. If something doesn't add up, such as significant swelling after an injury, a knee that locks or gives way, or pain that doesn't fit a mechanical pattern, we'll refer you for imaging or to your GP or a specialist.`,
+    faqs: [
+      {
+        question: 'Can a chiropractor help with knee pain?',
+        answer: 'Chiropractors are trained to assess and manage joints throughout the body, not just the spine. For many types of knee pain, care that looks at the knee, hip and foot together, combined with strengthening exercises, may help. We will assess your knee first and tell you honestly whether we think we can help.',
+      },
+      {
+        question: 'Why does my knee hurt when I go up and down stairs?',
+        answer: 'Stairs put a lot of load through the joint behind the kneecap. Pain on stairs is common with patellofemoral pain, and it can be influenced by hip and thigh strength and how your foot and ankle move. An assessment can help work out which of these is involved for you.',
+      },
+      {
+        question: 'Do I need a scan for my knee?',
+        answer: 'Many cases of knee pain do not need a scan. Imaging may be worth considering if you have had a significant injury, the knee is very swollen, it locks or gives way, or it is not improving as expected. If we think you need a scan, we will refer you.',
+      },
+      {
+        question: 'Should I stop running if my knee hurts?',
+        answer: 'Not always. Often the answer is to adjust how much and how often you run rather than stop completely. We can help you work out a training load your knee tolerates while it settles.',
+      },
+    ],
+    relatedConditions: ['hip-pain', 'sports-injuries', 'back-pain'],
+    relatedServices: ['sports-chiropractic', 'chiropractic-adjustments'],
+  },
+
+  {
+    slug: 'jaw-pain-tmj',
+    title: 'Jaw Pain & TMJ',
+    metaTitle: 'TMJ & Jaw Pain Chiropractor Tweed Heads | Banora Chiropractic',
+    metaDescription: 'Jaw pain, clicking or TMJ tension? Banora Chiropractic in Tweed Heads South assesses your jaw, neck and posture together. Book online.',
+    heroHeading: 'Jaw Pain & TMJ',
+    heroSubheading: 'A sore, clicking or tight jaw often travels with neck tension and headaches. We look at all three.',
+    icon: '😬',
+    shortDescription: 'Gentle chiropractic assessment and care for jaw pain, clicking and tension around the temporomandibular joint (TMJ), alongside the neck.',
+    overview: `Your temporomandibular joints (TMJs) sit just in front of your ears and work every time you talk, chew or yawn. When they're irritated you might notice aching in the jaw or cheek, clicking or popping when you open your mouth, a jaw that feels tight or tired by the end of the day, or pain that spreads towards the ear or temple.
+
+Jaw problems rarely happen on their own. Clenching or grinding, especially during stressful periods or overnight, puts constant load on the jaw muscles. Forward head posture changes where the jaw sits at rest. And the upper neck and jaw share nerve pathways, so neck stiffness and jaw pain often turn up together, sometimes with headaches as well.
+
+Chiropractors aren't dentists, and some jaw problems need dental care, such as a night splint or a bite check. What we can do is assess how your jaw, neck and posture are working together and offer gentle hands-on care for the muscles and joints involved. Where it makes sense, we'll work alongside your dentist.`,
+    symptoms: [
+      'Aching in the jaw, cheek or in front of the ear',
+      'Clicking, popping or grinding when you open or close your mouth',
+      'A jaw that feels tight, tired or hard to open fully',
+      'Pain when chewing, yawning or talking for a long time',
+      'Clenching or grinding, often noticed in the morning',
+      'Jaw pain that comes with neck stiffness or headaches',
+    ],
+    howWeHelp: `We assess how your jaw opens and closes, feel the muscles of the jaw, temple and neck, and check the movement of your upper neck and posture.
+
+Care may include gentle release of the jaw and neck muscles, low-force adjusting of the jaw and upper neck, and simple exercises to help your jaw move more smoothly. We'll also talk about habits that load the jaw, like clenching during the day, chewing gum, or how you sit at a screen. Results vary between individuals. If we think a dental opinion would help, we'll suggest it.`,
+    whatToExpect: `We'll ask about when your jaw pain started, whether you clench or grind, any dental work or injuries, and whether you get neck pain or headaches too. The examination is gentle and includes watching your jaw move, checking the muscles around it and assessing your neck.
+
+We'll explain what we find and whether we think chiropractic care is likely to be useful for you. If your jaw locks, you have significant swelling, or your symptoms point to a dental cause, we'll refer you to your dentist or GP.`,
+    faqs: [
+      {
+        question: 'Can a chiropractor help with TMJ pain?',
+        answer: 'Some people with jaw pain find gentle care for the jaw and neck muscles and joints helpful, particularly when neck tension and posture are involved. Results vary, and some jaw problems are better managed by a dentist. We will assess you and be upfront about whether we think we can help.',
+      },
+      {
+        question: 'Why does my jaw click?',
+        answer: 'Clicking usually comes from the small disc inside the joint not moving smoothly as the jaw opens and closes. Clicking on its own without pain is common and often not a concern. If it comes with pain, locking or difficulty opening your mouth, it is worth getting checked.',
+      },
+      {
+        question: 'Is my jaw pain linked to my headaches?',
+        answer: 'It can be. The jaw muscles, upper neck and head share nerve pathways, and jaw clenching can contribute to tension-type headaches. We look at the jaw and neck together for this reason.',
+      },
+      {
+        question: 'Should I see a dentist or a chiropractor?',
+        answer: 'If you grind your teeth at night, have had recent dental work, or have tooth pain, see your dentist. If your jaw pain comes with neck stiffness, posture strain or headaches, a chiropractic assessment may be useful. Many people benefit from both, and we are happy to work with your dentist.',
+      },
+    ],
+    relatedConditions: ['headaches-migraines', 'neck-pain', 'posture-tech-neck'],
+    relatedServices: ['chiropractic-adjustments', 'posture-correction'],
+  },
+
+  {
+    slug: 'whiplash',
+    title: 'Whiplash',
+    metaTitle: 'Whiplash Chiropractor Tweed Heads | Banora Chiropractic',
+    metaDescription: 'Neck pain or stiffness after a car accident? Banora Chiropractic in Tweed Heads South assesses whiplash injuries with gentle, graded care. Book online.',
+    heroHeading: 'Whiplash',
+    heroSubheading: 'Felt fine at the scene but stiff two days later? That is common after a car accident, and it is worth getting checked.',
+    icon: '🚗',
+    shortDescription: 'Gentle, graded chiropractic care for neck pain, stiffness and headaches after a car accident or similar sudden jolt.',
+    overview: `Whiplash happens when the head is thrown quickly backwards and forwards, most often in a rear-end car accident, but also in falls, contact sport or even a heavy wave. The sudden movement can strain the muscles, ligaments and joints of the neck and upper back before your body has time to brace.
+
+Symptoms often don't appear straight away. Adrenaline can mask pain at the time, and stiffness and soreness commonly build over the next day or two. You might notice a stiff, sore neck, headaches starting at the base of the skull, pain between the shoulder blades, or aching that spreads into the shoulders.
+
+Most whiplash-type injuries improve over the following weeks, and staying gently active usually helps. A careful assessment early on makes sure nothing more serious has been missed and gives you a clear plan for getting moving again. Recovery time varies a lot from person to person.`,
+    symptoms: [
+      'Neck pain and stiffness after a car accident, fall or sudden jolt',
+      'Pain that appeared or worsened a day or two after the incident',
+      'Headaches starting at the base of the skull',
+      'Pain or tightness between the shoulder blades',
+      'Reduced ability to turn your head',
+      'Aching across the shoulders or upper back',
+    ],
+    howWeHelp: `We begin with a thorough history of the incident and a careful examination, including neurological tests. If anything suggests a fracture, nerve damage or another serious injury, we refer you for imaging or to your GP before starting any hands-on care.
+
+When chiropractic care is appropriate, we keep it gentle in the early stages. Care may include low-force adjusting of the neck and upper back, soft tissue work to ease muscle guarding, and simple exercises to restore movement. We increase activity gradually as your neck settles, because getting moving again is an important part of recovery. Results vary between individuals.`,
+    whatToExpect: `At your first visit we'll go through how the accident happened, what you felt at the time and how things have changed since. We'll examine your neck, upper back and nervous system, explain what we find, and talk you through a plan.
+
+If you're making a CTP or insurance claim, bring your claim number and any paperwork you have. Your insurer or solicitor can guide you on the claim itself; our focus is on assessing and caring for your injury. If you have severe pain, numbness or weakness in your arms, or you were knocked out, see your GP or go to the emergency department first.`,
+    faqs: [
+      {
+        question: 'How soon after a car accident should I see someone?',
+        answer: 'If you have severe pain, numbness, weakness, or you were knocked out, get medical care straight away. For neck stiffness or soreness that builds over a day or two, an assessment within the first week or so is a good idea so you have a clear picture of what is going on and how to stay active.',
+      },
+      {
+        question: 'Why did my neck pain start a day after the accident?',
+        answer: 'This is common. Adrenaline can mask pain at the time, and the inflammation and muscle guarding that follow a whiplash injury often build over the next 24 to 72 hours.',
+      },
+      {
+        question: 'Is chiropractic care safe after whiplash?',
+        answer: 'We screen carefully first, including neurological tests, and refer for imaging if anything suggests a more serious injury. When care is appropriate, we use gentle, low-force techniques in the early stages and progress gradually.',
+      },
+      {
+        question: 'Can I use my CTP claim at Banora Chiropractic?',
+        answer: 'If you have an approved CTP or insurance claim, bring your claim number and any paperwork to your first visit. Call us on (07) 5599 2322 beforehand and we can check what is needed.',
+      },
+    ],
+    relatedConditions: ['neck-pain', 'headaches-migraines', 'mid-back-pain'],
+    relatedServices: ['chiropractic-adjustments'],
+  },
+
+  {
+    slug: 'mid-back-pain',
+    title: 'Mid-Back Pain',
+    metaTitle: 'Mid-Back Pain Chiropractor Tweed Heads | Banora Chiropractic',
+    metaDescription: 'Pain between the shoulder blades or across the mid-back? Banora Chiropractic in Tweed Heads South assesses the spine and ribs. Book online.',
+    heroHeading: 'Mid-Back Pain',
+    heroSubheading: 'That nagging ache between the shoulder blades that builds through the working day. Let us find out where it is coming from.',
+    icon: '🧍',
+    shortDescription: 'Chiropractic assessment and care for pain between the shoulder blades and across the mid-back, including rib and posture-related pain.',
+    overview: `Mid-back pain sits in the thoracic spine, the section between the base of your neck and the bottom of your ribcage. People usually describe it as a deep ache between the shoulder blades, a sharp catch when they twist or take a deep breath, or a band of tightness across the upper back that builds through the day.
+
+The thoracic spine is connected to your ribs, so there are a lot of small joints in this area. When some of them get stiff, the muscles around them tighten up to compensate. Long hours at a desk or on a phone, driving, heavy lifting, sleeping awkwardly and sports with a lot of twisting, like golf, tennis and paddling, are common triggers.
+
+Mid-back pain is usually mechanical, but not always. Pain in the chest or upper back can occasionally come from the heart, lungs or other organs. If your pain comes with chest pain, shortness of breath, fever, unexplained weight loss, or it's worse at night and not affected by movement, see your GP or call 000 first.`,
+    symptoms: [
+      'Aching or burning between the shoulder blades',
+      'A sharp catch when twisting, reaching or taking a deep breath',
+      'Tightness across the upper or mid-back that builds through the day',
+      'Stiffness when turning or rotating your upper body',
+      'Mid-back pain linked to desk work, driving or screen time',
+      'Pain that came on after lifting, sport or sleeping awkwardly',
+    ],
+    howWeHelp: `We assess how your mid-back, ribs, neck and shoulders are moving, and look at your posture and the positions you spend most of your day in.
+
+Care may include adjusting of stiff spinal and rib joints, soft tissue work for the muscles between and around the shoulder blades, and mobility and strengthening exercises to help your upper back move and hold you up better. We'll also suggest small changes to your desk or daily routine that may take some load off. Results vary between individuals.`,
+    whatToExpect: `Your first visit starts with questions about where the pain is, how it started, and what makes it better or worse, along with some general health questions to rule out non-mechanical causes. We then examine your spine, ribs and posture.
+
+We'll explain what we find in plain language and outline a plan. If anything suggests the pain isn't coming from your spine or muscles, we'll refer you to your GP.`,
+    faqs: [
+      {
+        question: 'What causes pain between the shoulder blades?',
+        answer: 'Common causes include stiff joints in the mid-back and ribs, tight or overworked muscles from desk work or screen time, and strain from lifting or twisting. Less often, pain in this area can come from the heart, lungs or other organs, so we always screen for that first.',
+      },
+      {
+        question: 'Can a chiropractor help with mid-back pain?',
+        answer: 'Mid-back pain is one of the problems chiropractors commonly see. Care that addresses stiff spinal and rib joints, along with exercises and posture changes, may help. We will assess you first and explain whether we think chiropractic care suits your situation.',
+      },
+      {
+        question: 'Why does my mid-back hurt when I breathe in?',
+        answer: 'The ribs move with every breath, so a stiff or irritated rib joint can catch on a deep breath. This is common and usually mechanical. However, if breathing is difficult, or you have chest pain or a fever, see a doctor straight away.',
+      },
+      {
+        question: 'Is my desk setup causing my mid-back pain?',
+        answer: 'It may be contributing. Sitting for long periods with your head and shoulders forward loads the mid-back. Screen height, chair position and regular movement breaks can all help. We can give you practical suggestions for your setup.',
+      },
+    ],
+    relatedConditions: ['neck-pain', 'posture-tech-neck', 'back-pain'],
+    relatedServices: ['chiropractic-adjustments', 'posture-correction'],
   },
 ];

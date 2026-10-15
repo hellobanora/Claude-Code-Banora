@@ -3,6 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { clinic } from '../../data/clinic';
 import { conditions } from '../../data/conditions';
 import { services } from '../../data/services';
+import { areas } from '../../data/areas';
+import { blogPosts } from '../../data/blog';
 
 export function getStaticPaths() {
   return conditions.map((condition) => ({
@@ -15,6 +17,12 @@ const { condition } = Astro.props;
 
 const relatedConditionData = conditions.filter(c => condition.relatedConditions.includes(c.slug));
 const relatedServiceData = services.filter(s => condition.relatedServices.includes(s.slug));
+
+// Published posts tagged with this condition — posts where it's the primary condition come first.
+const relatedArticles = blogPosts
+  .filter(p => p.status === 'published' && p.relatedConditions.includes(condition.slug))
+  .sort((a, b) => a.relatedConditions.indexOf(condition.slug) - b.relatedConditions.indexOf(condition.slug))
+  .slice(0, 4);
 
 const schema = [
   {
@@ -164,6 +172,38 @@ const schema = [
               <p class="text-grey-text leading-relaxed">{faq.answer}</p>
             </div>
           </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related articles -->
+  {relatedArticles.length > 0 && (
+    <section class="py-16 md:py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-semibold text-navy mb-8 text-center">More on {condition.title.toLowerCase()} from our blog</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {relatedArticles.map((post) => (
+            <a href={`/blog/${post.slug}`} class="block bg-blue-ghost/40 rounded-xl p-5 border border-blue-pale/30 hover:border-light-blue/50 transition-colors">
+              <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">{post.title}</h3>
+              <p class="text-sm text-grey-text leading-relaxed">{post.excerpt}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Suburbs -->
+  <section class="py-12 md:py-16 bg-light-grey border-t border-grey-mid/10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy mb-3">{condition.title} care near you</h2>
+      <p class="text-grey-text mb-6">Our clinic is at {clinic.address.full}. We see patients from across the Tweed Coast and southern Gold Coast, including:</p>
+      <div class="flex flex-wrap justify-center gap-2">
+        {areas.map((a) => (
+          <a href={`/areas/${a.slug}`} class="bg-white text-navy text-sm px-4 py-2 rounded-full border border-grey-mid/30 hover:border-light-blue hover:text-mid-blue transition-colors">
+            Chiropractor {a.isLocal ? 'in' : 'near'} {a.name}
+          </a>
         ))}
       </div>
     </div>

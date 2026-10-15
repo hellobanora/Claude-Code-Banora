@@ -4,6 +4,7 @@ import { clinic, practitioners, pricing } from '../../data/clinic';
 import { areas } from '../../data/areas';
 import { services } from '../../data/services';
 import { conditions } from '../../data/conditions';
+import { faqSchema } from '../../data/schema';
 
 export function getStaticPaths() {
   return areas.map((area) => ({
@@ -15,7 +16,7 @@ export function getStaticPaths() {
 const { area } = Astro.props;
 const otherAreas = areas.filter(a => a.slug !== area.slug).slice(0, 8);
 
-const schema = {
+const pageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: area.metaTitle,
@@ -29,6 +30,7 @@ const schema = {
     ],
   },
 };
+const schema = area.faqs ? [pageSchema, faqSchema(area.faqs)] : pageSchema;
 ---
 
 <BaseLayout title={area.metaTitle} description={area.metaDescription} schema={schema}>
@@ -72,6 +74,17 @@ const schema = {
             <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-3">Getting here from {area.name}</h3>
             <p class="text-grey-text leading-relaxed">{area.localInfo}</p>
           </div>
+
+          {area.sections?.map((section) => (
+            <div>
+              <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-3">{section.heading}</h3>
+              <div class="space-y-4">
+                {section.body.split('\n\n').map((para) => (
+                  <p class="text-grey-text leading-relaxed">{para}</p>
+                ))}
+              </div>
+            </div>
+          ))}
 
           <div>
             <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-3">Services for {area.name} patients</h3>
@@ -159,6 +172,23 @@ const schema = {
       </div>
     </div>
   </section>
+
+  <!-- Suburb FAQs (same list feeds the FAQPage schema) -->
+  {area.faqs && (
+    <section class="py-16 md:py-20 bg-white border-t border-grey-mid/10">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-semibold text-navy mb-8 text-center">{area.name} patients often ask</h2>
+        <div class="space-y-4">
+          {area.faqs.map((faq) => (
+            <div class="bg-blue-ghost/40 rounded-xl p-6 border border-blue-pale/30">
+              <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">{faq.question}</h3>
+              <p class="text-grey-text leading-relaxed">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- Other Areas -->
   <section class="py-16 md:py-20 bg-light-grey">
