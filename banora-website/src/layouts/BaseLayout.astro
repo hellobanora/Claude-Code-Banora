@@ -6,6 +6,7 @@ import ChatbotBooking from '../components/integrations/ChatbotBooking.astro';
 import BookingModal from '../components/integrations/BookingModal.astro';
 import '../styles/global.css';
 import { clinic } from '../data/clinic';
+import { clinicSchema } from '../data/schema';
 
 interface Props {
   title: string;
@@ -24,39 +25,6 @@ const siteUrl = clinic.website;
 const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
 const ogImg = ogImage || `${siteUrl}/images/og-default.jpg`;
 
-const localBusinessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Chiropractic',
-  name: clinic.name,
-  image: `${siteUrl}/images/clinic-adjustment-wide.webp`,
-  telephone: clinic.phone,
-  url: siteUrl,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: clinic.address.street,
-    addressLocality: clinic.address.suburb,
-    addressRegion: clinic.address.state,
-    postalCode: clinic.address.postcode,
-    addressCountry: 'AU',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: clinic.geo.latitude,
-    longitude: clinic.geo.longitude,
-  },
-  openingHoursSpecification: clinic.hoursSchema.map((h) => {
-    const [day, time] = h.split(' ');
-    const [opens, closes] = time.split('-');
-    return {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: day === 'Mo' ? 'Monday' : day === 'Tu' ? 'Tuesday' : day === 'We' ? 'Wednesday' : day === 'Th' ? 'Thursday' : day === 'Fr' ? 'Friday' : 'Saturday',
-      opens,
-      closes,
-    };
-  }),
-  priceRange: '$$',
-  paymentAccepted: clinic.payment.join(', '),
-};
 ---
 
 <!DOCTYPE html>
@@ -109,8 +77,8 @@ const localBusinessSchema = {
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- LocalBusiness Schema (every page) -->
-  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <!-- Chiropractic (LocalBusiness) schema — every page -->
+  <script type="application/ld+json" set:html={JSON.stringify(clinicSchema)} />
 
   <!-- Page-specific schema -->
   {schema && (Array.isArray(schema) ? schema : [schema]).map((s) => (

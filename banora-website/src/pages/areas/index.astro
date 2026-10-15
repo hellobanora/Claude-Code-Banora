@@ -13,22 +13,6 @@ const schema = {
         { '@type': 'ListItem', position: 2, name: 'Areas We Serve', item: `${clinic.website}/areas` },
       ],
     },
-    {
-      '@type': 'LocalBusiness',
-      '@id': clinic.website,
-      name: clinic.name,
-      telephone: clinic.phone,
-      url: clinic.website,
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: clinic.address.street,
-        addressLocality: clinic.address.suburb,
-        addressRegion: clinic.address.state,
-        postalCode: clinic.address.postcode,
-        addressCountry: 'AU',
-      },
-      areaServed: areas.map((a) => ({ '@type': 'City', name: a.name })),
-    },
   ],
 };
 ---
@@ -81,7 +65,7 @@ const schema = {
                 <h3 class="font-[family-name:var(--font-display)] font-semibold text-navy group-hover:text-mid-blue transition-colors leading-tight">
                   {area.name}
                 </h3>
-                <p class="text-xs text-grey-text mt-0.5">{area.driveTime}</p>
+                <p class="text-xs text-grey-text mt-0.5">{area.isLocal ? 'Our clinic is here' : area.driveTime}</p>
               </div>
             </div>
           </a>

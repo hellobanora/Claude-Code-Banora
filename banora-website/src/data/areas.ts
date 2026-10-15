@@ -1,6 +1,7 @@
 export interface Area {
   slug: string;
   name: string;
+  state: 'NSW' | 'QLD';
   metaTitle: string;
   metaDescription: string;
   heroHeading: string;
@@ -9,17 +10,21 @@ export interface Area {
   description: string;
   localInfo: string;
   servicesHighlight: string;
+  /** True for the suburb the clinic is in — templates swap travel copy for local copy. */
+  isLocal?: boolean;
 }
 
 export const areas: Area[] = [
   {
     slug: 'tweed-heads-south',
     name: 'Tweed Heads South',
+    state: 'NSW',
     metaTitle: 'Chiropractor Tweed Heads South | Banora Chiropractic',
     metaDescription: 'Local chiropractor in Tweed Heads South. Banora Chiropractic is located at 2/44 Greenway Drive. Over 30 years combined experience. Book online today.',
     heroHeading: 'Chiropractor in Tweed Heads South',
-    distance: 'We are here',
-    driveTime: 'You are local',
+    distance: '0 km',
+    driveTime: 'On Greenway Drive',
+    isLocal: true,
     description: 'Banora Chiropractic is proudly located right here in Tweed Heads South, at 2/44 Greenway Drive. We have been helping local families, workers, and active people feel their best for years. As your neighbourhood chiropractors, we understand the community and are committed to providing quality, personal care.',
     localInfo: 'Located on Greenway Drive between Reece Plumbing and Border Bikes, with easy on-site parking and ground-level wheelchair access. We are just minutes from Tweed City Shopping Centre and the local schools.',
     servicesHighlight: 'From back pain and neck stiffness to sports injuries and pregnancy care — we offer a full range of chiropractic services right here in your neighbourhood. No need to travel to the Gold Coast for quality care.',
@@ -27,6 +32,7 @@ export const areas: Area[] = [
   {
     slug: 'tweed-heads',
     name: 'Tweed Heads',
+    state: 'NSW',
     metaTitle: 'Chiropractor Near Tweed Heads | Banora Chiropractic',
     metaDescription: 'Looking for a chiropractor near Tweed Heads? Banora Chiropractic is just 5 minutes away in Tweed Heads South. Expert care, easy parking. Book online.',
     heroHeading: 'Chiropractor Near Tweed Heads',
@@ -39,6 +45,7 @@ export const areas: Area[] = [
   {
     slug: 'banora-point',
     name: 'Banora Point',
+    state: 'NSW',
     metaTitle: 'Chiropractor Near Banora Point | Banora Chiropractic',
     metaDescription: 'Chiropractor near Banora Point. Banora Chiropractic in Tweed Heads South is your local choice for back pain, neck pain, and family chiropractic care. Book online.',
     heroHeading: 'Chiropractor Near Banora Point',
@@ -51,6 +58,7 @@ export const areas: Area[] = [
   {
     slug: 'coolangatta',
     name: 'Coolangatta',
+    state: 'QLD',
     metaTitle: 'Chiropractor Near Coolangatta | Banora Chiropractic',
     metaDescription: 'Chiropractor near Coolangatta. Banora Chiropractic is just 10 minutes from Coolangatta. Back pain, neck pain, sports chiropractic. Book online.',
     heroHeading: 'Chiropractor Near Coolangatta',
@@ -63,6 +71,7 @@ export const areas: Area[] = [
   {
     slug: 'palm-beach',
     name: 'Palm Beach',
+    state: 'QLD',
     metaTitle: 'Chiropractor Near Palm Beach QLD | Banora Chiropractic',
     metaDescription: 'Chiropractor near Palm Beach QLD. Banora Chiropractic is a quick 12-minute drive south. Expert chiropractic care for the whole family. Book online.',
     heroHeading: 'Chiropractor Near Palm Beach',
@@ -75,6 +84,7 @@ export const areas: Area[] = [
   {
     slug: 'currumbin',
     name: 'Currumbin',
+    state: 'QLD',
     metaTitle: 'Chiropractor Near Currumbin | Banora Chiropractic',
     metaDescription: 'Chiropractor near Currumbin. Banora Chiropractic in Tweed Heads South is just 15 minutes away. Expert care for back pain, neck pain, and more. Book online.',
     heroHeading: 'Chiropractor Near Currumbin',
@@ -87,6 +97,7 @@ export const areas: Area[] = [
   {
     slug: 'elanora',
     name: 'Elanora',
+    state: 'QLD',
     metaTitle: 'Chiropractor Near Elanora | Banora Chiropractic',
     metaDescription: 'Chiropractor near Elanora QLD. Banora Chiropractic is a short drive south. Family chiropractic care for all ages. Book your appointment online.',
     heroHeading: 'Chiropractor Near Elanora',
@@ -99,6 +110,7 @@ export const areas: Area[] = [
   {
     slug: 'bilinga',
     name: 'Bilinga',
+    state: 'QLD',
     metaTitle: 'Chiropractor Near Bilinga | Banora Chiropractic',
     metaDescription: 'Chiropractor near Bilinga. Banora Chiropractic is just 8 minutes from Bilinga and Gold Coast Airport. Expert chiropractic care. Book online.',
     heroHeading: 'Chiropractor Near Bilinga',
@@ -111,6 +123,7 @@ export const areas: Area[] = [
   {
     slug: 'tugun',
     name: 'Tugun',
+    state: 'QLD',
     metaTitle: 'Chiropractor Near Tugun | Banora Chiropractic',
     metaDescription: 'Chiropractor near Tugun QLD. Banora Chiropractic is just 9 minutes south. Professional chiropractic care for back pain, neck pain, and more. Book online.',
     heroHeading: 'Chiropractor Near Tugun',
@@ -123,6 +136,7 @@ export const areas: Area[] = [
   {
     slug: 'kirra',
     name: 'Kirra',
+    state: 'QLD',
     metaTitle: 'Chiropractor Near Kirra | Banora Chiropractic',
     metaDescription: 'Chiropractor near Kirra Beach. Banora Chiropractic is just 9 minutes south in Tweed Heads South. Experienced chiropractic care. Book online today.',
     heroHeading: 'Chiropractor Near Kirra',
@@ -135,6 +149,7 @@ export const areas: Area[] = [
   {
     slug: 'burleigh-heads',
     name: 'Burleigh Heads',
+    state: 'QLD',
     metaTitle: 'Chiropractor Near Burleigh Heads | Banora Chiropractic',
     metaDescription: 'Chiropractor near Burleigh Heads. Banora Chiropractic is 20 minutes south in Tweed Heads South. Expert care, easy parking, no crowds. Book online.',
     heroHeading: 'Chiropractor Near Burleigh Heads',
@@ -147,6 +162,7 @@ export const areas: Area[] = [
   {
     slug: 'terranora',
     name: 'Terranora',
+    state: 'NSW',
     metaTitle: 'Chiropractor Near Terranora | Banora Chiropractic',
     metaDescription: 'Chiropractor near Terranora NSW. Banora Chiropractic in Tweed Heads South is just 8 minutes away. Family chiropractic care. Book online.',
     heroHeading: 'Chiropractor Near Terranora',
@@ -159,6 +175,7 @@ export const areas: Area[] = [
   {
     slug: 'chinderah',
     name: 'Chinderah',
+    state: 'NSW',
     metaTitle: 'Chiropractor Near Chinderah | Banora Chiropractic',
     metaDescription: 'Chiropractor near Chinderah NSW. Banora Chiropractic is just 10 minutes south. Experienced chiropractors for the whole family. Book online.',
     heroHeading: 'Chiropractor Near Chinderah',
@@ -171,6 +188,7 @@ export const areas: Area[] = [
   {
     slug: 'kingscliff',
     name: 'Kingscliff',
+    state: 'NSW',
     metaTitle: 'Chiropractor Near Kingscliff | Banora Chiropractic',
     metaDescription: 'Chiropractor near Kingscliff NSW. Banora Chiropractic is 15 minutes south in Tweed Heads South. Expert chiropractic care for all ages. Book online.',
     heroHeading: 'Chiropractor Near Kingscliff',
@@ -183,6 +201,7 @@ export const areas: Area[] = [
   {
     slug: 'casuarina',
     name: 'Casuarina',
+    state: 'NSW',
     metaTitle: 'Chiropractor Near Casuarina | Banora Chiropractic | Tweed Heads South',
     metaDescription: 'Chiropractor near Casuarina NSW. Banora Chiropractic is just 10 minutes south in Tweed Heads South. Expert chiropractic care for back pain, neck pain, and more. Book online.',
     heroHeading: 'Chiropractor Near Casuarina',
@@ -195,6 +214,7 @@ export const areas: Area[] = [
   {
     slug: 'murwillumbah',
     name: 'Murwillumbah',
+    state: 'NSW',
     metaTitle: 'Chiropractor Near Murwillumbah | Banora Chiropractic | Tweed Heads South',
     metaDescription: 'Chiropractor near Murwillumbah NSW. Banora Chiropractic in Tweed Heads South offers expert chiropractic care for back pain, neck pain, and family health. Book online.',
     heroHeading: 'Chiropractor Near Murwillumbah',

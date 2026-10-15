@@ -1,44 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { clinic } from '../../data/clinic';
+import { clinic, practitioners } from '../../data/clinic';
+import { practitionerSchema } from '../../data/schema';
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'Physician',
-  name: 'Dr Paul Cater',
-  honorificPrefix: 'Dr',
-  jobTitle: 'Chiropractor',
-  hasCredential: [
-    {
-      '@type': 'EducationalOccupationalCredential',
-      credentialCategory: 'Bachelor of Chiropractic Science',
-      educationalLevel: 'Degree',
-      recognizedBy: { '@type': 'CollegeOrUniversity', name: 'Macquarie University' },
-    },
-    {
-      '@type': 'EducationalOccupationalCredential',
-      credentialCategory: 'Master of Chiropractic',
-      educationalLevel: 'Masters',
-      recognizedBy: { '@type': 'CollegeOrUniversity', name: 'Macquarie University' },
-    },
-  ],
-  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Macquarie University' },
-  worksFor: {
-    '@type': 'Chiropractic',
-    name: clinic.name,
-    url: clinic.website,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: clinic.address.street,
-      addressLocality: clinic.address.suburb,
-      addressRegion: clinic.address.state,
-      postalCode: clinic.address.postcode,
-      addressCountry: 'AU',
-    },
-  },
-  url: `${clinic.website}/team/dr-paul-cater`,
-  image: `${clinic.website}/images/dr-paul-cater-v2.webp`,
-};
+const practitioner = practitioners.find((p) => p.slug === 'dr-paul-cater')!;
+const schema = practitionerSchema(practitioner);
 ---
 
 <BaseLayout

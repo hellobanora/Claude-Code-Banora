@@ -14,8 +14,8 @@ export const clinic = {
     full: '2/44 Greenway Drive, Tweed Heads South NSW 2486',
   },
   geo: {
-    latitude: -28.1894,
-    longitude: 153.5375,
+    latitude: -28.205742,
+    longitude: 153.535676,
   },
   hours: [
     { day: 'Monday', open: '8:30am', close: '6:00pm' },
@@ -37,13 +37,14 @@ export const clinic = {
   social: {
     facebook: 'https://www.facebook.com/banorachiro',
     instagram: 'https://www.instagram.com/banorachiropractic',
+    google: 'https://maps.google.com/?cid=10795807885624998298',
   },
   parking: 'On-site parking available, ground level, no steps',
   accessibility: 'Wheelchair accessible, no steps',
   landmark: 'Between Reece Plumbing and Border Bikes',
   payment: ['HICAPS', 'EFTPOS', 'EPC Medicare', 'DVA', 'WorkCover', 'Insurance'],
   formspreeEndpoint: 'https://formspree.io/f/mpqjeego',
-  googleMapsEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3523.8!2d153.537!3d-28.189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBanora+Chiropractic!5e0!3m2!1sen!2sau!4v1',
+  googleMapsEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3523.8!2d153.535676!3d-28.205742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b90ff9842e30eeb%3A0x95d26a12c609f99a!2sBanora+Chiropractic!5e0!3m2!1sen!2sau',
 };
 
 export const practitioners = [
@@ -52,6 +53,8 @@ export const practitioners = [
     slug: 'dr-james-shipway',
     photo: '/images/dr-james-shipway-v2.webp',
     qualifications: 'B.Sc.Chiro. & M.Chiro',
+    university: 'Macquarie University',
+    graduationYear: 2011,
     role: 'Chiropractor & Co-founder',
     initials: 'JS',
     techniques: ['Diversified', 'Thompson Drop-Piece', 'Arthrostim', 'Pregnancy', 'Sports Injuries', 'Soft Tissue Therapy', 'Sacro-Occipital Technique (SOT)'],
@@ -63,6 +66,8 @@ export const practitioners = [
     slug: 'dr-paul-cater',
     photo: '/images/dr-paul-cater-v2.webp',
     qualifications: 'B.Sc.Chiro. & M.Chiro',
+    university: 'Macquarie University',
+    graduationYear: 2005,
     role: 'Chiropractor & Co-founder',
     initials: 'PC',
     techniques: ['Diversified', 'Gonstead', 'Thompson Drop-Piece', 'Sacro-Occipital Technique (SOT)', 'Pregnancy & Paediatric-Specific'],
