@@ -34,13 +34,18 @@ const openingHours = clinic.hoursSchema.map((entry) => {
   return { '@type': 'OpeningHoursSpecification', dayOfWeek: DAY_NAMES[day], opens, closes };
 });
 
-/** Sitewide Chiropractic (LocalBusiness) entity — rendered on every page by BaseLayout. */
+/**
+ * Sitewide clinic entity — rendered on every page by BaseLayout.
+ * Note: schema.org "Chiropractic" is a medical specialty, not a business type, so the clinic is a
+ * MedicalClinic (a LocalBusiness subtype) with Chiropractic as its specialty.
+ */
 export const clinicSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Chiropractic',
+  '@type': 'MedicalClinic',
   '@id': CLINIC_ID,
   name: clinic.name,
   url: clinic.website,
+  medicalSpecialty: 'https://schema.org/Chiropractic',
   logo: `${clinic.website}/images/logo-square.png`,
   image: `${clinic.website}/images/clinic-adjustment-wide.webp`,
   description:
@@ -71,7 +76,7 @@ export function practitionerSchema(p: Practitioner) {
     description: p.shortBio,
     url: practitionerUrl(p),
     image: `${clinic.website}${p.photo}`,
-    worksFor: { '@type': 'Chiropractic', '@id': CLINIC_ID, name: clinic.name },
+    worksFor: { '@type': 'MedicalClinic', '@id': CLINIC_ID, name: clinic.name },
     workLocation: { '@type': 'Place', name: clinic.name, address: postalAddress },
     alumniOf: { '@type': 'CollegeOrUniversity', name: p.university },
     hasCredential: [
