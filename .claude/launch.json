@@ -35,6 +35,13 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "../banora-patient-app", "run", "start", "--", "-p", "3100"],
       "port": 3100
+    },
+    {
+      "name": "ROF Builder",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "-l", "8788"],
+      "port": 8788,
+      "cwd": "rof-builder"
     }
   ]
 }

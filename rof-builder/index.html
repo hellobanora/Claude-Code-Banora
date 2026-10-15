@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report of Findings Builder — Banora Chiropractic</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1a2e4d;--navy-mid:#1e3f6b;--navy-light:#2d5a8e;
+  --blue:#4a90c4;--blue-lt:#7ab8e0;--blue-pale:#eaf4fb;
+  --grey:#6b7b8d;--grey-lt:#e8edf3;--bg:#f4f7fa;--white:#fff;--r:14px;
+  --g:#2e7d52;--g2:#52b788;--m:#c07800;--m2:#e9b949;--rd:#c0392b;--rd2:#e74c3c;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--navy);min-height:100vh;}
+.wrap{max-width:760px;margin:0 auto;padding:20px 16px 60px;}
+.scr{display:none;}.scr.active{display:block;}
+.hdr{background:linear-gradient(135deg,var(--navy),var(--navy-mid));border-radius:14px;padding:20px 22px;margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+.hdr-logo{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.hdr h1{font-family:'Playfair Display',serif;font-size:19px;color:#fff;margin-bottom:2px;}
+.hdr p{font-size:12px;color:rgba(255,255,255,.7);}
+.phase-badge{margin-left:auto;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:#fff;white-space:nowrap;}
+.prog-wrap{margin-bottom:18px;}
+.prog-label{font-size:12px;color:var(--grey);margin-bottom:6px;display:flex;justify-content:space-between;}
+.prog-bar{height:6px;background:var(--grey-lt);border-radius:10px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--navy),var(--blue));border-radius:10px;transition:width .4s;}
+.card{background:var(--white);border-radius:12px;padding:20px;margin-bottom:16px;border:1.5px solid var(--grey-lt);box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.card-title{font-family:'Playfair Display',serif;font-size:17px;color:var(--navy);margin-bottom:4px;}
+.card-sub{font-size:13px;color:var(--grey);margin-bottom:16px;}
+label.lbl{display:block;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:5px;}
+input[type=text],input[type=date],textarea{width:100%;padding:11px 13px;border:1.5px solid var(--grey-lt);border-radius:9px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--navy);outline:none;}
+textarea{resize:vertical;min-height:60px;}
+.field{margin-bottom:16px;}
+.opt-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+.opt{display:flex;align-items:center;gap:6px;background:#f4f7fa;border:1.5px solid var(--grey-lt);border-radius:8px;padding:8px 13px;cursor:pointer;font-size:13px;font-weight:600;transition:all .15s;user-select:none;}
+.opt.sel{background:var(--blue-pale);border-color:var(--navy-mid);color:var(--navy-mid);}
+.opt.big{padding:12px 16px;font-size:14px;}
+.diag-grid{display:flex;flex-direction:column;gap:6px;}
+.sub-label{font-family:'Playfair Display',serif;font-size:12.5px;color:var(--navy-mid);margin:10px 0 2px;font-weight:600;}
+.sub-label:first-child{margin-top:0;}
+.tag-star{color:var(--blue);font-size:11px;margin-left:2px;}
+.diag-btn{display:flex;align-items:center;gap:10px;text-align:left;background:#fff;border:1.5px solid var(--grey-lt);border-radius:9px;padding:10px 13px;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--navy);transition:all .15s;}
+.diag-btn:hover{border-color:var(--blue-lt);background:var(--blue-pale);}
+.diag-btn.added{background:var(--blue-pale);border-color:var(--navy-mid);}
+.diag-btn .plus{margin-left:auto;font-size:16px;color:var(--blue);flex-shrink:0;}
+.tray{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;min-height:0;}
+.tray-empty{font-size:12.5px;color:var(--grey);font-style:italic;}
+.tray-chip{display:flex;align-items:center;gap:8px;background:var(--navy);color:#fff;border-radius:20px;padding:6px 8px 6px 14px;font-size:12.5px;font-weight:600;}
+.tray-chip .sev{border:none;background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px;cursor:pointer;}
+.tray-chip .sev.mild{background:var(--g2);color:#06301b;}
+.tray-chip .sev.moderate{background:var(--m2);color:#4a2e00;}
+.tray-chip .sev.marked{background:var(--rd2);color:#420a05;}
+.tray-chip .x{cursor:pointer;background:rgba(255,255,255,.18);width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;}
+.stepper{display:flex;align-items:center;gap:10px;}
+.stepper button{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--grey-lt);background:#fff;font-size:17px;font-weight:700;color:var(--navy-mid);cursor:pointer;}
+.stepper .val{font-size:18px;font-weight:700;color:var(--navy);min-width:28px;text-align:center;}
+.btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;}
+.btn{padding:12px 24px;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;}
+.btn-primary{background:linear-gradient(135deg,var(--navy),var(--navy-mid));color:#fff;box-shadow:0 4px 12px rgba(26,46,77,.25);}
+.btn-primary:disabled{opacity:.45;cursor:not-allowed;}
+.btn-primary:hover:not(:disabled){transform:translateY(-1px);}
+.btn-sec{background:#fff;color:var(--navy);border:2px solid var(--grey-lt);}
+.edit-link{font-size:12px;font-weight:700;color:var(--blue);cursor:pointer;background:none;border:none;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy);color:#fff;padding:10px 20px;border-radius:30px;font-size:13px;font-weight:600;opacity:0;transition:all .3s;z-index:100;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+@media print{body>*:not(#print-area){display:none!important;}#print-area{display:block!important;}}
+@media screen{#print-area{display:none;}}
+.pr-doc{font-family:'Nunito',sans-serif;color:var(--navy);max-width:780px;margin:0 auto;padding:28px;font-size:12.5px;line-height:1.6;}
+.pr-hdr{display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--navy);padding-bottom:12px;margin-bottom:16px;}
+.pr-logo{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-mid));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.pr-brand h2{font-family:'Playfair Display',serif;font-size:17px;color:var(--navy);}
+.pr-brand p{font-size:10px;color:var(--grey);text-transform:uppercase;letter-spacing:.8px;}
+.pr-meta{margin-left:auto;text-align:right;font-size:11px;color:var(--grey);}
+.pr-meta strong{display:block;font-size:13px;color:var(--navy);}
+.pr-sec{margin-bottom:14px;}
+.pr-sec-title{font-family:'Playfair Display',serif;font-size:14px;color:var(--navy);border-bottom:1px solid var(--grey-lt);padding-bottom:3px;margin-bottom:8px;}
+.pr-finding{display:flex;gap:8px;align-items:flex-start;padding:5px 0;font-size:12.5px;}
+.pr-dot{width:9px;height:9px;border-radius:50%;margin-top:3px;flex-shrink:0;}
+.pr-dot.mild{background:var(--g2);}.pr-dot.moderate{background:var(--m2);}.pr-dot.marked{background:var(--rd2);}
+.pr-foot{margin-top:16px;border-top:1px solid var(--grey-lt);padding-top:7px;display:flex;justify-content:space-between;font-size:10px;color:#b8c4ce;}
+.print-screen .pr-doc{background:#fff;border-radius:12px;border:1.5px solid var(--grey-lt);box-shadow:0 2px 8px rgba(0,0,0,.05);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- START -->
+<div class="scr active" id="scr-start">
+  <div class="hdr"><div class="hdr-logo">📋</div><div><h1>Report of Findings Builder</h1><p>Banora Chiropractic — Clinician Tool</p></div></div>
+  <div class="card" id="resume-banner" style="display:none;border:2px solid var(--navy-mid);">
+    <div class="card-title" style="font-size:15px;">Unsaved report found</div>
+    <div class="card-sub" id="resume-text" style="margin-bottom:10px;"></div>
+    <div class="btn-row" style="justify-content:flex-start;margin-top:0;">
+      <button class="btn btn-primary" id="btn-resume">Resume Report</button>
+      <button class="btn btn-sec" id="btn-discard">Discard</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">New Report</div>
+    <div class="card-sub">Tap through findings, diagnosis and plan — the patient report builds itself.</div>
+    <div class="field"><label class="lbl">Patient name</label><input type="text" id="inp-name" placeholder="e.g. Sarah Johnson"></div>
+    <div class="field"><label class="lbl">Practitioner</label>
+      <div class="opt-grid" id="prac-grid">
+        <label class="opt big"><input type="radio" name="prac" value="Dr James Shipway" style="display:none"><span>Dr James Shipway</span></label>
+        <label class="opt big"><input type="radio" name="prac" value="Dr Paul Cater" style="display:none"><span>Dr Paul Cater</span></label>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="startReport()">Begin Report →</button></div>
+  </div>
+</div>
+
+<!-- FINDINGS -->
+<div class="scr" id="scr-findings">
+  <div class="hdr"><div class="hdr-logo">🔍</div><div><h1>Findings</h1><p>Step 1 of 3</p></div><div class="phase-badge">Findings</div></div>
+  <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:33%"></div></div></div>
+  <div class="card">
+    <div class="card-title">Build a finding</div>
+    <div class="card-sub">Tap a type, a region, a level/side if relevant, then add</div>
+    <div class="field"><label class="lbl">Type</label><div class="opt-grid" id="type-grid"></div></div>
+    <div class="field" id="quality-field" style="display:none;"><label class="lbl">Pain quality (optional, select all that apply)</label><div class="opt-grid" id="quality-grid"></div></div>
+    <div class="field"><label class="lbl">Region</label><div class="opt-grid" id="region-grid"></div></div>
+    <div class="field" id="level-field" style="display:none;"><label class="lbl">Level</label><div class="opt-grid" id="level-grid"></div></div>
+    <div class="field"><label class="lbl">Side (optional)</label><div class="opt-grid" id="side-grid"></div></div>
+    <div class="field"><label class="lbl">Severity</label><div class="opt-grid" id="sev-grid"></div></div>
+    <div class="btn-row" style="margin-top:4px;"><button class="btn btn-primary" id="btn-add-finding" onclick="addFindingFromComposer()" disabled>+ Add Finding</button></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Findings added</div>
+    <div class="tray" id="findings-tray"><span class="tray-empty">No findings added yet.</span></div>
+    <div class="field" style="margin-top:14px;"><label class="lbl">Other finding (optional, free text)</label><input type="text" id="inp-other-finding" placeholder="Only if nothing above fits" oninput="rof.otherFinding=this.value;saveDraft();"></div>
+    <div class="btn-row"><button class="btn btn-sec" onclick="showScr('scr-start')">← Back</button><button class="btn btn-primary" id="btn-to-diag" onclick="goToDiagnosis()" disabled>Next: Diagnosis →</button></div>
+  </div>
+</div>
+
+<!-- DIAGNOSIS -->
+<div class="scr" id="scr-diagnosis">
+  <div class="hdr"><div class="hdr-logo">🩺</div><div><h1>Diagnosis</h1><p>Step 2 of 3</p></div><div class="phase-badge">Diagnosis</div></div>
+  <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:66%"></div></div></div>
+  <div class="card">
+    <div class="card-title">Overall presentation</div>
+    <div class="card-sub">Optional — shapes the opening line of "What This Means"</div>
+    <div class="opt-grid" id="acuity-grid"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Clinical impression</div>
+    <div class="card-sub">Filtered to the regions in your findings — tap "Show all" if you need more</div>
+    <div class="tray" id="diag-tray"><span class="tray-empty">No diagnosis added yet.</span></div>
+    <div class="diag-grid" id="diag-list"></div>
+    <div class="field" style="margin-top:10px;"><label class="opt" style="display:inline-flex;"><input type="checkbox" id="chk-show-all" onclick="renderDiagnosisOptions()" style="display:inline;width:auto;margin:0 6px 0 0;"><span>Show all diagnoses (not just filtered regions)</span></label></div>
+    <div class="btn-row"><button class="btn btn-sec" onclick="showScr('scr-findings')">← Back</button><button class="btn btn-primary" id="btn-to-plan" onclick="goToPlan()" disabled>Next: Care Plan →</button></div>
+  </div>
+</div>
+
+<!-- PLAN -->
+<div class="scr" id="scr-plan">
+  <div class="hdr"><div class="hdr-logo">🗓️</div><div><h1>Care Plan</h1><p>Step 3 of 3</p></div><div class="phase-badge">Care Plan</div></div>
+  <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div></div>
+  <div class="card">
+    <div class="card-title">Phase of care</div>
+    <div class="card-sub">★ marks the phase suggested by the presentation you selected</div>
+    <div class="opt-grid" id="phase-grid"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Visit frequency</div>
+    <div class="field"><label class="lbl">Visits</label><div class="stepper"><button onclick="stepPlan('visits',-1)">−</button><span class="val" id="val-visits">3</span><button onclick="stepPlan('visits',1)">+</button></div></div>
+    <div class="field"><label class="lbl">Frequency</label><div class="opt-grid" id="unit-grid"></div></div>
+    <div class="field"><label class="opt" style="display:inline-flex;"><input type="checkbox" id="chk-ongoing" onclick="toggleOngoing()" style="display:inline;width:auto;margin:0 6px 0 0;"><span>Ongoing — no fixed end date</span></label></div>
+    <div class="field" id="duration-field"><label class="lbl">Duration (weeks, then reassess)</label><div class="stepper"><button onclick="stepPlan('duration',-1)">−</button><span class="val" id="val-duration">2</span><button onclick="stepPlan('duration',1)">+</button></div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Techniques</div>
+    <div class="card-sub">★ marks techniques suggested by your findings</div>
+    <div class="opt-grid" id="tech-grid"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Adjuncts & home care</div>
+    <div class="card-sub">★ marks options suggested by your findings and diagnosis</div>
+    <div class="opt-grid" id="adjunct-grid"></div>
+  </div>
+  <div class="btn-row"><button class="btn btn-sec" onclick="showScr('scr-diagnosis')">← Back</button><button class="btn btn-primary" onclick="goToReview()">Generate Report →</button></div>
+</div>
+
+<!-- REVIEW -->
+<div class="scr print-screen" id="scr-review">
+  <div class="hdr"><div class="hdr-logo">✅</div><div><h1>Review & Print</h1><p>Report ready</p></div></div>
+  <div class="card" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+    <button class="edit-link" onclick="showScr('scr-findings')">✎ Edit findings</button>
+    <button class="edit-link" onclick="showScr('scr-diagnosis')">✎ Edit diagnosis</button>
+    <button class="edit-link" onclick="showScr('scr-plan')">✎ Edit plan</button>
+  </div>
+  <div id="report-preview"></div>
+  <div class="btn-row" style="justify-content:center;flex-wrap:wrap;">
+    <button class="btn btn-primary" onclick="window.print()">🖨️ Print / Save PDF</button>
+    <button class="btn btn-sec" onclick="newReport()">+ New Report</button>
+  </div>
+</div>
+
+</div>
+<div id="print-area"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const SK='banora_rof_pts';
+function loadPts(){try{return JSON.parse(localStorage.getItem(SK)||'{}')}catch(e){return{}}}
+function savePts(){try{localStorage.setItem(SK,JSON.stringify(pts))}catch(e){}}
+function showScr(id){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
+
+let pts=loadPts();
+let pk=null;
+const adj={mild:'a mild',moderate:'a moderate',marked:'a significant'};
+const sevOrder=['mild','moderate','marked'];
+const joinWords=arr=>arr.length<=1?(arr[0]||''):arr.slice(0,-1).join(', ')+' and '+arr[arr.length-1];
+
+const PAIN_QUALITIES=[
+  {id:'dull',label:'Dull / Aching',plain:'dull, aching'},
+  {id:'sharp',label:'Sharp / Stabbing',plain:'sharp, stabbing'},
+  {id:'burning',label:'Burning',plain:'burning'},
+  {id:'throbbing',label:'Throbbing',plain:'throbbing'},
+  {id:'shooting',label:'Shooting / Radiating',plain:'shooting, radiating'},
+  {id:'electric',label:'Electric / Shock-like',plain:'electric, shock-like'},
+  {id:'numbness',label:'Numbness / Tingling',plain:'numb, tingling'},
+  {id:'stiffness',label:'Stiffness',plain:'stiff'},
+  {id:'constant',label:'Constant',plain:'constant'},
+  {id:'intermittent',label:'Intermittent (comes and goes)',plain:'comes and goes'},
+];
+
+const CERVICAL_LEVELS=['C1','C2','C3','C4','C5','C6','C7','Multiple levels'];
+const THORACIC_LEVELS=['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12','Multiple levels'];
+const LUMBAR_LEVELS=['L1','L2','L3','L4','L5','Multiple levels'];
+
+const REGIONS=[
+  {id:'cervical',label:'Cervical',icon:'🦴',plain:'your neck',levels:CERVICAL_LEVELS},
+  {id:'thoracic',label:'Thoracic',icon:'🦴',plain:'your mid back',levels:THORACIC_LEVELS},
+  {id:'lumbar',label:'Lumbar',icon:'🦴',plain:'your lower back',levels:LUMBAR_LEVELS},
+  {id:'si',label:'SI / Pelvis',icon:'🦴',plain:'your pelvis (SI joint)',levels:null},
+  {id:'hip',label:'Hip',icon:'🦵',plain:'your hip',levels:null},
+  {id:'knee',label:'Knee',icon:'🦵',plain:'your knee',levels:null},
+  {id:'ankle',label:'Ankle / Foot',icon:'🦶',plain:'your ankle/foot',levels:null},
+  {id:'shoulder',label:'Shoulder',icon:'💪',plain:'your shoulder',levels:null},
+  {id:'elbow',label:'Elbow',icon:'💪',plain:'your elbow',levels:null},
+  {id:'wrist',label:'Wrist / Hand',icon:'✋',plain:'your wrist/hand',levels:null},
+  {id:'headache',label:'Head / Headache',icon:'🧠',plain:'your head',levels:null},
+];
+
+const FINDING_TYPES=[
+  {id:'pain',label:'Pain',patient:(sev,loc,qualities)=>{
+    const qText=(qualities&&qualities.length)?` that feels ${joinWords(qualities)}`:'';
+    return `You reported ${adj[sev]} level of pain in ${loc}${qText}.`;
+  }},
+  {id:'restricted',label:'Restricted Movement',patient:(sev,loc)=>`We found ${adj[sev]} restriction of movement in ${loc}.`},
+  {id:'decROM',label:'Decreased ROM',patient:(sev,loc)=>`We measured ${adj[sev]} reduction in your range of motion in ${loc}.`},
+  {id:'weakness',label:'Weakness',patient:(sev,loc)=>`We found ${adj[sev]} degree of muscle weakness around ${loc}.`},
+  {id:'spasm',label:'Muscle Spasm / Guarding',patient:(sev,loc)=>`There was ${adj[sev]} amount of muscle spasm and guarding around ${loc}.`},
+  {id:'nerve',label:'Nerve Irritation',patient:(sev,loc)=>`Testing suggested ${adj[sev]} degree of nerve irritation related to ${loc}.`},
+  {id:'tenderness',label:'Tenderness',patient:(sev,loc)=>`There was ${adj[sev]} amount of tenderness on palpation around ${loc}.`},
+  {id:'jointrestriction',label:'Joint Restriction',patient:(sev,loc)=>`There was ${adj[sev]} degree of joint restriction around ${loc}.`},
+  {id:'posture',label:'Postural Change',patient:(sev,loc)=>`We observed ${adj[sev]} postural change around ${loc}.`},
+  {id:'positivetest',label:'Positive Orthopedic Test',patient:(sev,loc)=>`A specific test reproduced your symptoms around ${loc} (${adj[sev]} response), helping confirm the area involved.`},
+];
+const SIDES=['Left','Right','Bilateral'];
+
+const DIAGNOSES=[
+  {id:'d1',regions:['cervical'],triggerTypes:['restricted','decROM','jointrestriction'],clinical:'Cervical segmental dysfunction (mechanical neck pain)',patient:'Your neck pain appears to be coming from reduced movement and irritation in the small joints and surrounding muscles of your neck — a common, mechanical pattern that most people respond well to with care.'},
+  {id:'d2',regions:['cervical','headache'],triggerTypes:['nerve','tenderness'],clinical:'Cervicogenic headache',patient:'Your headaches appear to be linked to tension and restricted movement in your upper neck, rather than originating in your head itself.'},
+  {id:'d14',regions:['headache'],clinical:'Tension-type headache pattern',patient:'Your headaches appear more consistent with muscular tension through your neck and shoulders, rather than being joint-related.'},
+  {id:'d3',regions:['thoracic'],triggerTypes:['restricted','decROM','jointrestriction'],clinical:'Thoracic segmental dysfunction',patient:'Your mid-back discomfort appears to be related to restricted movement in the joints and muscles of your upper/mid spine.'},
+  {id:'d4',regions:['lumbar'],triggerTypes:['restricted','decROM','jointrestriction'],clinical:'Lumbar segmental dysfunction (mechanical low back pain)',patient:'Your lower back pain appears to be a mechanical pattern — related to reduced movement and muscle guarding in the joints of your lower back, rather than anything more serious.'},
+  {id:'d5',regions:['lumbar'],triggerTypes:['nerve'],clinical:'Lumbar disc-related pain pattern (non-specific)',patient:'Your symptoms show some features consistent with the discs of your lower back being involved. This is a common finding, and most people see good improvement with a structured care plan.'},
+  {id:'d6',regions:['lumbar','si','hip'],triggerTypes:['nerve'],clinical:'Sciatica-type nerve referral pattern',patient:'Some of your leg symptoms appear to be coming from irritation of a nerve as it exits your lower spine — often described as a sciatica-type pattern.'},
+  {id:'d7',regions:['si','hip'],triggerTypes:['restricted','decROM','jointrestriction','tenderness'],clinical:'Sacroiliac (SI) joint dysfunction',patient:'Your symptoms appear to be related to irritation and reduced movement in your sacroiliac joint — the joint connecting your pelvis to your spine.'},
+  {id:'d8',regions:['shoulder'],triggerTypes:['positivetest','restricted'],clinical:'Shoulder impingement-type pain',patient:'Your shoulder pain appears consistent with irritation where the tendons pass through the shoulder joint, often linked to posture and movement patterns.'},
+  {id:'d9',regions:['cervical','thoracic','lumbar'],triggerTypes:['posture'],clinical:'Postural strain pattern',patient:'A significant part of your presentation appears related to sustained postures (e.g. desk work) placing ongoing strain through your spine and muscles.'},
+  {id:'d10',regions:['cervical','thoracic','lumbar','shoulder','hip','si'],triggerTypes:['spasm','tenderness'],clinical:'Myofascial pain / muscle strain',patient:'Much of your discomfort appears to be coming from the muscles and surrounding soft tissue, rather than the joints themselves.'},
+  {id:'d16',regions:['cervical','thoracic','lumbar'],clinical:'Age-related degenerative changes (osteoarthritic pattern)',patient:'Some of your findings are consistent with normal age-related wear in the joints of your spine. This is extremely common and very manageable with the right care.'},
+  {id:'d11',regions:['knee'],triggerTypes:['pain','tenderness'],clinical:'Patellofemoral pain pattern',patient:'Your knee pain appears consistent with irritation around the kneecap and its surrounding soft tissue, often linked to movement and loading patterns.'},
+  {id:'d12',regions:['ankle'],clinical:'Ankle sprain-related joint dysfunction',patient:'Your ankle symptoms appear consistent with reduced movement and ligament irritation following a sprain-type injury.'},
+  {id:'d13',regions:['elbow','wrist'],clinical:'Repetitive strain-type pattern (elbow/wrist)',patient:'Your symptoms appear consistent with a repetitive strain pattern affecting the tendons and soft tissue of your arm.'},
+  {id:'d15',regions:['shoulder','knee','ankle','hip','elbow','wrist'],clinical:'Sports-related overuse pattern',patient:'Your symptoms appear consistent with an overuse pattern from repetitive training or activity load, rather than a single specific injury.'},
+];
+
+const ACUITY=[
+  {id:'acute',label:'Acute (recent onset)',patient:'a recent, acute presentation — these often respond quickly to the right care'},
+  {id:'subacute',label:'Subacute',patient:'a subacute presentation — past the initial acute stage but still settling'},
+  {id:'chronic',label:'Chronic (longstanding)',patient:'a longer-standing, chronic pattern — these can take a little longer to respond, but still improve well with consistent care'},
+];
+
+const PHASES=[
+  {id:'relief',label:'Relief Care',icon:'⚡',visits:3,unit:'per week',duration:2,ongoing:false,intro:'We recommend starting with more frequent visits to help settle things down.'},
+  {id:'corrective',label:'Corrective / Rehab',icon:'💪',visits:2,unit:'per week',duration:5,ongoing:false,intro:'As things settle, care shifts to correcting the underlying pattern and building resilience.'},
+  {id:'wellness',label:'Wellness / Maintenance',icon:'🌿',visits:1,unit:'every 4 weeks',duration:0,ongoing:true,intro:'Ongoing, lower-frequency care to help maintain your progress long term.'},
+];
+const UNITS=['per week','every 2 weeks','every 3 weeks','every 4 weeks'];
+const ACUITY_PHASE_MAP={acute:'relief',subacute:'corrective',chronic:'corrective'};
+
+const TECHNIQUES=[
+  {id:'gonstead',label:'Gonstead',patient:'specific, hands-on spinal adjustments (Gonstead technique)'},
+  {id:'diversified',label:'Diversified',patient:'specific joint adjustments (Diversified technique)'},
+  {id:'activator',label:'Activator',patient:'a low-force, instrument-assisted adjustment (Activator technique)'},
+  {id:'thompson',label:'Thompson Drop',patient:'a gentle drop-table adjustment (Thompson Drop technique)'},
+  {id:'sot',label:'SOT',patient:'a gentle pelvic-blocking technique (Sacro Occipital Technique)'},
+  {id:'cranial',label:'Cranial',patient:'gentle cranial work'},
+  {id:'extremity',label:'Extremity',patient:'adjustment of the arm/leg joints (extremity technique)'},
+];
+const ADJUNCTS=[
+  {id:'dryneedling',label:'Dry needling',patient:'dry needling'},
+  {id:'softtissue',label:'Soft tissue therapy',patient:'soft tissue / massage therapy'},
+  {id:'exercise',label:'Home exercise program',patient:'a home exercise and rehab program'},
+  {id:'postural',label:'Postural correction',patient:'postural correction exercises'},
+  {id:'ergonomic',label:'Ergonomic advice',patient:'ergonomic advice for work and home'},
+  {id:'icedheat',label:'Ice/heat guidance',patient:'ice/heat self-care guidance'},
+];
+
+let rof={patient:'',practitioner:'',date:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:''};
+let composer={type:null,region:null,level:null,side:null,severity:'moderate',qualities:[]};
+let fCounter=1;
+
+function startReport(){
+  const name=document.getElementById('inp-name').value.trim();
+  const prac=document.querySelector('input[name="prac"]:checked');
+  if(!name){toast('Please enter the patient name');return;}
+  if(!prac){toast('Please select a practitioner');return;}
+  rof.patient=name;rof.practitioner=prac.value;rof.date=new Date().toISOString();
+  pk=name.toLowerCase().replace(/\s+/g,'_');
+  renderComposer();
+  showScr('scr-findings');
+}
+
+function usedRegions(){return new Set(rof.findings.map(f=>f.region));}
+
+function saveDraft(){
+  if(!pk)return;
+  pts[pk]={displayName:rof.patient,practitioner:rof.practitioner,savedAt:new Date().toISOString(),rofData:{date:rof.date,findings:rof.findings,diagnoses:rof.diagnoses.map(d=>d.id),acuity:rof.acuity,plan:rof.plan,otherFinding:rof.otherFinding}};
+  savePts();
+}
+
+function loadDraftInto(key){
+  const d=pts[key];
+  if(!d||!d.rofData)return false;
+  pk=key;
+  rof.patient=d.displayName;rof.practitioner=d.practitioner;rof.date=d.rofData.date||new Date().toISOString();
+  rof.findings=d.rofData.findings||[];
+  rof.diagnoses=(d.rofData.diagnoses||[]).map(id=>DIAGNOSES.find(x=>x.id===id)).filter(Boolean);
+  rof.acuity=d.rofData.acuity||null;
+  rof.plan=d.rofData.plan||{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]};
+  rof.otherFinding=d.rofData.otherFinding||'';
+  rof.planVisited=true;
+  return true;
+}
+
+function checkForDraft(){
+  const keys=Object.keys(pts).filter(k=>pts[k]&&pts[k].rofData&&((pts[k].rofData.findings||[]).length||(pts[k].rofData.diagnoses||[]).length));
+  if(!keys.length)return;
+  keys.sort((a,b)=>new Date(pts[b].savedAt)-new Date(pts[a].savedAt));
+  const latestKey=keys[0];
+  const d=pts[latestKey];
+  document.getElementById('resume-text').textContent=`Continue the report for ${d.displayName}? Saved ${new Date(d.savedAt).toLocaleString('en-AU',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}.`;
+  document.getElementById('btn-resume').onclick=()=>resumeDraft(latestKey);
+  document.getElementById('btn-discard').onclick=()=>discardDraft(latestKey);
+  document.getElementById('resume-banner').style.display='block';
+}
+
+function resumeDraft(key){
+  if(!loadDraftInto(key))return;
+  renderComposer();
+  renderFindingsTray();
+  document.getElementById('inp-other-finding').value=rof.otherFinding||'';
+  showScr('scr-findings');
+  toast('Resumed report for '+rof.patient);
+}
+
+function discardDraft(key){
+  delete pts[key];savePts();
+  document.getElementById('resume-banner').style.display='none';
+}
+
+function renderComposer(){
+  const tg=document.getElementById('type-grid');tg.innerHTML='';
+  FINDING_TYPES.forEach(t=>{
+    const o=document.createElement('label');o.className='opt'+(composer.type===t.id?' sel':'');
+    o.innerHTML=t.label;
+    o.onclick=()=>{composer.type=(composer.type===t.id)?null:t.id;composer.qualities=[];renderComposer();};
+    tg.appendChild(o);
+  });
+  const qf=document.getElementById('quality-field');
+  if(composer.type==='pain'){
+    qf.style.display='block';
+    const qg=document.getElementById('quality-grid');qg.innerHTML='';
+    PAIN_QUALITIES.forEach(q=>{
+      const o=document.createElement('label');o.className='opt'+(composer.qualities.includes(q.id)?' sel':'');
+      o.innerHTML=q.label;
+      o.onclick=()=>{toggleArr(composer.qualities,q.id);renderComposer();};
+      qg.appendChild(o);
+    });
+  }else{
+    qf.style.display='none';
+  }
+  const rg=document.getElementById('region-grid');rg.innerHTML='';
+  REGIONS.forEach(r=>{
+    const o=document.createElement('label');o.className='opt'+(composer.region===r.id?' sel':'');
+    o.innerHTML=`${r.icon} ${r.label}`;
+    o.onclick=()=>{composer.region=(composer.region===r.id)?null:r.id;composer.level=null;renderComposer();};
+    rg.appendChild(o);
+  });
+  const regionObj=REGIONS.find(r=>r.id===composer.region);
+  const lf=document.getElementById('level-field');
+  if(regionObj&&regionObj.levels){
+    lf.style.display='block';
+    const lg=document.getElementById('level-grid');lg.innerHTML='';
+    regionObj.levels.forEach(lv=>{
+      const o=document.createElement('label');o.className='opt'+(composer.level===lv?' sel':'');
+      o.innerHTML=lv;
+      o.onclick=()=>{composer.level=(composer.level===lv)?null:lv;renderComposer();};
+      lg.appendChild(o);
+    });
+  }else{
+    lf.style.display='none';
+  }
+  const sg=document.getElementById('side-grid');sg.innerHTML='';
+  SIDES.forEach(s=>{
+    const o=document.createElement('label');o.className='opt'+(composer.side===s?' sel':'');
+    o.innerHTML=s;
+    o.onclick=()=>{composer.side=(composer.side===s)?null:s;renderComposer();};
+    sg.appendChild(o);
+  });
+  const vg=document.getElementById('sev-grid');vg.innerHTML='';
+  sevOrder.forEach(s=>{
+    const o=document.createElement('label');o.className='opt'+(composer.severity===s?' sel':'');
+    o.innerHTML=s.charAt(0).toUpperCase()+s.slice(1);
+    o.onclick=()=>{composer.severity=s;renderComposer();};
+    vg.appendChild(o);
+  });
+  document.getElementById('btn-add-finding').disabled=!(composer.type&&composer.region);
+}
+
+function addFindingFromComposer(){
+  const type=FINDING_TYPES.find(t=>t.id===composer.type);
+  const region=REGIONS.find(r=>r.id===composer.region);
+  if(!type||!region)return;
+  const level=composer.level,side=composer.side,sev=composer.severity;
+  const qualityLabels=composer.type==='pain'?composer.qualities.map(qid=>PAIN_QUALITIES.find(q=>q.id===qid).label):[];
+  let clinical=`${type.label} — ${region.label}`;
+  if(level)clinical+=` ${level}`;
+  if(side)clinical+=` (${side})`;
+  if(qualityLabels.length)clinical+=` [${qualityLabels.join(', ')}]`;
+  const id='f'+(fCounter++);
+  rof.findings.push({id,region:region.id,type:type.id,level,side,qualityIds:composer.type==='pain'?[...composer.qualities]:[],clinical,severity:sev});
+  renderFindingsTray();
+  toast('Finding added');
+}
+
+function findingPatientText(f){
+  const type=FINDING_TYPES.find(t=>t.id===f.type);
+  const region=REGIONS.find(r=>r.id===f.region);
+  if(!type||!region)return f.clinical;
+  let loc;
+  if(f.level==='Multiple levels')loc=`multiple levels of ${region.plain}`;
+  else if(f.level)loc=`the ${f.level} level of ${region.plain}`;
+  else loc=region.plain;
+  if(f.side==='Left'||f.side==='Right')loc+=` on the ${f.side.toLowerCase()}`;
+  else if(f.side==='Bilateral')loc+=' on both sides';
+  const qualityPlain=(f.qualityIds||[]).map(qid=>PAIN_QUALITIES.find(q=>q.id===qid).plain);
+  return type.patient(f.severity,loc,qualityPlain);
+}
+
+function cycleSeverity(id){
+  const f=rof.findings.find(x=>x.id===id);
+  const idx=sevOrder.indexOf(f.severity);
+  f.severity=sevOrder[(idx+1)%sevOrder.length];
+  renderFindingsTray();
+}
+
+function removeFinding(id){
+  rof.findings=rof.findings.filter(x=>x.id!==id);
+  renderFindingsTray();
+}
+
+function renderFindingsTray(){
+  const t=document.getElementById('findings-tray');
+  document.getElementById('btn-to-diag').disabled=rof.findings.length===0;
+  saveDraft();
+  if(!rof.findings.length){t.innerHTML='<span class="tray-empty">No findings added yet.</span>';return;}
+  t.innerHTML=rof.findings.map(f=>`<span class="tray-chip">${f.clinical}<button class="sev ${f.severity}" onclick="cycleSeverity('${f.id}')">${f.severity}</button><span class="x" onclick="removeFinding('${f.id}')">✕</span></span>`).join('');
+}
+
+function goToDiagnosis(){renderAcuityGrid();renderDiagnosisOptions();showScr('scr-diagnosis');}
+
+function renderAcuityGrid(){
+  const ag=document.getElementById('acuity-grid');ag.innerHTML='';
+  ACUITY.forEach(a=>{
+    const o=document.createElement('label');o.className='opt'+(rof.acuity===a.id?' sel':'');
+    o.innerHTML=a.label;
+    o.onclick=()=>{rof.acuity=(rof.acuity===a.id)?null:a.id;renderAcuityGrid();};
+    ag.appendChild(o);
+  });
+  saveDraft();
+}
+
+function suggestedDiagnoses(regionsUsed){
+  const typesByRegion={};
+  rof.findings.forEach(f=>{(typesByRegion[f.region]=typesByRegion[f.region]||new Set()).add(f.type);});
+  return DIAGNOSES.filter(d=>d.triggerTypes&&d.regions.some(r=>regionsUsed.has(r)&&typesByRegion[r]&&d.triggerTypes.some(t=>typesByRegion[r].has(t))));
+}
+
+function makeDiagBtn(d){
+  const added=rof.diagnoses.find(x=>x.id===d.id);
+  const btn=document.createElement('button');btn.className='diag-btn'+(added?' added':'');btn.type='button';
+  btn.innerHTML=`<span>${d.clinical}</span><span class="plus">${added?'✓':'+'}</span>`;
+  btn.onclick=()=>toggleDiagnosis(d);
+  return btn;
+}
+
+function renderDiagnosisOptions(){
+  const showAll=document.getElementById('chk-show-all')?.checked;
+  const list=document.getElementById('diag-list');list.innerHTML='';
+  const regionsUsed=usedRegions();
+  const allItems=showAll?DIAGNOSES:DIAGNOSES.filter(d=>d.regions.some(r=>regionsUsed.has(r)));
+  const suggested=showAll?[]:suggestedDiagnoses(regionsUsed);
+  const suggestedIds=new Set(suggested.map(d=>d.id));
+  const rest=allItems.filter(d=>!suggestedIds.has(d.id));
+  if(suggested.length){
+    const h=document.createElement('div');h.className='sub-label';h.textContent='★ Suggested based on your findings';
+    list.appendChild(h);
+    suggested.forEach(d=>list.appendChild(makeDiagBtn(d)));
+    if(rest.length){const h2=document.createElement('div');h2.className='sub-label';h2.textContent='More options';list.appendChild(h2);}
+  }
+  rest.forEach(d=>list.appendChild(makeDiagBtn(d)));
+  renderDiagnosisTray();
+}
+
+function toggleDiagnosis(d){
+  const i=rof.diagnoses.findIndex(x=>x.id===d.id);
+  if(i>-1)rof.diagnoses.splice(i,1);
+  else rof.diagnoses.push(d);
+  renderDiagnosisOptions();
+}
+
+function renderDiagnosisTray(){
+  const t=document.getElementById('diag-tray');
+  document.getElementById('btn-to-plan').disabled=rof.diagnoses.length===0;
+  saveDraft();
+  if(!rof.diagnoses.length){t.innerHTML='<span class="tray-empty">No diagnosis added yet.</span>';return;}
+  t.innerHTML=rof.diagnoses.map(d=>`<span class="tray-chip">${d.clinical}<span class="x" onclick="removeDiagnosisById('${d.id}')">✕</span></span>`).join('');
+}
+function removeDiagnosisById(id){rof.diagnoses=rof.diagnoses.filter(x=>x.id!==id);renderDiagnosisOptions();}
+
+function goToPlan(){
+  if(!rof.planVisited){
+    const mapped=rof.acuity&&ACUITY_PHASE_MAP[rof.acuity];
+    const sp=mapped&&PHASES.find(p=>p.id===mapped);
+    if(sp){rof.plan.phase=sp.id;rof.plan.visits=sp.visits;rof.plan.unit=sp.unit;rof.plan.duration=sp.duration;rof.plan.ongoing=sp.ongoing;}
+    rof.planVisited=true;
+  }
+  renderPlanScreen();
+  showScr('scr-plan');
+}
+
+function suggestedTechniqueIds(){
+  const regions=usedRegions();
+  const s=new Set();
+  if(regions.has('si'))s.add('sot');
+  ['hip','knee','ankle','shoulder','elbow','wrist'].forEach(r=>{if(regions.has(r))s.add('extremity');});
+  return s;
+}
+function suggestedAdjunctIds(){
+  const types=new Set(rof.findings.map(f=>f.type));
+  const diagIds=new Set(rof.diagnoses.map(d=>d.id));
+  const s=new Set();
+  if(types.has('spasm')||types.has('tenderness'))s.add('softtissue');
+  if(types.has('spasm')||types.has('nerve'))s.add('dryneedling');
+  if(types.has('posture')||diagIds.has('d9'))s.add('postural');
+  if(diagIds.has('d9'))s.add('ergonomic');
+  return s;
+}
+
+function renderPlanScreen(){
+  const pg=document.getElementById('phase-grid');pg.innerHTML='';
+  const suggestedPhase=rof.acuity&&ACUITY_PHASE_MAP[rof.acuity];
+  PHASES.forEach(p=>{
+    const o=document.createElement('label');o.className='opt big'+(rof.plan.phase===p.id?' sel':'');
+    o.innerHTML=`${p.icon} ${p.label}`+(suggestedPhase===p.id?' <span class="tag-star">★</span>':'');
+    o.onclick=()=>selectPhase(p);
+    pg.appendChild(o);
+  });
+  const ug=document.getElementById('unit-grid');ug.innerHTML='';
+  UNITS.forEach(u=>{
+    const o=document.createElement('label');o.className='opt'+(rof.plan.unit===u?' sel':'');
+    o.innerHTML=u;
+    o.onclick=()=>{rof.plan.unit=u;renderPlanScreen();};
+    ug.appendChild(o);
+  });
+  document.getElementById('val-visits').textContent=rof.plan.visits;
+  document.getElementById('val-duration').textContent=rof.plan.duration;
+  document.getElementById('chk-ongoing').checked=rof.plan.ongoing;
+  document.getElementById('duration-field').style.display=rof.plan.ongoing?'none':'block';
+  const suggTech=suggestedTechniqueIds();
+  const tg=document.getElementById('tech-grid');tg.innerHTML='';
+  TECHNIQUES.forEach(t=>{
+    const o=document.createElement('label');o.className='opt'+(rof.plan.techniques.includes(t.id)?' sel':'');
+    o.innerHTML=t.label+(suggTech.has(t.id)?' <span class="tag-star">★</span>':'');
+    o.onclick=()=>{toggleArr(rof.plan.techniques,t.id);renderPlanScreen();};
+    tg.appendChild(o);
+  });
+  const suggAdj=suggestedAdjunctIds();
+  const ag=document.getElementById('adjunct-grid');ag.innerHTML='';
+  ADJUNCTS.forEach(a=>{
+    const o=document.createElement('label');o.className='opt'+(rof.plan.adjuncts.includes(a.id)?' sel':'');
+    o.innerHTML=a.label+(suggAdj.has(a.id)?' <span class="tag-star">★</span>':'');
+    o.onclick=()=>{toggleArr(rof.plan.adjuncts,a.id);renderPlanScreen();};
+    ag.appendChild(o);
+  });
+  saveDraft();
+}
+function toggleArr(arr,id){const i=arr.indexOf(id);if(i>-1)arr.splice(i,1);else arr.push(id);}
+function selectPhase(p){rof.plan.phase=p.id;rof.plan.visits=p.visits;rof.plan.unit=p.unit;rof.plan.duration=p.duration;rof.plan.ongoing=p.ongoing;renderPlanScreen();}
+function stepPlan(key,delta){const v=rof.plan[key]+delta;if(v<1)return;rof.plan[key]=v;renderPlanScreen();}
+function toggleOngoing(){rof.plan.ongoing=document.getElementById('chk-ongoing').checked;renderPlanScreen();}
+
+function goToReview(){
+  rof.otherFinding=document.getElementById('inp-other-finding').value.trim();
+  buildReport();
+  showScr('scr-review');
+}
+
+function planSentence(){
+  const p=rof.plan,plural=p.visits>1?'visits':'visit';
+  if(p.ongoing)return `${p.visits} ${plural} ${p.unit}, continuing on an ongoing basis.`;
+  return `${p.visits} ${plural} ${p.unit} for ${p.duration} week${p.duration>1?'s':''}, then we'll reassess your progress.`;
+}
+
+function buildReport(){
+  const date=new Date(rof.date).toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'});
+  const phase=PHASES.find(p=>p.id===rof.plan.phase);
+  const findingsHtml=rof.findings.map(f=>`<div class="pr-finding"><span class="pr-dot ${f.severity}"></span><span>${findingPatientText(f)}</span></div>`).join('')
+    + (rof.otherFinding?`<div class="pr-finding"><span class="pr-dot moderate"></span><span>${rof.otherFinding}</span></div>`:'');
+  const diagHtml=rof.diagnoses.map(d=>`<div class="pr-finding"><span class="pr-dot moderate"></span><span>${d.patient}</span></div>`).join('');
+  const acuityObj=rof.acuity?ACUITY.find(a=>a.id===rof.acuity):null;
+  const acuityHtml=acuityObj?`<p style="margin-bottom:8px;">This appears to be ${acuityObj.patient}.</p>`:'';
+  const techList=rof.plan.techniques.map(id=>TECHNIQUES.find(t=>t.id===id).patient);
+  const adjList=rof.plan.adjuncts.map(id=>ADJUNCTS.find(a=>a.id===id).patient);
+  const planHtml=`<p>${phase.intro}</p><p style="margin-top:8px;"><strong>Recommended frequency:</strong> ${planSentence()}</p>`
+    + (techList.length?`<p style="margin-top:8px;">Your care may include ${joinWords(techList)}.</p>`:'')
+    + (adjList.length?`<p style="margin-top:8px;">We'll also incorporate ${joinWords(adjList)}.</p>`:'');
+  const doc=
+    '<div class="pr-doc">'+
+    '<div class="pr-hdr"><div class="pr-logo">🦴</div><div class="pr-brand"><h2>Banora Chiropractic</h2><p>Report of Findings</p></div><div class="pr-meta"><strong>'+rof.patient+'</strong>'+date+'<br>'+rof.practitioner+'</div></div>'+
+    '<div class="pr-sec"><div class="pr-sec-title">What We Found</div>'+(findingsHtml||'<p>No findings recorded.</p>')+'</div>'+
+    '<div class="pr-sec"><div class="pr-sec-title">What This Means</div>'+acuityHtml+(diagHtml||'<p>No diagnosis recorded.</p>')+'</div>'+
+    '<div class="pr-sec"><div class="pr-sec-title">Your Care Plan — '+phase.label+'</div>'+planHtml+'</div>'+
+    '<div class="pr-foot"><span>Banora Chiropractic — 2/44 Greenway Drive, Tweed Heads South NSW 2486 · (07) 5599 2322</span><span>🔒 Confidential — '+new Date().toLocaleDateString('en-AU')+'</span></div>'+
+    '</div>';
+  document.getElementById('report-preview').innerHTML=doc;
+  document.getElementById('print-area').innerHTML=doc;
+}
+
+function newReport(){
+  if(pk){delete pts[pk];savePts();}
+  pk=null;
+  rof={patient:'',practitioner:'',date:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:''};
+  composer={type:null,region:null,level:null,side:null,severity:'moderate',qualities:[]};
+  document.getElementById('inp-name').value='';
+  document.querySelectorAll('input[name="prac"]').forEach(i=>i.checked=false);
+  document.getElementById('inp-other-finding').value='';
+  document.getElementById('chk-show-all').checked=false;
+  document.getElementById('resume-banner').style.display='none';
+  showScr('scr-start');
+  checkForDraft();
+}
+
+checkForDraft();
+</script>
+</body>
+</html>
