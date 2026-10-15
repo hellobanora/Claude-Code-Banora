@@ -9,7 +9,7 @@ const uniqueServices = [...new Map(services.map((s) => [s.slug, s])).values()];
 
 type Practitioner = (typeof practitioners)[number];
 
-export const practitionerUrl = (p: Practitioner) => `${clinic.website}/team/${p.slug}`;
+export const practitionerUrl = (p: Practitioner) => `${clinic.website}/team/${p.slug}/`;
 export const practitionerId = (p: Practitioner) => `${practitionerUrl(p)}#person`;
 
 const DAY_NAMES: Record<string, string> = {
@@ -63,7 +63,7 @@ export const clinicSchema = {
   availableService: uniqueServices.map((s) => ({
     '@type': 'MedicalTherapy',
     name: s.title,
-    url: `${clinic.website}/services/${s.slug}`,
+    url: `${clinic.website}/services/${s.slug}/`,
     medicineSystem: 'https://schema.org/Chiropractic',
   })),
   isAcceptingNewPatients: true,

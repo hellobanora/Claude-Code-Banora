@@ -404,12 +404,12 @@ const schema = {
 
     let servicesHtml = services.map(s => {
       const svc = serviceDetails[s];
-      return `<a href="/services/${svc.slug}" class="result-tag hover:bg-[var(--color-blue-pale,#D4E8F5)] transition-colors">${svc.title}</a>`;
+      return `<a href="/services/${svc.slug}/" class="result-tag hover:bg-[var(--color-blue-pale,#D4E8F5)] transition-colors">${svc.title}</a>`;
     }).join(' ');
 
     let conditionLinksHtml = conditions.map(c => {
       const cond = conditionDetails[c];
-      return `<a href="/conditions/${cond.slug}" class="text-[var(--color-mid-blue,#2C5F8A)] hover:underline font-medium">${cond.title}</a>`;
+      return `<a href="/conditions/${cond.slug}/" class="text-[var(--color-mid-blue,#2C5F8A)] hover:underline font-medium">${cond.title}</a>`;
     }).join(' &middot; ');
 
     resultsEl.innerHTML = `

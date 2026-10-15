@@ -21,13 +21,13 @@ const schema = [
     '@context': 'https://schema.org',
     '@type': 'MedicalWebPage',
     name: service.metaTitle,
-    url: `${clinic.website}/services/${service.slug}`,
+    url: `${clinic.website}/services/${service.slug}/`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: clinic.website },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: `${clinic.website}/services` },
-        { '@type': 'ListItem', position: 3, name: service.title, item: `${clinic.website}/services/${service.slug}` },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: `${clinic.website}/services/` },
+        { '@type': 'ListItem', position: 3, name: service.title, item: `${clinic.website}/services/${service.slug}/` },
       ],
     },
   },
@@ -111,7 +111,7 @@ const schema = [
               <ul class="space-y-2">
                 {relatedConditionData.map((c) => (
                   <li>
-                    <a href={`/conditions/${c.slug}`} class="text-sm text-mid-blue hover:text-navy transition-colors flex items-center gap-2">
+                    <a href={`/conditions/${c.slug}/`} class="text-sm text-mid-blue hover:text-navy transition-colors flex items-center gap-2">
                       <span>{c.icon}</span>
                       {c.title}
                     </a>
@@ -127,7 +127,7 @@ const schema = [
               <ul class="space-y-2">
                 {relatedServiceData.map((s) => (
                   <li>
-                    <a href={`/services/${s.slug}`} class="text-sm text-mid-blue hover:text-navy transition-colors flex items-center gap-2">
+                    <a href={`/services/${s.slug}/`} class="text-sm text-mid-blue hover:text-navy transition-colors flex items-center gap-2">
                       <span>{s.icon}</span>
                       {s.title}
                     </a>

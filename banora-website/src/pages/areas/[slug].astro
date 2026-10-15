@@ -20,13 +20,13 @@ const pageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: area.metaTitle,
-  url: `${clinic.website}/areas/${area.slug}`,
+  url: `${clinic.website}/areas/${area.slug}/`,
   breadcrumb: {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: clinic.website },
-      { '@type': 'ListItem', position: 2, name: 'Areas We Serve', item: `${clinic.website}/areas` },
-      { '@type': 'ListItem', position: 3, name: area.name, item: `${clinic.website}/areas/${area.slug}` },
+      { '@type': 'ListItem', position: 2, name: 'Areas We Serve', item: `${clinic.website}/areas/` },
+      { '@type': 'ListItem', position: 3, name: area.name, item: `${clinic.website}/areas/${area.slug}/` },
     ],
   },
 };
@@ -91,7 +91,7 @@ const schema = area.faqs ? [pageSchema, faqSchema(area.faqs)] : pageSchema;
             <p class="text-grey-text leading-relaxed mb-6">{area.servicesHighlight}</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {services.map((service) => (
-                <a href={`/services/${service.slug}`} class="flex items-center gap-3 bg-blue-ghost/50 rounded-lg p-3 border border-blue-pale/20 hover:border-light-blue/40 transition-colors">
+                <a href={`/services/${service.slug}/`} class="flex items-center gap-3 bg-blue-ghost/50 rounded-lg p-3 border border-blue-pale/20 hover:border-light-blue/40 transition-colors">
                   <span class="text-xl">{service.icon}</span>
                   <span class="text-sm text-navy font-medium">{service.title}</span>
                 </a>
@@ -103,7 +103,7 @@ const schema = area.faqs ? [pageSchema, faqSchema(area.faqs)] : pageSchema;
             <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-3">Conditions we help {area.name} patients with</h3>
             <div class="flex flex-wrap gap-2 mt-3">
               {conditions.map((condition) => (
-                <a href={`/conditions/${condition.slug}`} class="text-sm bg-light-grey text-navy px-4 py-2 rounded-full border border-grey-mid/20 hover:border-light-blue transition-colors">
+                <a href={`/conditions/${condition.slug}/`} class="text-sm bg-light-grey text-navy px-4 py-2 rounded-full border border-grey-mid/20 hover:border-light-blue transition-colors">
                   {condition.icon} {condition.title}
                 </a>
               ))}
@@ -196,7 +196,7 @@ const schema = area.faqs ? [pageSchema, faqSchema(area.faqs)] : pageSchema;
       <h2 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy mb-6 text-center">We Also Serve</h2>
       <div class="flex flex-wrap justify-center gap-3">
         {otherAreas.map((a) => (
-          <a href={`/areas/${a.slug}`} class="bg-white text-navy text-sm px-4 py-2 rounded-full border border-grey-mid/30 hover:border-light-blue hover:text-mid-blue transition-colors">
+          <a href={`/areas/${a.slug}/`} class="bg-white text-navy text-sm px-4 py-2 rounded-full border border-grey-mid/30 hover:border-light-blue hover:text-mid-blue transition-colors">
             {a.name}
           </a>
         ))}

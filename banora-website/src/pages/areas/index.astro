@@ -10,7 +10,7 @@ const schema = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: clinic.website },
-        { '@type': 'ListItem', position: 2, name: 'Areas We Serve', item: `${clinic.website}/areas` },
+        { '@type': 'ListItem', position: 2, name: 'Areas We Serve', item: `${clinic.website}/areas/` },
       ],
     },
   ],
@@ -51,7 +51,7 @@ const schema = {
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
         {areas.map((area) => (
           <a
-            href={`/areas/${area.slug}`}
+            href={`/areas/${area.slug}/`}
             class="group bg-white rounded-xl border border-grey-mid/20 shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-mid-blue/30 transition-all duration-200 p-5 flex flex-col"
           >
             <div class="flex items-start gap-3 mb-2">

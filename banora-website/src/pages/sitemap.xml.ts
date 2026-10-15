@@ -14,7 +14,7 @@ interface SitemapURL {
 }
 
 function url(path: string, changefreq: SitemapURL['changefreq'], priority: string, lastmod?: string): SitemapURL {
-  return { loc: `${BASE_URL}${path}`, changefreq, priority, lastmod };
+  return { loc: `${BASE_URL}${path.endsWith('/') ? path : `${path}/`}`, changefreq, priority, lastmod };
 }
 
 function toXML(urls: SitemapURL[]): string {

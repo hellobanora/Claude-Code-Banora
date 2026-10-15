@@ -11,7 +11,7 @@ import { blogPosts } from '../data/blog';
 const BASE_URL = clinic.website;
 
 const unique = <T extends { slug: string }>(items: T[]) => [...new Map(items.map((i) => [i.slug, i])).values()];
-const link = (title: string, path: string, note?: string) => `- [${title}](${BASE_URL}${path})${note ? `: ${note}` : ''}`;
+const link = (title: string, path: string, note?: string) => `- [${title}](${BASE_URL}${path}/)${note ? `: ${note}` : ''}`;
 
 /** Intro, NAP, hours and fees. */
 function clinicDetails(): string {
@@ -44,7 +44,7 @@ ${hours}
 - New patient consultation: $${pricing.newPatient.price} (student/child $${pricing.newPatient.studentChild}), ${pricing.newPatient.duration.replace('-', '–')}
 - Standard adjustment: $${pricing.regularAdjustment.price} (student/child $${pricing.regularAdjustment.studentChild})
 - Payment: ${clinic.payment.join(', ')}
-- Full fee list: ${BASE_URL}/fees
+- Full fee list: ${BASE_URL}/fees/
 `;
 }
 
@@ -79,7 +79,7 @@ ${unique(conditions).map((c) => link(c.title, `/conditions/${c.slug}`, c.shortDe
 
 - NSW: ${nsw}
 - QLD: ${qld}
-- Suburb pages: ${BASE_URL}/areas
+- Suburb pages: ${BASE_URL}/areas/
 
 ## Key pages
 
