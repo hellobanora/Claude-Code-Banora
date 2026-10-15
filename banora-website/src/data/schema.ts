@@ -1,8 +1,11 @@
 import { clinic, practitioners } from './clinic';
 import { areas } from './areas';
+import { services } from './services';
 
 // Stable IDs so every page's JSON-LD points at the same clinic and practitioner entities.
 export const CLINIC_ID = `${clinic.website}/#clinic`;
+
+const uniqueServices = [...new Map(services.map((s) => [s.slug, s])).values()];
 
 type Practitioner = (typeof practitioners)[number];
 
@@ -36,8 +39,8 @@ const openingHours = clinic.hoursSchema.map((entry) => {
 
 /**
  * Sitewide clinic entity — rendered on every page by BaseLayout.
- * Note: schema.org "Chiropractic" is a medical specialty, not a business type, so the clinic is a
- * MedicalClinic (a LocalBusiness subtype) with Chiropractic as its specialty.
+ * Note: schema.org "Chiropractic" is a MedicineSystem — not a business type or a medicalSpecialty value —
+ * so the clinic is a MedicalClinic (a LocalBusiness subtype) whose services use it as their medicineSystem.
  */
 export const clinicSchema = {
   '@context': 'https://schema.org',
@@ -45,7 +48,6 @@ export const clinicSchema = {
   '@id': CLINIC_ID,
   name: clinic.name,
   url: clinic.website,
-  medicalSpecialty: 'https://schema.org/Chiropractic',
   logo: `${clinic.website}/images/logo-square.png`,
   image: `${clinic.website}/images/clinic-adjustment-wide.webp`,
   description:
@@ -58,6 +60,12 @@ export const clinicSchema = {
   areaServed: areas.map((a) => ({ '@type': 'Place', name: `${a.name} ${a.state}` })),
   sameAs: [clinic.social.facebook, clinic.social.instagram, clinic.social.google],
   employee: practitioners.map((p) => ({ '@type': 'Person', '@id': practitionerId(p), name: p.name })),
+  availableService: uniqueServices.map((s) => ({
+    '@type': 'MedicalTherapy',
+    name: s.title,
+    url: `${clinic.website}/services/${s.slug}`,
+    medicineSystem: 'https://schema.org/Chiropractic',
+  })),
   isAcceptingNewPatients: true,
   priceRange: '$$',
   currenciesAccepted: 'AUD',
