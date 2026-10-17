@@ -79,6 +79,20 @@ textarea{resize:vertical;min-height:60px;}
 .pr-dot{width:9px;height:9px;border-radius:50%;margin-top:3px;flex-shrink:0;}
 .pr-dot.mild{background:var(--g2);}.pr-dot.moderate{background:var(--m2);}.pr-dot.marked{background:var(--rd2);}
 .pr-foot{margin-top:16px;border-top:1px solid var(--grey-lt);padding-top:7px;display:flex;justify-content:space-between;font-size:10px;color:#b8c4ce;}
+input[type=month]{width:100%;padding:11px 13px;border:1.5px solid var(--grey-lt);border-radius:9px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--navy);}
+.photo-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:12px;}
+.photo-card{border:1.5px solid var(--grey-lt);border-radius:9px;padding:6px;background:#f4f7fa;}
+.photo-card img{width:100%;height:150px;object-fit:cover;border-radius:6px;display:block;}
+.photo-card select{width:100%;margin-top:6px;padding:6px;border:1.5px solid var(--grey-lt);border-radius:6px;font-family:'Nunito',sans-serif;font-size:12.5px;color:var(--navy);}
+.photo-card .rm{width:100%;margin-top:6px;background:none;border:none;color:var(--rd);font-size:12px;font-weight:700;cursor:pointer;}
+.pr-dot.info{background:var(--blue);}
+.pr-note{font-size:11.5px;color:var(--grey);font-style:italic;margin-top:6px;}
+.pr-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:10px;}
+.pr-photos figure{break-inside:avoid;page-break-inside:avoid;}
+.pr-photo-box{position:relative;border-radius:6px;overflow:hidden;border:1px solid var(--grey-lt);}
+.pr-photo-box img{display:block;width:100%;}
+.pr-photo-box svg{position:absolute;inset:0;width:100%;height:100%;}
+.pr-photos figcaption{text-align:center;font-size:11px;font-weight:700;color:var(--grey);margin-top:3px;}
 .print-screen .pr-doc{background:#fff;border-radius:12px;border:1.5px solid var(--grey-lt);box-shadow:0 2px 8px rgba(0,0,0,.05);}
 </style>
 </head>
@@ -112,8 +126,8 @@ textarea{resize:vertical;min-height:60px;}
 
 <!-- FINDINGS -->
 <div class="scr" id="scr-findings">
-  <div class="hdr"><div class="hdr-logo">🔍</div><div><h1>Findings</h1><p>Step 1 of 3</p></div><div class="phase-badge">Findings</div></div>
-  <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:33%"></div></div></div>
+  <div class="hdr"><div class="hdr-logo">🔍</div><div><h1>Findings</h1><p>Step 1 of 4</p></div><div class="phase-badge">Findings</div></div>
+  <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:25%"></div></div></div>
   <div class="card">
     <div class="card-title">Build a finding</div>
     <div class="card-sub">Tap a type, a region, a level/side if relevant, then add</div>
@@ -129,14 +143,52 @@ textarea{resize:vertical;min-height:60px;}
     <div class="card-title">Findings added</div>
     <div class="tray" id="findings-tray"><span class="tray-empty">No findings added yet.</span></div>
     <div class="field" style="margin-top:14px;"><label class="lbl">Other finding (optional, free text)</label><input type="text" id="inp-other-finding" placeholder="Only if nothing above fits" oninput="rof.otherFinding=this.value;saveDraft();"></div>
-    <div class="btn-row"><button class="btn btn-sec" onclick="showScr('scr-start')">← Back</button><button class="btn btn-primary" id="btn-to-diag" onclick="goToDiagnosis()" disabled>Next: Diagnosis →</button></div>
+    <div class="btn-row"><button class="btn btn-sec" onclick="showScr('scr-start')">← Back</button><button class="btn btn-primary" id="btn-to-diag" onclick="goToExtras()" disabled>Next: Imaging &amp; Posture →</button></div>
+  </div>
+</div>
+
+<!-- IMAGING & POSTURE -->
+<div class="scr" id="scr-extras">
+  <div class="hdr"><div class="hdr-logo">📷</div><div><h1>Imaging &amp; Posture</h1><p>Step 2 of 4</p></div><div class="phase-badge">Optional</div></div>
+  <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:50%"></div></div></div>
+  <div class="card">
+    <div class="card-title">Imaging</div>
+    <div class="card-sub">Optional — leave both unselected if there's no imaging to mention</div>
+    <div class="opt-grid" id="img-status-grid"></div>
+    <div id="img-has-wrap" style="display:none;margin-top:16px;">
+      <div class="field"><label class="lbl">Type</label><div class="opt-grid" id="img-mod-grid"></div></div>
+      <div class="field"><label class="lbl">Region</label><div class="opt-grid" id="img-region-grid"></div></div>
+      <div class="field"><label class="lbl">Date (optional)</label><input type="month" id="img-date"></div>
+      <div class="field"><label class="lbl">What the report found (select all that apply)</label><div class="opt-grid" id="img-find-grid"></div></div>
+      <div class="field"><label class="lbl">Level / location (optional)</label><input type="text" id="img-level" placeholder="e.g. L4/5 and L5/S1"></div>
+      <div class="field"><label class="lbl">Plain-English note for the patient (optional)</label><textarea id="img-notes" placeholder="e.g. The radiologist noted the changes are mild and typical for your age." oninput="renderImagingAddBtn()"></textarea></div>
+      <div class="btn-row" style="margin-top:4px;"><button class="btn btn-primary" id="btn-add-img" onclick="addImaging()" disabled>+ Add Imaging</button></div>
+      <div class="tray" id="img-tray" style="margin-top:14px;"></div>
+    </div>
+    <div id="img-ref-wrap" style="display:none;margin-top:16px;">
+      <div class="field"><label class="lbl">Referral details (optional)</label><input type="text" id="img-ref-note" placeholder="e.g. Lumbar spine X-ray" oninput="rof.imaging.referNote=this.value;saveDraft();"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Postural assessment</div>
+    <div class="card-sub">Optional — tap what you observed, then add any posture photos you took</div>
+    <div class="field"><label class="lbl">Observations</label><div class="opt-grid" id="posture-grid"></div></div>
+    <div class="tray" id="posture-tray"></div>
+    <div class="field">
+      <label class="lbl">Posture photos</label>
+      <label class="btn btn-sec" style="display:inline-block;">📷 Add photos<input type="file" id="posture-file" accept="image/*" multiple style="display:none" onchange="handlePhotos(this)"></label>
+      <div class="photo-list" id="photo-list"></div>
+      <label class="opt" id="grid-toggle" style="display:none;margin-top:10px;"><input type="checkbox" id="chk-grid" onclick="rof.posture.grid=this.checked;saveDraft();" style="display:inline;width:auto;margin:0 6px 0 0;"><span>Show grid lines on photos in the report</span></label>
+    </div>
+    <div class="field"><label class="lbl">Posture notes for the patient (optional)</label><textarea id="posture-notes" placeholder="e.g. Your left shoulder sits about 1cm higher than your right." oninput="rof.posture.notes=this.value;saveDraft();"></textarea></div>
+    <div class="btn-row"><button class="btn btn-sec" onclick="showScr('scr-findings')">← Back</button><button class="btn btn-primary" onclick="goToDiagnosis()">Next: Diagnosis →</button></div>
   </div>
 </div>
 
 <!-- DIAGNOSIS -->
 <div class="scr" id="scr-diagnosis">
-  <div class="hdr"><div class="hdr-logo">🩺</div><div><h1>Diagnosis</h1><p>Step 2 of 3</p></div><div class="phase-badge">Diagnosis</div></div>
-  <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:66%"></div></div></div>
+  <div class="hdr"><div class="hdr-logo">🩺</div><div><h1>Diagnosis</h1><p>Step 3 of 4</p></div><div class="phase-badge">Diagnosis</div></div>
+  <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:75%"></div></div></div>
   <div class="card">
     <div class="card-title">Overall presentation</div>
     <div class="card-sub">Optional — shapes the opening line of "What This Means"</div>
@@ -148,13 +200,13 @@ textarea{resize:vertical;min-height:60px;}
     <div class="tray" id="diag-tray"><span class="tray-empty">No diagnosis added yet.</span></div>
     <div class="diag-grid" id="diag-list"></div>
     <div class="field" style="margin-top:10px;"><label class="opt" style="display:inline-flex;"><input type="checkbox" id="chk-show-all" onclick="renderDiagnosisOptions()" style="display:inline;width:auto;margin:0 6px 0 0;"><span>Show all diagnoses (not just filtered regions)</span></label></div>
-    <div class="btn-row"><button class="btn btn-sec" onclick="showScr('scr-findings')">← Back</button><button class="btn btn-primary" id="btn-to-plan" onclick="goToPlan()" disabled>Next: Care Plan →</button></div>
+    <div class="btn-row"><button class="btn btn-sec" onclick="goToExtras()">← Back</button><button class="btn btn-primary" id="btn-to-plan" onclick="goToPlan()" disabled>Next: Care Plan →</button></div>
   </div>
 </div>
 
 <!-- PLAN -->
 <div class="scr" id="scr-plan">
-  <div class="hdr"><div class="hdr-logo">🗓️</div><div><h1>Care Plan</h1><p>Step 3 of 3</p></div><div class="phase-badge">Care Plan</div></div>
+  <div class="hdr"><div class="hdr-logo">🗓️</div><div><h1>Care Plan</h1><p>Step 4 of 4</p></div><div class="phase-badge">Care Plan</div></div>
   <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div></div>
   <div class="card">
     <div class="card-title">Phase of care</div>
@@ -186,6 +238,7 @@ textarea{resize:vertical;min-height:60px;}
   <div class="hdr"><div class="hdr-logo">✅</div><div><h1>Review & Print</h1><p>Report ready</p></div></div>
   <div class="card" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;">
     <button class="edit-link" onclick="showScr('scr-findings')">✎ Edit findings</button>
+    <button class="edit-link" onclick="goToExtras()">✎ Edit imaging &amp; posture</button>
     <button class="edit-link" onclick="showScr('scr-diagnosis')">✎ Edit diagnosis</button>
     <button class="edit-link" onclick="showScr('scr-plan')">✎ Edit plan</button>
   </div>
@@ -203,7 +256,8 @@ textarea{resize:vertical;min-height:60px;}
 <script>
 const SK='banora_rof_pts';
 function loadPts(){try{return JSON.parse(localStorage.getItem(SK)||'{}')}catch(e){return{}}}
-function savePts(){try{localStorage.setItem(SK,JSON.stringify(pts))}catch(e){}}
+let storageWarned=false;
+function savePts(){try{localStorage.setItem(SK,JSON.stringify(pts))}catch(e){if(!storageWarned){storageWarned=true;toast('Draft too large to auto-save (photos) — finish and print this report now');}}}
 function showScr(id){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
 
@@ -312,9 +366,55 @@ const ADJUNCTS=[
   {id:'icedheat',label:'Ice/heat guidance',patient:'ice/heat self-care guidance'},
 ];
 
-let rof={patient:'',practitioner:'',date:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:''};
+const IMAGING_MODALITIES=[
+  {id:'xray',label:'X-ray',plain:'X-ray'},
+  {id:'mri',label:'MRI',plain:'MRI'},
+  {id:'ct',label:'CT',plain:'CT scan'},
+  {id:'us',label:'Ultrasound',plain:'ultrasound'},
+];
+const IMAGING_FINDINGS=[
+  {id:'normal',label:'Normal / unremarkable',plain:'no significant abnormalities'},
+  {id:'degen',label:'Disc degeneration',plain:'some age-related changes in the discs'},
+  {id:'bulge',label:'Disc bulge',plain:'a disc bulge'},
+  {id:'protrusion',label:'Disc protrusion / herniation',plain:'a disc protrusion (where disc material extends past its usual boundary)'},
+  {id:'facet',label:'Facet arthropathy',plain:'wear-related changes in the small facet joints'},
+  {id:'osteophytes',label:'Osteophytes',plain:'small bony spurs (osteophytes), a common sign of joint wear'},
+  {id:'foraminal',label:'Foraminal narrowing',plain:'some narrowing of the space where a nerve exits the spine'},
+  {id:'stenosis',label:'Canal stenosis',plain:'some narrowing of the spinal canal'},
+  {id:'listhesis',label:'Spondylolisthesis',plain:'a slight forward slip of one vertebra on another (spondylolisthesis)'},
+  {id:'curve',label:'Loss of normal curve',plain:'a reduction in the normal curve of the spine'},
+  {id:'scoliosis',label:'Scoliosis',plain:'a sideways curve in the spine (scoliosis)'},
+  {id:'oa',label:'Osteoarthritis',plain:'wear-related (osteoarthritic) changes in the joint'},
+  {id:'tendon',label:'Tendinopathy',plain:'tendon changes consistent with irritation or overload'},
+  {id:'tear',label:'Tear (tendon / ligament / cartilage)',plain:'a tear in a tendon, ligament or cartilage'},
+  {id:'bursitis',label:'Bursitis',plain:'irritation of a bursa (a small fluid-filled cushion)'},
+];
+const POSTURE_OBS=[
+  {id:'fhp',label:'Forward head posture',plain:()=>'your head sits forward of your shoulders'},
+  {id:'rounded',label:'Rounded shoulders',plain:()=>'your shoulders roll forward'},
+  {id:'highShoulder',label:'High shoulder',sided:true,plain:s=>`your ${s} shoulder sits higher than the other`},
+  {id:'headTilt',label:'Head tilt',sided:true,plain:s=>`your head tilts to the ${s}`},
+  {id:'highHip',label:'High hip / pelvic unlevelling',sided:true,plain:s=>`your ${s} hip sits higher than the other`},
+  {id:'shift',label:'Lateral shift / lean',sided:true,plain:s=>`your body leans slightly to the ${s}`},
+  {id:'rotation',label:'Trunk rotation',sided:true,plain:s=>`your trunk is rotated toward the ${s}`},
+  {id:'kyphosis',label:'Increased upper back curve',plain:()=>'there is extra rounding through your upper back'},
+  {id:'swayBack',label:'Increased lower back curve',plain:()=>'there is an increased curve in your lower back'},
+  {id:'flatBack',label:'Flattened lower back curve',plain:()=>'your lower back curve is flatter than usual'},
+  {id:'antPelvic',label:'Anterior pelvic tilt',plain:()=>'your pelvis tips forward'},
+  {id:'postPelvic',label:'Posterior pelvic tilt',plain:()=>'your pelvis tucks under'},
+  {id:'kneeValgus',label:'Knees angle inward',plain:()=>'your knees angle inward'},
+  {id:'flatFeet',label:'Flattened arches',plain:()=>'the arches of your feet are flattened'},
+];
+const PHOTO_VIEWS=['Front','Left side','Right side','Back','Other'];
+
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const blankImaging=()=>({has:false,referred:false,items:[],referNote:''});
+const blankPosture=()=>({obs:[],photos:[],notes:'',grid:true});
+
+let rof={patient:'',practitioner:'',date:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:'',imaging:blankImaging(),posture:blankPosture()};
 let composer={type:null,region:null,level:null,side:null,severity:'moderate',qualities:[]};
-let fCounter=1;
+let imgComposer={modality:null,region:null,findings:[]};
 
 function startReport(){
   const name=document.getElementById('inp-name').value.trim();
@@ -331,7 +431,7 @@ function usedRegions(){return new Set(rof.findings.map(f=>f.region));}
 
 function saveDraft(){
   if(!pk)return;
-  pts[pk]={displayName:rof.patient,practitioner:rof.practitioner,savedAt:new Date().toISOString(),rofData:{date:rof.date,findings:rof.findings,diagnoses:rof.diagnoses.map(d=>d.id),acuity:rof.acuity,plan:rof.plan,otherFinding:rof.otherFinding}};
+  pts[pk]={displayName:rof.patient,practitioner:rof.practitioner,savedAt:new Date().toISOString(),rofData:{date:rof.date,findings:rof.findings,diagnoses:rof.diagnoses.map(d=>d.id),acuity:rof.acuity,plan:rof.plan,otherFinding:rof.otherFinding,imaging:rof.imaging,posture:rof.posture}};
   savePts();
 }
 
@@ -345,6 +445,8 @@ function loadDraftInto(key){
   rof.acuity=d.rofData.acuity||null;
   rof.plan=d.rofData.plan||{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]};
   rof.otherFinding=d.rofData.otherFinding||'';
+  rof.imaging=Object.assign(blankImaging(),d.rofData.imaging||{});
+  rof.posture=Object.assign(blankPosture(),d.rofData.posture||{});
   rof.planVisited=true;
   return true;
 }
@@ -444,7 +546,7 @@ function addFindingFromComposer(){
   if(level)clinical+=` ${level}`;
   if(side)clinical+=` (${side})`;
   if(qualityLabels.length)clinical+=` [${qualityLabels.join(', ')}]`;
-  const id='f'+(fCounter++);
+  const id='f'+uid();
   rof.findings.push({id,region:region.id,type:type.id,level,side,qualityIds:composer.type==='pain'?[...composer.qualities]:[],clinical,severity:sev});
   renderFindingsTray();
   toast('Finding added');
@@ -482,6 +584,119 @@ function renderFindingsTray(){
   saveDraft();
   if(!rof.findings.length){t.innerHTML='<span class="tray-empty">No findings added yet.</span>';return;}
   t.innerHTML=rof.findings.map(f=>`<span class="tray-chip">${f.clinical}<button class="sev ${f.severity}" onclick="cycleSeverity('${f.id}')">${f.severity}</button><span class="x" onclick="removeFinding('${f.id}')">✕</span></span>`).join('');
+}
+
+function goToExtras(){
+  document.getElementById('img-ref-note').value=rof.imaging.referNote||'';
+  document.getElementById('posture-notes').value=rof.posture.notes||'';
+  document.getElementById('chk-grid').checked=rof.posture.grid;
+  renderImaging();renderPosture();
+  showScr('scr-extras');
+}
+
+function optChip(label,selected,onclick){
+  const o=document.createElement('label');o.className='opt'+(selected?' sel':'');
+  o.innerHTML=label;o.onclick=onclick;return o;
+}
+
+function renderImaging(){
+  const im=rof.imaging;
+  const sg=document.getElementById('img-status-grid');sg.innerHTML='';
+  sg.appendChild(optChip('Has imaging to review',im.has,()=>{im.has=!im.has;renderImaging();}));
+  sg.appendChild(optChip('Referred for imaging',im.referred,()=>{im.referred=!im.referred;renderImaging();}));
+  document.getElementById('img-has-wrap').style.display=im.has?'block':'none';
+  document.getElementById('img-ref-wrap').style.display=im.referred?'block':'none';
+  const mg=document.getElementById('img-mod-grid');mg.innerHTML='';
+  IMAGING_MODALITIES.forEach(m=>mg.appendChild(optChip(m.label,imgComposer.modality===m.id,()=>{imgComposer.modality=imgComposer.modality===m.id?null:m.id;renderImaging();})));
+  const rg=document.getElementById('img-region-grid');rg.innerHTML='';
+  REGIONS.filter(r=>r.id!=='headache').forEach(r=>rg.appendChild(optChip(`${r.icon} ${r.label}`,imgComposer.region===r.id,()=>{imgComposer.region=imgComposer.region===r.id?null:r.id;renderImaging();})));
+  const fg=document.getElementById('img-find-grid');fg.innerHTML='';
+  IMAGING_FINDINGS.forEach(f=>fg.appendChild(optChip(f.label,imgComposer.findings.includes(f.id),()=>{toggleArr(imgComposer.findings,f.id);renderImaging();})));
+  renderImagingAddBtn();
+  const t=document.getElementById('img-tray');
+  t.innerHTML=im.items.length?im.items.map(it=>`<span class="tray-chip">${esc(imagingClinical(it))}<span class="x" onclick="removeImaging('${it.id}')">✕</span></span>`).join(''):'<span class="tray-empty">No imaging added yet.</span>';
+  saveDraft();
+}
+
+function renderImagingAddBtn(){
+  const hasContent=imgComposer.findings.length||document.getElementById('img-notes').value.trim();
+  document.getElementById('btn-add-img').disabled=!(imgComposer.modality&&imgComposer.region&&hasContent);
+}
+
+function imagingClinical(it){
+  const mod=IMAGING_MODALITIES.find(m=>m.id===it.modality),reg=REGIONS.find(r=>r.id===it.region);
+  const finds=it.findingIds.map(id=>IMAGING_FINDINGS.find(f=>f.id===id).label);
+  return `${mod.label} — ${reg.label}${it.level?' '+it.level:''}${finds.length?': '+finds.join(', '):''}`;
+}
+
+function addImaging(){
+  const notes=document.getElementById('img-notes'),level=document.getElementById('img-level'),date=document.getElementById('img-date');
+  rof.imaging.items.push({id:'i'+uid(),modality:imgComposer.modality,region:imgComposer.region,findingIds:[...imgComposer.findings],level:level.value.trim(),date:date.value,notes:notes.value.trim()});
+  imgComposer={modality:null,region:null,findings:[]};
+  notes.value='';level.value='';date.value='';
+  renderImaging();
+  toast('Imaging added');
+}
+function removeImaging(id){rof.imaging.items=rof.imaging.items.filter(x=>x.id!==id);renderImaging();}
+
+function renderPosture(){
+  const ps=rof.posture;
+  const g=document.getElementById('posture-grid');g.innerHTML='';
+  POSTURE_OBS.forEach(o=>g.appendChild(optChip(o.label,ps.obs.some(x=>x.id===o.id),()=>togglePostureObs(o))));
+  const t=document.getElementById('posture-tray');
+  t.innerHTML=ps.obs.map(x=>{
+    const o=POSTURE_OBS.find(p=>p.id===x.id);
+    const side=o.sided?`<button class="sev" onclick="flipPostureSide('${x.id}')">${x.side}</button>`:'';
+    return `<span class="tray-chip">${o.label}${side}<span class="x" onclick="togglePostureObs(POSTURE_OBS.find(p=>p.id==='${x.id}'))">✕</span></span>`;
+  }).join('');
+  const pl=document.getElementById('photo-list');pl.innerHTML='';
+  ps.photos.forEach(ph=>{
+    const c=document.createElement('div');c.className='photo-card';
+    c.innerHTML=`<img src="${ph.src}" alt="${esc(ph.view)} posture photo"><select>${PHOTO_VIEWS.map(v=>`<option${v===ph.view?' selected':''}>${v}</option>`).join('')}</select><button class="rm" type="button">Remove</button>`;
+    c.querySelector('select').onchange=e=>{ph.view=e.target.value;saveDraft();};
+    c.querySelector('.rm').onclick=()=>{ps.photos=ps.photos.filter(p=>p.id!==ph.id);renderPosture();};
+    pl.appendChild(c);
+  });
+  document.getElementById('grid-toggle').style.display=ps.photos.length?'inline-flex':'none';
+  saveDraft();
+}
+function togglePostureObs(o){
+  const ps=rof.posture,i=ps.obs.findIndex(x=>x.id===o.id);
+  if(i>-1)ps.obs.splice(i,1);else ps.obs.push({id:o.id,side:o.sided?'Left':null});
+  renderPosture();
+}
+function flipPostureSide(id){const x=rof.posture.obs.find(o=>o.id===id);x.side=x.side==='Left'?'Right':'Left';renderPosture();}
+
+function nextPhotoView(){
+  const used=new Set(rof.posture.photos.map(p=>p.view));
+  return PHOTO_VIEWS.find(v=>!used.has(v))||'Other';
+}
+function resizeImage(file,max=900){
+  return new Promise((resolve,reject)=>{
+    const r=new FileReader();
+    r.onerror=reject;
+    r.onload=()=>{
+      const img=new Image();
+      img.onerror=reject;
+      img.onload=()=>{
+        const scale=Math.min(1,max/Math.max(img.width,img.height));
+        const c=document.createElement('canvas');
+        c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);
+        c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+        resolve(c.toDataURL('image/jpeg',0.8));
+      };
+      img.src=r.result;
+    };
+    r.readAsDataURL(file);
+  });
+}
+async function handlePhotos(input){
+  const files=[...input.files];input.value='';
+  for(const file of files){
+    try{rof.posture.photos.push({id:'p'+uid(),view:nextPhotoView(),src:await resizeImage(file)});}
+    catch(e){toast(`Couldn't read ${file.name}`);}
+  }
+  renderPosture();
 }
 
 function goToDiagnosis(){renderAcuityGrid();renderDiagnosisOptions();showScr('scr-diagnosis');}
@@ -569,7 +784,7 @@ function suggestedAdjunctIds(){
   const s=new Set();
   if(types.has('spasm')||types.has('tenderness'))s.add('softtissue');
   if(types.has('spasm')||types.has('nerve'))s.add('dryneedling');
-  if(types.has('posture')||diagIds.has('d9'))s.add('postural');
+  if(types.has('posture')||diagIds.has('d9')||rof.posture.obs.length)s.add('postural');
   if(diagIds.has('d9'))s.add('ergonomic');
   return s;
 }
@@ -629,6 +844,54 @@ function planSentence(){
   return `${p.visits} ${plural} ${p.unit} for ${p.duration} week${p.duration>1?'s':''}, then we'll reassess your progress.`;
 }
 
+function imagingPatientText(it){
+  const mod=IMAGING_MODALITIES.find(m=>m.id===it.modality),reg=REGIONS.find(r=>r.id===it.region);
+  const when=it.date?` from ${new Date(it.date+'-01T12:00').toLocaleDateString('en-AU',{month:'long',year:'numeric'})}`:'';
+  const ids=it.findingIds.length>1?it.findingIds.filter(id=>id!=='normal'):it.findingIds;
+  const finds=ids.map(id=>IMAGING_FINDINGS.find(f=>f.id===id).plain);
+  const at=it.level&&!(ids.length===1&&ids[0]==='normal')?` at ${esc(it.level)}`:'';
+  let s=finds.length?`The ${mod.plain} of ${reg.plain}${when} showed ${joinWords(finds)}${at}.`:`We reviewed the ${mod.plain} of ${reg.plain}${when}.`;
+  if(it.notes)s+=` ${esc(it.notes)}`;
+  return s;
+}
+
+function imagingSection(){
+  const im=rof.imaging;
+  const items=im.has?im.items:[];
+  if(!items.length&&!im.referred)return '';
+  let html=items.map(it=>`<div class="pr-finding"><span class="pr-dot info"></span><span>${imagingPatientText(it)}</span></div>`).join('');
+  if(items.some(it=>it.findingIds.some(id=>id!=='normal')))
+    html+='<p class="pr-note">Changes like these are common, including in many people without any pain, so we interpret them alongside your examination rather than on their own.</p>';
+  if(im.referred)
+    html+=`<p style="margin-top:8px;">We've recommended imaging${im.referNote?` (${esc(im.referNote)})`:''} to help us better understand what's going on. We'll go through the results with you once they're available.</p>`;
+  return '<div class="pr-sec"><div class="pr-sec-title">Your Imaging</div>'+html+'</div>';
+}
+
+function gridOverlay(){
+  const lines=[];
+  for(let i=10;i<100;i+=10){
+    lines.push(`<line x1="0" y1="${i}" x2="100" y2="${i}"/>`);
+    if(i!==50)lines.push(`<line x1="${i}" y1="0" x2="${i}" y2="100"/>`);
+  }
+  return `<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><g stroke="rgba(255,255,255,.55)" stroke-width="1" vector-effect="non-scaling-stroke">${lines.join('')}</g><line x1="50" y1="0" x2="50" y2="100" stroke="#e74c3c" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>`;
+}
+
+function postureSection(){
+  const ps=rof.posture;
+  if(!ps.obs.length&&!ps.photos.length&&!ps.notes.trim())return '';
+  let html='';
+  if(ps.obs.length){
+    const phrases=ps.obs.map(x=>POSTURE_OBS.find(o=>o.id===x.id).plain((x.side||'').toLowerCase()));
+    html+=`<p>From your postural assessment, we noticed that ${joinWords(phrases)}.</p>`;
+    html+='<p class="pr-note">Postural patterns like these can place extra load on certain joints and muscles. We\'ll keep an eye on them as your care progresses.</p>';
+  }
+  if(ps.notes.trim())html+=`<p style="margin-top:8px;">${esc(ps.notes.trim())}</p>`;
+  if(ps.photos.length){
+    html+='<div class="pr-photos">'+ps.photos.map(ph=>`<figure><div class="pr-photo-box"><img src="${ph.src}" alt="${esc(ph.view)} posture photo">${ps.grid?gridOverlay():''}</div><figcaption>${esc(ph.view)}</figcaption></figure>`).join('')+'</div>';
+  }
+  return '<div class="pr-sec"><div class="pr-sec-title">Your Posture</div>'+html+'</div>';
+}
+
 function buildReport(){
   const date=new Date(rof.date).toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'});
   const phase=PHASES.find(p=>p.id===rof.plan.phase);
@@ -646,6 +909,7 @@ function buildReport(){
     '<div class="pr-doc">'+
     '<div class="pr-hdr"><div class="pr-logo">🦴</div><div class="pr-brand"><h2>Banora Chiropractic</h2><p>Report of Findings</p></div><div class="pr-meta"><strong>'+rof.patient+'</strong>'+date+'<br>'+rof.practitioner+'</div></div>'+
     '<div class="pr-sec"><div class="pr-sec-title">What We Found</div>'+(findingsHtml||'<p>No findings recorded.</p>')+'</div>'+
+    imagingSection()+postureSection()+
     '<div class="pr-sec"><div class="pr-sec-title">What This Means</div>'+acuityHtml+(diagHtml||'<p>No diagnosis recorded.</p>')+'</div>'+
     '<div class="pr-sec"><div class="pr-sec-title">Your Care Plan — '+phase.label+'</div>'+planHtml+'</div>'+
     '<div class="pr-foot"><span>Banora Chiropractic — 2/44 Greenway Drive, Tweed Heads South NSW 2486 · (07) 5599 2322</span><span>🔒 Confidential — '+new Date().toLocaleDateString('en-AU')+'</span></div>'+
@@ -657,8 +921,10 @@ function buildReport(){
 function newReport(){
   if(pk){delete pts[pk];savePts();}
   pk=null;
-  rof={patient:'',practitioner:'',date:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:''};
+  rof={patient:'',practitioner:'',date:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:'',imaging:blankImaging(),posture:blankPosture()};
   composer={type:null,region:null,level:null,side:null,severity:'moderate',qualities:[]};
+  imgComposer={modality:null,region:null,findings:[]};
+  ['img-date','img-level','img-notes','img-ref-note','posture-notes'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('inp-name').value='';
   document.querySelectorAll('input[name="prac"]').forEach(i=>i.checked=false);
   document.getElementById('inp-other-finding').value='';
