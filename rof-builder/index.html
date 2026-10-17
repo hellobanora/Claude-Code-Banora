@@ -93,6 +93,12 @@ input[type=month]{width:100%;padding:11px 13px;border:1.5px solid var(--grey-lt)
 .pr-photo-box img{display:block;width:100%;}
 .pr-photo-box svg{position:absolute;inset:0;width:100%;height:100%;}
 .pr-photos figcaption{text-align:center;font-size:11px;font-weight:700;color:var(--grey);margin-top:3px;}
+.pr-goal{margin-top:8px;padding:8px 12px;border-left:3px solid var(--m2);background:#fdf8ea;font-weight:700;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.pr-sub{font-weight:700;font-size:12.5px;margin:12px 0 6px;}
+.pr-stage{border-left:3px solid var(--grey-lt);padding:4px 0 4px 12px;margin-bottom:8px;color:var(--grey);}
+.pr-stage.cur{border-left-color:var(--navy);color:var(--navy);background:var(--blue-pale);padding:8px 12px;border-radius:0 6px 6px 0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.pr-stage-hd{font-weight:700;margin-bottom:2px;display:flex;align-items:center;gap:8px;}
+.pr-here{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:var(--navy);color:#fff;border-radius:10px;padding:1px 8px;}
 .print-screen .pr-doc{background:#fff;border-radius:12px;border:1.5px solid var(--grey-lt);box-shadow:0 2px 8px rgba(0,0,0,.05);}
 </style>
 </head>
@@ -134,7 +140,7 @@ input[type=month]{width:100%;padding:11px 13px;border:1.5px solid var(--grey-lt)
     <div class="field"><label class="lbl">Type</label><div class="opt-grid" id="type-grid"></div></div>
     <div class="field" id="quality-field" style="display:none;"><label class="lbl">Pain quality (optional, select all that apply)</label><div class="opt-grid" id="quality-grid"></div></div>
     <div class="field"><label class="lbl">Region</label><div class="opt-grid" id="region-grid"></div></div>
-    <div class="field" id="level-field" style="display:none;"><label class="lbl">Level</label><div class="opt-grid" id="level-grid"></div></div>
+    <div class="field" id="level-field" style="display:none;"><label class="lbl">Level(s) — tap all that apply</label><div class="opt-grid" id="level-grid"></div></div>
     <div class="field"><label class="lbl">Side (optional)</label><div class="opt-grid" id="side-grid"></div></div>
     <div class="field"><label class="lbl">Severity</label><div class="opt-grid" id="sev-grid"></div></div>
     <div class="btn-row" style="margin-top:4px;"><button class="btn btn-primary" id="btn-add-finding" onclick="addFindingFromComposer()" disabled>+ Add Finding</button></div>
@@ -209,6 +215,13 @@ input[type=month]{width:100%;padding:11px 13px;border:1.5px solid var(--grey-lt)
   <div class="hdr"><div class="hdr-logo">🗓️</div><div><h1>Care Plan</h1><p>Step 4 of 4</p></div><div class="phase-badge">Care Plan</div></div>
   <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div></div>
   <div class="card">
+    <div class="card-title">Goals</div>
+    <div class="card-sub">What is this stopping or limiting them from doing? Ties the plan back to what matters to them.</div>
+    <div class="opt-grid" id="goal-grid"></div>
+    <div class="field" style="margin-top:14px;"><label class="lbl">Anything else it's limiting (optional)</label><input type="text" id="goal-other" placeholder="e.g. play with the dog" oninput="rof.goals.other=this.value;saveDraft();"></div>
+    <div class="field"><label class="lbl">Their goal, in their words (optional)</label><input type="text" id="goal-personal" placeholder="e.g. Play 18 holes without stopping by Christmas" oninput="rof.goals.personal=this.value;saveDraft();"></div>
+  </div>
+  <div class="card">
     <div class="card-title">Phase of care</div>
     <div class="card-sub">★ marks the phase suggested by the presentation you selected</div>
     <div class="opt-grid" id="phase-grid"></div>
@@ -280,9 +293,9 @@ const PAIN_QUALITIES=[
   {id:'intermittent',label:'Intermittent (comes and goes)',plain:'comes and goes'},
 ];
 
-const CERVICAL_LEVELS=['C1','C2','C3','C4','C5','C6','C7','Multiple levels'];
-const THORACIC_LEVELS=['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12','Multiple levels'];
-const LUMBAR_LEVELS=['L1','L2','L3','L4','L5','Multiple levels'];
+const CERVICAL_LEVELS=['C1','C2','C3','C4','C5','C6','C7'];
+const THORACIC_LEVELS=['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12'];
+const LUMBAR_LEVELS=['L1','L2','L3','L4','L5'];
 
 const REGIONS=[
   {id:'cervical',label:'Cervical',icon:'🦴',plain:'your neck',levels:CERVICAL_LEVELS},
@@ -341,9 +354,30 @@ const ACUITY=[
 ];
 
 const PHASES=[
-  {id:'relief',label:'Relief Care',icon:'⚡',visits:3,unit:'per week',duration:2,ongoing:false,intro:'We recommend starting with more frequent visits to help settle things down.'},
-  {id:'corrective',label:'Corrective / Rehab',icon:'💪',visits:2,unit:'per week',duration:5,ongoing:false,intro:'As things settle, care shifts to correcting the underlying pattern and building resilience.'},
-  {id:'wellness',label:'Wellness / Maintenance',icon:'🌿',visits:1,unit:'every 4 weeks',duration:0,ongoing:true,intro:'Ongoing, lower-frequency care to help maintain your progress long term.'},
+  {id:'relief',label:'Relief Care',icon:'⚡',visits:3,unit:'per week',duration:2,ongoing:false,intro:'We recommend starting with more frequent visits to help settle things down.',
+    explain:'The first aim is to calm things down. Irritated joints and muscles tend to settle best when visits are close together, so each one builds on the last before your body slips back into old patterns. Many people start to feel better partway through this stage. That\'s a good sign, but pain often eases before movement and strength have caught up, and stopping as soon as it eases is one of the common reasons symptoms return.'},
+  {id:'corrective',label:'Corrective / Rehab',icon:'💪',visits:2,unit:'per week',duration:5,ongoing:false,intro:'As things settle, care shifts to correcting the underlying pattern and building resilience.',
+    explain:'Once things have settled, we work on why the problem developed in the first place: how your joints move, how well your muscles support them, and the postures and habits that load them. Visits spread out and your home exercises take on more of the work. This is the stage where many people find their progress starts to hold between visits.'},
+  {id:'wellness',label:'Wellness / Maintenance',icon:'🌿',visits:1,unit:'every 4 weeks',duration:0,ongoing:true,intro:'Ongoing, lower-frequency care to help maintain your progress long term.',
+    explain:'With the groundwork done, the aim is to look after what you\'ve built. Regular check-ins help us pick up small issues early and keep your exercises and habits on track. How often you come in is your choice, and we\'ll talk through what suits your goals and lifestyle.'},
+];
+const GOAL_LIMITS=[
+  {id:'sleep',label:'Sleeping',plain:'sleep comfortably'},
+  {id:'sit',label:'Sitting / desk work',plain:'sit at your desk'},
+  {id:'drive',label:'Driving',plain:'drive'},
+  {id:'stand',label:'Standing for long periods',plain:'stand for long periods'},
+  {id:'walk',label:'Walking',plain:'walk'},
+  {id:'lift',label:'Lifting / carrying',plain:'lift and carry things'},
+  {id:'kids',label:'Picking up kids / grandkids',plain:'pick up your kids or grandkids'},
+  {id:'turn',label:'Turning head',plain:'turn your head'},
+  {id:'house',label:'Housework',plain:'do housework'},
+  {id:'garden',label:'Gardening',plain:'get out in the garden'},
+  {id:'work',label:'Work duties',plain:'get through your work day'},
+  {id:'gym',label:'Gym / exercise',plain:'train at the gym'},
+  {id:'run',label:'Running',plain:'run'},
+  {id:'golf',label:'Golf',plain:'play golf'},
+  {id:'surf',label:'Surfing / swimming',plain:'surf or swim'},
+  {id:'sport',label:'Team sport',plain:'play sport'},
 ];
 const UNITS=['per week','every 2 weeks','every 3 weeks','every 4 weeks'];
 const ACUITY_PHASE_MAP={acute:'relief',subacute:'corrective',chronic:'corrective'};
@@ -411,9 +445,10 @@ const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const blankImaging=()=>({has:false,referred:false,items:[],referNote:''});
 const blankPosture=()=>({obs:[],photos:[],notes:'',grid:true});
+const blankGoals=()=>({limits:[],other:'',personal:''});
 
-let rof={patient:'',practitioner:'',date:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:'',imaging:blankImaging(),posture:blankPosture()};
-let composer={type:null,region:null,level:null,side:null,severity:'moderate',qualities:[]};
+let rof={patient:'',practitioner:'',date:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:'',imaging:blankImaging(),posture:blankPosture(),goals:blankGoals()};
+let composer={type:null,region:null,levels:[],side:null,severity:'moderate',qualities:[]};
 let imgComposer={modality:null,region:null,findings:[]};
 
 function startReport(){
@@ -431,7 +466,7 @@ function usedRegions(){return new Set(rof.findings.map(f=>f.region));}
 
 function saveDraft(){
   if(!pk)return;
-  pts[pk]={displayName:rof.patient,practitioner:rof.practitioner,savedAt:new Date().toISOString(),rofData:{date:rof.date,findings:rof.findings,diagnoses:rof.diagnoses.map(d=>d.id),acuity:rof.acuity,plan:rof.plan,otherFinding:rof.otherFinding,imaging:rof.imaging,posture:rof.posture}};
+  pts[pk]={displayName:rof.patient,practitioner:rof.practitioner,savedAt:new Date().toISOString(),rofData:{date:rof.date,findings:rof.findings,diagnoses:rof.diagnoses.map(d=>d.id),acuity:rof.acuity,plan:rof.plan,otherFinding:rof.otherFinding,imaging:rof.imaging,posture:rof.posture,goals:rof.goals}};
   savePts();
 }
 
@@ -447,6 +482,7 @@ function loadDraftInto(key){
   rof.otherFinding=d.rofData.otherFinding||'';
   rof.imaging=Object.assign(blankImaging(),d.rofData.imaging||{});
   rof.posture=Object.assign(blankPosture(),d.rofData.posture||{});
+  rof.goals=Object.assign(blankGoals(),d.rofData.goals||{});
   rof.planVisited=true;
   return true;
 }
@@ -502,7 +538,7 @@ function renderComposer(){
   REGIONS.forEach(r=>{
     const o=document.createElement('label');o.className='opt'+(composer.region===r.id?' sel':'');
     o.innerHTML=`${r.icon} ${r.label}`;
-    o.onclick=()=>{composer.region=(composer.region===r.id)?null:r.id;composer.level=null;renderComposer();};
+    o.onclick=()=>{composer.region=(composer.region===r.id)?null:r.id;composer.levels=[];renderComposer();};
     rg.appendChild(o);
   });
   const regionObj=REGIONS.find(r=>r.id===composer.region);
@@ -511,9 +547,9 @@ function renderComposer(){
     lf.style.display='block';
     const lg=document.getElementById('level-grid');lg.innerHTML='';
     regionObj.levels.forEach(lv=>{
-      const o=document.createElement('label');o.className='opt'+(composer.level===lv?' sel':'');
+      const o=document.createElement('label');o.className='opt'+(composer.levels.includes(lv)?' sel':'');
       o.innerHTML=lv;
-      o.onclick=()=>{composer.level=(composer.level===lv)?null:lv;renderComposer();};
+      o.onclick=()=>{toggleArr(composer.levels,lv);renderComposer();};
       lg.appendChild(o);
     });
   }else{
@@ -540,16 +576,30 @@ function addFindingFromComposer(){
   const type=FINDING_TYPES.find(t=>t.id===composer.type);
   const region=REGIONS.find(r=>r.id===composer.region);
   if(!type||!region)return;
-  const level=composer.level,side=composer.side,sev=composer.severity;
+  const levels=sortLevels(region,composer.levels),side=composer.side,sev=composer.severity;
   const qualityLabels=composer.type==='pain'?composer.qualities.map(qid=>PAIN_QUALITIES.find(q=>q.id===qid).label):[];
   let clinical=`${type.label} — ${region.label}`;
-  if(level)clinical+=` ${level}`;
+  if(levels.length)clinical+=` ${formatLevels(region,levels)}`;
   if(side)clinical+=` (${side})`;
   if(qualityLabels.length)clinical+=` [${qualityLabels.join(', ')}]`;
   const id='f'+uid();
-  rof.findings.push({id,region:region.id,type:type.id,level,side,qualityIds:composer.type==='pain'?[...composer.qualities]:[],clinical,severity:sev});
+  rof.findings.push({id,region:region.id,type:type.id,levels,side,qualityIds:composer.type==='pain'?[...composer.qualities]:[],clinical,severity:sev});
   renderFindingsTray();
   toast('Finding added');
+}
+
+function sortLevels(region,levels){
+  return region.levels?[...levels].sort((a,b)=>region.levels.indexOf(a)-region.levels.indexOf(b)):[];
+}
+// Consecutive runs of 3+ collapse to a range (C2–C4); shorter runs are listed
+function formatLevels(region,levels){
+  const sorted=sortLevels(region,levels),runs=[];
+  sorted.forEach(lv=>{
+    const run=runs[runs.length-1];
+    if(run&&region.levels.indexOf(lv)===region.levels.indexOf(run[run.length-1])+1)run.push(lv);
+    else runs.push([lv]);
+  });
+  return joinWords(runs.flatMap(r=>r.length>=3?[`${r[0]}–${r[r.length-1]}`]:r));
 }
 
 function findingPatientText(f){
@@ -557,8 +607,9 @@ function findingPatientText(f){
   const region=REGIONS.find(r=>r.id===f.region);
   if(!type||!region)return f.clinical;
   let loc;
+  const levels=f.levels||(f.level&&f.level!=='Multiple levels'?[f.level]:[]);
   if(f.level==='Multiple levels')loc=`multiple levels of ${region.plain}`;
-  else if(f.level)loc=`the ${f.level} level of ${region.plain}`;
+  else if(levels.length)loc=`the ${formatLevels(region,levels)} level${levels.length>1?'s':''} of ${region.plain}`;
   else loc=region.plain;
   if(f.side==='Left'||f.side==='Right')loc+=` on the ${f.side.toLowerCase()}`;
   else if(f.side==='Bilateral')loc+=' on both sides';
@@ -790,6 +841,10 @@ function suggestedAdjunctIds(){
 }
 
 function renderPlanScreen(){
+  const gg=document.getElementById('goal-grid');gg.innerHTML='';
+  GOAL_LIMITS.forEach(g=>gg.appendChild(optChip(g.label,rof.goals.limits.includes(g.id),()=>{toggleArr(rof.goals.limits,g.id);renderPlanScreen();})));
+  document.getElementById('goal-other').value=rof.goals.other||'';
+  document.getElementById('goal-personal').value=rof.goals.personal||'';
   const pg=document.getElementById('phase-grid');pg.innerHTML='';
   const suggestedPhase=rof.acuity&&ACUITY_PHASE_MAP[rof.acuity];
   PHASES.forEach(p=>{
@@ -892,6 +947,24 @@ function postureSection(){
   return '<div class="pr-sec"><div class="pr-sec-title">Your Posture</div>'+html+'</div>';
 }
 
+function goalsSection(){
+  const g=rof.goals;
+  const limits=g.limits.map(id=>GOAL_LIMITS.find(x=>x.id===id).plain);
+  if(g.other.trim())limits.push(esc(g.other.trim()));
+  if(!limits.length&&!g.personal.trim())return '';
+  let html='';
+  if(limits.length)html+=`<p>Right now, your symptoms are making it harder to ${joinWords(limits)}. Our care is aimed at helping you get back to these things.</p>`;
+  if(g.personal.trim())html+=`<div class="pr-goal">Your goal: “${esc(g.personal.trim())}”</div><p class="pr-note">We'll check in on this goal at each progress review, so we can both see how you're tracking.</p>`;
+  return '<div class="pr-sec"><div class="pr-sec-title">Your Goals</div>'+html+'</div>';
+}
+
+function stagesHtml(){
+  return '<div class="pr-sub">How care progresses</div>'+PHASES.map((p,i)=>{
+    const cur=p.id===rof.plan.phase;
+    return `<div class="pr-stage${cur?' cur':''}"><div class="pr-stage-hd">Stage ${i+1}: ${p.label}${cur?'<span class="pr-here">You are here</span>':''}</div><p>${p.explain}</p></div>`;
+  }).join('')+'<p class="pr-note">We\'ll reassess your progress at the end of each stage and adjust your plan based on how you\'re responding. Results vary between individuals.</p>';
+}
+
 function buildReport(){
   const date=new Date(rof.date).toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'});
   const phase=PHASES.find(p=>p.id===rof.plan.phase);
@@ -904,13 +977,15 @@ function buildReport(){
   const adjList=rof.plan.adjuncts.map(id=>ADJUNCTS.find(a=>a.id===id).patient);
   const planHtml=`<p>${phase.intro}</p><p style="margin-top:8px;"><strong>Recommended frequency:</strong> ${planSentence()}</p>`
     + (techList.length?`<p style="margin-top:8px;">Your care may include ${joinWords(techList)}.</p>`:'')
-    + (adjList.length?`<p style="margin-top:8px;">We'll also incorporate ${joinWords(adjList)}.</p>`:'');
+    + (adjList.length?`<p style="margin-top:8px;">We'll also incorporate ${joinWords(adjList)}.</p>`:'')
+    + stagesHtml();
   const doc=
     '<div class="pr-doc">'+
     '<div class="pr-hdr"><div class="pr-logo">🦴</div><div class="pr-brand"><h2>Banora Chiropractic</h2><p>Report of Findings</p></div><div class="pr-meta"><strong>'+rof.patient+'</strong>'+date+'<br>'+rof.practitioner+'</div></div>'+
     '<div class="pr-sec"><div class="pr-sec-title">What We Found</div>'+(findingsHtml||'<p>No findings recorded.</p>')+'</div>'+
     imagingSection()+postureSection()+
     '<div class="pr-sec"><div class="pr-sec-title">What This Means</div>'+acuityHtml+(diagHtml||'<p>No diagnosis recorded.</p>')+'</div>'+
+    goalsSection()+
     '<div class="pr-sec"><div class="pr-sec-title">Your Care Plan — '+phase.label+'</div>'+planHtml+'</div>'+
     '<div class="pr-foot"><span>Banora Chiropractic — 2/44 Greenway Drive, Tweed Heads South NSW 2486 · (07) 5599 2322</span><span>🔒 Confidential — '+new Date().toLocaleDateString('en-AU')+'</span></div>'+
     '</div>';
@@ -921,10 +996,10 @@ function buildReport(){
 function newReport(){
   if(pk){delete pts[pk];savePts();}
   pk=null;
-  rof={patient:'',practitioner:'',date:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:'',imaging:blankImaging(),posture:blankPosture()};
-  composer={type:null,region:null,level:null,side:null,severity:'moderate',qualities:[]};
+  rof={patient:'',practitioner:'',date:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:'',imaging:blankImaging(),posture:blankPosture(),goals:blankGoals()};
+  composer={type:null,region:null,levels:[],side:null,severity:'moderate',qualities:[]};
   imgComposer={modality:null,region:null,findings:[]};
-  ['img-date','img-level','img-notes','img-ref-note','posture-notes'].forEach(id=>document.getElementById(id).value='');
+  ['img-date','img-level','img-notes','img-ref-note','posture-notes','goal-other','goal-personal'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('inp-name').value='';
   document.querySelectorAll('input[name="prac"]').forEach(i=>i.checked=false);
   document.getElementById('inp-other-finding').value='';
