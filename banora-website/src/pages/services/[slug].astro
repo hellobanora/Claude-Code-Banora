@@ -3,6 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { clinic } from '../../data/clinic';
 import { services } from '../../data/services';
 import { conditions } from '../../data/conditions';
+import { areas } from '../../data/areas';
+import { blogPosts } from '../../data/blog';
 
 export function getStaticPaths() {
   return services.map((service) => ({
@@ -15,6 +17,7 @@ const { service } = Astro.props;
 
 const relatedConditionData = conditions.filter(c => service.relatedConditions.includes(c.slug));
 const relatedServiceData = services.filter(s => service.relatedServices.includes(s.slug));
+const relatedArticles = blogPosts.filter(p => p.status === 'published' && service.relatedPosts?.includes(p.slug));
 
 const schema = [
   {
@@ -73,7 +76,11 @@ const schema = [
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <div class="lg:col-span-2">
           <h2 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy mb-4">What is {service.title}?</h2>
-          <p class="text-grey-text leading-relaxed text-lg">{service.overview}</p>
+          <div class="space-y-4">
+            {service.overview.split('\n\n').map((para) => (
+              <p class="text-grey-text leading-relaxed text-lg">{para}</p>
+            ))}
+          </div>
 
           <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mt-10 mb-4">How this may help you</h3>
           <ul class="space-y-3">
@@ -90,6 +97,17 @@ const schema = [
 
           <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mt-10 mb-4">What to expect</h3>
           <p class="text-grey-text leading-relaxed">{service.whatToExpect}</p>
+
+          {service.sections?.map((section) => (
+            <>
+              <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mt-10 mb-4">{section.heading}</h3>
+              <div class="space-y-4">
+                {section.body.split('\n\n').map((para) => (
+                  <p class="text-grey-text leading-relaxed">{para}</p>
+                ))}
+              </div>
+            </>
+          ))}
         </div>
 
         <!-- Sidebar -->
@@ -146,20 +164,48 @@ const schema = [
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-semibold text-navy mb-8 text-center">Frequently Asked Questions</h2>
       <div class="space-y-4">
-        {service.faqs.map((faq, index) => (
-          <div class="bg-white rounded-xl border border-grey-mid/20 overflow-hidden">
-            <button
-              class="faq-toggle w-full flex items-center justify-between p-5 text-left"
-              aria-expanded="false"
-              data-faq-index={index}
-            >
+        {service.faqs.map((faq) => (
+          <details class="group bg-white rounded-xl border border-grey-mid/20 overflow-hidden">
+            <summary class="flex items-center justify-between p-5 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden">
               <span class="font-medium text-navy pr-4">{faq.question}</span>
-              <svg class="w-5 h-5 text-grey-text shrink-0 transition-transform duration-200 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div class="faq-answer hidden px-5 pb-5">
+              <svg class="w-5 h-5 text-grey-text shrink-0 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-5">
               <p class="text-grey-text leading-relaxed">{faq.answer}</p>
             </div>
-          </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related articles -->
+  {relatedArticles.length > 0 && (
+    <section class="py-16 md:py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-semibold text-navy mb-8 text-center">More on {service.title.toLowerCase()} from our blog</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {relatedArticles.map((post) => (
+            <a href={`/blog/${post.slug}/`} class="block bg-blue-ghost/40 rounded-xl p-5 border border-blue-pale/30 hover:border-light-blue/50 transition-colors">
+              <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">{post.title}</h3>
+              <p class="text-sm text-grey-text leading-relaxed">{post.excerpt}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Suburbs -->
+  <section class="py-12 md:py-16 bg-light-grey border-t border-grey-mid/10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy mb-3">{service.title} near you</h2>
+      <p class="text-grey-text mb-6">Our clinic is at {clinic.address.full}. We see patients from across the Tweed Coast and southern Gold Coast, including:</p>
+      <div class="flex flex-wrap justify-center gap-2">
+        {areas.map((a) => (
+          <a href={`/areas/${a.slug}/`} class="bg-white text-navy text-sm px-4 py-2 rounded-full border border-grey-mid/30 hover:border-light-blue hover:text-mid-blue transition-colors">
+            Chiropractor {a.isLocal ? 'in' : 'near'} {a.name}
+          </a>
         ))}
       </div>
     </div>
@@ -184,24 +230,3 @@ const schema = [
     </div>
   </section>
 </BaseLayout>
-
-<script>
-  document.querySelectorAll('.faq-toggle').forEach((button) => {
-    button.addEventListener('click', () => {
-      const answer = button.nextElementSibling;
-      const chevron = button.querySelector('.faq-chevron');
-      const isOpen = !answer?.classList.contains('hidden');
-
-      // Close all others
-      document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
-      document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('rotate-180'));
-      document.querySelectorAll('.faq-toggle').forEach(b => b.setAttribute('aria-expanded', 'false'));
-
-      if (!isOpen) {
-        answer?.classList.remove('hidden');
-        chevron?.classList.add('rotate-180');
-        button.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
-</script>
