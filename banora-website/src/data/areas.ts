@@ -24,27 +24,87 @@ export const areas: Area[] = [
     name: 'Tweed Heads South',
     state: 'NSW',
     metaTitle: 'Chiropractor Tweed Heads South | Banora Chiropractic',
-    metaDescription: 'Local chiropractor in Tweed Heads South. Banora Chiropractic is located at 2/44 Greenway Drive. Over 30 years combined experience. Book online today.',
+    metaDescription: 'Chiropractor in Tweed Heads South at 2/44 Greenway Drive, near Tweed City. Free parking, HICAPS, no referral needed, Saturday mornings. Book online.',
     heroHeading: 'Chiropractor in Tweed Heads South',
     distance: '0 km',
     driveTime: 'On Greenway Drive',
     isLocal: true,
-    description: 'Banora Chiropractic is proudly located right here in Tweed Heads South, at 2/44 Greenway Drive. We have been helping local families, workers, and active people feel their best for years. As your neighbourhood chiropractors, we understand the community and are committed to providing quality, personal care.',
-    localInfo: 'Located on Greenway Drive between Reece Plumbing and Border Bikes, with easy on-site parking and ground-level wheelchair access. We are just minutes from Tweed City Shopping Centre and the local schools.',
-    servicesHighlight: 'From back pain and neck stiffness to sports injuries and pregnancy care — we offer a full range of chiropractic services right here in your neighbourhood. No need to travel to the Gold Coast for quality care.',
+    description: "Banora Chiropractic is right here in Tweed Heads South, at 2/44 Greenway Drive. Dr James Shipway and Dr Paul Cater have over 30 years of combined experience, and most of the people they see live or work within a few minutes of the clinic: families from the surrounding streets, staff from the shops and businesses around Tweed City, tradies between jobs and retirees who'd rather not drive far for their care.",
+    localInfo: "We're on Greenway Drive between Reece Plumbing and Border Bikes, a couple of minutes from Tweed City Shopping Centre. Parking is free and right out the front, and the clinic is on the ground floor with no steps, so it's easy if you're bringing a pram, using a walking frame or just moving gingerly with a sore back.",
+    servicesHighlight: "From back pain and neck stiffness to headaches, sports injuries, pregnancy care and kids, we offer the full range of chiropractic care right here in Tweed Heads South. Each service has its own page below.",
+    sections: [
+      {
+        heading: 'Fitting care around work, school and the shops',
+        body: "Being local means you can fit an appointment in around the school run, a shift or a trip to Tweed City. We're open until 6pm on Monday, Tuesday and Thursday, and Saturday mornings from 8am to midday. Wednesday we start at 2pm, and Friday is a short session from 12pm to 2pm.\n\nYou can book online any time, or call (07) 5599 2322 and we'll find a time that suits.",
+      },
+      {
+        heading: 'What to expect at your first visit',
+        body: "Your first appointment takes around 30 to 45 minutes. We'll ask about your history and what's been bothering you, then assess how your spine and joints are moving. We explain what we find and what we suggest before any treatment starts.\n\nWe use a range of techniques, including gentle, low-force options for people who prefer not to be adjusted by hand. If we think you'd be better looked after by your GP, a physio or another practitioner, we'll tell you. Results vary between individuals, and we'll be upfront about what's realistic for you.",
+      },
+    ],
+    faqs: [
+      {
+        question: 'Where exactly is Banora Chiropractic?',
+        answer: "2/44 Greenway Drive, Tweed Heads South NSW 2486, between Reece Plumbing and Border Bikes and a couple of minutes from Tweed City Shopping Centre. Parking is free and right out the front.",
+      },
+      {
+        question: 'Do I need a referral to see a chiropractor?',
+        answer: "No. You can book directly online or call us on (07) 5599 2322. If you have a Medicare care plan from your GP, bring it along.",
+      },
+      {
+        question: 'Can I claim on my health fund?',
+        answer: "Yes, if your extras cover includes chiropractic. We have HICAPS on-site, so your rebate is processed on the spot and you only pay the gap. We also accept DVA and WorkCover.",
+      },
+      {
+        question: 'Are you open on Saturdays?',
+        answer: "Yes, from 8am to 12pm. Saturday appointments tend to fill first, so booking a few days ahead is a good idea.",
+      },
+    ],
   },
   {
     slug: 'tweed-heads',
     name: 'Tweed Heads',
     state: 'NSW',
-    metaTitle: 'Chiropractor Near Tweed Heads | Banora Chiropractic',
-    metaDescription: 'Looking for a chiropractor near Tweed Heads? Banora Chiropractic is just 5 minutes away in Tweed Heads South. Expert care, easy parking. Book online.',
-    heroHeading: 'Chiropractor Near Tweed Heads',
+    metaTitle: 'Chiropractor Tweed Heads | Banora Chiropractic',
+    metaDescription: 'Chiropractor for Tweed Heads locals, about 5 minutes away in Tweed Heads South. Gentle options, free parking, HICAPS and no referral needed. Book online.',
+    heroHeading: 'Your Tweed Heads Chiropractor, 5 Minutes Down the Road',
     distance: '3 km',
     driveTime: '5 min drive',
-    description: 'If you live or work in Tweed Heads, quality chiropractic care is just a short drive away. Banora Chiropractic is located in nearby Tweed Heads South — about 5 minutes down the road. Many of our patients come from Tweed Heads and appreciate the easy access, on-site parking, and friendly, unhurried care.',
-    localInfo: 'A quick drive from Tweed Heads CBD, across the Tweed River. We are easy to find on Greenway Drive with plenty of parking — no meters, no hassle.',
-    servicesHighlight: 'Whether you are dealing with back pain from work, headaches from stress, or just want to stay on top of your health, our experienced chiropractors can help. We treat people of all ages from the Tweed Heads area.',
+    description: "Banora Chiropractic is about 5 minutes from the centre of Tweed Heads, at 2/44 Greenway Drive in Tweed Heads South. We don't have a clinic in town itself, but a large share of our patients come from Tweed Heads, Tweed Heads West and out towards Fingal Head. Dr James Shipway and Dr Paul Cater have over 30 years of combined experience, and they see everyone from retirees and hospitality workers to office staff, tradies and young families.",
+    localInfo: "Head south out of town towards Tweed City Shopping Centre and you'll reach us in around 5 minutes, depending on traffic. We're on Greenway Drive between Reece Plumbing and Border Bikes. Unlike in town, parking is free and right out the front, with no meters and no time limits to watch, and the clinic is on the ground floor with no steps.",
+    servicesHighlight: "Most Tweed Heads patients come to us for lower back pain, neck pain, sciatica and headaches, but we also look after sports injuries, posture concerns, pregnancy-related back and pelvic discomfort, and kids. Each service has its own page below.",
+    sections: [
+      {
+        heading: 'Gentle care for older patients',
+        body: "Tweed Heads has plenty of active retirees, and a lot of them come to us with stiff lower backs, sore hips, neck pain or reduced movement that's making golf, bowls, gardening or a walk around Jack Evans Boat Harbour harder than it used to be.\n\nNot everyone wants a traditional manual adjustment, and that's fine. We use a range of techniques, including low-force options such as Activator and drop-table work, and we'll talk you through the choices before we start. We also take your other health conditions and medications into account, and we'll work alongside your GP where that helps.",
+      },
+      {
+        heading: 'On your feet, at a desk or in the surf',
+        body: "We see a lot of people whose work keeps them on their feet all day in the shops, cafes and clubs around town, as well as people who spend long hours at a desk or behind the wheel. Sore lower backs, tight necks and headaches that build through the day are common.\n\nWe also see surfers from Duranbah and Snapper with stiff necks and shoulders from paddling. Whatever brings you in, your first visit starts with a full assessment, and we'll explain what we find before any treatment. Many patients find their care helps them stay active, though results vary between individuals.",
+      },
+      {
+        heading: 'Hours that work around you',
+        body: "We're open until 6pm on Monday, Tuesday and Thursday, and from 8am to midday on Saturday. Wednesday we start at 2pm, and Friday is a short session from 12pm to 2pm. You can book online any time, or call (07) 5599 2322.",
+      },
+    ],
+    faqs: [
+      {
+        question: 'How far is Banora Chiropractic from Tweed Heads?',
+        answer: "About 3 km, or roughly a 5-minute drive south of town towards Tweed City. We're at 2/44 Greenway Drive, Tweed Heads South, with free on-site parking.",
+      },
+      {
+        question: 'Do you offer gentle chiropractic for older people?',
+        answer: "Yes. Alongside traditional adjustments we use low-force techniques such as Activator and drop-table work. We'll assess you first and discuss which approach suits you before any treatment.",
+      },
+      {
+        question: 'Do I need a referral?',
+        answer: "No. You can book directly online or call us on (07) 5599 2322. If you have a Medicare care plan from your GP, bring it along.",
+      },
+      {
+        question: 'Can I claim on my health fund or DVA?',
+        answer: "Yes. We have HICAPS on-site, so health fund rebates are processed on the spot and you only pay the gap. We also accept DVA and WorkCover.",
+      },
+    ],
   },
   {
     slug: 'banora-point',

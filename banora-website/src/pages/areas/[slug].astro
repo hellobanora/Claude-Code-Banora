@@ -4,7 +4,7 @@ import { clinic, practitioners, pricing } from '../../data/clinic';
 import { areas } from '../../data/areas';
 import { services } from '../../data/services';
 import { conditions } from '../../data/conditions';
-import { faqSchema } from '../../data/schema';
+import { faqSchema, CLINIC_ID } from '../../data/schema';
 
 export function getStaticPaths() {
   return areas.map((area) => ({
@@ -21,6 +21,9 @@ const pageSchema = {
   '@type': 'WebPage',
   name: area.metaTitle,
   url: `${clinic.website}/areas/${area.slug}/`,
+  description: area.metaDescription,
+  about: { '@id': CLINIC_ID },
+  contentLocation: { '@type': 'Place', name: `${area.name} ${area.state}` },
   breadcrumb: {
     '@type': 'BreadcrumbList',
     itemListElement: [
@@ -71,7 +74,7 @@ const schema = area.faqs ? [pageSchema, faqSchema(area.faqs)] : pageSchema;
           </div>
 
           <div>
-            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-3">Getting here from {area.name}</h3>
+            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-3">{area.isLocal ? `Finding us in ${area.name}` : `Getting here from ${area.name}`}</h3>
             <p class="text-grey-text leading-relaxed">{area.localInfo}</p>
           </div>
 
