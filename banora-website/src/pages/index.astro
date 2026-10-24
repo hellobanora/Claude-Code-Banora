@@ -33,39 +33,6 @@ const areas = ['Tweed Heads South', 'Tweed Heads', 'Banora Point', 'Coolangatta'
       --color-warm-bg: #FFFBF3;
       --color-warm-bg-alt: #FFF8EB;
     }
-    .glow-btn {
-      background: linear-gradient(135deg, #DC2626, #B91C1C);
-      border: 2px solid rgba(220, 38, 38, 0.5);
-      box-shadow:
-        0 0 15px rgba(220, 38, 38, 0.4),
-        0 0 30px rgba(220, 38, 38, 0.2),
-        0 0 60px rgba(220, 38, 38, 0.1);
-      animation: glowPulse 2.5s ease-in-out infinite;
-    }
-    .glow-btn:hover {
-      background: linear-gradient(135deg, #EF4444, #DC2626);
-      box-shadow:
-        0 0 20px rgba(220, 38, 38, 0.6),
-        0 0 40px rgba(220, 38, 38, 0.3),
-        0 0 80px rgba(220, 38, 38, 0.15);
-    }
-    @keyframes glowPulse {
-      0%, 100% {
-        box-shadow:
-          0 0 15px rgba(220, 38, 38, 0.4),
-          0 0 30px rgba(220, 38, 38, 0.2),
-          0 0 60px rgba(220, 38, 38, 0.1);
-      }
-      50% {
-        box-shadow:
-          0 0 25px rgba(220, 38, 38, 0.6),
-          0 0 50px rgba(220, 38, 38, 0.35),
-          0 0 80px rgba(220, 38, 38, 0.15);
-      }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .glow-btn { animation: none; }
-    }
   </style>
 
   <!-- FIX: wrapper div clears the fixed mobile "Book Now" bar at the bottom -->
@@ -140,12 +107,12 @@ const areas = ['Tweed Heads South', 'Tweed Heads', 'Banora Point', 'Coolangatta'
         </div>
 
         <!-- FIX: on mobile, stack buttons tighter with smaller gap; show call button inline on sm+ -->
-        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 md:mt-8">
-          <button class="open-booking-modal inline-flex items-center justify-center bg-[var(--color-gold)] hover:bg-[var(--color-gold-dark)] text-white px-7 py-3.5 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-medium transition-all duration-300 shadow-lg shadow-[#D4A853]/25 hover:shadow-[#B88E3A]/25 hover:-translate-y-0.5">
+        <div class="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 mt-6 md:mt-8">
+          <button class="open-booking-modal inline-flex items-center justify-center whitespace-nowrap bg-[var(--color-gold)] hover:bg-[var(--color-gold-dark)] text-white px-7 py-3.5 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-medium transition-all duration-300 shadow-lg shadow-[#D4A853]/25 hover:shadow-[#B88E3A]/25 hover:-translate-y-0.5">
             Book Your Visit
             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
           </button>
-          <a href="/symptom-checker/" class="glow-btn inline-flex items-center justify-center text-white px-7 py-3.5 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-medium transition-all duration-300 hover:-translate-y-0.5">
+          <a href="/symptom-checker/" class="inline-flex items-center justify-center whitespace-nowrap bg-transparent hover:bg-white/10 border border-white/45 text-white px-7 py-3.5 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-medium transition-all duration-300 hover:-translate-y-0.5">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
             Check Your Symptoms
           </a>
