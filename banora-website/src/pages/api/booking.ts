@@ -1,12 +1,11 @@
 // IconPractice API proxy — all booking API calls route through here
 // GET /api/booking?action=...
-// POST /api/booking (register appointment via old widget API)
+// POST /api/booking (register appointment)
 
 export const prerender = false;
 import type { APIRoute } from 'astro';
 
 const BASE     = 'https://app.iconpractice.com';
-const OLD_BASE = 'https://www.iconpractice.com';
 const T1 = import.meta.env.ICONPRACTICE_TOKEN1 || '245386';
 const T2 = import.meta.env.ICONPRACTICE_TOKEN2 || '7138';
 
@@ -38,7 +37,7 @@ async function sendConfirmationEmail(body: any): Promise<EmailResult> {
 
   const ts = Number(body.ts_schedule_start);
   const apptDate = new Date(ts * 1000);
-  const isNew = body.new_patient === 1 || body.new_patient === '1';
+  const isNew = body.existing === 'false' || body.existing === false || body.new_patient === 1 || body.new_patient === '1';
 
   // Clinic is in NSW — must follow NSW daylight saving (not Brisbane, which has none)
   const longDate = apptDate.toLocaleString('en-AU', {
@@ -160,85 +159,60 @@ export const GET: APIRoute = async ({ url }) => {
   }
 };
 
-// ---- POST — register appointment via old widget API ----
+// ---- POST — register appointment via IconPractice widget API ----
+// The legacy www.iconpractice.com/ob/ajax/register_appt.php endpoint was retired
+// (it now redirects to a 404), so this posts to the same endpoint IconPractice's
+// own widget uses. csrf_key/csrf_token come from the practice-details response.
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
 
-    // Step 1: Fetch widget page to get session token + cookies
-    const widgetUrl = `${OLD_BASE}/ob/${T2}/banorachiropractic/${T1}/2`;
-    const widgetRes = await fetch(widgetUrl, {
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Banora/1.0)' },
-    });
-    const widgetHtml = await widgetRes.text();
+    if (!body.csrf_key || !body.csrf_token) {
+      return json({ success: false, message: 'Missing booking session — please reload and try again' }, 400);
+    }
 
-    // Collect session cookies from widget page response
-    const setCookies: string[] = (widgetRes.headers as any).getSetCookie?.() ?? [];
-    const cookieStr = setCookies.map((c: string) => c.split(';')[0]).join('; ');
-
-    // Extract token from hidden input (handles either attribute order)
-    const tokenMatch =
-      widgetHtml.match(/name=["']token["'][^>]*value=["']([^"']+)["']/) ||
-      widgetHtml.match(/value=["']([^"']+)["'][^>]*name=["']token["']/);
-    const token = tokenMatch ? tokenMatch[1] : T1;
-
-    // Step 2: Parse DOB from YYYY-MM-DD
-    const [dobYear = '', dobMonth = '', dobDay = ''] = (body.customer_dob || '').split('-');
-
-    // Step 3: Build form-encoded body for old widget API
-    // existing=1 → returning patient, existing=0 → new patient
-    // new_patient mirrors existing (inverted) so both fields are explicit
     const isExisting = body.existing === 1 || body.existing === '1' || body.existing === true || body.existing === 'true';
-    const form = new URLSearchParams({
-      first_name:  body.customer_firstname || '',
-      last_name:   body.customer_lastname  || '',
-      email:       body.customer_email     || '',
-      mobile:      body.customer_mobile    || '',
-      dob_day:     dobDay,
-      dob_month:   dobMonth,
-      dob_year:    dobYear,
-      prac_sel:    String(body.practitioner_id   || ''),
-      appt_type:   String(body.service_item_id   || ''),
-      tss:         String(body.ts_schedule_start || ''),
-      tse:         String(body.ts_schedule_end   || ''),
-      pid:            String(body.practice_id       || ''),
-      token,
-      existing:       isExisting ? '1' : '0',
-      new_patient:    isExisting ? '0' : '1',
-      extra_comments: isExisting
-        ? 'EXISTING PATIENT — booked via website chatbot'
-        : 'New patient — booked via website chatbot',
+    // Must be form-encoded — the endpoint ignores JSON bodies ("csrf_token is required")
+    const payload = new URLSearchParams({
+      csrf_key:           body.csrf_key,
+      csrf_token:         body.csrf_token,
+      ob_token:           T1,
+      ob_token2:          T2,
+      practice_id:        String(body.practice_id ?? ''),
+      practitioner_id:    String(body.practitioner_id ?? ''),
+      service_item_id:    String(body.service_item_id ?? ''),
+      is_group:           'false',
+      existing:           isExisting ? 'true' : 'false',
+      ts_schedule_start:  String(body.ts_schedule_start ?? ''),
+      ts_schedule_end:    String(body.ts_schedule_end ?? ''),
+      customer_firstname: body.customer_firstname || '',
+      customer_lastname:  body.customer_lastname  || '',
+      customer_dob:       body.customer_dob       || '',
+      customer_email:     body.customer_email     || '',
+      customer_mobile:    body.customer_mobile    || '',
+      comments: isExisting
+        ? 'EXISTING PATIENT — booked via website'
+        : 'New patient — booked via website',
     });
 
-    // Step 4: POST to old widget API with session cookies
-    const r = await fetch(`${OLD_BASE}/ob/ajax/register_appt.php`, {
+    const r = await fetch(`${BASE}/api/v1/widget/register-appointment`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Referer':    widgetUrl,
-        'Origin':     OLD_BASE,
-        'User-Agent': 'Mozilla/5.0 (compatible; Banora/1.0)',
-        ...(cookieStr ? { 'Cookie': cookieStr } : {}),
-      },
-      body: form.toString(),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
+      body: payload.toString(),
     });
 
     const raw = await r.text();
-    console.log('[register_appt response]', r.status, raw.slice(0, 500));
 
-    // Parse response — fall back to success if 2xx but not JSON
-    let result: any;
-    try {
-      result = JSON.parse(raw);
-    } catch {
-      result = r.ok ? { success: true, confirmed: true } : null;
-    }
+    // Only report success when IconPractice explicitly says so — never assume it
+    let result: any = null;
+    try { result = JSON.parse(raw); } catch { /* non-JSON = failure */ }
+    console.log('[register-appointment]', r.status, 'success:', result?.success, result?.success ? '' : (result?.message ?? raw.slice(0, 200)));
 
-    if (r.ok && result?.success !== false) {
+    if (r.ok && result?.success === true) {
       // IconPractice already emails its own confirmation, so the Resend one is off by default
       // to avoid duplicates. Set SEND_RESEND_CONFIRMATION=true in Vercel to re-enable it.
       if (import.meta.env.SEND_RESEND_CONFIRMATION !== 'true') {
-        return json(result ?? { success: true, confirmed: true });
+        return json(result);
       }
       // Await the send — fire-and-forget can be killed by Vercel's serverless lifecycle
       // before the Resend fetch completes. Adds ~300ms but guarantees the email actually goes.
@@ -250,7 +224,7 @@ export const POST: APIRoute = async ({ request }) => {
       } else {
         console.error('[booking] confirmation email FAILED — status:', email.status, 'error:', email.error, '— to:', body.customer_email);
       }
-      return json(result ?? { success: true, confirmed: true });
+      return json(result);
     }
 
     return json({ success: false, message: result?.message || raw.slice(0, 200) || 'Booking failed' }, 502);

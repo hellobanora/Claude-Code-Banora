@@ -5,7 +5,7 @@ export const clinic = {
   phoneFull: '+61755992322',
   email: 'info@banorachiropractic.com.au',
   website: 'https://banorachiropractic.com.au',
-  bookingUrl: 'https://www.iconpractice.com/ob/7138/banorachiropractic/245386/2',
+  bookingUrl: 'https://app.iconpractice.com/book/7138/banorachiropractic/245386/2',
   address: {
     street: '2/44 Greenway Drive',
     suburb: 'Tweed Heads South',

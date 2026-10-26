@@ -46,7 +46,7 @@ export async function checkWebsite(siteUrl: string): Promise<HealthCheckResult> 
 export async function checkBookingSystem(): Promise<HealthCheckResult> {
   const timestamp = new Date().toISOString();
   const bookingUrl =
-    "https://www.iconpractice.com/ob/7138/banorachiropractic/245386/2";
+    "https://app.iconpractice.com/book/7138/banorachiropractic/245386/2";
   const { ok, status, elapsed } = await timedFetch(bookingUrl);
 
   return {
