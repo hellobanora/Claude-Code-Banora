@@ -9,10 +9,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postbuild": "node scripts/check-sitemap.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.1",
     "@astrojs/vercel": "^10.0.2",
     "@fontsource/cormorant-garamond": "^5.2.11",
     "@fontsource/outfit": "^5.2.8",

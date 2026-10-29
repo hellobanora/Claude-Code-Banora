@@ -1,6 +1,35 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { clinic } from '../data/clinic';
+import { faqSchema } from '../data/schema';
+
+// Shown on the page and used for FAQPage schema — keep the two in sync by editing only this list.
+const faqs = [
+  {
+    question: 'Do I need a referral to see a chiropractor at Banora Chiropractic?',
+    answer: `No. You don't need a referral to see a chiropractor in Australia, so you can book online or call us on ${clinic.phone}. If you have a GP referral under an EPC/CDM Medicare plan, or WorkCover, CTP or DVA cover, please bring the paperwork with you.`,
+  },
+  {
+    question: 'How long does a first chiropractic appointment take?',
+    answer: 'Your first appointment takes 30–45 minutes. It includes a consultation about your health history and symptoms, a physical examination, and treatment if we believe chiropractic care is suitable for you.',
+  },
+  {
+    question: 'What should I bring to my first chiropractic appointment?',
+    answer: 'Bring any previous X-rays or scans, a list of your current medications and supplements, your private health insurance card, and any GP referral or claim paperwork. Wear comfortable, loose-fitting clothing.',
+  },
+  {
+    question: 'Does Banora Chiropractic accept health fund rebates?',
+    answer: 'Yes. We have HICAPS on-site, so private health fund rebates are processed on the spot and you only pay the gap on the day.',
+  },
+  {
+    question: 'Do you take X-rays at the clinic?',
+    answer: "No. If imaging is clinically indicated, we'll refer you to a local radiology provider and go through the results with you at your next visit.",
+  },
+  {
+    question: 'Where is Banora Chiropractic located?',
+    answer: `We're at ${clinic.address.full}, between Reece Plumbing and Border Bikes. There's on-site parking, and the clinic is on the ground level with wheelchair access.`,
+  },
+];
 
 const schema = [
   {
@@ -15,52 +44,7 @@ const schema = [
       url: clinic.website,
     },
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'Do I need a referral to see a chiropractor at Banora Chiropractic?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No referral is required. You can book directly online or call us on (07) 5599 2322.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What should I bring to my first chiropractic appointment?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Bring any relevant X-rays or scan results, your health fund card if you have one, and wear comfortable clothing. Arrive a few minutes early to complete your new patient paperwork.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does Banora Chiropractic accept health fund rebates?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. We have HICAPS on-site so most health fund rebates are processed instantly. You only pay the gap on the day.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How long does a first chiropractic appointment take?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Your initial consultation is typically 45–60 minutes. This includes a full health history, postural assessment, and your first treatment if appropriate.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Where is Banora Chiropractic located?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'We are located at 2/44 Greenway Drive, Tweed Heads South NSW 2486. We have on-site parking and are ground level with wheelchair access.',
-        },
-      },
-    ],
-  },
+  faqSchema(faqs),
 ];
 ---
 
@@ -176,6 +160,22 @@ const schema = [
         </li>
       </ul>
       <p class="text-grey-text">We're located at {clinic.address.full} — easy parking on site.</p>
+    </div>
+  </section>
+
+  <!-- FAQs (same list feeds the FAQPage schema) -->
+  <section class="py-16 md:py-24 bg-light-grey">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-sm text-mid-blue font-medium uppercase tracking-wider">Common questions</span>
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-8">New Patient FAQs</h2>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <div class="bg-white rounded-xl p-6 border border-blue-pale/30">
+            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-2">{faq.question}</h3>
+            <p class="text-grey-text leading-relaxed">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 

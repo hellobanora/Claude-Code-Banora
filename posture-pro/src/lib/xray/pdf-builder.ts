@@ -6,6 +6,7 @@
 
 import type { XrayAnalysis, ClinicBranding, Severity } from './types';
 import { CLINICS, SEVERITY_COLOURS, SEVERITY_LABELS, EDUCATION_TEXT, REFERENCE_XRAY_IMAGES } from './constants';
+import { formatCurveDeviation } from './geometry';
 
 /**
  * Generate a branded PDF report for an X-ray analysis.
@@ -292,9 +293,10 @@ async function drawAnnotatedPage(
     doc.roundedRect(margin, cardY, contentWidth, 30, 3, 3, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(14);
-    doc.text(`ARA: ${ara.measured.toFixed(1)}° (ideal: ${ara.ideal}°)`, margin + 10, cardY + 12);
+    const { deviationText } = formatCurveDeviation(ara.measured, ara.ideal);
+    doc.text(`ARA: ${Math.abs(ara.measured).toFixed(1)}° (ideal: ${Math.abs(ara.ideal)}°)`, margin + 10, cardY + 12);
     doc.setFontSize(11);
-    doc.text(`${ara.lossPercent.toFixed(1)}% loss from normal — ${SEVERITY_LABELS[ara.severity]}`, margin + 10, cardY + 22);
+    doc.text(`${deviationText} — ${SEVERITY_LABELS[ara.severity]}`, margin + 10, cardY + 22);
   }
 }
 

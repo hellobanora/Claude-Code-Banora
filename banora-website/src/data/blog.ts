@@ -846,7 +846,7 @@ export const blogPosts: BlogPost[] = [
     readTime: 6,
     relatedServices: ['chiropractic-adjustments', 'posture-correction'],
     relatedConditions: ['headaches-migraines', 'neck-pain'],
-    relatedPosts: ['why-your-posture-matters-more-than-you-think', 'how-to-set-up-your-home-office-to-protect-your-back'],
+    relatedPosts: ['cervicogenic-headache-causes-and-treatment', 'why-your-posture-matters-more-than-you-think', 'how-to-set-up-your-home-office-to-protect-your-back'],
   },
   {
     slug: 'sciatica-exercises-and-stretches',
@@ -1138,7 +1138,7 @@ export const blogPosts: BlogPost[] = [
     heroImageAlt: 'Chiropractor performing neck assessment at Banora Chiropractic Tweed Heads South',
     readTime: 8,
     relatedServices: ['chiropractic-adjustments', 'posture-correction'],
-    relatedConditions: ['back-pain', 'neck-pain'],
+    relatedConditions: ['back-pain', 'neck-pain', 'headaches-migraines'],
     relatedPosts: ['understanding-back-pain', 'how-chiropractic-helps-back-pain'],
   },
 
@@ -1385,7 +1385,7 @@ export const blogPosts: BlogPost[] = [
 
       <h2>Why symptoms often show up later</h2>
 
-      <p>In a collision — even a relatively minor one — your neck and upper back go through a rapid back-and-forth movement that the muscles and joints aren't braced for. This is what's commonly called whiplash. The immediate adrenaline of the moment can mask how much strain actually happened, and the inflammation and muscle guarding that follow an injury like this often build over the following 24 to 72 hours rather than hitting straight away.</p>
+      <p>In a collision — even a relatively minor one — your neck and upper back go through a rapid back-and-forth movement that the muscles and joints aren't braced for. This is what's commonly called <a href="/conditions/whiplash/">whiplash</a>. The immediate adrenaline of the moment can mask how much strain actually happened, and the inflammation and muscle guarding that follow an injury like this often build over the following 24 to 72 hours rather than hitting straight away.</p>
 
       <p>So feeling "fine" right after the accident doesn't mean nothing happened. It's genuinely common for the worst of it to show up a couple of days later.</p>
 
@@ -1426,7 +1426,7 @@ export const blogPosts: BlogPost[] = [
     heroImageAlt: 'Chiropractor performing a gentle adjustment on a patient at Banora Chiropractic',
     readTime: 6,
     relatedServices: ['chiropractic-adjustments', 'posture-correction'],
-    relatedConditions: ['neck-pain', 'back-pain', 'headaches-migraines'],
+    relatedConditions: ['whiplash', 'neck-pain', 'back-pain', 'headaches-migraines'],
     relatedPosts: ['cervicogenic-headache-causes-and-treatment', 'understanding-back-pain'],
   },
 ];

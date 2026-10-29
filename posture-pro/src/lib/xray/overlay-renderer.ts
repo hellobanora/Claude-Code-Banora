@@ -14,6 +14,7 @@ import {
   toCanvasCoords,
   smoothCurveControlPoints,
   perpendicularDirection,
+  formatCurveDeviation,
 } from './geometry';
 
 interface RenderContext {
@@ -268,15 +269,16 @@ function drawARAOverlay(
   ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
   ctx.fillRect(8, 8, 320, 55);
 
-  // ARA value
+  // ARA value — show absolute degrees for patient readability
   ctx.font = 'bold 16px sans-serif';
   ctx.fillStyle = OVERLAY_COLOURS.araText;
-  ctx.fillText(`ARA: ${ara.measured.toFixed(1)}° (ideal: ${CERVICAL_IDEAL_ARA}°)`, 16, 28);
+  ctx.fillText(`ARA: ${Math.abs(ara.measured).toFixed(1)}° (ideal: ${Math.abs(CERVICAL_IDEAL_ARA)}°)`, 16, 28);
 
-  // Loss percentage
+  // Deviation percentage with directional wording
+  const { deviationText } = formatCurveDeviation(ara.measured, CERVICAL_IDEAL_ARA);
   ctx.font = '13px sans-serif';
   ctx.fillStyle = colour;
-  ctx.fillText(`${ara.lossPercent.toFixed(1)}% loss from normal`, 16, 50);
+  ctx.fillText(deviationText, 16, 50);
 
   ctx.restore();
 }

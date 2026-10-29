@@ -14,7 +14,7 @@ interface SitemapURL {
 }
 
 function url(path: string, changefreq: SitemapURL['changefreq'], priority: string, lastmod?: string): SitemapURL {
-  return { loc: `${BASE_URL}${path}`, changefreq, priority, lastmod };
+  return { loc: `${BASE_URL}${path.endsWith('/') ? path : `${path}/`}`, changefreq, priority, lastmod };
 }
 
 function toXML(urls: SitemapURL[]): string {
@@ -50,7 +50,7 @@ export const GET: APIRoute = () => {
     url('/fees', 'monthly', '0.8'),
     url('/new-patient-info', 'monthly', '0.8'),
     url('/patient-resources', 'monthly', '0.7'),
-    url('/symptom-checker', 'monthly', '0.6'),
+    url('/our-approach', 'monthly', '0.7'),
 
     // Team pages
     url('/team/dr-james-shipway', 'yearly', '0.7'),
@@ -71,9 +71,6 @@ export const GET: APIRoute = () => {
     // Blog
     url('/blog', 'weekly', '0.7', today),
     ...uniquePosts.map(p => url(`/blog/${p.slug}`, 'monthly', '0.6')),
-
-    // Legal / utility
-    url('/privacy-policy', 'yearly', '0.3'),
   ];
 
   return new Response(toXML(urls), {

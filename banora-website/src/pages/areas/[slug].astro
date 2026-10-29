@@ -4,6 +4,7 @@ import { clinic, practitioners, pricing } from '../../data/clinic';
 import { areas } from '../../data/areas';
 import { services } from '../../data/services';
 import { conditions } from '../../data/conditions';
+import { faqSchema, CLINIC_ID } from '../../data/schema';
 
 export function getStaticPaths() {
   return areas.map((area) => ({
@@ -15,20 +16,24 @@ export function getStaticPaths() {
 const { area } = Astro.props;
 const otherAreas = areas.filter(a => a.slug !== area.slug).slice(0, 8);
 
-const schema = {
+const pageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: area.metaTitle,
-  url: `${clinic.website}/areas/${area.slug}`,
+  url: `${clinic.website}/areas/${area.slug}/`,
+  description: area.metaDescription,
+  about: { '@id': CLINIC_ID },
+  contentLocation: { '@type': 'Place', name: `${area.name} ${area.state}` },
   breadcrumb: {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: clinic.website },
-      { '@type': 'ListItem', position: 2, name: 'Areas We Serve', item: `${clinic.website}/areas` },
-      { '@type': 'ListItem', position: 3, name: area.name, item: `${clinic.website}/areas/${area.slug}` },
+      { '@type': 'ListItem', position: 2, name: 'Areas We Serve', item: `${clinic.website}/areas/` },
+      { '@type': 'ListItem', position: 3, name: area.name, item: `${clinic.website}/areas/${area.slug}/` },
     ],
   },
 };
+const schema = area.faqs ? [pageSchema, faqSchema(area.faqs)] : pageSchema;
 ---
 
 <BaseLayout title={area.metaTitle} description={area.metaDescription} schema={schema}>
@@ -46,8 +51,14 @@ const schema = {
       </nav>
       <h1 class="font-[family-name:var(--font-display)] text-4xl md:text-5xl font-semibold text-white mb-4">{area.heroHeading}</h1>
       <div class="flex items-center gap-4 mt-4">
-        <span class="bg-white/10 backdrop-blur-sm text-light-blue text-sm px-4 py-1.5 rounded-full">{area.distance} from our clinic</span>
-        <span class="bg-white/10 backdrop-blur-sm text-light-blue text-sm px-4 py-1.5 rounded-full">{area.driveTime}</span>
+        {area.isLocal ? (
+          <span class="bg-white/10 backdrop-blur-sm text-light-blue text-sm px-4 py-1.5 rounded-full">Located at 2/44 Greenway Drive, {area.name}</span>
+        ) : (
+          <>
+            <span class="bg-white/10 backdrop-blur-sm text-light-blue text-sm px-4 py-1.5 rounded-full">{area.distance} from our clinic</span>
+            <span class="bg-white/10 backdrop-blur-sm text-light-blue text-sm px-4 py-1.5 rounded-full">{area.driveTime}</span>
+          </>
+        )}
       </div>
     </div>
   </section>
@@ -63,16 +74,27 @@ const schema = {
           </div>
 
           <div>
-            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-3">Getting here from {area.name}</h3>
+            <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-3">{area.isLocal ? `Finding us in ${area.name}` : `Getting here from ${area.name}`}</h3>
             <p class="text-grey-text leading-relaxed">{area.localInfo}</p>
           </div>
+
+          {area.sections?.map((section) => (
+            <div>
+              <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-3">{section.heading}</h3>
+              <div class="space-y-4">
+                {section.body.split('\n\n').map((para) => (
+                  <p class="text-grey-text leading-relaxed">{para}</p>
+                ))}
+              </div>
+            </div>
+          ))}
 
           <div>
             <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-3">Services for {area.name} patients</h3>
             <p class="text-grey-text leading-relaxed mb-6">{area.servicesHighlight}</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {services.map((service) => (
-                <a href={`/services/${service.slug}`} class="flex items-center gap-3 bg-blue-ghost/50 rounded-lg p-3 border border-blue-pale/20 hover:border-light-blue/40 transition-colors">
+                <a href={`/services/${service.slug}/`} class="flex items-center gap-3 bg-blue-ghost/50 rounded-lg p-3 border border-blue-pale/20 hover:border-light-blue/40 transition-colors">
                   <span class="text-xl">{service.icon}</span>
                   <span class="text-sm text-navy font-medium">{service.title}</span>
                 </a>
@@ -84,7 +106,7 @@ const schema = {
             <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-3">Conditions we help {area.name} patients with</h3>
             <div class="flex flex-wrap gap-2 mt-3">
               {conditions.map((condition) => (
-                <a href={`/conditions/${condition.slug}`} class="text-sm bg-light-grey text-navy px-4 py-2 rounded-full border border-grey-mid/20 hover:border-light-blue transition-colors">
+                <a href={`/conditions/${condition.slug}/`} class="text-sm bg-light-grey text-navy px-4 py-2 rounded-full border border-grey-mid/20 hover:border-light-blue transition-colors">
                   {condition.icon} {condition.title}
                 </a>
               ))}
@@ -114,7 +136,7 @@ const schema = {
         <div class="space-y-6">
           <div class="bg-blue-ghost/50 rounded-xl p-6 border border-blue-pale/30">
             <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-4">Book Your Visit</h3>
-            <p class="text-grey-text text-sm mb-4">Just {area.driveTime} from {area.name}. Free parking, no steps.</p>
+            <p class="text-grey-text text-sm mb-4">{area.isLocal ? `Right here in ${area.name} on Greenway Drive.` : `Just ${area.driveTime} from ${area.name}.`} Free parking, no steps.</p>
             <a href="#book" class="open-booking-modal block w-full bg-mid-blue hover:bg-navy text-white text-center px-4 py-3 rounded-lg font-medium transition-colors mb-3">
               Book Online
             </a>
@@ -154,13 +176,30 @@ const schema = {
     </div>
   </section>
 
+  <!-- Suburb FAQs (same list feeds the FAQPage schema) -->
+  {area.faqs && (
+    <section class="py-16 md:py-20 bg-white border-t border-grey-mid/10">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-[family-name:var(--font-display)] text-2xl md:text-3xl font-semibold text-navy mb-8 text-center">{area.name} patients often ask</h2>
+        <div class="space-y-4">
+          {area.faqs.map((faq) => (
+            <div class="bg-blue-ghost/40 rounded-xl p-6 border border-blue-pale/30">
+              <h3 class="font-[family-name:var(--font-display)] text-lg font-semibold text-navy mb-2">{faq.question}</h3>
+              <p class="text-grey-text leading-relaxed">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- Other Areas -->
   <section class="py-16 md:py-20 bg-light-grey">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy mb-6 text-center">We Also Serve</h2>
       <div class="flex flex-wrap justify-center gap-3">
         {otherAreas.map((a) => (
-          <a href={`/areas/${a.slug}`} class="bg-white text-navy text-sm px-4 py-2 rounded-full border border-grey-mid/30 hover:border-light-blue hover:text-mid-blue transition-colors">
+          <a href={`/areas/${a.slug}/`} class="bg-white text-navy text-sm px-4 py-2 rounded-full border border-grey-mid/30 hover:border-light-blue hover:text-mid-blue transition-colors">
             {a.name}
           </a>
         ))}
@@ -174,7 +213,7 @@ const schema = {
       <div class="absolute top-10 right-10 w-72 h-72 bg-light-blue rounded-full blur-3xl"></div>
     </div>
     <div class="relative max-w-4xl mx-auto px-4 text-center">
-      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">{area.name} chiropractor — just {area.driveTime} away</h2>
+      <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-white mb-4">{area.isLocal ? `Your local ${area.name} chiropractor` : `${area.name} chiropractor — just ${area.driveTime} away`}</h2>
       <p class="text-light-blue-soft/90 text-lg mb-8">Book online or call us. New patients welcome, no referral needed.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="#book" class="open-booking-modal inline-flex items-center justify-center bg-mid-blue hover:bg-light-blue text-white px-8 py-4 rounded-lg text-lg font-medium transition-colors">
