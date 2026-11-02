@@ -335,7 +335,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>Chiropractors focus on the relationship between the spine, the nervous system, and the musculoskeletal system. We're trained to assess and treat conditions involving the spine, joints, and surrounding muscles — using hands-on techniques to help restore movement and function.</p>
 
-      <p>The main treatment tool is the chiropractic adjustment — a precise, controlled movement applied to a joint to help restore its range of motion. But modern chiropractic care also includes soft tissue therapy, dry needling, exercise prescription, and lifestyle advice. It's not just about cracking backs.</p>
+      <p>The main treatment tool is the chiropractic adjustment — a precise, controlled movement applied to a joint to help restore its range of motion. But modern chiropractic care also includes soft tissue therapy, exercise prescription, and lifestyle advice. It's not just about cracking backs.</p>
 
       <p>Chiropractors complete a five-year university degree (typically a Bachelor of Science combined with a Master of Chiropractic) and are registered with AHPRA — the same national registration body that regulates doctors, nurses, and physiotherapists.</p>
 

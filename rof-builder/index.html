@@ -392,7 +392,6 @@ const TECHNIQUES=[
   {id:'extremity',label:'Extremity',patient:'adjustment of the arm/leg joints (extremity technique)'},
 ];
 const ADJUNCTS=[
-  {id:'dryneedling',label:'Dry needling',patient:'dry needling'},
   {id:'softtissue',label:'Soft tissue therapy',patient:'soft tissue / massage therapy'},
   {id:'exercise',label:'Home exercise program',patient:'a home exercise and rehab program'},
   {id:'postural',label:'Postural correction',patient:'postural correction exercises'},
@@ -834,7 +833,6 @@ function suggestedAdjunctIds(){
   const diagIds=new Set(rof.diagnoses.map(d=>d.id));
   const s=new Set();
   if(types.has('spasm')||types.has('tenderness'))s.add('softtissue');
-  if(types.has('spasm')||types.has('nerve'))s.add('dryneedling');
   if(types.has('posture')||diagIds.has('d9')||rof.posture.obs.length)s.add('postural');
   if(diagIds.has('d9'))s.add('ergonomic');
   return s;

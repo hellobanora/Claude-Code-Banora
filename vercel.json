@@ -81,6 +81,8 @@
     { "source": "/services/chiropractic/", "destination": "/services/chiropractic-adjustments/", "permanent": true },
     { "source": "/services/chiropractic-adjustment", "destination": "/services/chiropractic-adjustments/", "permanent": true },
     { "source": "/services/chiropractic-adjustment/", "destination": "/services/chiropractic-adjustments/", "permanent": true },
+    { "source": "/services/dry-needling", "destination": "/services/", "permanent": true },
+    { "source": "/services/dry-needling/", "destination": "/services/", "permanent": true },
 
     { "source": "/pregnancy", "destination": "/services/pregnancy-chiropractic/", "permanent": true },
     { "source": "/pregnancy/", "destination": "/services/pregnancy-chiropractic/", "permanent": true },

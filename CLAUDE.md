@@ -154,7 +154,6 @@ Before finalising any copy, mentally check:
 /services/spinal-adjustment
 /services/posture-correction
 /services/sports-chiropractic
-/services/dry-needling
 /services/paediatric-chiropractic
 /conditions                Conditions overview
 /conditions/back-pain
