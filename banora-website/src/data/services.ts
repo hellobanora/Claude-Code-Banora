@@ -20,6 +20,8 @@ export interface Service {
   sections?: { heading: string; body: string }[];
   /** Blog post slugs to link from this page. */
   relatedPosts?: string[];
+  /** Area pages to link in a short in-content paragraph (intro text is followed by the area links). */
+  nearbyAreas?: { heading: string; intro: string; slugs: string[] };
 }
 
 export const services: Service[] = [
@@ -81,28 +83,51 @@ export const services: Service[] = [
   {
     slug: 'sports-chiropractic',
     title: 'Sports Chiropractic',
-    metaTitle: 'Sports Chiropractic | Banora Chiropractic | Tweed Heads South',
-    metaDescription: 'Sports chiropractic care in Tweed Heads South. Help prevent injuries, improve performance, and recover faster. Book with our experienced chiropractors.',
-    heroHeading: 'Sports Chiropractic',
-    heroSubheading: 'Get back in the game — or stay ahead of it.',
+    metaTitle: 'Sports Chiropractor Tweed Heads & Southern Gold Coast | Banora Chiropractic',
+    metaDescription: 'Sports chiropractor in Tweed Heads South for surfers, runners, footy and netball players. Assessment and hands-on care for sports strains. Book online.',
+    heroHeading: 'Sports Chiropractor in Tweed Heads & the Southern Gold Coast',
+    heroSubheading: 'For surfers, runners, footy and netball players, and anyone whose body is telling them about last weekend.',
     icon: '🏃',
-    shortDescription: 'Specialised chiropractic care for athletes and active people to support performance, recovery, and injury prevention.',
-    overview: 'Whether you are a weekend warrior, a competitive athlete, or just someone who loves staying active, your body takes a beating. Sports chiropractic focuses on keeping your musculoskeletal system performing at its best — helping you recover from injuries, prevent new ones, and move more efficiently. Our chiropractors understand the demands of sport and tailor care to your specific activity and goals.',
+    shortDescription: 'Chiropractic assessment and care for active people dealing with sports strains, stiffness and niggling injuries.',
+    overview: "Sport asks a lot of your body. A long session in the surf loads your neck and lower back. A season of footy or netball means sprinting, landing, twisting and the odd collision. Running adds thousands of repetitive steps through your hips, knees and lower back every week. Most of the time your body copes. Sometimes it starts to complain.\n\nAt Banora Chiropractic in Tweed Heads South, Dr James Shipway and Dr Paul Cater see active people from both sides of the border, from Tweed Coast juniors to Coolangatta surfers and weekend runners on the beachfront paths. We assess how your spine and joints are moving, work out what's likely contributing to your pain, and put together a plan that fits around your training. Results vary between individuals, so we'll always be straight with you about what we think is realistic.",
     benefits: [
-      'May help speed up recovery from sports injuries',
-      'Aims to improve joint mobility and flexibility',
-      'Can support better biomechanics and movement patterns',
-      'May help reduce the risk of recurring injuries',
-      'Designed to complement your training and recovery routine',
+      'May help ease back, neck and joint pain linked to training and sport',
+      'Aims to improve joint mobility in the spine, hips, shoulders and knees',
+      'Hands-on care alongside exercises you can do between sessions',
+      'A plan that works around your training and game schedule',
+      'Referral to your GP or another health professional if your injury needs it',
     ],
-    whoIsItFor: 'Runners, surfers, gym-goers, golfers, swimmers, team sport players — anyone who uses their body actively and wants to keep it performing well. We also work with people recovering from sports injuries who want to get back to their activity safely.',
-    whatToExpect: 'We will assess your movement, identify any restrictions or imbalances, and create a care plan that fits your training schedule. Treatment may include spinal and extremity adjustments, soft tissue work, and exercise recommendations. We aim to get you moving well and keep you that way.',
+    whoIsItFor: "Surfers, runners, footy players (league, union and AFL), netballers, swimmers, gym-goers, golfers and cyclists. You don't need to be competing to come in. Plenty of our patients just want to keep playing touch on a Tuesday night or get through a parkrun without their back seizing up. We also see people returning to sport after time off who want a check-up before they ramp things up again.",
+    whatToExpect: "Your first visit starts with a conversation about your sport, your training load, how the problem started and what makes it better or worse. We then look at how you move: your spine, hips, shoulders and whichever joint is giving you trouble. We'll explain what we find in plain language and tell you whether we think chiropractic care is a good fit. If it is, treatment may include spinal and extremity adjustments, soft tissue work and a few targeted exercises. If your injury needs imaging, a medical review or a different practitioner, we'll tell you and point you in the right direction.",
+    sections: [
+      {
+        heading: 'Surfing and paddling strains',
+        body: "Paddling a board means holding your head up and your lower back arched for long stretches, often for hours at a time. Surfers commonly tell us about stiff necks the morning after a big session, tight mid-backs, sore lower backs from duck diving, and shoulders that have had enough of paddling. We assess how your neck, upper back and shoulders are moving and may use adjustments and soft tissue work, along with mobility exercises you can do on the sand before you paddle out.",
+      },
+      {
+        heading: 'Footy and netball',
+        body: "Rugby league, union, AFL and netball all involve sudden changes of direction, jumping, landing and contact. That can load the lower back, pelvis and hips, and bumps and tackles can leave the neck and shoulders feeling it for days. We see players dealing with lower back pain after games, hip and groin tightness, and neck stiffness after contact.\n\nAcute injuries such as a suspected fracture, dislocation, concussion or a badly swollen joint need medical assessment first. Once those have been ruled out, we can assess how the surrounding joints and muscles are moving and help you work towards getting back on the field.",
+      },
+      {
+        heading: 'Running niggles',
+        body: "Whether you're training for the Gold Coast Marathon or running the coastal path a few mornings a week, the repetition adds up. Runners often come to us with lower back pain, hip pain, tight hamstrings and knee pain. We look at how your lower back, pelvis, hips and knees are moving, and may combine adjustments with exercises that support the way you run. We'll also ask about your training load, because a sudden jump in kilometres is a common factor.",
+      },
+    ],
+    nearbyAreas: {
+      heading: 'Sports chiropractic for the southern Gold Coast',
+      intro: "We're a short drive from the beaches just over the border, and we're on NSW time, so a 9:00am appointment is 8:00am in Queensland during daylight saving. See how to find us from",
+      slugs: ['coolangatta', 'kirra', 'bilinga', 'tugun'],
+    },
     faqs: [
-      { question: 'Do I need to be an athlete to benefit from sports chiropractic?', answer: 'Not at all. If you are active in any way — walking, swimming, gardening, playing with your kids — sports chiropractic principles can help you move better and reduce your risk of injury.' },
-      { question: 'Can chiropractic help with a specific sports injury?', answer: 'Many sports injuries involve the musculoskeletal system, which is exactly what we work with. We will assess your injury, determine if chiropractic care is appropriate, and if needed, refer you to the right specialist.' },
+      { question: 'Do I need to be an athlete to see a sports chiropractor?', answer: "No. If you're active in any way, whether that's surfing, running, playing social netball or lifting at the gym, you're welcome. We tailor care to what you do and what you want to get back to." },
+      { question: 'Can a chiropractor help with my sports injury?', answer: "It depends on the injury. Many sports strains involve the joints and muscles of the spine, hips, shoulders and knees, which is what we assess and treat. Results vary between individuals. If your injury needs imaging, a medical review or a different practitioner, we'll tell you and refer you on." },
+      { question: 'Should I see a chiropractor or a physio for a sports injury?', answer: "Both work with sports injuries, and the right choice depends on the injury and what you prefer. Chiropractors focus on how the spine and joints are moving and use hands-on care such as adjustments, while physios often lean more on exercise rehab. We're happy to work alongside your physio, coach or GP." },
+      { question: 'Can I keep training while I am having chiropractic care?', answer: "Often, yes, though you may need to adjust your load for a while. We'll talk through what's sensible for your injury and help you plan a gradual return to full training." },
+      { question: 'Do I need a referral, and can I claim on my health fund?', answer: "You don't need a referral. If your private health extras cover includes chiropractic, we can process your claim on the spot through HICAPS, so you only pay the gap. Queensland health funds work the same way." },
     ],
-    relatedConditions: ['back-pain', 'shoulder-pain', 'sciatica'],
+    relatedConditions: ['sports-injuries', 'back-pain', 'shoulder-pain', 'knee-pain'],
     relatedServices: ['chiropractic-adjustments', 'posture-correction'],
+    relatedPosts: ['shoulder-pain-causes-and-how-chiropractic-may-help', 'chiropractor-or-physio-understanding-the-difference'],
   },
   {
     slug: 'pregnancy-chiropractic',

@@ -18,6 +18,9 @@ const { service } = Astro.props;
 const relatedConditionData = conditions.filter(c => service.relatedConditions.includes(c.slug));
 const relatedServiceData = services.filter(s => service.relatedServices.includes(s.slug));
 const relatedArticles = blogPosts.filter(p => p.status === 'published' && service.relatedPosts?.includes(p.slug));
+const nearbyAreaData = (service.nearbyAreas?.slugs ?? [])
+  .map(slug => areas.find(a => a.slug === slug))
+  .filter((a): a is (typeof areas)[number] => Boolean(a));
 
 const schema = [
   {
@@ -108,6 +111,13 @@ const schema = [
               </div>
             </>
           ))}
+
+          {nearbyAreaData.length > 0 && (
+            <>
+              <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mt-10 mb-4">{service.nearbyAreas?.heading}</h3>
+              <p class="text-grey-text leading-relaxed">{service.nearbyAreas?.intro} {nearbyAreaData.map((a, i) => (<>{i > 0 && (i === nearbyAreaData.length - 1 ? ' and ' : ', ')}<a href={`/areas/${a.slug}/`} class="text-mid-blue hover:text-navy underline">{a.name}</a></>))}.</p>
+            </>
+          )}
         </div>
 
         <!-- Sidebar -->
