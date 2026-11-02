@@ -652,7 +652,7 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Exercise guidance.</strong> Specific stretches and strengthening exercises to support your neck and reduce recurrence.</li>
       </ul>
 
-      <p>If you've been dealing with regular <a href="/conditions/headaches-migraines/">headaches</a> and your neck always seems to be involved, it's worth getting a proper assessment. We'll look at your neck, your posture, and your history to work out what's actually going on — and whether chiropractic care can help.</p>
+      <p>If you've been dealing with regular headaches and your neck always seems to be involved, it's worth getting a proper assessment from a <a href="/conditions/headaches-migraines/">headache chiropractor in Tweed Heads</a>. We'll look at your neck, your posture, and your history to work out what's actually going on — and whether chiropractic care can help.</p>
 
       <p>Book a consultation at <a href="/contact/">Banora Chiropractic</a> in Tweed Heads South, or call us on (07) 5599 2322.</p>
     `,
@@ -834,7 +834,7 @@ export const blogPosts: BlogPost[] = [
         <li>Headache with vision changes, weakness, difficulty speaking, or confusion</li>
       </ul>
 
-      <p>If you're dealing with <a href="/conditions/headaches-migraines/">frequent headaches</a> and haven't been able to get on top of them, come in and see us at <a href="/about/">Banora Chiropractic</a> in <a href="/areas/tweed-heads-south/">Tweed Heads South</a>. We'll assess what's going on and give you an honest picture of whether we can help.</p>
+      <p>If you're dealing with frequent headaches and haven't been able to get on top of them, a <a href="/conditions/headaches-migraines/">headache chiropractor in Tweed Heads</a> can help you work out what's driving them. Come in and see us at <a href="/about/">Banora Chiropractic</a> in <a href="/areas/tweed-heads-south/">Tweed Heads South</a>. We'll assess what's going on and give you an honest picture of whether we can help.</p>
     `,
     author: 'dr-james-shipway',
     publishDate: '2026-06-17',
