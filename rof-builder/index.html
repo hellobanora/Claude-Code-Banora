@@ -11,6 +11,7 @@
   --blue:#4a90c4;--blue-lt:#7ab8e0;--blue-pale:#eaf4fb;
   --grey:#6b7b8d;--grey-lt:#e8edf3;--bg:#f4f7fa;--white:#fff;--r:14px;
   --g:#2e7d52;--g2:#52b788;--m:#c07800;--m2:#e9b949;--rd:#c0392b;--rd2:#e74c3c;
+  --teal:#2d7d7d;--olive:#7a9a3a;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--navy);min-height:100vh;}
@@ -100,6 +101,46 @@ input[type=month]{width:100%;padding:11px 13px;border:1.5px solid var(--grey-lt)
 .pr-stage-hd{font-weight:700;margin-bottom:2px;display:flex;align-items:center;gap:8px;}
 .pr-here{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:var(--navy);color:#fff;border-radius:10px;padding:1px 8px;}
 .print-screen .pr-doc{background:#fff;border-radius:12px;border:1.5px solid var(--grey-lt);box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.pr-box{display:flex;border:1.5px solid var(--grey-lt);border-radius:10px;overflow:hidden;margin-bottom:12px;break-inside:avoid;page-break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.pr-box-bar{width:8px;flex-shrink:0;}
+.pr-box-bar.navy{background:var(--navy);}
+.pr-box-bar.teal{background:var(--teal);}
+.pr-box-bar.olive{background:var(--olive);}
+.pr-box-body{padding:11px 14px;flex:1;min-width:0;}
+.pr-box-title{font-family:'Playfair Display',serif;font-size:12.5px;font-weight:700;letter-spacing:.3px;margin-bottom:6px;}
+.pr-box-title.navy{color:var(--navy);}
+.pr-box-title.teal{color:var(--teal);}
+.pr-box-title.olive{color:var(--olive);}
+.pr-box-sub{font-size:11px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:.4px;margin:8px 0 3px;}
+.pr-box-sub:first-child{margin-top:0;}
+.pr-cost-row{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:12.5px;}
+.pr-cost-row .label{flex:1;}
+.pr-cost-row .amt{font-family:'Playfair Display',serif;font-weight:700;font-size:15px;color:var(--navy);}
+.pr-cost-save{font-size:10px;font-weight:700;color:var(--rd);background:#fdecea;border-radius:10px;padding:1px 7px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.pr-commit-row{display:flex;gap:8px;margin-bottom:6px;font-size:12px;}
+.pr-commit-row strong{display:block;color:var(--navy);}
+.pr-pagebreak{break-before:page;page-break-before:always;}
+.pr-journey-hd{text-align:center;margin-bottom:14px;}
+.pr-journey-hd h2{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);}
+.pr-journey-hd p{font-size:12px;color:var(--grey);}
+.pr-journey-road{display:flex;align-items:center;justify-content:space-between;margin:18px 0 10px;}
+.pr-journey-dot{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.pr-journey-dot.relief{background:var(--rd);}
+.pr-journey-dot.corrective{background:var(--m);}
+.pr-journey-dot.wellness{background:var(--g);}
+.pr-journey-line{flex:1;height:4px;margin:0 4px;border-radius:4px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.pr-journey-line.relief{background:linear-gradient(90deg,var(--rd),var(--m));}
+.pr-journey-line.corrective{background:linear-gradient(90deg,var(--m),var(--g));}
+.pr-journey-cards{display:flex;flex-direction:column;gap:10px;}
+.pr-journey-card{border-radius:8px;padding:11px 13px;border:1.5px solid var(--grey-lt);break-inside:avoid;page-break-inside:avoid;}
+.pr-journey-card.cur{border-color:var(--navy);border-width:2px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.pr-journey-card-hd{display:flex;align-items:center;gap:6px;margin-bottom:5px;}
+.pr-journey-num{width:20px;height:20px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:10.5px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.pr-journey-title{font-weight:700;font-size:13.5px;}
+.pr-journey-here{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;background:var(--navy);color:#fff;border-radius:8px;padding:2px 8px;margin-left:auto;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.pr-journey-card p{font-size:11.5px;line-height:1.55;margin-bottom:6px;}
+.pr-journey-goal{font-size:11px;font-weight:700;color:var(--navy);border-top:1px solid var(--grey-lt);padding-top:6px;}
+.pr-journey-ftr{margin-top:14px;padding:9px 12px;background:var(--blue-pale);border-radius:8px;font-size:11px;text-align:center;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
 </style>
 </head>
 <body>
@@ -120,6 +161,10 @@ input[type=month]{width:100%;padding:11px 13px;border:1.5px solid var(--grey-lt)
     <div class="card-title">New Report</div>
     <div class="card-sub">Tap through findings, diagnosis and plan — the patient report builds itself.</div>
     <div class="field"><label class="lbl">Patient name</label><input type="text" id="inp-name" placeholder="e.g. Sarah Johnson"></div>
+    <div class="field"><label class="lbl">Date of birth (optional)</label><input type="date" id="inp-dob"></div>
+    <div class="field"><label class="lbl">Phone (optional)</label><input type="text" id="inp-phone" placeholder="e.g. 0412 345 678"></div>
+    <div class="field"><label class="lbl">Email (optional)</label><input type="text" id="inp-email" placeholder="e.g. sarah@email.com"></div>
+    <div class="field"><label class="lbl">Primary complaint, in their words (optional)</label><input type="text" id="inp-complaint" placeholder="e.g. Lower back pain for 3 weeks"></div>
     <div class="field"><label class="lbl">Practitioner</label>
       <div class="opt-grid" id="prac-grid">
         <label class="opt big"><input type="radio" name="prac" value="Dr James Shipway" style="display:none"><span>Dr James Shipway</span></label>
@@ -355,11 +400,14 @@ const ACUITY=[
 
 const PHASES=[
   {id:'relief',label:'Relief Care',icon:'⚡',visits:3,unit:'per week',duration:2,ongoing:false,intro:'We recommend starting with more frequent visits to help settle things down.',
-    explain:'The first aim is to calm things down. Irritated joints and muscles tend to settle best when visits are close together, so each one builds on the last before your body slips back into old patterns. Many people start to feel better partway through this stage. That\'s a good sign, but pain often eases before movement and strength have caught up, and stopping as soon as it eases is one of the common reasons symptoms return.'},
+    explain:'The first aim is to calm things down. Irritated joints and muscles tend to settle best when visits are close together, so each one builds on the last before your body slips back into old patterns. Many people start to feel better partway through this stage. That\'s a good sign, but pain often eases before movement and strength have caught up, and stopping as soon as it eases is one of the common reasons symptoms return.',
+    short:'Calm pain. Restore movement.',goal:'Reduce pain and get you out of discomfort.'},
   {id:'corrective',label:'Corrective / Rehab',icon:'💪',visits:2,unit:'per week',duration:5,ongoing:false,intro:'As things settle, care shifts to correcting the underlying pattern and building resilience.',
-    explain:'Once things have settled, we work on why the problem developed in the first place: how your joints move, how well your muscles support them, and the postures and habits that load them. Visits spread out and your home exercises take on more of the work. This is the stage where many people find their progress starts to hold between visits.'},
+    explain:'Once things have settled, we work on why the problem developed in the first place: how your joints move, how well your muscles support them, and the postures and habits that load them. Visits spread out and your home exercises take on more of the work. This is the stage where many people find their progress starts to hold between visits.',
+    short:'Rebuild strength. Address the cause.',goal:'Restore function, build resilience and prevent future issues.'},
   {id:'wellness',label:'Wellness / Maintenance',icon:'🌿',visits:1,unit:'every 4 weeks',duration:0,ongoing:true,intro:'Ongoing, lower-frequency care to help maintain your progress long term.',
-    explain:'With the groundwork done, the aim is to look after what you\'ve built. Regular check-ins help us pick up small issues early and keep your exercises and habits on track. How often you come in is your choice, and we\'ll talk through what suits your goals and lifestyle.'},
+    explain:'With the groundwork done, the aim is to look after what you\'ve built. Regular check-ins help us pick up small issues early and keep your exercises and habits on track. How often you come in is your choice, and we\'ll talk through what suits your goals and lifestyle.',
+    short:'Maintain results. Perform your best.',goal:'Lifelong health, peak performance and a better quality of life.'},
 ];
 const GOAL_LIMITS=[
   {id:'sleep',label:'Sleeping',plain:'sleep comfortably'},
@@ -446,7 +494,7 @@ const blankImaging=()=>({has:false,referred:false,items:[],referNote:''});
 const blankPosture=()=>({obs:[],photos:[],notes:'',grid:true});
 const blankGoals=()=>({limits:[],other:'',personal:''});
 
-let rof={patient:'',practitioner:'',date:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:'',imaging:blankImaging(),posture:blankPosture(),goals:blankGoals()};
+let rof={patient:'',practitioner:'',date:'',dob:'',phone:'',email:'',complaint:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:'',imaging:blankImaging(),posture:blankPosture(),goals:blankGoals()};
 let composer={type:null,region:null,levels:[],side:null,severity:'moderate',qualities:[]};
 let imgComposer={modality:null,region:null,findings:[]};
 
@@ -456,6 +504,10 @@ function startReport(){
   if(!name){toast('Please enter the patient name');return;}
   if(!prac){toast('Please select a practitioner');return;}
   rof.patient=name;rof.practitioner=prac.value;rof.date=new Date().toISOString();
+  rof.dob=document.getElementById('inp-dob').value;
+  rof.phone=document.getElementById('inp-phone').value.trim();
+  rof.email=document.getElementById('inp-email').value.trim();
+  rof.complaint=document.getElementById('inp-complaint').value.trim();
   pk=name.toLowerCase().replace(/\s+/g,'_');
   renderComposer();
   showScr('scr-findings');
@@ -465,7 +517,7 @@ function usedRegions(){return new Set(rof.findings.map(f=>f.region));}
 
 function saveDraft(){
   if(!pk)return;
-  pts[pk]={displayName:rof.patient,practitioner:rof.practitioner,savedAt:new Date().toISOString(),rofData:{date:rof.date,findings:rof.findings,diagnoses:rof.diagnoses.map(d=>d.id),acuity:rof.acuity,plan:rof.plan,otherFinding:rof.otherFinding,imaging:rof.imaging,posture:rof.posture,goals:rof.goals}};
+  pts[pk]={displayName:rof.patient,practitioner:rof.practitioner,savedAt:new Date().toISOString(),rofData:{date:rof.date,dob:rof.dob,phone:rof.phone,email:rof.email,complaint:rof.complaint,findings:rof.findings,diagnoses:rof.diagnoses.map(d=>d.id),acuity:rof.acuity,plan:rof.plan,otherFinding:rof.otherFinding,imaging:rof.imaging,posture:rof.posture,goals:rof.goals}};
   savePts();
 }
 
@@ -474,6 +526,7 @@ function loadDraftInto(key){
   if(!d||!d.rofData)return false;
   pk=key;
   rof.patient=d.displayName;rof.practitioner=d.practitioner;rof.date=d.rofData.date||new Date().toISOString();
+  rof.dob=d.rofData.dob||'';rof.phone=d.rofData.phone||'';rof.email=d.rofData.email||'';rof.complaint=d.rofData.complaint||'';
   rof.findings=d.rofData.findings||[];
   rof.diagnoses=(d.rofData.diagnoses||[]).map(id=>DIAGNOSES.find(x=>x.id===id)).filter(Boolean);
   rof.acuity=d.rofData.acuity||null;
@@ -502,6 +555,12 @@ function resumeDraft(key){
   if(!loadDraftInto(key))return;
   renderComposer();
   renderFindingsTray();
+  document.getElementById('inp-name').value=rof.patient||'';
+  document.getElementById('inp-dob').value=rof.dob||'';
+  document.getElementById('inp-phone').value=rof.phone||'';
+  document.getElementById('inp-email').value=rof.email||'';
+  document.getElementById('inp-complaint').value=rof.complaint||'';
+  if(rof.practitioner){const pr=document.querySelector(`input[name="prac"][value="${rof.practitioner}"]`);if(pr)pr.checked=true;}
   document.getElementById('inp-other-finding').value=rof.otherFinding||'';
   showScr('scr-findings');
   toast('Resumed report for '+rof.patient);
@@ -917,7 +976,7 @@ function imagingSection(){
     html+='<p class="pr-note">Changes like these are common, including in many people without any pain, so we interpret them alongside your examination rather than on their own.</p>';
   if(im.referred)
     html+=`<p style="margin-top:8px;">We've recommended imaging${im.referNote?` (${esc(im.referNote)})`:''} to help us better understand what's going on. We'll go through the results with you once they're available.</p>`;
-  return '<div class="pr-sec"><div class="pr-sec-title">Your Imaging</div>'+html+'</div>';
+  return '<div class="pr-box"><div class="pr-box-bar teal"></div><div class="pr-box-body"><div class="pr-box-title teal">Imaging</div>'+html+'</div></div>';
 }
 
 function gridOverlay(){
@@ -942,7 +1001,7 @@ function postureSection(){
   if(ps.photos.length){
     html+='<div class="pr-photos">'+ps.photos.map(ph=>`<figure><div class="pr-photo-box"><img src="${ph.src}" alt="${esc(ph.view)} posture photo">${ps.grid?gridOverlay():''}</div><figcaption>${esc(ph.view)}</figcaption></figure>`).join('')+'</div>';
   }
-  return '<div class="pr-sec"><div class="pr-sec-title">Your Posture</div>'+html+'</div>';
+  return '<div class="pr-box"><div class="pr-box-bar teal"></div><div class="pr-box-body"><div class="pr-box-title teal">Postural / Structural Findings</div>'+html+'</div></div>';
 }
 
 function goalsSection(){
@@ -953,40 +1012,113 @@ function goalsSection(){
   let html='';
   if(limits.length)html+=`<p>Right now, your symptoms are making it harder to ${joinWords(limits)}. Our care is aimed at helping you get back to these things.</p>`;
   if(g.personal.trim())html+=`<div class="pr-goal">Your goal: “${esc(g.personal.trim())}”</div><p class="pr-note">We'll check in on this goal at each progress review, so we can both see how you're tracking.</p>`;
-  return '<div class="pr-sec"><div class="pr-sec-title">Your Goals</div>'+html+'</div>';
+  return '<div class="pr-box"><div class="pr-box-bar olive"></div><div class="pr-box-body"><div class="pr-box-title olive">Your Goals</div>'+html+'</div></div>';
 }
 
-function stagesHtml(){
-  return '<div class="pr-sub">How care progresses</div>'+PHASES.map((p,i)=>{
-    const cur=p.id===rof.plan.phase;
-    return `<div class="pr-stage${cur?' cur':''}"><div class="pr-stage-hd">Stage ${i+1}: ${p.label}${cur?'<span class="pr-here">You are here</span>':''}</div><p>${p.explain}</p></div>`;
-  }).join('')+'<p class="pr-note">We\'ll reassess your progress at the end of each stage and adjust your plan based on how you\'re responding. Results vary between individuals.</p>';
+function patientDetailsBox(date){
+  const row=(k,v)=>v?`<div class="pr-finding"><span>${k}:</span>&nbsp;<span>${esc(v)}</span></div>`:'';
+  const dobText=rof.dob?new Date(rof.dob+'T12:00').toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'}):'';
+  return '<div class="pr-box"><div class="pr-box-bar navy"></div><div class="pr-box-body"><div class="pr-box-title navy">Patient Details</div>'
+    +row('Name',rof.patient)+row('Date',date)+row('Date of birth',dobText)+row('Phone',rof.phone)+row('Email',rof.email)
+    +'</div></div>';
+}
+
+function areasOfConcernBox(diagHtml,acuityHtml){
+  const complaintHtml=rof.complaint?`<p>${esc(rof.complaint)}</p>`:'<p>No primary complaint recorded.</p>';
+  return '<div class="pr-box"><div class="pr-box-bar olive"></div><div class="pr-box-body">'
+    +'<div class="pr-box-title olive">Areas of Concern</div>'
+    +'<div class="pr-box-sub">Primary Complaint</div>'+complaintHtml
+    +'<div class="pr-box-sub">Diagnosis</div>'+acuityHtml+(diagHtml||'<p>No diagnosis recorded.</p>')
+    +'</div></div>';
+}
+
+function examFindingsBox(){
+  const movementTypes=['restricted','decROM','jointrestriction'];
+  const movement=rof.findings.filter(f=>movementTypes.includes(f.type));
+  const other=rof.findings.filter(f=>!movementTypes.includes(f.type));
+  const row=f=>`<div class="pr-finding"><span class="pr-dot ${f.severity}"></span><span>${findingPatientText(f)}</span></div>`;
+  let html='<div class="pr-box-sub">Movement / Joint Findings</div>'+(movement.length?movement.map(row).join(''):'<p class="pr-note">None recorded.</p>')
+    +'<div class="pr-box-sub">Other Relevant Findings</div>'
+    +(other.length?other.map(row).join(''):'')
+    +(rof.otherFinding?`<div class="pr-finding"><span class="pr-dot moderate"></span><span>${esc(rof.otherFinding)}</span></div>`:'')
+    +(!other.length&&!rof.otherFinding?'<p class="pr-note">None recorded.</p>':'');
+  return '<div class="pr-box"><div class="pr-box-bar teal"></div><div class="pr-box-body"><div class="pr-box-title teal">Examination Findings</div>'+html+'</div></div>';
+}
+
+function careFrequencyBox(phase){
+  const techList=rof.plan.techniques.map(id=>TECHNIQUES.find(t=>t.id===id).patient);
+  let html=`<p>${phase.intro}</p><p style="margin-top:8px;"><strong>Recommended frequency:</strong> ${planSentence()}</p>`
+    +(techList.length?`<p style="margin-top:8px;">Your care may include ${joinWords(techList)}.</p>`:'');
+  return '<div class="pr-box"><div class="pr-box-bar navy"></div><div class="pr-box-body"><div class="pr-box-title navy">Recommended Care Frequency</div>'+html+'</div></div>';
+}
+
+function costBox(){
+  const row=(label,amt,save)=>`<div class="pr-cost-row"><span class="label">${label}</span>${save?`<span class="pr-cost-save">SAVE ${save}</span>`:''}<span class="amt">${amt}</span></div>`;
+  return '<div class="pr-box"><div class="pr-box-bar navy"></div><div class="pr-box-body"><div class="pr-box-title navy">Cost</div>'
+    +row('Regular Treatment','$75')+row('12 Pack','$780','$144')+row('24 Pack','$1440','$360')
+    +'</div></div>';
+}
+
+function homeCarePlanBox(){
+  const adjList=rof.plan.adjuncts.map(id=>ADJUNCTS.find(a=>a.id===id).patient);
+  const g=rof.goals,limits=g.limits.map(id=>GOAL_LIMITS.find(x=>x.id===id).plain);
+  if(g.other.trim())limits.push(esc(g.other.trim()));
+  let html=adjList.length?`<p>We'll also incorporate ${joinWords(adjList)}.</p>`:'<p class="pr-note">No home care items recorded.</p>';
+  if(limits.length)html+=`<p style="margin-top:8px;">This is aimed at helping you get back to ${joinWords(limits)}.</p>`;
+  if(g.personal.trim())html+=`<div class="pr-goal" style="margin-top:8px;">Your goal: "${esc(g.personal.trim())}"</div>`;
+  return '<div class="pr-box"><div class="pr-box-bar olive"></div><div class="pr-box-body"><div class="pr-box-title olive">Your Home Care Plan</div>'+html+'</div></div>';
+}
+
+function commitmentBox(){
+  const row=(icon,title,body)=>`<div class="pr-commit-row"><span>${icon}</span><span><strong>${title}</strong>${body}</span></div>`;
+  return '<div class="pr-box"><div class="pr-box-bar navy"></div><div class="pr-box-body"><div class="pr-box-title navy">Our Commitment To You</div>'
+    +row('👂','We will listen — ','We take the time to understand your concerns and goals.')
+    +row('💬','We will explain — ','We provide clear information so you can make informed decisions.')
+    +row('💙','We will care — ','We are committed to helping you achieve your best possible health.')
+    +'</div></div>';
+}
+
+function journeyPageHtml(){
+  const curId=rof.plan.phase;
+  const road=PHASES.map((p,i)=>{
+    const dot=`<div class="pr-journey-dot ${p.id}">${i+1}</div>`;
+    const line=i<PHASES.length-1?`<div class="pr-journey-line ${p.id}"></div>`:'';
+    return dot+line;
+  }).join('');
+  const cards=PHASES.map((p,i)=>{
+    const cur=p.id===curId;
+    return `<div class="pr-journey-card${cur?' cur':''}"><div class="pr-journey-card-hd"><span class="pr-journey-num ${p.id}">${i+1}</span><span class="pr-journey-title">${p.label}</span>${cur?'<span class="pr-journey-here">You are here</span>':''}</div><p><em>${p.short}</em></p><p>${p.explain}</p><div class="pr-journey-goal">GOAL: ${p.goal}</div></div>`;
+  }).join('');
+  return '<div class="pr-doc pr-pagebreak">'
+    +'<div class="pr-journey-hd"><h2>Your Journey to Better Health</h2><p>Relief, rehab and long-term wellness for a stronger, healthier you.</p></div>'
+    +'<div class="pr-journey-road">'+road+'</div>'
+    +'<div class="pr-journey-cards">'+cards+'</div>'
+    +'<div class="pr-journey-ftr">Symptoms can improve before the cause is corrected — consistent care is the key to lasting results. Results vary between individuals.</div>'
+    +'</div>';
 }
 
 function buildReport(){
   const date=new Date(rof.date).toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'});
   const phase=PHASES.find(p=>p.id===rof.plan.phase);
-  const findingsHtml=rof.findings.map(f=>`<div class="pr-finding"><span class="pr-dot ${f.severity}"></span><span>${findingPatientText(f)}</span></div>`).join('')
-    + (rof.otherFinding?`<div class="pr-finding"><span class="pr-dot moderate"></span><span>${rof.otherFinding}</span></div>`:'');
   const diagHtml=rof.diagnoses.map(d=>`<div class="pr-finding"><span class="pr-dot moderate"></span><span>${d.patient}</span></div>`).join('');
   const acuityObj=rof.acuity?ACUITY.find(a=>a.id===rof.acuity):null;
   const acuityHtml=acuityObj?`<p style="margin-bottom:8px;">This appears to be ${acuityObj.patient}.</p>`:'';
-  const techList=rof.plan.techniques.map(id=>TECHNIQUES.find(t=>t.id===id).patient);
-  const adjList=rof.plan.adjuncts.map(id=>ADJUNCTS.find(a=>a.id===id).patient);
-  const planHtml=`<p>${phase.intro}</p><p style="margin-top:8px;"><strong>Recommended frequency:</strong> ${planSentence()}</p>`
-    + (techList.length?`<p style="margin-top:8px;">Your care may include ${joinWords(techList)}.</p>`:'')
-    + (adjList.length?`<p style="margin-top:8px;">We'll also incorporate ${joinWords(adjList)}.</p>`:'')
-    + stagesHtml();
-  const doc=
+  const page1=
     '<div class="pr-doc">'+
     '<div class="pr-hdr"><div class="pr-logo">🦴</div><div class="pr-brand"><h2>Banora Chiropractic</h2><p>Report of Findings</p></div><div class="pr-meta"><strong>'+rof.patient+'</strong>'+date+'<br>'+rof.practitioner+'</div></div>'+
-    '<div class="pr-sec"><div class="pr-sec-title">What We Found</div>'+(findingsHtml||'<p>No findings recorded.</p>')+'</div>'+
-    imagingSection()+postureSection()+
-    '<div class="pr-sec"><div class="pr-sec-title">What This Means</div>'+acuityHtml+(diagHtml||'<p>No diagnosis recorded.</p>')+'</div>'+
+    patientDetailsBox(date)+
+    areasOfConcernBox(diagHtml,acuityHtml)+
+    postureSection()+
+    examFindingsBox()+
+    imagingSection()+
     goalsSection()+
-    '<div class="pr-sec"><div class="pr-sec-title">Your Care Plan — '+phase.label+'</div>'+planHtml+'</div>'+
+    careFrequencyBox(phase)+
+    costBox()+
+    homeCarePlanBox()+
+    commitmentBox()+
     '<div class="pr-foot"><span>Banora Chiropractic — 2/44 Greenway Drive, Tweed Heads South NSW 2486 · (07) 5599 2322</span><span>🔒 Confidential — '+new Date().toLocaleDateString('en-AU')+'</span></div>'+
     '</div>';
+  const doc=page1+journeyPageHtml();
   document.getElementById('report-preview').innerHTML=doc;
   document.getElementById('print-area').innerHTML=doc;
 }
@@ -994,11 +1126,15 @@ function buildReport(){
 function newReport(){
   if(pk){delete pts[pk];savePts();}
   pk=null;
-  rof={patient:'',practitioner:'',date:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:'',imaging:blankImaging(),posture:blankPosture(),goals:blankGoals()};
+  rof={patient:'',practitioner:'',date:'',dob:'',phone:'',email:'',complaint:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:'',imaging:blankImaging(),posture:blankPosture(),goals:blankGoals()};
   composer={type:null,region:null,levels:[],side:null,severity:'moderate',qualities:[]};
   imgComposer={modality:null,region:null,findings:[]};
   ['img-date','img-level','img-notes','img-ref-note','posture-notes','goal-other','goal-personal'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('inp-name').value='';
+  document.getElementById('inp-dob').value='';
+  document.getElementById('inp-phone').value='';
+  document.getElementById('inp-email').value='';
+  document.getElementById('inp-complaint').value='';
   document.querySelectorAll('input[name="prac"]').forEach(i=>i.checked=false);
   document.getElementById('inp-other-finding').value='';
   document.getElementById('chk-show-all').checked=false;
