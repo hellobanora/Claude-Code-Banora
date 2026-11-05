@@ -92,7 +92,6 @@ input[type=month]{width:100%;padding:11px 13px;border:1.5px solid var(--grey-lt)
 .pr-photos figure{break-inside:avoid;page-break-inside:avoid;}
 .pr-photo-box{position:relative;border-radius:6px;overflow:hidden;border:1px solid var(--grey-lt);}
 .pr-photo-box img{display:block;width:100%;}
-.pr-photo-box svg{position:absolute;inset:0;width:100%;height:100%;}
 .pr-photos figcaption{text-align:center;font-size:11px;font-weight:700;color:var(--grey);margin-top:3px;}
 .pr-goal{margin-top:8px;padding:8px 12px;border-left:3px solid var(--m2);background:#fdf8ea;font-weight:700;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
 .pr-sub{font-weight:700;font-size:12.5px;margin:12px 0 6px;}
@@ -210,7 +209,6 @@ input[type=month]{width:100%;padding:11px 13px;border:1.5px solid var(--grey-lt)
       <label class="lbl">Posture photos</label>
       <label class="btn btn-sec" style="display:inline-block;">📷 Add photos<input type="file" id="posture-file" accept="image/*" multiple style="display:none" onchange="handlePhotos(this)"></label>
       <div class="photo-list" id="photo-list"></div>
-      <label class="opt" id="grid-toggle" style="display:none;margin-top:10px;"><input type="checkbox" id="chk-grid" onclick="rof.posture.grid=this.checked;saveDraft();" style="display:inline;width:auto;margin:0 6px 0 0;"><span>Show grid lines on photos in the report</span></label>
     </div>
     <div class="field"><label class="lbl">Posture notes for the patient (optional)</label><textarea id="posture-notes" placeholder="e.g. Your left shoulder sits about 1cm higher than your right." oninput="rof.posture.notes=this.value;saveDraft();"></textarea></div>
     <div class="btn-row"><button class="btn btn-sec" onclick="showScr('scr-findings')">← Back</button><button class="btn btn-primary" onclick="goToDiagnosis()">Next: Diagnosis →</button></div>
@@ -472,11 +470,11 @@ const PHOTO_VIEWS=['Front','Left side','Right side','Back','Other'];
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const blankImaging=()=>({has:false,referred:false,items:[],referNote:''});
-const blankPosture=()=>({obs:[],photos:[],notes:'',grid:true});
+const blankPosture=()=>({obs:[],photos:[],notes:''});
 const blankGoals=()=>({limits:[],other:'',personal:''});
 
 let rof={patient:'',practitioner:'',date:'',dob:'',phone:'',email:'',complaint:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:'',imaging:blankImaging(),posture:blankPosture(),goals:blankGoals()};
-let composer={type:null,region:null,levels:[],side:null,severity:'moderate',qualities:[]};
+let composer={types:[],region:null,levels:[],side:null,severity:'moderate',qualities:[]};
 let imgComposer={modality:null,region:null,findings:[]};
 
 function startReport(){
@@ -555,13 +553,13 @@ function discardDraft(key){
 function renderComposer(){
   const tg=document.getElementById('type-grid');tg.innerHTML='';
   FINDING_TYPES.forEach(t=>{
-    const o=document.createElement('label');o.className='opt'+(composer.type===t.id?' sel':'');
+    const o=document.createElement('label');o.className='opt'+(composer.types.includes(t.id)?' sel':'');
     o.innerHTML=t.label;
-    o.onclick=()=>{composer.type=(composer.type===t.id)?null:t.id;composer.qualities=[];renderComposer();};
+    o.onclick=()=>{toggleArr(composer.types,t.id);if(!composer.types.includes('pain'))composer.qualities=[];renderComposer();};
     tg.appendChild(o);
   });
   const qf=document.getElementById('quality-field');
-  if(composer.type==='pain'){
+  if(composer.types.includes('pain')){
     qf.style.display='block';
     const qg=document.getElementById('quality-grid');qg.innerHTML='';
     PAIN_QUALITIES.forEach(q=>{
@@ -608,23 +606,26 @@ function renderComposer(){
     o.onclick=()=>{composer.severity=s;renderComposer();};
     vg.appendChild(o);
   });
-  document.getElementById('btn-add-finding').disabled=!(composer.type&&composer.region);
+  document.getElementById('btn-add-finding').disabled=!(composer.types.length&&composer.region);
 }
 
 function addFindingFromComposer(){
-  const type=FINDING_TYPES.find(t=>t.id===composer.type);
   const region=REGIONS.find(r=>r.id===composer.region);
-  if(!type||!region)return;
+  if(!composer.types.length||!region)return;
   const levels=sortLevels(region,composer.levels),side=composer.side,sev=composer.severity;
-  const qualityLabels=composer.type==='pain'?composer.qualities.map(qid=>PAIN_QUALITIES.find(q=>q.id===qid).label):[];
-  let clinical=`${type.label} — ${region.label}`;
-  if(levels.length)clinical+=` ${formatLevels(region,levels)}`;
-  if(side)clinical+=` (${side})`;
-  if(qualityLabels.length)clinical+=` [${qualityLabels.join(', ')}]`;
-  const id='f'+uid();
-  rof.findings.push({id,region:region.id,type:type.id,levels,side,qualityIds:composer.type==='pain'?[...composer.qualities]:[],clinical,severity:sev});
+  composer.types.forEach(typeId=>{
+    const type=FINDING_TYPES.find(t=>t.id===typeId);
+    if(!type)return;
+    const qualityLabels=typeId==='pain'?composer.qualities.map(qid=>PAIN_QUALITIES.find(q=>q.id===qid).label):[];
+    let clinical=`${type.label} — ${region.label}`;
+    if(levels.length)clinical+=` ${formatLevels(region,levels)}`;
+    if(side)clinical+=` (${side})`;
+    if(qualityLabels.length)clinical+=` [${qualityLabels.join(', ')}]`;
+    const id='f'+uid();
+    rof.findings.push({id,region:region.id,type:type.id,levels,side,qualityIds:typeId==='pain'?[...composer.qualities]:[],clinical,severity:sev});
+  });
   renderFindingsTray();
-  toast('Finding added');
+  toast(composer.types.length>1?'Findings added':'Finding added');
 }
 
 function sortLevels(region,levels){
@@ -679,7 +680,6 @@ function renderFindingsTray(){
 function goToExtras(){
   document.getElementById('img-ref-note').value=rof.imaging.referNote||'';
   document.getElementById('posture-notes').value=rof.posture.notes||'';
-  document.getElementById('chk-grid').checked=rof.posture.grid;
   renderImaging();renderPosture();
   showScr('scr-extras');
 }
@@ -747,7 +747,6 @@ function renderPosture(){
     c.querySelector('.rm').onclick=()=>{ps.photos=ps.photos.filter(p=>p.id!==ph.id);renderPosture();};
     pl.appendChild(c);
   });
-  document.getElementById('grid-toggle').style.display=ps.photos.length?'inline-flex':'none';
   saveDraft();
 }
 function togglePostureObs(o){
@@ -960,15 +959,6 @@ function imagingSection(){
   return '<div class="pr-box"><div class="pr-box-bar teal"></div><div class="pr-box-body"><div class="pr-box-title teal">Imaging</div>'+html+'</div></div>';
 }
 
-function gridOverlay(){
-  const lines=[];
-  for(let i=10;i<100;i+=10){
-    lines.push(`<line x1="0" y1="${i}" x2="100" y2="${i}"/>`);
-    if(i!==50)lines.push(`<line x1="${i}" y1="0" x2="${i}" y2="100"/>`);
-  }
-  return `<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><g stroke="rgba(255,255,255,.55)" stroke-width="1" vector-effect="non-scaling-stroke">${lines.join('')}</g><line x1="50" y1="0" x2="50" y2="100" stroke="#e74c3c" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>`;
-}
-
 function postureSection(){
   const ps=rof.posture;
   if(!ps.obs.length&&!ps.photos.length&&!ps.notes.trim())return '';
@@ -980,7 +970,7 @@ function postureSection(){
   }
   if(ps.notes.trim())html+=`<p style="margin-top:8px;">${esc(ps.notes.trim())}</p>`;
   if(ps.photos.length){
-    html+='<div class="pr-photos">'+ps.photos.map(ph=>`<figure><div class="pr-photo-box"><img src="${ph.src}" alt="${esc(ph.view)} posture photo">${ps.grid?gridOverlay():''}</div><figcaption>${esc(ph.view)}</figcaption></figure>`).join('')+'</div>';
+    html+='<div class="pr-photos">'+ps.photos.map(ph=>`<figure><div class="pr-photo-box"><img src="${ph.src}" alt="${esc(ph.view)} posture photo"></div><figcaption>${esc(ph.view)}</figcaption></figure>`).join('')+'</div>';
   }
   return '<div class="pr-box"><div class="pr-box-bar teal"></div><div class="pr-box-body"><div class="pr-box-title teal">Postural / Structural Findings</div>'+html+'</div></div>';
 }
@@ -1095,7 +1085,7 @@ function newReport(){
   if(pk){delete pts[pk];savePts();}
   pk=null;
   rof={patient:'',practitioner:'',date:'',dob:'',phone:'',email:'',complaint:'',findings:[],diagnoses:[],acuity:null,planVisited:false,plan:{phase:'relief',visits:3,unit:'per week',duration:2,ongoing:false,techniques:[],adjuncts:[]},otherFinding:'',imaging:blankImaging(),posture:blankPosture(),goals:blankGoals()};
-  composer={type:null,region:null,levels:[],side:null,severity:'moderate',qualities:[]};
+  composer={types:[],region:null,levels:[],side:null,severity:'moderate',qualities:[]};
   imgComposer={modality:null,region:null,findings:[]};
   ['img-date','img-level','img-notes','img-ref-note','posture-notes','goal-other','goal-personal'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('inp-name').value='';
