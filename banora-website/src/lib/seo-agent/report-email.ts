@@ -39,7 +39,8 @@ function reviewRow(r: ReviewAction, text: string): string {
 export function buildReportHtml(
   searchConsole: SearchConsoleReport,
   autoReplied: ReviewAction[],
-  needsReply: ReviewAction[]
+  needsReply: ReviewAction[],
+  reviewsChecked = true
 ): string {
   const queryRows = searchConsole.trackedQueries.map(queryRow).join("");
   const autoRepliedRows = autoReplied
@@ -78,11 +79,13 @@ export function buildReportHtml(
         }
 
         ${
-          needsReply.length
-            ? `<h2 style="font-size:15px;color:#1B3A5C;margin:0 0 10px;">Needs your reply (${needsReply.length})</h2>
+          !reviewsChecked
+            ? `<p style="color:#b45309;font-size:13px;background:#fef3c7;padding:10px 12px;border-radius:6px;">Review checking is paused — Google's Business Profile API quota increase is still pending. Search Console data above is unaffected.</p>`
+            : needsReply.length
+              ? `<h2 style="font-size:15px;color:#1B3A5C;margin:0 0 10px;">Needs your reply (${needsReply.length})</h2>
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:8px;">${needsReplyRows}</table>
         <p style="color:#666;font-size:13px;margin:8px 0 0;">Open Google Business Profile → Reviews to reply, or approve these in chat with the banora-seo-agent task.</p>`
-            : `<p style="color:#666;font-size:13px;">No reviews currently need a manual reply.</p>`
+              : `<p style="color:#666;font-size:13px;">No reviews currently need a manual reply.</p>`
         }
       </td></tr>
       <tr><td style="background:#f0f0f0;padding:14px 32px;text-align:center;border-top:1px solid #e0e0e0;">

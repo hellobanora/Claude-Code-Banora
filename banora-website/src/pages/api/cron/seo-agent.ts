@@ -28,12 +28,16 @@ export const GET: APIRoute = async ({ request }) => {
   const accountId = import.meta.env.GBP_ACCOUNT_ID;
   const locationId = import.meta.env.GBP_LOCATION_ID;
   const siteUrl = import.meta.env.SEARCH_CONSOLE_SITE_URL;
+  // GBP_ACCOUNT_ID/GBP_LOCATION_ID can be unset while Google's Business
+  // Profile API quota increase is still pending — reviews are skipped, not
+  // fatal, so Search Console reporting keeps working either way.
+  const gbpConfigured = Boolean(accountId && locationId);
 
-  if (!accountId || !locationId || !siteUrl) {
-    return new Response(
-      JSON.stringify({ error: "Missing GBP_ACCOUNT_ID / GBP_LOCATION_ID / SEARCH_CONSOLE_SITE_URL" }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
+  if (!siteUrl) {
+    return new Response(JSON.stringify({ error: "Missing SEARCH_CONSOLE_SITE_URL" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   console.log(`[seo-agent] Starting at ${new Date().toISOString()}`);
@@ -58,23 +62,34 @@ export const GET: APIRoute = async ({ request }) => {
       console.error("[seo-agent] Search Console query failed", err);
       return { trackedQueries: [], topPages: [] };
     }),
-    listUnrepliedReviews(accessToken, accountId, locationId).catch((err) => {
-      console.error("[seo-agent] GBP review list failed", err);
-      return [];
-    }),
+    gbpConfigured
+      ? listUnrepliedReviews(accessToken, accountId, locationId).catch((err) => {
+          console.error("[seo-agent] GBP review list failed", err);
+          return [];
+        })
+      : Promise.resolve([]),
   ]);
+
+  if (!gbpConfigured) {
+    console.warn(
+      "[seo-agent] GBP_ACCOUNT_ID/GBP_LOCATION_ID not set — skipping review checks " +
+        "(likely still waiting on Google's Business Profile API quota increase)"
+    );
+  }
 
   const classified = classifyReviews(unrepliedReviews);
   const autoReplied = classified.filter((r) => r.kind === "auto_replied");
   const needsReply = classified.filter((r) => r.kind === "draft");
 
-  for (const review of autoReplied) {
-    if (review.kind !== "auto_replied") continue;
-    try {
-      await postReply(accessToken, accountId, locationId, review.reviewId, review.replyText);
-      console.log(`[seo-agent] auto-replied to review ${review.reviewId}`);
-    } catch (err) {
-      console.error(`[seo-agent] failed to post reply for review ${review.reviewId}`, err);
+  if (gbpConfigured) {
+    for (const review of autoReplied) {
+      if (review.kind !== "auto_replied") continue;
+      try {
+        await postReply(accessToken, accountId, locationId, review.reviewId, review.replyText);
+        console.log(`[seo-agent] auto-replied to review ${review.reviewId}`);
+      } catch (err) {
+        console.error(`[seo-agent] failed to post reply for review ${review.reviewId}`, err);
+      }
     }
   }
 
@@ -82,7 +97,7 @@ export const GET: APIRoute = async ({ request }) => {
   const resendApiKey = import.meta.env.RESEND_API_KEY;
   const reportEmail = import.meta.env.SEO_REPORT_EMAIL;
   if (resendApiKey && reportEmail) {
-    const html = buildReportHtml(searchConsole, autoReplied, needsReply);
+    const html = buildReportHtml(searchConsole, autoReplied, needsReply, gbpConfigured);
     emailSent = await sendReportEmail(resendApiKey, reportEmail, html);
   } else {
     console.warn("[seo-agent] email skipped: missing RESEND_API_KEY or SEO_REPORT_EMAIL");
@@ -91,7 +106,7 @@ export const GET: APIRoute = async ({ request }) => {
   const response = {
     timestamp: new Date().toISOString(),
     searchConsole,
-    reviews: { autoReplied, needsReply },
+    reviews: { autoReplied, needsReply, checked: gbpConfigured },
     emailSent,
   };
 
