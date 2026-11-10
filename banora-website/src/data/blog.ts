@@ -671,8 +671,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'forward-head-posture-causes-and-exercises',
     title: 'Forward Head Posture: What It Is, Why It Matters, and Exercises That May Help',
-    metaTitle: 'Forward Head Posture: Causes & Exercises | Banora Chiropractic',
-    metaDescription: 'Forward head posture is increasingly common — and it can lead to neck pain, headaches, and upper back tension. Our Tweed Heads chiropractors explain what helps.',
+    metaTitle: 'Forward Head Posture: Symptoms, Causes & Exercises | Banora Chiropractic',
+    metaDescription: 'Head sitting forward of your shoulders? See the symptoms and causes of forward head posture, plus exercises that may help, from Tweed Heads South chiropractors.',
     excerpt: "If your head sits forward of your shoulders, you've got forward head posture. It's becoming very common — and it's putting more load on your neck than you'd think.",
     content: `
       <p>Look at yourself side-on in a mirror. Where is your head? If it's sitting in front of your shoulders rather than directly above them, you've got what's commonly called forward head posture — and you're far from alone.</p>
