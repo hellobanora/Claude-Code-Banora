@@ -41,6 +41,10 @@ export const areas: Area[] = [
         heading: 'What to expect at your first visit',
         body: "Your first appointment takes around 30 to 45 minutes. We'll ask about your history and what's been bothering you, then assess how your spine and joints are moving. We explain what we find and what we suggest before any treatment starts.\n\nWe use a range of techniques, including gentle, low-force options for people who prefer not to be adjusted by hand. If we think you'd be better looked after by your GP, a physio or another practitioner, we'll tell you. Results vary between individuals, and we'll be upfront about what's realistic for you.",
       },
+      {
+        heading: 'Sciatica and back pain are common here',
+        body: 'Two of the most common reasons Tweed Heads South locals come to see us are <a href="/conditions/sciatica/" class="text-mid-blue underline hover:text-navy">sciatica treatment in Tweed Heads South</a> and ongoing back pain that just will not settle on its own. If you are after a <a href="/conditions/back-pain/" class="text-mid-blue underline hover:text-navy">back pain chiropractor in Tweed Heads South</a>, you are already in the right suburb.',
+      },
     ],
     faqs: [
       {
@@ -85,6 +89,10 @@ export const areas: Area[] = [
       {
         heading: 'Hours that work around you',
         body: "We're open until 6pm on Monday, Tuesday and Thursday, and from 8am to midday on Saturday. Wednesday we start at 2pm, and Friday is a short session from 12pm to 2pm. You can book online any time, or call (07) 5599 2322.",
+      },
+      {
+        heading: 'Sciatica and back pain are common here too',
+        body: 'A lot of people searching for <a href="/conditions/sciatica/" class="text-mid-blue underline hover:text-navy">sciatica treatment in Tweed Heads South</a> end up finding us just down the road. If ongoing back pain is what has brought you here, our <a href="/conditions/back-pain/" class="text-mid-blue underline hover:text-navy">back pain chiropractor in Tweed Heads South</a> page covers how we approach it.',
       },
     ],
     faqs: [

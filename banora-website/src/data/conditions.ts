@@ -64,6 +64,22 @@ Once we have a clear picture of what is going on, we will explain our findings i
         question: 'Do I need a referral or X-rays before I come in?',
         answer: 'No referral is needed. Chiropractors are primary contact practitioners, which means you can book directly. If you have recent imaging, bring it along — it can be very useful. If we believe X-rays or scans are warranted after our assessment, we will refer you for the appropriate imaging.',
       },
+      {
+        question: 'Can a chiropractor help with a bulging or herniated disc?',
+        answer: 'Many people with a disc bulge or herniation find that chiropractic care, combined with the right exercises, helps manage their symptoms without needing surgery. We will assess the disc involvement as part of your exam and give you an honest view of whether chiropractic care is likely to help, or whether a specialist opinion is needed first.',
+      },
+      {
+        question: 'Why does my back pain sometimes travel into my leg?',
+        answer: 'Back pain that spreads into the buttock or leg often points to nerve involvement — commonly sciatica. The two frequently go together because the same disc or joint problem in the lower back can irritate the sciatic nerve as it exits the spine. If this sounds like you, it is worth having both assessed at the same visit.',
+      },
+      {
+        question: 'Is it okay to crack my own back?',
+        answer: 'Self-manipulation might bring short-term relief, but it rarely addresses what is actually causing the stiffness, and repeatedly cracking the same spot can be a sign that something needs a proper assessment rather than a quick fix. A chiropractic adjustment is a specific, controlled movement to a joint that is not moving properly — not the same thing as a general stretch or twist.',
+      },
+      {
+        question: 'How do I stop my back pain from coming back?',
+        answer: 'Beyond the in-clinic care, the exercises and movement advice we give you matter just as much for keeping back pain away long-term. We will talk you through what to watch for, which positions and habits tend to aggravate your particular back, and when it is worth coming back in for a check-up rather than waiting for pain to build up again.',
+      },
     ],
     relatedConditions: ['sciatica', 'mid-back-pain', 'neck-pain', 'hip-pain'],
     relatedServices: ['chiropractic-adjustments', 'posture-correction'],
@@ -232,7 +248,7 @@ If your headaches appear to have a significant cervical or muscular component, w
     shortDescription: 'Chiropractic assessment and care for hip pain, stiffness, and restricted movement — from acute injuries to long-standing discomfort.',
     overview: `Hip pain is one of those conditions that can significantly affect quality of life without ever being fully explained. You might feel it as a deep ache in the groin, a sharp pain on the outer hip when walking, stiffness that makes getting out of a car uncomfortable, or a general heaviness in the hip that builds through the day. It can affect people at any age — from younger active people dealing with sport-related hip issues, to older adults where changes to the hip joint over time become more relevant.
 
-What makes hip pain particularly complex is that the hip does not always produce pain where the problem actually is. Pain in the hip region can originate from the hip joint itself, but it can also be referred from the lower back, the sacroiliac joint, or the nerves of the lumbar spine. The piriformis muscle, deep in the buttock, is another common culprit — it sits alongside the sciatic nerve and when it is tight or in spasm, it can produce buttock and hip pain that feels very much like a hip problem.
+What makes hip pain particularly complex is that the hip does not always produce pain where the problem actually is. Pain in the hip region can originate from the hip joint itself, but it can also be referred from the lower back, the sacroiliac joint, or the nerves of the lumbar spine — if that sounds like your situation, our <a href="/conditions/back-pain/" class="text-mid-blue underline hover:text-navy">back pain chiropractor in Tweed Heads South</a> page covers how we approach it. The piriformis muscle, deep in the buttock, is another common culprit — it sits alongside the sciatic nerve and when it is tight or in spasm, it can produce buttock and hip pain that feels very much like a hip problem. If your pain travels down the leg, it is also worth having it assessed as possible <a href="/conditions/sciatica/" class="text-mid-blue underline hover:text-navy">sciatica treatment in Tweed Heads South</a> alongside your hip.
 
 At Banora Chiropractic, we take the time to work out where your hip pain is actually coming from before we recommend any course of care. Treatment directed at the wrong structure will rarely produce lasting improvement — which is why assessment matters as much as the treatment itself.`,
     symptoms: [
@@ -579,7 +595,7 @@ If you're making a CTP or insurance claim, bring your claim number and any paper
     shortDescription: 'Chiropractic assessment and care for pain between the shoulder blades and across the mid-back, including rib and posture-related pain.',
     overview: `Mid-back pain sits in the thoracic spine, the section between the base of your neck and the bottom of your ribcage. People usually describe it as a deep ache between the shoulder blades, a sharp catch when they twist or take a deep breath, or a band of tightness across the upper back that builds through the day.
 
-The thoracic spine is connected to your ribs, so there are a lot of small joints in this area. When some of them get stiff, the muscles around them tighten up to compensate. Long hours at a desk or on a phone, driving, heavy lifting, sleeping awkwardly and sports with a lot of twisting, like golf, tennis and paddling, are common triggers.
+The thoracic spine is connected to your ribs, so there are a lot of small joints in this area. When some of them get stiff, the muscles around them tighten up to compensate. Long hours at a desk or on a phone, driving, heavy lifting, sleeping awkwardly and sports with a lot of twisting, like golf, tennis and paddling, are common triggers. If your pain sits lower, in the lumbar region rather than between the shoulder blades, our <a href="/conditions/back-pain/" class="text-mid-blue underline hover:text-navy">back pain chiropractor in Tweed Heads South</a> page covers that separately, since the likely causes are quite different.
 
 Mid-back pain is usually mechanical, but not always. Pain in the chest or upper back can occasionally come from the heart, lungs or other organs. If your pain comes with chest pain, shortness of breath, fever, unexplained weight loss, or it's worse at night and not affected by movement, see your GP or call 000 first.`,
     symptoms: [

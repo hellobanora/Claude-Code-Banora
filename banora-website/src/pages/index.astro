@@ -285,7 +285,7 @@ const areas = ['Tweed Heads South', 'Tweed Heads', 'Banora Point', 'Coolangatta'
       <div class="text-center max-w-2xl mx-auto mb-10 md:mb-14">
         <span class="text-sm text-[var(--color-gold)] font-medium uppercase tracking-[0.2em]">Common Conditions</span>
         <h2 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-semibold text-navy mt-3 mb-4">What Brings People to Us</h2>
-        <p class="text-grey-text leading-relaxed">These are the most common reasons people walk through our door — and we may be able to help you too.</p>
+        <p class="text-grey-text leading-relaxed" set:html={`Whether you're after <a href="/conditions/sciatica/" class="text-mid-blue underline hover:text-navy">sciatica treatment in Tweed Heads South</a> or searching for a <a href="/conditions/back-pain/" class="text-mid-blue underline hover:text-navy">back pain chiropractor in Tweed Heads South</a>, these are the most common reasons people walk through our door — and we may be able to help you too.`} />
       </div>
       <!-- FIX: 2 cols mobile → 3 cols tablet → 5 cols desktop (was 1 → 2 → 5, leaving gaps on tablet) -->
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">

@@ -83,7 +83,7 @@ const schema = area.faqs ? [pageSchema, faqSchema(area.faqs)] : pageSchema;
               <h3 class="font-[family-name:var(--font-display)] text-xl font-semibold text-navy mb-3">{section.heading}</h3>
               <div class="space-y-4">
                 {section.body.split('\n\n').map((para) => (
-                  <p class="text-grey-text leading-relaxed">{para}</p>
+                  <p class="text-grey-text leading-relaxed" set:html={para} />
                 ))}
               </div>
             </div>

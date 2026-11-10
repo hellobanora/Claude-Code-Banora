@@ -930,6 +930,8 @@ export const blogPosts: BlogPost[] = [
 
       <p>A <a href="/conditions/sciatica/">chiropractic assessment for sciatica</a> will identify what is actually irritating your sciatic nerve — and from there, we can recommend the specific movements and approaches most likely to help <em>your</em> situation. This might include spinal adjustments to restore joint mobility, targeted soft tissue work on the piriformis or surrounding hip muscles, personalised exercise guidance, and advice on managing your symptoms day-to-day.</p>
 
+      <p>Because sciatica so often starts with a problem in the lower back itself, it is worth having that checked properly too — as a <a href="/conditions/back-pain/">back pain chiropractor in Tweed Heads South</a>, we look at both together as standard rather than treating the leg pain in isolation.</p>
+
       <p>If your sciatica is affecting your sleep, your work, or your ability to get around comfortably — do not just keep stretching and hoping for the best. Come and see us at <a href="/about/">Banora Chiropractic</a> in Tweed Heads South. We will work out what is going on and help you get on top of it.</p>
     `,
     author: 'dr-paul-cater',

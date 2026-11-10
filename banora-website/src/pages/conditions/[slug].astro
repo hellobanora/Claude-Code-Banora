@@ -83,7 +83,7 @@ const schema = [
           <h2 class="font-[family-name:var(--font-display)] text-2xl font-semibold text-navy mb-4">Understanding {condition.title}</h2>
           <div class="space-y-4">
             {condition.overview.split('\n\n').map((para) => (
-              <p class="text-grey-text leading-relaxed text-lg">{para.trim()}</p>
+              <p class="text-grey-text leading-relaxed text-lg" set:html={para.trim()} />
             ))}
           </div>
 
