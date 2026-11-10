@@ -69,7 +69,7 @@ export const areas: Area[] = [
     slug: 'tweed-heads',
     name: 'Tweed Heads',
     state: 'NSW',
-    metaTitle: 'Chiropractor Tweed Heads | Banora Chiropractic',
+    metaTitle: 'Chiropractor Near Tweed Heads — 5 Min Away | Banora Chiropractic',
     metaDescription: 'Chiropractor for Tweed Heads locals, about 5 minutes away in Tweed Heads South. Gentle options, free parking, HICAPS and no referral needed. Book online.',
     heroHeading: 'Your Tweed Heads Chiropractor, 5 Minutes Down the Road',
     distance: '3 km',
