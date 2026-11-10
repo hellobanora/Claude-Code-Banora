@@ -19,5 +19,8 @@
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.0.8",
     "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "google-auth-library": "^9.14.1"
   }
 }

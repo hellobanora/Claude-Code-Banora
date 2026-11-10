@@ -16,6 +16,12 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env.local
+.env*.local
+
+# Google OAuth client secrets — never commit these (see docs/seo-agent-setup.md)
+client_secret*.json
+scripts/.gbp-oauth-output.json
 
 # macOS-specific files
 .DS_Store
