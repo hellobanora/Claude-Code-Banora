@@ -40,7 +40,8 @@ export function buildReportHtml(
   searchConsole: SearchConsoleReport,
   autoReplied: ReviewAction[],
   needsReply: ReviewAction[],
-  reviewsChecked = true
+  reviewsChecked = true,
+  reviewCheckError: string | null = null
 ): string {
   const queryRows = searchConsole.trackedQueries.map(queryRow).join("");
   const autoRepliedRows = autoReplied
@@ -79,9 +80,11 @@ export function buildReportHtml(
         }
 
         ${
-          !reviewsChecked
-            ? `<p style="color:#b45309;font-size:13px;background:#fef3c7;padding:10px 12px;border-radius:6px;">Review checking is paused — Google's Business Profile API quota increase is still pending. Search Console data above is unaffected.</p>`
-            : needsReply.length
+          reviewCheckError
+            ? `<p style="color:#b91c1c;font-size:13px;background:#fee2e2;padding:10px 12px;border-radius:6px;">Review check FAILED this week (not just paused): ${escape(reviewCheckError)}. Search Console data above is unaffected, but no reviews were read or replied to — this needs a look.</p>`
+            : !reviewsChecked
+              ? `<p style="color:#b45309;font-size:13px;background:#fef3c7;padding:10px 12px;border-radius:6px;">Review checking is paused — Google's Business Profile API quota increase is still pending. Search Console data above is unaffected.</p>`
+              : needsReply.length
               ? `<h2 style="font-size:15px;color:#1B3A5C;margin:0 0 10px;">Needs your reply (${needsReply.length})</h2>
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:8px;">${needsReplyRows}</table>
         <p style="color:#666;font-size:13px;margin:8px 0 0;">Open Google Business Profile → Reviews to reply, or approve these in chat with the banora-seo-agent task.</p>`

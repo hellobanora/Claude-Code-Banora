@@ -57,6 +57,8 @@ export const GET: APIRoute = async ({ request }) => {
     });
   }
 
+  let reviewCheckError: string | null = null;
+
   const [searchConsole, unrepliedReviews] = await Promise.all([
     getSearchConsoleReport(accessToken, siteUrl).catch((err) => {
       console.error("[seo-agent] Search Console query failed", err);
@@ -65,6 +67,7 @@ export const GET: APIRoute = async ({ request }) => {
     gbpConfigured
       ? listUnrepliedReviews(accessToken, accountId, locationId).catch((err) => {
           console.error("[seo-agent] GBP review list failed", err);
+          reviewCheckError = err instanceof Error ? err.message : String(err);
           return [];
         })
       : Promise.resolve([]),
@@ -77,11 +80,16 @@ export const GET: APIRoute = async ({ request }) => {
     );
   }
 
+  // "checked" means we actually got a successful review list back, not just
+  // that the env vars were present — a thrown error must never be silently
+  // reported as "nothing needs attention".
+  const reviewsChecked = gbpConfigured && !reviewCheckError;
+
   const classified = classifyReviews(unrepliedReviews);
   const autoReplied = classified.filter((r) => r.kind === "auto_replied");
   const needsReply = classified.filter((r) => r.kind === "draft");
 
-  if (gbpConfigured) {
+  if (reviewsChecked) {
     for (const review of autoReplied) {
       if (review.kind !== "auto_replied") continue;
       try {
@@ -97,7 +105,7 @@ export const GET: APIRoute = async ({ request }) => {
   const resendApiKey = import.meta.env.RESEND_API_KEY;
   const reportEmail = import.meta.env.SEO_REPORT_EMAIL;
   if (resendApiKey && reportEmail) {
-    const html = buildReportHtml(searchConsole, autoReplied, needsReply, gbpConfigured);
+    const html = buildReportHtml(searchConsole, autoReplied, needsReply, reviewsChecked, reviewCheckError);
     emailSent = await sendReportEmail(resendApiKey, reportEmail, html);
   } else {
     console.warn("[seo-agent] email skipped: missing RESEND_API_KEY or SEO_REPORT_EMAIL");
@@ -106,7 +114,7 @@ export const GET: APIRoute = async ({ request }) => {
   const response = {
     timestamp: new Date().toISOString(),
     searchConsole,
-    reviews: { autoReplied, needsReply, checked: gbpConfigured },
+    reviews: { autoReplied, needsReply, checked: reviewsChecked, error: reviewCheckError },
     emailSent,
   };
 

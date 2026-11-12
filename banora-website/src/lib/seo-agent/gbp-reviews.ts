@@ -25,24 +25,38 @@ export function starCount(review: GbpReview): number {
   return STAR_VALUE[review.starRating] ?? 0;
 }
 
+const MAX_PAGES = 10; // 50/page — covers up to 500 reviews, well beyond a single-location practice
+
 export async function listUnrepliedReviews(
   accessToken: string,
   accountId: string,
   locationId: string
 ): Promise<GbpReview[]> {
-  const res = await fetch(
-    `https://mybusiness.googleapis.com/v4/accounts/${accountId}/locations/${locationId}/reviews`,
-    { headers: { Authorization: `Bearer ${accessToken}` } }
-  );
+  const allReviews: GbpReview[] = [];
+  let pageToken: string | undefined;
 
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`GBP reviews list failed (${res.status}): ${err}`);
+  for (let page = 0; page < MAX_PAGES; page++) {
+    const url = new URL(
+      `https://mybusiness.googleapis.com/v4/accounts/${accountId}/locations/${locationId}/reviews`
+    );
+    url.searchParams.set("pageSize", "50");
+    if (pageToken) url.searchParams.set("pageToken", pageToken);
+
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${accessToken}` } });
+
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(`GBP reviews list failed (${res.status}): ${err}`);
+    }
+
+    const data = (await res.json()) as { reviews?: GbpReview[]; nextPageToken?: string };
+    allReviews.push(...(data.reviews ?? []));
+
+    if (!data.nextPageToken) break;
+    pageToken = data.nextPageToken;
   }
 
-  const data = (await res.json()) as { reviews?: GbpReview[] };
-  const reviews = data.reviews ?? [];
-  return reviews.filter((r) => !r.reviewReply);
+  return allReviews.filter((r) => !r.reviewReply);
 }
 
 export async function postReply(
