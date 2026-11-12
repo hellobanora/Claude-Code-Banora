@@ -3,6 +3,10 @@
 // read/reply still lives on the legacy "Google My Business API" v4 resource.
 // Verify field names against https://developers.google.com/my-business/reference/rest
 // if Google changes this again.
+//
+// GBP_ACCOUNT_ID/GBP_LOCATION_ID already carry their "accounts/"/"locations/"
+// prefix (that's the literal resource name Google's API returns) — never
+// prefix them again when building a URL.
 
 export interface GbpReview {
   reviewId: string;
@@ -37,7 +41,7 @@ export async function listUnrepliedReviews(
 
   for (let page = 0; page < MAX_PAGES; page++) {
     const url = new URL(
-      `https://mybusiness.googleapis.com/v4/accounts/${accountId}/locations/${locationId}/reviews`
+      `https://mybusiness.googleapis.com/v4/${accountId}/${locationId}/reviews`
     );
     url.searchParams.set("pageSize", "50");
     if (pageToken) url.searchParams.set("pageToken", pageToken);
@@ -67,7 +71,7 @@ export async function postReply(
   text: string
 ): Promise<void> {
   const res = await fetch(
-    `https://mybusiness.googleapis.com/v4/accounts/${accountId}/locations/${locationId}/reviews/${reviewId}/reply`,
+    `https://mybusiness.googleapis.com/v4/${accountId}/${locationId}/reviews/${reviewId}/reply`,
     {
       method: "PUT",
       headers: {
