@@ -69,7 +69,7 @@ export const POST_ROTATION: GbpPostDraft[] = [
   {
     id: "faq-hours",
     summary:
-      "‘Are you open on weekends?’ Yes — Saturday mornings from 8am to midday. We’re also open until 6pm Monday, Tuesday and Thursday for anyone who can’t get in during a standard 9-to-5.",
+      "‘Are you open on weekends?’ Yes — Saturday mornings from 8am to 11:30am. We’re also open until 6pm Monday, Tuesday, Wednesday and Thursday for anyone who can’t get in during a standard 9-to-5.",
     imageFileName: "clinic-adjustment-wide.jpg",
     ctaType: "BOOK",
     ctaPath: "/book/",

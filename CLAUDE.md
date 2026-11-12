@@ -66,7 +66,7 @@ Read the relevant skill before starting any matching task. Skills live in `.skil
 | Wednesday | 2:00pm – 6:00pm |
 | Thursday | 8:30am – 6:00pm |
 | Friday | 12:00pm – 2:00pm |
-| Saturday | 8:00am – 12:00pm |
+| Saturday | 8:00am – 11:30am |
 | Sunday | Closed |
 
 ### Key Facts

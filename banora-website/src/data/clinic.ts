@@ -23,7 +23,7 @@ export const clinic = {
     { day: 'Wednesday', open: '2:00pm', close: '6:00pm' },
     { day: 'Thursday', open: '8:30am', close: '6:00pm' },
     { day: 'Friday', open: '12:00pm', close: '2:00pm' },
-    { day: 'Saturday', open: '8:00am', close: '12:00pm' },
+    { day: 'Saturday', open: '8:00am', close: '11:30am' },
     { day: 'Sunday', open: 'Closed', close: 'Closed' },
   ],
   hoursSchema: [
@@ -32,7 +32,7 @@ export const clinic = {
     'We 14:00-18:00',
     'Th 08:30-18:00',
     'Fr 12:00-14:00',
-    'Sa 08:00-12:00',
+    'Sa 08:00-11:30',
   ],
   social: {
     facebook: 'https://www.facebook.com/banorachiro',
