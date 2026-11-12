@@ -103,7 +103,8 @@ export function buildReportHtml(
 export async function sendReportEmail(
   resendApiKey: string,
   toEmail: string,
-  html: string
+  html: string,
+  subject = "Banora — Weekly SEO & Reviews Report"
 ): Promise<boolean> {
   try {
     const res = await fetch("https://api.resend.com/emails", {
@@ -115,7 +116,7 @@ export async function sendReportEmail(
       body: JSON.stringify({
         from: FROM,
         to: [toEmail],
-        subject: "Banora — Weekly SEO & Reviews Report",
+        subject,
         html,
       }),
     });
@@ -128,4 +129,37 @@ export async function sendReportEmail(
     console.error("[seo-agent] Resend send exception", err);
     return false;
   }
+}
+
+// Short alert email for the standalone, more frequent review-only check —
+// only ever sent when something actually needs a human reply, so it doesn't
+// add to alert fatigue alongside the full weekly report.
+export function buildReviewAlertHtml(needsReply: ReviewAction[], reviewCheckError: string | null): string {
+  const needsReplyRows = needsReply
+    .map((r) => (r.kind === "draft" ? reviewRow(r, r.draftText) : ""))
+    .join("");
+
+  const body = reviewCheckError
+    ? `<p style="color:#b91c1c;font-size:13px;background:#fee2e2;padding:10px 12px;border-radius:6px;">Review check FAILED: ${escape(reviewCheckError)}. This needs a look.</p>`
+    : `<h2 style="font-size:15px;color:#1B3A5C;margin:0 0 10px;">Needs your reply (${needsReply.length})</h2>
+       <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:8px;">${needsReplyRows}</table>
+       <p style="color:#666;font-size:13px;margin:8px 0 0;">Open Google Business Profile → Reviews to reply, or approve these in chat with the banora-seo-agent task.</p>`;
+
+  return `
+<!DOCTYPE html><html><body style="margin:0;padding:0;background:#f5f5f5;font-family:Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:32px 0;">
+  <tr><td align="center">
+    <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+      <tr><td style="background:#1B3A5C;padding:24px 32px;">
+        <h1 style="color:#fff;margin:0;font-size:20px;font-weight:700;">Review Check-In</h1>
+        <p style="color:rgba(255,255,255,0.75);margin:4px 0 0;font-size:13px;">Banora Chiropractic</p>
+      </td></tr>
+      <tr><td style="padding:28px 32px;">${body}</td></tr>
+      <tr><td style="background:#f0f0f0;padding:14px 32px;text-align:center;border-top:1px solid #e0e0e0;">
+        <p style="color:#999;font-size:11px;margin:0;">Banora SEO Agent — automated review check</p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body></html>`;
 }

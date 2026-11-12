@@ -8,8 +8,7 @@
 import type { APIRoute } from "astro";
 import { getAccessToken } from "../../../lib/seo-agent/google-token";
 import { getSearchConsoleReport } from "../../../lib/seo-agent/search-console";
-import { listUnrepliedReviews, postReply } from "../../../lib/seo-agent/gbp-reviews";
-import { classifyReviews } from "../../../lib/seo-agent/review-classifier";
+import { runReviewCheck } from "../../../lib/seo-agent/review-check";
 import { buildReportHtml, sendReportEmail } from "../../../lib/seo-agent/report-email";
 
 export const prerender = false;
@@ -28,10 +27,6 @@ export const GET: APIRoute = async ({ request }) => {
   const accountId = import.meta.env.GBP_ACCOUNT_ID;
   const locationId = import.meta.env.GBP_LOCATION_ID;
   const siteUrl = import.meta.env.SEARCH_CONSOLE_SITE_URL;
-  // GBP_ACCOUNT_ID/GBP_LOCATION_ID can be unset while Google's Business
-  // Profile API quota increase is still pending — reviews are skipped, not
-  // fatal, so Search Console reporting keeps working either way.
-  const gbpConfigured = Boolean(accountId && locationId);
 
   if (!siteUrl) {
     return new Response(JSON.stringify({ error: "Missing SEARCH_CONSOLE_SITE_URL" }), {
@@ -57,55 +52,21 @@ export const GET: APIRoute = async ({ request }) => {
     });
   }
 
-  let reviewCheckError: string | null = null;
-
-  const [searchConsole, unrepliedReviews] = await Promise.all([
+  const [searchConsole, reviewResult] = await Promise.all([
     getSearchConsoleReport(accessToken, siteUrl).catch((err) => {
       console.error("[seo-agent] Search Console query failed", err);
       return { trackedQueries: [], topPages: [] };
     }),
-    gbpConfigured
-      ? listUnrepliedReviews(accessToken, accountId, locationId).catch((err) => {
-          console.error("[seo-agent] GBP review list failed", err);
-          reviewCheckError = err instanceof Error ? err.message : String(err);
-          return [];
-        })
-      : Promise.resolve([]),
+    runReviewCheck({ accessToken, accountId, locationId }, "[seo-agent]"),
   ]);
 
-  if (!gbpConfigured) {
-    console.warn(
-      "[seo-agent] GBP_ACCOUNT_ID/GBP_LOCATION_ID not set — skipping review checks " +
-        "(likely still waiting on Google's Business Profile API quota increase)"
-    );
-  }
-
-  // "checked" means we actually got a successful review list back, not just
-  // that the env vars were present — a thrown error must never be silently
-  // reported as "nothing needs attention".
-  const reviewsChecked = gbpConfigured && !reviewCheckError;
-
-  const classified = classifyReviews(unrepliedReviews);
-  const autoReplied = classified.filter((r) => r.kind === "auto_replied");
-  const needsReply = classified.filter((r) => r.kind === "draft");
-
-  if (reviewsChecked) {
-    for (const review of autoReplied) {
-      if (review.kind !== "auto_replied") continue;
-      try {
-        await postReply(accessToken, accountId, locationId, review.reviewId, review.replyText);
-        console.log(`[seo-agent] auto-replied to review ${review.reviewId}`);
-      } catch (err) {
-        console.error(`[seo-agent] failed to post reply for review ${review.reviewId}`, err);
-      }
-    }
-  }
+  const { autoReplied, needsReply, checked, error } = reviewResult;
 
   let emailSent = false;
   const resendApiKey = import.meta.env.RESEND_API_KEY;
   const reportEmail = import.meta.env.SEO_REPORT_EMAIL;
   if (resendApiKey && reportEmail) {
-    const html = buildReportHtml(searchConsole, autoReplied, needsReply, reviewsChecked, reviewCheckError);
+    const html = buildReportHtml(searchConsole, autoReplied, needsReply, checked, error);
     emailSent = await sendReportEmail(resendApiKey, reportEmail, html);
   } else {
     console.warn("[seo-agent] email skipped: missing RESEND_API_KEY or SEO_REPORT_EMAIL");
@@ -114,7 +75,7 @@ export const GET: APIRoute = async ({ request }) => {
   const response = {
     timestamp: new Date().toISOString(),
     searchConsole,
-    reviews: { autoReplied, needsReply, checked: reviewsChecked, error: reviewCheckError },
+    reviews: { autoReplied, needsReply, checked, error },
     emailSent,
   };
 
