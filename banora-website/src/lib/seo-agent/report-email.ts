@@ -3,6 +3,7 @@
 
 import type { SearchConsoleReport } from "./search-console";
 import type { ReviewAction } from "./review-classifier";
+import type { GbpPostDraft } from "./gbp-posts";
 
 const FROM = "Banora SEO Agent <forms@banorachiropractic.com.au>";
 
@@ -41,7 +42,8 @@ export function buildReportHtml(
   autoReplied: ReviewAction[],
   needsReply: ReviewAction[],
   reviewsChecked = true,
-  reviewCheckError: string | null = null
+  reviewCheckError: string | null = null,
+  suggestedPost: GbpPostDraft | null = null
 ): string {
   const queryRows = searchConsole.trackedQueries.map(queryRow).join("");
   const autoRepliedRows = autoReplied
@@ -89,6 +91,19 @@ export function buildReportHtml(
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:8px;">${needsReplyRows}</table>
         <p style="color:#666;font-size:13px;margin:8px 0 0;">Open Google Business Profile → Reviews to reply, or approve these in chat with the banora-seo-agent task.</p>`
               : `<p style="color:#666;font-size:13px;">No reviews currently need a manual reply.</p>`
+        }
+
+        ${
+          suggestedPost
+            ? `<h2 style="font-size:15px;color:#1B3A5C;margin:24px 0 10px;">This week's suggested GBP Post</h2>
+        <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8f9fa;border-radius:8px;">
+          <tr><td style="padding:14px 16px;">
+            <p style="margin:0 0 8px;font-size:14px;color:#333;">${escape(suggestedPost.summary)}</p>
+            <p style="margin:0;font-size:12px;color:#888;">Image: ${escape(suggestedPost.imageFileName)} · Button: ${escape(suggestedPost.ctaType)}${suggestedPost.ctaPath ? ` → ${escape(suggestedPost.ctaPath)}` : ""}</p>
+          </td></tr>
+        </table>
+        <p style="color:#666;font-size:13px;margin:8px 0 0;">This never posts automatically — approve, edit, or skip it in chat with the banora-seo-agent task.</p>`
+            : ""
         }
       </td></tr>
       <tr><td style="background:#f0f0f0;padding:14px 32px;text-align:center;border-top:1px solid #e0e0e0;">

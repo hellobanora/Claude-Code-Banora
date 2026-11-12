@@ -9,6 +9,7 @@ import type { APIRoute } from "astro";
 import { getAccessToken } from "../../../lib/seo-agent/google-token";
 import { getSearchConsoleReport } from "../../../lib/seo-agent/search-console";
 import { runReviewCheck } from "../../../lib/seo-agent/review-check";
+import { pickThisWeeksPost } from "../../../lib/seo-agent/gbp-posts";
 import { buildReportHtml, sendReportEmail } from "../../../lib/seo-agent/report-email";
 
 export const prerender = false;
@@ -61,12 +62,13 @@ export const GET: APIRoute = async ({ request }) => {
   ]);
 
   const { autoReplied, needsReply, checked, error } = reviewResult;
+  const suggestedPost = pickThisWeeksPost();
 
   let emailSent = false;
   const resendApiKey = import.meta.env.RESEND_API_KEY;
   const reportEmail = import.meta.env.SEO_REPORT_EMAIL;
   if (resendApiKey && reportEmail) {
-    const html = buildReportHtml(searchConsole, autoReplied, needsReply, checked, error);
+    const html = buildReportHtml(searchConsole, autoReplied, needsReply, checked, error, suggestedPost);
     emailSent = await sendReportEmail(resendApiKey, reportEmail, html);
   } else {
     console.warn("[seo-agent] email skipped: missing RESEND_API_KEY or SEO_REPORT_EMAIL");
@@ -76,6 +78,7 @@ export const GET: APIRoute = async ({ request }) => {
     timestamp: new Date().toISOString(),
     searchConsole,
     reviews: { autoReplied, needsReply, checked, error },
+    suggestedPost,
     emailSent,
   };
 
