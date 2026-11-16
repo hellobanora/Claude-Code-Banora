@@ -4,6 +4,7 @@ import { clinic, practitioners } from '../../data/clinic';
 import { blogPosts, getRecentPosts, getCategorySlug } from '../../data/blog';
 import { services } from '../../data/services';
 import { conditions } from '../../data/conditions';
+import { practitionerId, practitionerUrl, CLINIC_ID } from '../../data/schema';
 
 export function getStaticPaths() {
   return blogPosts.filter(p => p.status === 'published').map((post) => ({
@@ -39,9 +40,11 @@ const schema = {
   dateModified: post.updatedDate || post.publishDate,
   author: {
     '@type': 'Person',
+    '@id': practitionerId(author),
+    url: practitionerUrl(author),
     name: author.name,
     jobTitle: 'Chiropractor',
-    worksFor: { '@type': 'Organization', name: clinic.name },
+    worksFor: { '@type': 'MedicalClinic', '@id': CLINIC_ID, name: clinic.name },
   },
   publisher: {
     '@type': 'Organization',
