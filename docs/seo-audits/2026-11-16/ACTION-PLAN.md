@@ -2,6 +2,13 @@
 
 Ordered by likely impact. Every patient-facing change goes through the AHPRA and brand checks in CLAUDE.md before it ships.
 
+## Progress (updated 16 Nov 2026)
+
+- Done: 1 (suburb pages rewritten), 2 and 3 (titles and descriptions shortened; homepage, /areas/tweed-heads/ and the forward-head-posture post kept as-is pending click data), 5 ("May Help" title), 6 (author schema linked), 8 ("THS" spelled out).
+- No change needed: 7. The empty-alt logos sit next to the visible clinic name, so empty alt is correct; the header and footer logos already have alt text.
+- Skipped by choice: 4 (AHPRA registration numbers).
+- Open: 9, 10.
+
 ## High (next 1–2 weeks)
 
 1. **Rewrite the 12 thin suburb pages.** Start with Banora Point, Palm Beach and Terranora, then Currumbin, Elanora, Tugun, Kirra, Bilinga, Burleigh Heads, Chinderah, Casuarina and Murwillumbah. Aim for 700+ words of genuinely local content each, matching the Tweed Heads, Coolangatta and Kingscliff pages. Files: `banora-website/src/data/areas.ts`.
