@@ -100,18 +100,27 @@ known Google updates before drawing conclusions.
    continue with `curl` and manual checks and say so in the report.
 2. Run the `seo-audit` skill against https://banorachiropractic.com.au,
    following `.claude/skills/seo-audit/SKILL.md`. Only the free tier: no
-   paid extensions, no API keys beyond `SEO_DATA_SECRET`.
-3. Add Search Console data from the endpoint above.
-4. **Competitors:** find the 3–5 chiropractic clinics ranking for
+   paid extensions, no API keys beyond `SEO_DATA_SECRET` and
+   `GOOGLE_API_KEY`.
+3. **Page speed:** `GOOGLE_API_KEY` (set in the cloud environment, limited
+   to the PageSpeed Insights and Chrome UX Report APIs) lets the skill pack
+   measure real Core Web Vitals. Run
+   `"$(git rev-parse --show-toplevel)/.claude/skills/seo/scripts/claude-seo" run pagespeed_check.py <url> --json`
+   for the homepage, one condition page, one suburb page and one blog post,
+   mobile and desktop. The script reads the key from the environment, so
+   never pass it on the command line or print it. If the key is missing or
+   quota runs out, say so and score Performance as "not measured".
+4. Add Search Console data from the endpoint above.
+5. **Competitors:** find the 3–5 chiropractic clinics ranking for
    "chiropractor tweed heads", "chiropractor tweed heads south",
    "chiropractor banora point" and "chiropractor coolangatta". Compare
    content depth, schema, page speed signals, internal linking and how
    their local pages are built. Only use what's publicly visible on their
    sites. Don't copy their wording.
-5. Write `docs/seo-audits/YYYY-MM-DD/FULL-AUDIT-REPORT.md` and
+6. Write `docs/seo-audits/YYYY-MM-DD/FULL-AUDIT-REPORT.md` and
    `ACTION-PLAN.md`, in the same format as the previous audit, with a
    "Since last audit" section: what was fixed, what moved, what's new.
-6. Don't change site content in the monthly run. Open a PR titled
+7. Don't change site content in the monthly run. Open a PR titled
    `SEO monthly audit: <month>` containing only the report, with the score,
    the top 3 actions and anything needing James's decision at the top of
    the PR body.
