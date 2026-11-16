@@ -3,15 +3,15 @@
   "installCommand": "echo 'install handled in buildCommand'",
   "crons": [
     {
-      "path": "/api/cron/health-check",
+      "path": "/api/cron/health-check/",
       "schedule": "0 20 * * *"
     },
     {
-      "path": "/api/cron/seo-agent",
+      "path": "/api/cron/seo-agent/",
       "schedule": "0 21 * * 1"
     },
     {
-      "path": "/api/cron/gbp-reviews",
+      "path": "/api/cron/gbp-reviews/",
       "schedule": "0 22 * * 1,3,5"
     }
   ],
