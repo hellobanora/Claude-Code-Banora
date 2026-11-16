@@ -1,0 +1,142 @@
+{
+  "url": "https://banorachiropractic.com.au/",
+  "host": "banorachiropractic.com.au",
+  "tls": {
+    "host": "banorachiropractic.com.au",
+    "port": 443,
+    "connected_ip": "216.150.1.1",
+    "verified": true,
+    "verify_error": null,
+    "verify_code": null,
+    "certificate_read": true,
+    "subject": {
+      "common_name": "banorachiropractic.com.au",
+      "organization": null
+    },
+    "issuer": {
+      "common_name": "YR1",
+      "organization": "Let's Encrypt"
+    },
+    "not_before": "2026-10-22T19:31:26Z",
+    "not_after": "2027-01-20T19:31:25Z",
+    "days_until_expiry": 65,
+    "expired": false,
+    "not_yet_valid": false,
+    "san": [
+      "banorachiropractic.com.au"
+    ],
+    "san_count": 1,
+    "covers_host": true,
+    "sibling_host": "www.banorachiropractic.com.au",
+    "covers_sibling": false,
+    "protocol": "TLSv1.3",
+    "cipher": "TLS_AES_128_GCM_SHA256",
+    "cipher_bits": 128
+  },
+  "headers": {
+    "url": "https://banorachiropractic.com.au/",
+    "status": 200,
+    "https": true,
+    "hsts": {
+      "present": true,
+      "value": "max-age=63072000",
+      "max_age": 63072000,
+      "include_subdomains": false,
+      "preload": false,
+      "meets_preload_requirements": false,
+      "preload_gaps": [
+        "includeSubDomains is missing.",
+        "The preload directive is missing."
+      ],
+      "preload_scope_note": "Covers the header directives, the certificate and the same-host HTTP redirect when those sections ran. Not checked: that every subdomain serves HTTPS, and that this host is the registrable domain the preload list requires.",
+      "issues": [
+        "includeSubDomains is not set."
+      ]
+    },
+    "csp": {
+      "present": false,
+      "report_only": false,
+      "policies": 0,
+      "issues": [
+        "Content-Security-Policy was not sent."
+      ]
+    },
+    "x_content_type_options": {
+      "present": true,
+      "value": "nosniff",
+      "ok": true
+    },
+    "framing": {
+      "x_frame_options": "SAMEORIGIN",
+      "frame_ancestors": false,
+      "ok": true
+    },
+    "referrer_policy": {
+      "present": true,
+      "value": "strict-origin-when-cross-origin",
+      "ok": true
+    },
+    "permissions_policy": {
+      "present": false,
+      "feature_policy_present": false
+    },
+    "cookies": []
+  },
+  "redirects": {
+    "http_to_https": {
+      "checked_url": "http://banorachiropractic.com.au/",
+      "redirects_to_https": true,
+      "one_hop": true,
+      "first_hop_status": 308,
+      "first_hop_target": "https://banorachiropractic.com.au/",
+      "first_hop_same_host": true,
+      "permanent": true,
+      "hops": 1,
+      "final_url": "https://banorachiropractic.com.au/",
+      "error": null
+    },
+    "www": {
+      "host": "banorachiropractic.com.au",
+      "sibling_host": "www.banorachiropractic.com.au",
+      "host_final_url": "https://banorachiropractic.com.au/",
+      "sibling_final_url": "https://banorachiropractic.com.au/",
+      "sibling_resolves": true,
+      "sibling_tls_error": false,
+      "same_final_url": true,
+      "error": null
+    }
+  },
+  "findings": [
+    {
+      "id": "hsts-weak",
+      "severity": "Low",
+      "message": "The Strict-Transport-Security header is weak.",
+      "evidence": {
+        "value": "max-age=63072000",
+        "issues": [
+          "includeSubDomains is not set."
+        ]
+      }
+    },
+    {
+      "id": "csp-missing",
+      "severity": "Low",
+      "message": "No Content-Security-Policy header is sent.",
+      "evidence": {}
+    },
+    {
+      "id": "permissions-policy-missing",
+      "severity": "Info",
+      "message": "No Permissions-Policy header is sent.",
+      "evidence": {}
+    }
+  ],
+  "summary": {
+    "Critical": 0,
+    "High": 0,
+    "Medium": 0,
+    "Low": 2,
+    "Info": 1,
+    "total": 3
+  }
+}
