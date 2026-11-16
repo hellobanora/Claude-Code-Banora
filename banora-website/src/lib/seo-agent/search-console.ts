@@ -12,14 +12,14 @@ const TRACKED_QUERIES = [
 // Search Console data has a reporting lag — querying up to "yesterday" often
 // returns incomplete rows for the last 1-3 days, so end each window a few
 // days back.
-const REPORTING_LAG_DAYS = 3;
+export const REPORTING_LAG_DAYS = 3;
 const WINDOW_DAYS = 7;
 
 function isoDate(d: Date): string {
   return d.toISOString().slice(0, 10);
 }
 
-function dateRange(endOffsetDays: number, windowDays: number) {
+export function dateRange(endOffsetDays: number, windowDays: number) {
   const end = new Date();
   end.setUTCDate(end.getUTCDate() - endOffsetDays);
   const start = new Date(end);
@@ -27,7 +27,7 @@ function dateRange(endOffsetDays: number, windowDays: number) {
   return { startDate: isoDate(start), endDate: isoDate(end) };
 }
 
-interface SearchAnalyticsRow {
+export interface SearchAnalyticsRow {
   keys: string[];
   clicks: number;
   impressions: number;
@@ -35,18 +35,19 @@ interface SearchAnalyticsRow {
   position: number;
 }
 
-async function queryRange(
+export async function queryRange(
   accessToken: string,
   siteUrl: string,
   range: { startDate: string; endDate: string },
   dimensions: string[],
-  queryFilter?: string
+  queryFilter?: string,
+  rowLimit = 25
 ): Promise<SearchAnalyticsRow[]> {
   const body: Record<string, unknown> = {
     startDate: range.startDate,
     endDate: range.endDate,
     dimensions,
-    rowLimit: 25,
+    rowLimit,
   };
 
   if (queryFilter) {
