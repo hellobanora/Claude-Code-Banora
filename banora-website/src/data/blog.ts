@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'desk-workers-guide-to-a-healthier-back',
     title: "A Desk Worker's Guide to a Healthier Back",
-    metaTitle: "Desk Worker's Guide to a Healthier Back | Banora Chiropractic Blog",
+    metaTitle: "A Desk Worker's Guide to Back Care | Banora Chiropractic",
     metaDescription: 'Spending long hours at a desk? Here are practical tips from our Tweed Heads South chiropractors to help reduce back discomfort and improve your posture at work.',
     excerpt: 'If you spend most of your day sitting at a desk, your back is probably telling you about it. Here are some practical things you can do today.',
     content: `
@@ -83,8 +83,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'understanding-back-pain',
     title: 'Understanding Back Pain: What Your Body Might Be Telling You',
-    metaTitle: 'Understanding Back Pain | Chiropractor Tweed Heads South | Banora Chiropractic',
-    metaDescription: 'Back pain affects most Australians at some point. Our Tweed Heads South chiropractors explain common causes, when to seek help, and how chiropractic care may assist.',
+    metaTitle: 'Understanding Back Pain | Banora Chiropractic',
+    metaDescription: 'Back pain affects most Australians at some point. Our Tweed Heads South chiropractors explain common causes, when to get help and how chiropractic may assist.',
     excerpt: "Back pain is incredibly common — around 4 million Australians are dealing with it right now. Here's what might be going on and when it's worth getting checked.",
     content: `
       <p>If you're dealing with back pain, you're in good company. It's one of the most common reasons Australians visit a healthcare provider, and it's something we see every single day at the clinic.</p>
@@ -139,7 +139,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'why-your-posture-matters-more-than-you-think',
     title: 'Why Your Posture Matters More Than You Think',
-    metaTitle: 'Why Posture Matters | Posture Correction Tweed Heads | Banora Chiropractic',
+    metaTitle: 'Why Your Posture Matters | Banora Chiropractic',
     metaDescription: 'Poor posture affects more than just your back. Our Tweed Heads South chiropractors explain how posture impacts your health and what you can do about it.',
     excerpt: "Posture isn't just about standing up straight — it affects your energy, your breathing, and how your whole body functions. Here's why it matters.",
     content: `
@@ -205,7 +205,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: '5-warmup-mistakes-setting-you-up-for-injury',
     title: '5 Warm-Up Mistakes That Could Be Setting You Up for Injury',
-    metaTitle: '5 Warm-Up Mistakes & Injury Prevention | Chiropractor Tweed Heads South',
+    metaTitle: '5 Warm-Up Mistakes to Avoid | Banora Chiropractic',
     metaDescription: 'Common warm-up mistakes that may lead to sports injuries. Practical tips from our Tweed Heads South chiropractors to help you train smarter and stay active.',
     excerpt: "Whether you're hitting the surf at Coolangatta or training at the gym, how you warm up matters more than you think. Here are 5 common mistakes and what to do instead.",
     content: `
@@ -266,8 +266,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'chiropractic-care-during-pregnancy',
     title: 'When Should You See a Chiropractor During Pregnancy?',
-    metaTitle: 'Chiropractic Care During Pregnancy | Banora Chiropractic Tweed Heads South',
-    metaDescription: 'Wondering if chiropractic care is safe during pregnancy? Our Tweed Heads South chiropractors explain when to seek care, what to expect, and how it may help you feel more comfortable.',
+    metaTitle: 'Chiropractic Care During Pregnancy | Banora Chiropractic',
+    metaDescription: 'Is chiropractic safe during pregnancy? Our Tweed Heads South chiropractors explain when to seek care, what to expect and how it may help you feel comfortable.',
     excerpt: "Pregnancy puts a lot of demand on your body. Chiropractic care can be a gentle way to stay comfortable — but many expecting mums aren't sure when or whether to come in. Here's what you need to know.",
     content: `
       <p>Pregnancy is one of the most physically demanding things the body goes through. Your centre of gravity shifts, your ligaments loosen, your posture changes — and all of this happens over just nine months. It's no wonder so many expecting mums experience lower back pain, pelvic discomfort, and general achiness along the way.</p>
@@ -325,8 +325,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'chiropractor-or-physio-understanding-the-difference',
     title: 'Chiropractor or Physio? Understanding the Difference',
-    metaTitle: 'Chiropractor vs Physio: What\'s the Difference? | Banora Chiropractic',
-    metaDescription: 'Not sure whether to see a chiropractor or a physiotherapist? Our Tweed Heads South chiropractors explain the differences and help you decide which is right for you.',
+    metaTitle: 'Chiropractor or Physio? | Banora Chiropractic',
+    metaDescription: 'Not sure whether to see a chiropractor or a physio? Our Tweed Heads South chiropractors explain the differences to help you decide which suits you best.',
     excerpt: "It's one of the most common questions we get: what's the difference between a chiropractor and a physio? Here's an honest breakdown to help you make the right choice.",
     content: `
       <p>If you're dealing with back pain, neck stiffness, or a niggling injury, you've probably wondered whether to see a chiropractor or a physiotherapist. It's a genuinely good question — and one we hear often. The honest answer is that there's overlap between the two, but there are also some meaningful differences.</p>
@@ -385,8 +385,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'how-to-set-up-your-home-office-to-protect-your-back',
     title: 'How to Set Up Your Home Office to Protect Your Back',
-    metaTitle: 'Home Office Setup for Back Health | Chiropractor Tweed Heads South',
-    metaDescription: 'Working from home and dealing with back or neck pain? Our Tweed Heads South chiropractors share practical tips for setting up a home office that supports your spine.',
+    metaTitle: 'Home Office Setup for Back Health | Banora Chiropractic',
+    metaDescription: 'Working from home with back or neck pain? Our Tweed Heads South chiropractors share practical tips for a home office setup that supports your spine.',
     excerpt: "More Australians are working from home than ever — and we're seeing the results in the clinic. Here's how to set up your workspace so your back doesn't pay the price.",
     content: `
       <p>Working from home has become normal for a lot of us. And while it has plenty of upsides, one consistent downside we see at the clinic is this: home office setups are often far worse for the body than office ones.</p>
@@ -453,8 +453,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'chiropractic-care-for-kids',
     title: 'Chiropractic Care for Kids: What Parents Need to Know',
-    metaTitle: 'Chiropractic Care for Kids | Paediatric Chiropractor Tweed Heads South',
-    metaDescription: 'Is chiropractic care safe for children? Our Tweed Heads South chiropractors explain what paediatric chiropractic involves, who it may help, and what to expect at your child\'s first visit.',
+    metaTitle: 'Chiropractic Care for Kids | Banora Chiropractic',
+    metaDescription: 'Is chiropractic safe for children? Our Tweed Heads South chiropractors explain what paediatric care involves, who it may help and what happens at a visit.',
     excerpt: "Many parents are curious about chiropractic care for their kids but aren't sure where to start. Here's an honest guide to what paediatric chiropractic is — and isn't.",
     content: `
       <p>We see children of all ages at Banora Chiropractic — from newborns to teenagers. And while paediatric chiropractic is increasingly common, it's still something many parents have questions about. Is it safe? What does it involve? When might it help?</p>
@@ -518,8 +518,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'sciatica-during-pregnancy',
     title: 'Sciatica During Pregnancy: What It Is and How to Find Relief',
-    metaTitle: 'Sciatica During Pregnancy | Banora Chiropractic Tweed Heads South',
-    metaDescription: 'Experiencing shooting leg pain during pregnancy? You may have sciatica. Our Tweed Heads South chiropractors explain why it happens and how chiropractic care may help.',
+    metaTitle: 'Sciatica During Pregnancy | Banora Chiropractic',
+    metaDescription: 'Shooting leg pain during pregnancy? It may be sciatica. Our Tweed Heads South chiropractors explain why it happens and how chiropractic care may help.',
     excerpt: "Sciatica during pregnancy is more common than most people realise. That sharp, shooting pain down your leg has a cause — and there are safe ways to manage it.",
     content: `
       <p>If you're pregnant and experiencing a sharp, shooting pain that runs from your lower back down through your buttock and into your leg, you're not alone. Sciatica is one of the more common and uncomfortable complaints we hear from pregnant patients at Banora Chiropractic — and the good news is that there are safe, gentle options that may help.</p>
@@ -592,8 +592,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'cervicogenic-headache-causes-and-treatment',
     title: 'Cervicogenic Headache: Causes, Symptoms, and How Chiropractic Care May Help',
-    metaTitle: 'Cervicogenic Headache Causes & Treatment | Banora Chiropractic',
-    metaDescription: 'Cervicogenic headaches originate from the neck — and they respond well to chiropractic care. Our Tweed Heads South chiropractors explain what to look for and how we may help.',
+    metaTitle: 'Cervicogenic Headache: Causes & Care | Banora Chiropractic',
+    metaDescription: 'Cervicogenic headaches start in the neck. Our Tweed Heads South chiropractors explain the signs to look for, common causes, and how chiropractic care may help.',
     excerpt: "If your headaches seem to start in your neck or the base of your skull, you may be dealing with a cervicogenic headache. Here's what that means — and what may help.",
     content: `
       <p>Not all headaches come from the head. A cervicogenic headache originates from the neck — specifically from the joints, muscles, or nerves in the cervical spine. It's one of the more common headache types we see at Banora Chiropractic, and it's also one that can respond well to the right hands-on care.</p>
@@ -745,8 +745,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'headache-or-migraine-how-to-tell-the-difference',
     title: 'Headache or Migraine? How to Tell the Difference (and What May Help)',
-    metaTitle: 'Headache vs Migraine: What\'s the Difference? | Banora Chiropractic',
-    metaDescription: 'Not sure if you\'re dealing with a headache or a migraine? Our Tweed Heads South chiropractors explain the differences, common triggers, and how chiropractic care may help.',
+    metaTitle: 'Headache or Migraine? | Banora Chiropractic',
+    metaDescription: 'Headache or migraine? Our Tweed Heads South chiropractors explain how to tell them apart, common triggers, and how chiropractic care may help some people.',
     excerpt: "Most of us know what a headache feels like — but migraines are something else entirely. Here's how to tell the two apart, and what might actually help.",
     content: `
       <p>Headaches are one of the most common complaints we see at Banora Chiropractic. But not all headaches are created equal. Understanding what type of headache you're dealing with is an important first step toward managing it effectively — because the causes, and the best approach, can be quite different.</p>
@@ -851,8 +851,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'sciatica-exercises-and-stretches',
     title: '6 Sciatica Stretches and Exercises That May Help Relieve Your Pain',
-    metaTitle: '6 Sciatica Exercises & Stretches for Pain Relief | Banora Chiropractic',
-    metaDescription: 'Suffering from sciatica? Our Tweed Heads South chiropractors share 6 stretches and exercises for sciatica that may help relieve sciatic nerve pain. Safe, practical, AHPRA-compliant advice.',
+    metaTitle: '6 Sciatica Exercises & Stretches | Banora Chiropractic',
+    metaDescription: 'Six sciatica stretches and exercises from our Tweed Heads South chiropractors that may help ease sciatic nerve pain, with safety tips before you start.',
     excerpt: 'Sciatica pain can be relentless. Here are six stretches and exercises that may help ease sciatic nerve pain — along with guidance on what to avoid and when to get assessed.',
     content: `
       <p>If you have sciatica, you already know the pain. That deep ache in the buttock, the shooting sensation down the back of your leg, the numbness or tingling that makes it hard to get comfortable — it is not something you can just ignore.</p>
@@ -949,8 +949,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'lower-back-pain-exercises',
     title: 'Lower Back Pain Exercises: 7 Movements That May Help You Feel Better',
-    metaTitle: 'Lower Back Pain Exercises That Actually Help | Banora Chiropractic',
-    metaDescription: 'Lower back pain exercises recommended by our Tweed Heads South chiropractors. Safe, practical movements for lower back pain relief — with guidance on what to avoid.',
+    metaTitle: 'Lower Back Pain Exercises | Banora Chiropractic',
+    metaDescription: 'Lower back pain exercises from our Tweed Heads South chiropractors: practical movements that may ease lower back pain, and which ones to avoid.',
     excerpt: 'Lower back pain responds well to the right movement — but the wrong exercises can make things worse. Here are seven that are commonly recommended and why they work.',
     content: `
       <p>When your lower back is playing up, the temptation is to rest. And while a day or two of reduced activity can help in the very acute phase, staying still for too long usually makes lower back pain worse, not better. Movement — the right movement — is one of the best things you can do for your back.</p>
@@ -1040,8 +1040,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'what-to-expect-from-a-chiropractor-tweed-heads-south',
     title: 'What to Expect From a Chiropractor in Tweed Heads South',
-    metaTitle: 'What to Expect From a Chiropractor | Tweed Heads South | Banora Chiropractic',
-    metaDescription: 'Wondering what happens at a chiropractic appointment in Tweed Heads South? Dr James Shipway and Dr Paul Cater explain the assessment, treatment, and what patients typically experience.',
+    metaTitle: 'What to Expect From a Chiropractor | Banora Chiropractic',
+    metaDescription: 'What happens at a chiropractic appointment? Dr James Shipway and Dr Paul Cater explain the assessment, treatment and what to expect in Tweed Heads South.',
     excerpt: 'Not sure what a chiropractic appointment actually involves? Here is a clear, honest guide to what you can expect — from your first visit to your ongoing care plan.',
     content: `
       <p>If you have never seen a chiropractor before — or you have heard mixed things and are not sure what to expect — this guide is for you. At Banora Chiropractic in Tweed Heads South, we see a lot of new patients who arrive unsure of what the assessment involves, whether it will be uncomfortable, and how many visits they will need. These are all fair questions, and we would rather answer them clearly than have you guessing.</p>
@@ -1147,7 +1147,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'how-chiropractic-helps-back-pain',
     title: 'How Chiropractic May Help Back Pain — An Evidence-Based Guide',
-    metaTitle: 'How Chiropractic Helps Back Pain | Evidence-Based Guide | Banora Chiropractic',
+    metaTitle: 'How Chiropractic May Help Back Pain | Banora Chiropractic',
     metaDescription: 'How does chiropractic care actually work for back pain? Dr Paul Cater of Banora Chiropractic explains the evidence, the techniques, and what the research shows.',
     excerpt: 'Back pain is the leading cause of disability worldwide. Here is what the evidence says about chiropractic care, how it works, and who is most likely to benefit.',
     content: `
@@ -1262,8 +1262,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'hip-pain-causes-and-when-to-see-a-chiropractor',
     title: 'Hip Pain: Common Causes and When to Get It Checked',
-    metaTitle: 'Hip Pain Causes & Chiropractic Care | Banora Chiropractic Tweed Heads',
-    metaDescription: 'Aching, stiff, or painful hips? Our Tweed Heads South chiropractors explain common causes of hip pain — including referred pain from the back — and when to seek care.',
+    metaTitle: 'Hip Pain Causes & Chiropractic Care | Banora Chiropractic',
+    metaDescription: 'Aching or stiff hips? Our Tweed Heads South chiropractors explain common causes of hip pain, including pain referred from the back, and when to get it checked.',
     excerpt: "Hip pain doesn't always come from the hip itself. Here's what might actually be going on, and what you can do about it.",
     content: `
       <p>Getting out of the car and feeling your hip catch. A dull ache in the groin that's been there for weeks. Stiffness first thing in the morning that takes a few minutes to walk off. Hip pain shows up in a lot of different ways, and it's one of the more confusing complaints to figure out on your own — because the hip doesn't always hurt where the actual problem is.</p>
@@ -1323,8 +1323,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'shoulder-pain-causes-and-how-chiropractic-may-help',
     title: 'Shoulder Pain: Common Causes and How Chiropractic Care May Help',
-    metaTitle: 'Shoulder Pain Causes & Treatment | Banora Chiropractic Tweed Heads',
-    metaDescription: 'Struggling to reach, lift, or sleep on your shoulder? Our Tweed Heads South chiropractors explain common causes of shoulder pain and how chiropractic care may help.',
+    metaTitle: 'Shoulder Pain Causes & Care | Banora Chiropractic',
+    metaDescription: 'Trouble lifting or sleeping on your shoulder? Our Tweed Heads South chiropractors explain common causes of shoulder pain and how chiropractic may help.',
     excerpt: "Can't reach the top shelf, can't sleep on that side — shoulder pain gets in the way of everything. Here's what's usually behind it.",
     content: `
       <p>The shoulder is the most mobile joint in your body, and that mobility comes at a price — it relies on a delicate balance of muscles, tendons, and ligaments to stay stable, which means there's a lot that can go wrong. If you're struggling to reach into a cupboard, get dressed, or sleep on one side without waking up sore, you'll know exactly what we mean.</p>
@@ -1380,7 +1380,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'chiropractic-care-after-a-car-accident-what-to-expect',
     title: 'What to Expect From Chiropractic Care After a Car Accident',
     metaTitle: 'Chiropractic Care After a Car Accident | Banora Chiropractic',
-    metaDescription: 'Sore neck or back after a car accident? Our Tweed Heads South chiropractors explain why whiplash symptoms often appear later, and what a chiropractic assessment involves.',
+    metaDescription: 'Sore neck or back after a car accident? Our Tweed Heads South chiropractors explain why whiplash symptoms can appear later and what an assessment involves.',
     excerpt: "Feeling fine at the scene and stiff two days later is more common than you'd think after a car accident. Here's why — and what to do about it.",
     content: `
       <p>It's a familiar story at the clinic: someone's involved in a car accident, feels a bit shaken but otherwise okay, and then wakes up two or three days later with a neck that barely turns and a headache that won't quit. If that's happened to you, you're not imagining it, and you're definitely not overreacting.</p>

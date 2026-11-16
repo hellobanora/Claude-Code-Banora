@@ -28,8 +28,8 @@ export const services: Service[] = [
   {
     slug: 'chiropractic-adjustments',
     title: 'Chiropractic Adjustments',
-    metaTitle: 'Chiropractic Adjustments | Banora Chiropractic | Tweed Heads South',
-    metaDescription: 'Professional chiropractic adjustments in Tweed Heads South. Dr James Shipway and Dr Paul Cater use Diversified, Thompson, Soft Tissue Therapy, Arthrostim, and Extremity techniques. Book online today.',
+    metaTitle: 'Chiropractic Adjustments | Banora Chiropractic',
+    metaDescription: 'Chiropractic adjustments in Tweed Heads South using Diversified, Thompson, Arthrostim, soft tissue and extremity techniques, with gentle options. Book online.',
     heroHeading: 'Chiropractic Adjustments',
     heroSubheading: 'Hands-on care tailored to your body, your goals, and how you want to feel.',
     icon: '🦴',
@@ -55,8 +55,8 @@ export const services: Service[] = [
   {
     slug: 'posture-correction',
     title: 'Posture Correction',
-    metaTitle: 'Posture Correction Chiropractor | Forward Head Posture | Banora Chiropractic',
-    metaDescription: 'Chiropractor for posture correction in Tweed Heads South. We assess and address forward head posture, rounded shoulders, and poor posture. Book your assessment online.',
+    metaTitle: 'Posture Correction Chiropractor | Banora Chiropractic',
+    metaDescription: 'Posture correction chiropractor in Tweed Heads South. We assess forward head posture and rounded shoulders, then explain your options. Book online.',
     heroHeading: 'Posture Correction',
     heroSubheading: 'Forward head posture, rounded shoulders, or a back that aches by midday — we can assess what is going on and help you do something about it.',
     icon: '🧍',
@@ -83,7 +83,7 @@ export const services: Service[] = [
   {
     slug: 'sports-chiropractic',
     title: 'Sports Chiropractic',
-    metaTitle: 'Sports Chiropractor Tweed Heads & Southern Gold Coast | Banora Chiropractic',
+    metaTitle: 'Sports Chiropractor Tweed Heads | Banora Chiropractic',
     metaDescription: 'Sports chiropractor in Tweed Heads South for surfers, runners, footy and netball players. Assessment and hands-on care for sports strains. Book online.',
     heroHeading: 'Sports Chiropractor in Tweed Heads & the Southern Gold Coast',
     heroSubheading: 'For surfers, runners, footy and netball players, and anyone whose body is telling them about last weekend.',
