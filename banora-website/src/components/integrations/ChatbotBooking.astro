@@ -707,7 +707,7 @@ $('bcb-qb-book')?.addEventListener('click', () => {
 $('bcb-qb-hours')?.addEventListener('click', async () => {
   hideQuickBtns();
   userMsg("What are your opening hours?");
-  await botMsg("We're open Monday, Tuesday, Thursday 8:30am–6pm, Wednesday 2pm–6pm, Friday 12pm–2pm, and Saturday 8am–12pm. Closed Sunday.");
+  await botMsg("We're open Monday, Tuesday, Thursday 8:30am–6pm, Wednesday 2pm–6pm, Friday 12pm–2pm, and Saturday 8am–11:30am. Closed Sunday.");
   setTimeout(async () => {
     await botMsg("Want to grab a spot? I can walk you through booking right now.", 400);
     choiceButtons([{ label: "Yes, let's book", value: "yes", action: "start-booking" }]);
@@ -768,7 +768,7 @@ async function handleFreeText(text) {
   if (/book|appointment|schedule|available|slot|time/i.test(lower)) {
     await startBooking();
   } else if (/hour|open|close|when.*open/i.test(lower)) {
-    await botMsg("We're open Monday, Tuesday, Thursday 8:30am–6pm, Wednesday 2pm–6pm, Friday 12pm–2pm, and Saturday 8am–12pm.");
+    await botMsg("We're open Monday, Tuesday, Thursday 8:30am–6pm, Wednesday 2pm–6pm, Friday 12pm–2pm, and Saturday 8am–11:30am.");
     setTimeout(() => botMsg("Want to grab a spot?", 400), 800);
   } else if (/cost|price|fee|how much|charge|bulk.?bill/i.test(lower)) {
     await botMsg("Initial consult is $100, follow-ups $75. Health fund rebates apply via HICAPS — most people pay about $15–25 gap. Want to book?");

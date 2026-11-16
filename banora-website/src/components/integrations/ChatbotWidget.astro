@@ -325,7 +325,7 @@ import { clinic } from '../../data/clinic';
     },
     hours: () => {
       addUserMessage("What are your opening hours?");
-      addBotMessage("We're open Monday to Friday, 8am–6pm, and Saturday mornings 8am–12pm. Want me to open the booking calendar so you can grab a spot?");
+      addBotMessage("We're open Monday, Tuesday and Thursday 8:30am–6pm, Wednesday 2pm–6pm, Friday 12pm–2pm, and Saturday 8am–11:30am. Want me to open the booking calendar so you can grab a spot?");
       setTimeout(() => addBookingCTA(), 1500);
     },
     'new-patient': () => {
@@ -397,7 +397,7 @@ import { clinic } from '../../data/clinic';
       setTimeout(() => startBookingFlow(), 800);
     } else if (/hour|open|close|when|time.*open/i.test(lower)) {
       responses.hours = null; // prevent duplicate
-      addBotMessage("We're open Mon–Fri 8am–6pm, Sat 8am–12pm. Want to book a time?");
+      addBotMessage("We're open Mon, Tue, Thu 8:30am–6pm, Wed 2–6pm, Fri 12–2pm and Sat 8–11:30am. Want to book a time?");
       setTimeout(() => addBookingCTA(), 1200);
     } else if (/cost|price|fee|how much|charge|afford|expensive|bulk.?bill/i.test(lower)) {
       addBotMessage("Initial consult is $100, follow-ups $75. Health fund rebates apply — most people pay about $15–25 gap. Want me to open the booking calendar?");
