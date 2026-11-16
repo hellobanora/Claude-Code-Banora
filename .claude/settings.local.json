@@ -217,7 +217,16 @@
       "Bash(git mv *)",
       "Bash(npx prettier@3.6.2 --write scripts/sync-forms.ts --print-width 110)",
       "Bash(npm run *)",
-      "Bash(echo \"exit $?\")"
+      "Bash(echo \"exit $?\")",
+      "Bash(git log *)",
+      "Bash(xargs ls -lt)",
+      "WebFetch(domain:www.palmbeachchiropractic.com.au)",
+      "WebFetch(domain:palmbeachchiropractic.com.au)",
+      "mcp__visualize__read_me",
+      "mcp__visualize__show_widget",
+      "Bash(gh repo *)",
+      "Bash(unzip -o \"/Users/jamesshipway/Downloads/PalmBeach-Chiropractic-WEBSITE-main.zip\")",
+      "mcp__64bd11e1-113d-4b11-8371-6d3c286007a9__create_draft"
     ]
   }
 }
