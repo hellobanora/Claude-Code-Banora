@@ -63,6 +63,32 @@ export async function listUnrepliedReviews(
   return allReviews.filter((r) => !r.reviewReply);
 }
 
+export interface ReviewStats {
+  rating: number; // Google's average star rating, e.g. 4.9
+  count: number; // total number of Google reviews
+}
+
+// Aggregate rating and review count for the homepage badge. Google's list
+// response carries both, so one 1-review page is enough.
+export async function getReviewStats(
+  accessToken: string,
+  accountId: string,
+  locationId: string
+): Promise<ReviewStats> {
+  const url = new URL(`https://mybusiness.googleapis.com/v4/${accountId}/${locationId}/reviews`);
+  url.searchParams.set("pageSize", "1");
+  const res = await fetch(url, { headers: { Authorization: `Bearer ${accessToken}` } });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`GBP review stats failed (${res.status}): ${err}`);
+  }
+  const data = (await res.json()) as { averageRating?: number; totalReviewCount?: number };
+  if (typeof data.averageRating !== "number" || typeof data.totalReviewCount !== "number") {
+    throw new Error("GBP review stats missing averageRating/totalReviewCount");
+  }
+  return { rating: Math.round(data.averageRating * 10) / 10, count: data.totalReviewCount };
+}
+
 export async function postReply(
   accessToken: string,
   accountId: string,

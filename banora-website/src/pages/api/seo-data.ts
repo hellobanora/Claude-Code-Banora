@@ -7,6 +7,7 @@
 import type { APIRoute } from "astro";
 import { getAccessToken } from "../../lib/seo-agent/google-token";
 import { getSearchConsoleExport } from "../../lib/seo-agent/search-console-export";
+import { getReviewStats, type ReviewStats } from "../../lib/seo-agent/gbp-reviews";
 
 export const prerender = false;
 
@@ -38,10 +39,30 @@ export const GET: APIRoute = async ({ request }) => {
     return json({ error: "Google auth failed" }, 502);
   }
 
+  // Review stats are optional: if Business Profile access fails, the routine still gets
+  // Search Console data and is told why the stats are missing.
+  const reviewStats = loadReviewStats(accessToken);
+
   try {
-    return json(await getSearchConsoleExport(accessToken, siteUrl), 200);
+    const searchConsole = await getSearchConsoleExport(accessToken, siteUrl);
+    return json({ ...searchConsole, reviewStats: await reviewStats }, 200);
   } catch (err) {
     console.error("[seo-data] Search Console export failed", err);
     return json({ error: "Search Console export failed" }, 502);
   }
 };
+
+async function loadReviewStats(
+  accessToken: string
+): Promise<(ReviewStats & { checkedAt: string }) | { error: string }> {
+  const accountId = import.meta.env.GBP_ACCOUNT_ID;
+  const locationId = import.meta.env.GBP_LOCATION_ID;
+  if (!accountId || !locationId) return { error: "GBP_ACCOUNT_ID / GBP_LOCATION_ID not set" };
+  try {
+    const stats = await getReviewStats(accessToken, accountId, locationId);
+    return { ...stats, checkedAt: new Date().toISOString() };
+  } catch (err) {
+    console.error("[seo-data] review stats failed", err);
+    return { error: String(err).slice(0, 300) };
+  }
+}

@@ -20,10 +20,6 @@ Things that help rankings but need a person: listings on other sites, logins the
     1. Send a same-day SMS to every patient, not only the happy ones, with the review link. Aim for about 10 new reviews a month.
     2. AHPRA: offer no incentive, and don't repost, quote or display reviews on the site, socials or ads.
 
-- [ ] **Decide whether to keep the Google rating badge on the homepage** · Medium · ~5 min · since 19 Oct 2026
-  - Why: the badge shows your star rating and links to reviews. The SEO report flagged that it could be read as using testimonials in advertising (AHPRA). This is your call; the routine won't touch it.
-  - Steps: decide keep or remove, then tell Claude to make the change.
-
 - [ ] **Move the Google sign-in for the SEO agent out of "Testing"** · Medium · ~15 min · since 10 Nov 2026
   - Why: in Testing mode the sign-in expires if the agent misses a week, which stops review checks and Search Console reports until someone re-runs the setup.
   - Steps: Google Cloud Console → APIs & Services → OAuth consent screen → Publish app. Google may ask for verification of the `business.manage` scope; follow its prompts. See `banora-website/docs/seo-agent-setup.md`.
@@ -36,4 +32,5 @@ Things that help rankings but need a person: listings on other sites, logins the
 
 (Ticked items move here with the date, newest first.)
 
+- [x] **Decide whether to keep the Google rating badge on the homepage** · done 20 Nov 2026: keep it. The weekly routine now updates the rating and count from Google.
 - [x] **Get listed on Healthdirect (National Health Services Directory)** · done 20 Nov 2026 (added 19 Oct). Listings can take a few weeks to appear; the monthly audit should check that it ranks for "chiropractor tweed heads south".

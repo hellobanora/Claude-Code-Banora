@@ -97,6 +97,30 @@ first). Past weekly changes are in `docs/seo-agent/CHANGELOG.md`.
     `SEO weekly: no changes` so there's a record. Put the top 3 to-dos at the
     top of the body.
 
+### Google rating badge (every weekly run)
+
+The homepage shows the Google rating and review count from
+`banora-website/src/data/reviews.ts`. James wants it kept accurate, so check
+it every week using the `reviewStats` object in the Search Console data:
+
+1. If `reviewStats` has `rating` and `count`, compare them with `reviewStats`
+   in `reviews.ts`.
+2. If either differs, update `rating` and `count`, and change the
+   "last checked" date in the comment to today. Count this as one of the
+   week's changes, but don't skip it for the 4-week rule: it's a fact update,
+   not an experiment. Note it in the PR body ("Google reviews: 71 → 74,
+   rating 4.9") and add a changelog row.
+3. Sanity check before writing: the rating must be between 1 and 5, and the
+   count must not have dropped by more than 3 or risen by more than 20 since
+   the last check. If it fails, don't change the file; say so at the top of
+   the PR body so James can look at the profile.
+4. If `reviewStats` has an `error` (usually the Google login has expired),
+   leave the file alone. Put "Review count not checked: <error>" at the top of
+   the PR body, and make sure the "Move the Google sign-in out of Testing"
+   to-do is open and near the top.
+5. Never add review text, quotes or reviewer names anywhere on the site
+   (AHPRA). Only the rating and count.
+
 ### Site check (every weekly PR that changes the site)
 
 Compares the built site on `main` with the built branch, and fails only on
