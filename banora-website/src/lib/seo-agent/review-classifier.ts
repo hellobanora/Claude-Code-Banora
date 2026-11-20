@@ -11,17 +11,20 @@ const RISK_KEYWORDS =
 
 const MAX_AUTO_REPLY_LENGTH = 280;
 
+// Replies are public, so they must never confirm or imply the reviewer is a patient
+// ("see you next time", "glad we could help", "happy patients") or touch on their
+// health. Keep them generic: thank them for the review, nothing more.
 const POSITIVE_TEMPLATES: Array<(name: string) => string> = [
-  (name) => `Thanks ${name} — really glad to hear it! See you next time.`,
-  (name) => `Appreciate the kind words, ${name}. We'll pass it on to the team. Take care!`,
-  (name) => `Thanks for taking the time to write this, ${name}. We love hearing from happy patients.`,
-  (name) => `Thanks so much, ${name} — glad we could help. Looking forward to seeing you again!`,
+  (name) => `Thanks ${name} for taking the time to leave a review. It's much appreciated.`,
+  (name) => `Thank you for the kind words, ${name}. We'll pass them on to the team.`,
+  (name) => `Thanks ${name}, we really appreciate you sharing your feedback.`,
+  (name) => `Thank you ${name} for taking the time to write this. It means a lot to the team.`,
 ];
 
 const NEGATIVE_DRAFT_TEMPLATE = (name: string) =>
-  `Hi ${name}, sorry to hear about your experience — that's not the standard we aim for. ` +
-  `We'd like to understand what happened and make it right. Please give us a call on ` +
-  `(07) 5599 2322 so we can chat.`;
+  `Hi ${name}, thank you for your feedback. We take every comment seriously and would ` +
+  `welcome the chance to talk it through. Please call the clinic on (07) 5599 2322 ` +
+  `and ask to speak with Dr James Shipway or Dr Paul Cater.`;
 
 // For a positive-but-flagged review (too long, or mentions something like
 // billing/insurance that needs a personal, specific reply) — don't apologise,

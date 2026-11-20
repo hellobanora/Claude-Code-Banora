@@ -22,7 +22,7 @@ export const POST_ROTATION: GbpPostDraft[] = [
   {
     id: "sciatica-tip",
     summary:
-      "Sciatica — that sharp pain running from your lower back down the leg — often eases with gentle movement rather than rest. Stretches like the piriformis stretch or a slow knee-to-chest pull may help take some pressure off the nerve. If it's been hanging around for more than a couple of weeks, it's worth getting properly assessed rather than just stretching and hoping. Call (07) 5599 2322 or book online.",
+      "Sciatica is pain that travels from the lower back down the leg. Many people find that staying gently active is more comfortable than complete rest, but everyone is different. If leg pain has been hanging around for more than a couple of weeks, it's worth having it assessed so you know what's going on.",
     imageFileName: "hero-back-neck.jpg",
     ctaType: "LEARN_MORE",
     ctaPath: "/conditions/sciatica/",
@@ -46,7 +46,7 @@ export const POST_ROTATION: GbpPostDraft[] = [
   {
     id: "hicaps-tip",
     summary:
-      "We have HICAPS on-site, so if your health fund covers chiropractic, your rebate is processed on the spot — you only pay the gap. We also accept DVA and WorkCover. Ask at reception or give us a call on (07) 5599 2322 if you’re not sure what your cover includes.",
+      "We have HICAPS on-site, so if your health fund covers chiropractic, your rebate is processed on the spot — you only pay the gap. We also accept DVA and WorkCover. Not sure what your cover includes? Tap Call and we can check with you.",
     imageFileName: "hero-all-ages.jpg",
     ctaType: "CALL",
   },
@@ -77,7 +77,7 @@ export const POST_ROTATION: GbpPostDraft[] = [
   {
     id: "headache-tip",
     summary:
-      "Headaches that start at the base of the skull and spread forward are often linked to tension in the neck and upper back — not just ‘a headache’. Simple changes like adjusting screen height and taking regular breaks can help, and if they’re frequent, it’s worth finding out what’s actually driving them.",
+      "Headaches that start at the base of the skull and spread forward are often linked to tension in the neck and upper back — not just ‘a headache’. Simple changes like adjusting screen height and taking regular breaks may help, and if they’re frequent, it’s worth finding out what’s actually driving them.",
     imageFileName: "hero-chiro-exam.jpg",
     ctaType: "LEARN_MORE",
     ctaPath: "/conditions/headaches-migraines/",
