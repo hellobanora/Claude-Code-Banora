@@ -6,7 +6,7 @@ Weekly automation: pulls Search Console performance for the tracked keywords, ch
 
 APIs enabled, OAuth consent screen configured (External, Testing mode, scopes `webmasters.readonly` + `business.manage`), Desktop OAuth client downloaded. Nothing further needed here for now.
 
-**Testing-mode limit:** a refresh token issued while the consent screen is in Testing mode expires if unused for 7 days. The weekly cron keeps it alive on its own; if the agent is ever paused for longer than a week, re-run the setup script below. Moving the consent screen to Production removes this limit but requires Google's verification review for sensitive scopes — a future follow-up, not needed now.
+**Testing-mode limit (no longer applies; published 20 Nov 2026):** a refresh token issued while the consent screen is in Testing mode expires if unused for 7 days. The weekly cron keeps it alive on its own; if the agent is ever paused for longer than a week, re-run the setup script below. Moving the consent screen to Production removes this limit but requires Google's verification review for sensitive scopes — a future follow-up, not needed now.
 
 ## 2. Get a refresh token + your GBP account/location IDs
 
@@ -17,6 +17,16 @@ node scripts/gbp-oauth-setup.mjs "<path to the downloaded client_secret_*.json>"
 ```
 
 Follow the printed URL in a browser, approve access, then copy every printed `KEY=value` line. The same values are also saved to `scripts/.gbp-oauth-output.json` (gitignored) — delete that file once you've copied the values into Vercel.
+
+### Renewing the login later (one command)
+
+The consent screen is published (In production since 20 Nov 2026), so the token no longer expires weekly. If it ever needs replacing, add a new client secret in Google Cloud (Clients → Banora Chiro SEO tool → Add secret → Download JSON), then run:
+
+```bash
+bash scripts/renew-google-login.sh ~/Downloads/client_secret_*.json
+```
+
+It signs you in, writes the new secret and token straight into Vercel (never printed), redeploys, and deletes the JSON. Afterwards, disable and delete the old secret in Google Cloud.
 
 ## 3. Set Vercel environment variables
 
