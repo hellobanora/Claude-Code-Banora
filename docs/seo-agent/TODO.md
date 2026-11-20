@@ -6,16 +6,6 @@ Things that help rankings but need a person: listings on other sites, logins the
 
 ## Open
 
-- [ ] **Get listed on Healthdirect (National Health Services Directory)** · High · ~30 min · since 19 Oct 2026
-  - Why: Healthdirect ranks #1 for 6 of the 14 tracked "chiropractor + suburb" searches, and AI assistants treat it as a trusted government source. Banora wasn't in its Tweed Heads South list (19 Oct report).
-  - Steps:
-    1. Search "National Health Services Directory add or update a service" and open the Healthdirect form.
-    2. Choose "add a new service", type: Chiropractic.
-    3. Enter exactly: Banora Chiropractic · 2/44 Greenway Drive, Tweed Heads South NSW 2486 · (07) 5599 2322 · https://banorachiropractic.com.au/
-    4. Hours: Mon, Tue, Thu 8:30am–6pm · Wed 2–6pm · Fri 12–2pm · Sat 8–11:30am · Sun closed.
-    5. Practitioners: Dr James Shipway and Dr Paul Cater (B.Sc.Chiro. & M.Chiro). Mention HICAPS, no referral needed, wheelchair access, on-site parking.
-    6. Submit, and note the confirmation email. Listings can take a few weeks to appear.
-
 - [ ] **Clean up directory listings so every one says exactly "Banora Chiropractic"** · High · ~45 min · since 19 Oct 2026
   - Why: matching name, address and phone everywhere is a core local-ranking and AI-citation signal. A different business, "Banora-Tweed Family Chiropractic Centre", is still indexed, and AI tools can blend the two.
   - Steps:
@@ -45,3 +35,5 @@ Things that help rankings but need a person: listings on other sites, logins the
 ## Done
 
 (Ticked items move here with the date, newest first.)
+
+- [x] **Get listed on Healthdirect (National Health Services Directory)** · done 20 Nov 2026 (added 19 Oct). Listings can take a few weeks to appear; the monthly audit should check that it ranks for "chiropractor tweed heads south".
