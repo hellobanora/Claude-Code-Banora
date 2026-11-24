@@ -15,9 +15,9 @@ export interface GbpPostDraft {
   ctaPath?: string; // site-relative path, e.g. "/conditions/sciatica/" — omitted for CALL
 }
 
-// 8 posts = 2 full cycles of gbp-manager's 4-week rotation (health tip,
-// behind-the-scenes, FAQ, community/practical) — rotated by ISO week number
-// so the choice is deterministic without needing any stored state.
+// 14 posts (health/service tips, team spotlights, FAQs, and practical/
+// location info) — rotated by ISO week number so the choice is
+// deterministic without needing any stored state.
 export const POST_ROTATION: GbpPostDraft[] = [
   {
     id: "sciatica-tip",
@@ -81,6 +81,54 @@ export const POST_ROTATION: GbpPostDraft[] = [
     imageFileName: "hero-chiro-exam.jpg",
     ctaType: "LEARN_MORE",
     ctaPath: "/conditions/headaches-migraines/",
+  },
+  {
+    id: "pregnancy-care-tip",
+    summary:
+      "Pregnancy brings a lot of change through your spine and pelvis in a short space of time, and for many women that shows up as lower back or pelvic discomfort. Both Dr Paul and Dr James are trained in pregnancy-specific techniques, with a gentle approach adjusted for each trimester. If you’re finding it hard to get comfortable, it’s worth having a chat about what might help.",
+    imageFileName: "hero-pregnancy.jpg",
+    ctaType: "LEARN_MORE",
+    ctaPath: "/services/pregnancy-chiropractic/",
+  },
+  {
+    id: "paediatric-tip",
+    summary:
+      "Kids end up in a chiropractor’s chair for all sorts of reasons — growing pains, sports knocks, or parents wanting a second opinion on their posture. Techniques are adapted to be gentle and age-appropriate, and we always explain what we’re doing before we do it. If you’re unsure whether it’s worth bringing your child in, give us a call and we can talk it through.",
+    imageFileName: "hero-paediatric.jpg",
+    ctaType: "LEARN_MORE",
+    ctaPath: "/services/paediatric-chiropractic/",
+  },
+  {
+    id: "new-patient-faq",
+    summary:
+      "‘What happens at my first visit?’ We start with a thorough history and assessment so we properly understand what’s going on before any treatment begins. No referral is needed, and with HICAPS on-site, your health fund rebate is processed on the spot.",
+    imageFileName: "chiropractic-visit.jpg",
+    ctaType: "BOOK",
+    ctaPath: "/book/",
+  },
+  {
+    id: "meet-james",
+    summary:
+      "Dr James Shipway brings a thorough, evidence-based approach to care, using Diversified, Thompson Drop and soft tissue techniques. He has a particular interest in sciatica and nerve-related leg pain, headaches, and neck pain, and works with everything from a sudden injury to pain that’s built up over years. Outside the clinic, you’ll usually find him at the gym or down at the beach.",
+    imageFileName: "dr-james-shipway.jpg",
+    ctaType: "LEARN_MORE",
+    ctaPath: "/team/dr-james-shipway/",
+  },
+  {
+    id: "meet-paul",
+    summary:
+      "Dr Paul Cater co-founded Banora Chiropractic with Dr James Shipway in 2020, bringing over 20 years’ experience helping the Tweed Heads community move and feel better. He has a particular interest in sports injuries, musculoskeletal care during pregnancy, and extremity work — shoulders, hips, knees and ankles. Outside the clinic, he’s most at home in the water, surfing and diving.",
+    imageFileName: "dr-paul-cater.jpg",
+    ctaType: "LEARN_MORE",
+    ctaPath: "/team/dr-paul-cater/",
+  },
+  {
+    id: "location-access-tip",
+    summary:
+      "Finding us is easy — we’re on the ground floor at 2/44 Greenway Drive, Tweed Heads South, right between Reece Plumbing and Border Bikes, with free on-site parking out front. No steps, wheelchair accessible, and no referral needed to book in.",
+    imageFileName: "team-photo.jpg",
+    ctaType: "BOOK",
+    ctaPath: "/book/",
   },
 ];
 
