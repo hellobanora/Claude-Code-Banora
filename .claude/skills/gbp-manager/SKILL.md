@@ -30,7 +30,7 @@ Every field must be complete, accurate, and consistent with the website and all 
 | **Address** | 2/44 Greenway Drive, Tweed Heads South, NSW 2486 | Must match website and all citations exactly |
 | **Phone** | (07) 5599 2322 | Must match website exactly — same format |
 | **Website** | https://banorachiropractic.com.au | Link to homepage |
-| **Hours** | Mon/Tue/Thu 8:30am–6pm, Wed 2pm–6pm, Fri 12pm–2pm, Sat 8am–12pm | Keep updated for holidays |
+| **Hours** | Mon/Tue/Thu 8:30am–6pm, Wed 2pm–6pm, Fri 12pm–2pm, Sat 8am–11:30am, Sun closed | Keep updated for holidays |
 | **Primary category** | Chiropractor | This is the most important field for ranking |
 | **Secondary categories** | Sports Chiropractor, Pregnancy Chiropractor (if available) | Add all relevant categories |
 
