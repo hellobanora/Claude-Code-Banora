@@ -41,7 +41,7 @@ Always write with these details available — pull from them naturally, don't fo
 - **Tagline:** "Experts in Spinal Health"
 - **Services:** Back pain, neck pain, headaches & migraines, sciatica, scoliosis, shoulder pain, joint pain, sports injuries, pregnancy chiropractic, family chiropractic
 - **Techniques:** Gonstead, SOT, Diversified, Thompson Drop, Activator, cranial and extremity techniques (manual and low-impact options)
-- **Hours:** Mon/Tue/Thu 8:30am–6pm, Wed 2pm–6pm, Fri 12pm–2pm, Sat 8am–12pm
+- **Hours:** Mon/Tue/Thu 8:30am–6pm, Wed 2pm–6pm, Fri 12pm–2pm, Sat 8am–11:30am, Sun closed
 - **Location perks:** Ground floor access (no steps), on-site parking directly in front
 - **Service area:** Banora Point, Tweed Heads, Tweed Heads South, Coolangatta, Terranora, Bilambil Heights, Chinderah, Kingscliff, Fingal, Murwillumbah
 

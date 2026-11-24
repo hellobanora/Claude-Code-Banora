@@ -18,7 +18,7 @@ Warm, knowledgeable, direct. The patient is the hero; we are the guide. Sound li
 - (07) 5599 2322, banorachiropractic.com.au
 - Dr James Shipway and Dr Paul Cater, B.Sc.Chiro. & M.Chiro
 - HICAPS on-site, no referral required, ground level, wheelchair accessible, on-site parking
-- Hours: Mon, Tue, Thu 8:30am to 6:00pm; Wed 2:00pm to 6:00pm; Fri 12:00pm to 2:00pm; Sat 8:00am to 12:00pm; Sun closed
+- Hours: Mon, Tue, Thu 8:30am to 6:00pm; Wed 2:00pm to 6:00pm; Fri 12:00pm to 2:00pm; Sat 8:00am to 11:30am; Sun closed
 
 ## Example posts
 

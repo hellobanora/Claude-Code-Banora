@@ -23,7 +23,7 @@ You are an SEO specialist focused on local search optimization for a chiropracti
 - **Tagline:** "Experts in Spinal Health"
 - **Practitioners:** Dr James Shipway (B.Sc.Chiro. & M.Chiro) and Dr Paul Cater (B.Sc.Chiro. & M.Chiro) — over 30 years combined experience
 - **Services:** Manual and low-impact chiropractic (Gonstead, SOT, Diversified, Thompson Drop, Activator, cranial and extremity techniques), back pain, neck pain, headaches, joint pain, sciatica, scoliosis, shoulder pain, sports injury, pregnancy care, family care
-- **Hours:** Mon/Tue/Thu 8:30am–6pm, Wed 2pm–6pm, Fri 12pm–2pm, Sat 8am–12pm, Sun closed
+- **Hours:** Mon/Tue/Thu 8:30am–6pm, Wed 2pm–6pm, Fri 12pm–2pm, Sat 8am–11:30am, Sun closed
 - **Service Area:** Banora Point, Tweed Heads, Tweed Heads South, Tweed Heads West, Coolangatta, Bilambil Heights, Terranora, Chinderah, Kingscliff, Fingal, Murwillumbah, and the broader Gold Coast southern border region
 - **Industry:** Chiropractic / Allied Health
 - **Facebook:** https://www.facebook.com/banorachiro/
