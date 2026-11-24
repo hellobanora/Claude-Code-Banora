@@ -863,7 +863,7 @@ export const blogPosts: BlogPost[] = [
 
       <h2>A quick note before you start</h2>
 
-      <p>Sciatica is a symptom, not a diagnosis. It means something is irritating your sciatic nerve — and that something could be a disc bulge, joint restriction, tight piriformis muscle, or something else entirely. The exercises below are general in nature. If your pain is severe, getting worse, or accompanied by weakness or bowel and bladder changes, see a healthcare provider before attempting these. If you have not had your sciatica properly assessed, it is worth doing so — the right approach depends on the cause.</p>
+      <p>Sciatica is a symptom, not a diagnosis. It means something is irritating your sciatic nerve — and that something could be a disc bulge, joint restriction, tight piriformis muscle, or something else entirely. The exercises below are general in nature. If your pain is severe, getting worse, or accompanied by weakness or bowel and bladder changes, see a healthcare provider before attempting these. If you have not had your sciatica properly assessed, it is worth doing so — the right approach depends on the cause. If you are near Tweed Heads, we can <a href="/conditions/sciatica/">assess your sciatica</a> at our clinic in Tweed Heads South.</p>
 
       <h2>1. Piriformis stretch (figure-four)</h2>
 
@@ -932,7 +932,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>Because sciatica so often starts with a problem in the lower back itself, it is worth having that checked properly too — as a <a href="/conditions/back-pain/">back pain chiropractor in Tweed Heads South</a>, we look at both together as standard rather than treating the leg pain in isolation.</p>
 
-      <p>If your sciatica is affecting your sleep, your work, or your ability to get around comfortably — do not just keep stretching and hoping for the best. Come and see us at <a href="/about/">Banora Chiropractic</a> in Tweed Heads South. We will work out what is going on and help you get on top of it.</p>
+      <p>If your sciatica is affecting your sleep, your work, or your ability to get around comfortably — do not just keep stretching and hoping for the best. Come and see us at Banora Chiropractic in Tweed Heads South: we will work out what is going on and talk you through your options. <a href="/book/">Book a visit</a> or give us a call on (07) 5599 2322.</p>
     `,
     author: 'dr-paul-cater',
     publishDate: '2026-04-24',
