@@ -19,8 +19,8 @@ Standing list kept by the weekly SEO ranking and AI-visibility report routine (s
 5. **Pregnancy and kids searches: ~85 impressions each for "chiropractic care during pregnancy" (pos 9.7) and "chiropractic care for kids" (pos 14.6), 0 clicks** · Medium · ~45 min · since 2026-11-24 · Who: Claude Code next run on/after 2026-12-14 (service/blog pages changed 16 Nov)
    - Why: queries already rank near page one; sharper hedged, AHPRA-safe FAQ answers on the pregnancy and paediatric pages may lift CTR. Competitors Nurture and Tweed Coast Chiropractic own the local versions.
 
-6. **Sciatica post CTR: 315 clicks on 29,790 impressions (1.1%), position 8.2** · Medium · ~30 min · since 2026-11-24 · Who: Claude Code next run on/after 2026-12-14 (edited 10 and 16 Nov)
-   - Why: by far the biggest traffic page, but 1.1% CTR and a national audience. Consider an internal link/CTA to /conditions/sciatica/ (that page: 27 impressions, position 40.7) so the traffic reaches local intent pages.
+6. **Sciatica post search CTR: 315 clicks on 29,790 impressions (1.1%), position 8.2** · Medium · ~30 min · since 2026-11-24 · Who: Claude Code next run on/after 2026-12-14 (title/meta edited 10 and 16 Nov)
+   - Why: by far the biggest traffic page, but 1.1% CTR. The internal-link half of this item is done (see Done); the title/meta half waits for the 14 Dec re-check.
 
 7. **Re-test Kingscliff (pos 17.3), Murwillumbah (pos 28.8) and Coolangatta (7.3) suburb pages** · Medium · ~30 min · since 2026-11-24 · Who: Claude Code next run on/after 2026-12-14
    - Why: suburb pages were rewritten 16 Nov; wait ~4 weeks before changing again.
@@ -29,4 +29,5 @@ Standing list kept by the weekly SEO ranking and AI-visibility report routine (s
 
 ## Done
 
+- [x] **Send sciatica-post readers to local pages** · 2026-11-24, by hand (not this routine) · `banora-website/src/data/blog.ts`, body only: early link to /conditions/sciatica/ in the intro; closing CTA changed from /about/ to /book/ plus phone. Title and meta untouched. Logged in `docs/seo-agent/CHANGELOG.md`.
 - [x] **Point the llms.txt "Book online" link at the site's /book/ page** · 2026-11-24 · `banora-website/src/pages/llms.txt.ts`: "Book online" changed from the raw IconPractice URL (`clinic.bookingUrl`) to `https://banorachiropractic.com.au/book/`. `npm run build` and sitemap check passed (66 URLs); built llms.txt line verified. (`/book/` still opens the unchanged IconPractice flow.)
