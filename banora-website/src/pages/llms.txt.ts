@@ -32,7 +32,7 @@ Results of chiropractic care vary between individuals. We recommend a consultati
 - Phone: ${clinic.phone}
 - Email: ${clinic.email}
 - Website: ${BASE_URL}
-- Book online: ${clinic.bookingUrl}
+- Book online: ${BASE_URL}/book/
 - Location: ${clinic.landmark} on Greenway Drive. On-site parking, ground level, wheelchair accessible.
 
 ## Opening hours
